@@ -1,0 +1,65 @@
+Deployment
+==================
+
+Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
+
+To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:
+
+The frequency and times the widget is visible to the user.
+
+- The widget’s last reload time.
+
+- Whether the widget’s containing app is active.
+
+WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.
+
+A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.
+
+Code example
+------------
+
+.. code-block:: swift
+
+	class ViewController: UINavigationController {
+	...
+		fileprivate func setupAlanEventHandler() {
+			/// Add an observer to get events from Alan
+			NotificationCenter.default.addObserver(self, selector: #selector(self.handleEvent(_:)), name:NSNotification.Name(rawValue: "kAlanSDKEventNotification"), object:nil)
+		}
+		
+		@objc func handleEvent(_ notification: Notification) {
+		/// Get the user info object with JSON from Alan
+		guard let userInfo = notification.userInfo,
+			let jsonString = userInfo["jsonString"] as? String,
+			let jsonData = jsonString.data(using: .utf8),
+			let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+			/// Get the object with the command data
+			let commandObject = jsonObject["data"] as? [String: Any],
+			/// Get the command name string
+			let commandString = commandObject["command"] as? String
+		else {
+			return
+		}
+		
+			/// Get the command name string
+			if commandString == "navigation" {
+				/// Get the route name string
+				guard let routeString = commandObject["route"] as? String else {
+					return
+				}
+				/// Forward command
+				if routeString == "forward" {
+					DispatchQueue.main.async {
+						self.goForward()
+					}
+				}
+				/// Back command
+				else if routeString == "back" {
+					DispatchQueue.main.async {
+						self.goBack()
+					}
+				}
+			}
+		}
+	...
+	}
