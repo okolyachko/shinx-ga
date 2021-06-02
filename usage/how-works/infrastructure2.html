@@ -1,0 +1,266 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Infrastructure &mdash; Docs</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/styles/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/styles/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/scripts/custom.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Page with no children" href="../no-children.html" />
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="../../_static/favicon.png">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159851478-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-198019952-1');
+	</script>
+
+  
+</head>
+
+<body class="site">
+<div class="header sticky"  style="background: blue" >
+          
+	<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+            
+            <img src="../../_static/alan-logo.svg" class="logo" alt="Logo"/>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        <div class="search-box">
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div></div>
+		
+    </div>
+</div>
+<div class="content">
+   <div class="toc">
+	    
+	   
+	   <nav data-toggle="wy-nav-shift" class="wy-nav-side side-menu">
+		  
+		  <div class="toc-background">
+			
+			<div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+			  
+				
+				
+				  
+				
+				
+				  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../how-works.html">How something works</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html">Infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html">Deployment options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voice-processing.html">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../no-children.html">No child page</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Infrastructure</a></li>
+</ul>
+</li>
+</ul>
+
+				
+			  
+			</div>
+			
+		  </div>
+		</nav>
+   
+   </div>
+   <div class="doc-body">
+   <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../no-children.html">Page with no children</a> &raquo;</li>
+        
+      <li>Infrastructure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="infrastructure">
+<h1>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline">¶</a></h1>
+<p>Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.</p>
+<p>To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:</p>
+<p>The frequency and times the widget is visible to the user.</p>
+<ul class="simple">
+<li><p>The widget’s last reload time.</p></li>
+<li><p>Whether the widget’s containing app is active.</p></li>
+</ul>
+<p>WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.</p>
+<p>A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.</p>
+</div>
+
+
+           </div>
+          </div>
+		  	
+        </div>
+      </div>	  
+    </section>
+   </div>
+   
+   
+   
+   <div class="right-menu"><div class="right-menu-wrapper"><ul>
+<li><a class="reference internal" href="#">Infrastructure</a></li>
+</ul>
+</div></div>
+   
+
+<script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+  
+   
+</div>
+<div class="footer-holder">
+<div class="footer"><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../no-children.html" class="btn btn-neutral float-left" title="Page with no children" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Alan AI.
+
+    </p>
+  </div> 
+
+</footer></div>
+</div>
+</body>
+</html>

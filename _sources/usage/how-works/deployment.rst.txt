@@ -63,3 +63,66 @@ Code example
 		}
 	...
 	}
+	
+Heading 2
+------------
+
+Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
+
+To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:
+
+The frequency and times the widget is visible to the user.
+
+The widget’s last reload time.
+
+Whether the widget’s containing app is active.
+
+WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.
+
+A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.
+
+Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
+
+To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:
+
+The frequency and times the widget is visible to the user.
+
+The widget’s last reload time.
+
+Whether the widget’s containing app is active.
+
+WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.
+
+A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.
+
+Heading 3
+~~~~~~~~~
+
+some text here some text here some text here
+
+Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
+
+To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:
+
+The frequency and times the widget is visible to the user.
+
+The widget’s last reload time.
+
+Whether the widget’s containing app is active.
+
+WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.
+
+A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.
+Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
+
+To manage system load, WidgetKit uses a budget to distribute widget reloads over the course of the day. The budget allocation is dynamic and takes many factors into account, including:
+
+The frequency and times the widget is visible to the user.
+
+The widget’s last reload time.
+
+Whether the widget’s containing app is active.
+
+WidgetKit maintains different budgets for each active widget the user adds to their device. For example, if the user adds two instances of a configurable sports widget, showing information for two different teams, each widget has its own budget.
+
+A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.

@@ -1,0 +1,282 @@
+@mixin fixed-height($height-val) {
+  min-height: $height-val;
+  height: $height-val;
+  max-height: $height-val;
+}
+
+@mixin fixed-width($width-val) {
+  min-width: $width-val;
+  width: $width-val;
+  max-width: $width-val;
+}
+
+@mixin fixed-rect($size) {
+  @include fixed-height($size);
+  @include fixed-width($size);
+}
+
+@mixin tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin screen1024 {
+  @media (min-width: $step1024) {
+    @content;
+  }
+}
+
+@mixin screen1280 {
+  @media (min-width: $step1280) {
+    @content;
+  }
+}
+
+@mixin screen1440 {
+  @media (min-width: $step1440) {
+    @content;
+  }
+}
+
+@mixin screen1920 {
+  @media (min-width: $step1920) {
+    @content;
+  }
+}
+
+@mixin svg-img-with-hover($path) {
+  background: url($path + ".svg") no-repeat center;
+  background-size: contain;
+
+  &:after {
+    content: "";
+    background: url($path + "-hovered.svg") no-repeat center;
+    background-size: contain;
+  }
+
+  &:hover {
+    background: url($path + "-hovered.svg") no-repeat center;
+    background-size: contain;
+  }
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-fix-size() {
+  flex: 0 0 auto;
+}
+
+@mixin flex-column-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row-reverse() {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin flex-fill() {
+  flex: 2;
+}
+
+@mixin flex-column-equal-height() {
+  flex: 1 0 auto;
+}
+
+@mixin fix-flex() {
+  flex-shrink: 0;
+}
+
+@mixin flex-space-around-center() {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin flex-space-between-center() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-top() {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@mixin flex-center-bottom() {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+@mixin flex-end-center() {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin flex-start-center() {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flex-start-top() {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin flex-end-top() {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+@mixin flex-to-top() {
+  display: flex;
+  align-items: flex-start;
+}
+
+@mixin flex-to-start() {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@mixin flex-to-left() {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@mixin flex-to-vertical-center() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-to-bottom() {
+  display: flex;
+  align-items: flex-end;
+}
+
+@mixin flex-to-horizontal-center() {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin svg-img($path) {
+  content: "";
+  background: url($path + ".svg") no-repeat center;
+  background-size: contain;
+}
+
+@mixin svg-img-with-hover-and-active($path) {
+  @include svg-img-with-hover($path);
+
+  &:after {
+    content: "";
+    background: url($path + "-hovered.svg") no-repeat center, url($path + "-active.svg") no-repeat center;
+    background-size: contain;
+  }
+
+  &:active {
+    background: url($path + "-active.svg") no-repeat center;
+    background-size: contain;
+  }
+}
+
+@mixin webPImg($img, $fallBackExt) {
+  @each $selector in & {
+    @at-root {
+      .webp #{$selector} {
+        background-image: url($img + ".webp");
+      }
+      .no-webp #{$selector} {
+        background-image: url($img + "." + $fallBackExt);
+      }
+    }
+  }
+}
+
+@mixin side-bar-width() {
+  @include screen1024() {
+    @include fixed-width($side-bar-wdith-desktop-1024);
+  }
+  @include screen1280() {
+    @include fixed-width($side-bar-wdith-desktop-1280);
+  }
+  @include screen1440() {
+    @include fixed-width($side-bar-wdith-desktop-1440);
+  }
+  @include screen1920() {
+    @include fixed-width($side-bar-wdith-desktop-1920);
+  }
+}
+
+@mixin bg-part-width() {
+  @include fixed-width($right-part-mobile);
+
+  @include screen1024() {
+    @include fixed-width($right-part-screen-1024);
+  }
+  @include screen1280() {
+    @include fixed-width($right-part-screen-1280);
+  }
+  @include screen1440() {
+    @include fixed-width($right-part-screen-1440);
+  }
+  @include screen1920() {
+    @include fixed-width($right-part-screen-1920);
+  }
+}
+
+@mixin text-part-width() {
+  @include fixed-width(calc(100% - #{$right-part-mobile}));
+
+  @include screen1024() {
+    @include fixed-width(calc(100% - #{$right-part-screen-1024}));
+  }
+  @include screen1280() {
+    @include fixed-width(calc(100% - #{$right-part-screen-1280}));
+  }
+  @include screen1440() {
+    @include fixed-width(calc(100% - #{$right-part-screen-1440}));
+  }
+  @include screen1920() {
+    @include fixed-width(calc(100% - #{$right-part-screen-1920}));
+  }
+}
+
+@mixin doc-holder-width() {
+  @include fixed-width(calc(100% - #{$side-bar-wdith-mobile}));
+
+  @include screen1024() {
+    @include fixed-width(calc(100% - #{$side-bar-wdith-desktop-1024}));
+  }
+  @include screen1280() {
+    @include fixed-width(calc(100% - #{$side-bar-wdith-desktop-1280}));
+  }
+  @include screen1440() {
+    @include fixed-width(calc(100% - #{$side-bar-wdith-desktop-1440}));
+  }
+  @include screen1920() {
+    @include fixed-width(calc(100% - #{$side-bar-wdith-desktop-1920}));
+  }
+}

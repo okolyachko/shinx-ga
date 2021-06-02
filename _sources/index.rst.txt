@@ -3,18 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Getting Started
+Getting started
 ========================================
 
+Some info here
+
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 1
    :titlesonly:
    
-   Getting started<getting-started>
-   Concepts<concepts>
-   SDKs<sdks>
-   Tutorials<tutorials>
-
-
-
+   How something works<usage/how-works>
+   No child page<usage/no-children>
 
