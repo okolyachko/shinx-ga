@@ -12,5 +12,92 @@ h1, h2, h3, h4 {
 	font-family: 'Lato', serif !important;
 }
 
+.page {
+	margin-top: 80px !important;
+}
 
+.sidebar-sticky, .toc-sticky {
+	top: 80px !important;
+}
+
+.sidebar-sticky > .sidebar-search-container, .sidebar-brand {
+	display: none !important;
+}
+
+.header-new {
+	height: 80px !important;
+	width: 100% !important;
+	z-index: 9999;
+	position:fixed;
+	top: 0;
+	background: linear-gradient(to right, #192C57, #2A51FB) !important;
+	box-shadow: 0 0 0.2rem rgb(0 0 0 / 10%), 0 0.2rem 0.4rem rgb(0 0 0 / 20%)
+}
+
+.header-content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80em !important;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+
+.search-box {
+	margin-right:10px !important;
+	display: inline-block !important;	
+}
+
+.logo-part {
+	padding-right:5px;
+	flex-flow:row;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	display: inline-block !important;
+}
+
+.docs {
+	display: inline-block;
+	padding-top: 5px;
+}
+
+.docs a {
+	font-size:34px;
+	text-decoration: none !important;
+	color: #ffffff !important;
+}
+
+/* Links color */
+
+div.content > a {
+	color: #006DEA !important;
+	text-decoration: none !important;
+}
+
+.sidebar-tree .toctree-l1>.reference, .sidebar-tree .toctree-l1>label .icon {
+	color: #006DEA !important;;
+}
+
+@media (max-width: 67em) {
+	.header-new {
+		display: none;
+    }
+	
+	.page {
+		margin-top: inherit !important;
+	}
+	
+	.sidebar-sticky, .toc-sticky {
+		top: inherit !important;
+	}
+	
+	.sidebar-sticky > .sidebar-search-container, .sidebar-brand {
+		display: block !important;
+	}
+}
 

@@ -6,11 +6,7 @@
 Page with no children
 ========================================
 
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   
-   Infrastructure<how-works/infrastructure2>
+
 
 
 

@@ -1,4 +1,4 @@
-Infrastructure
+Infrastructure 2
 ==================
 
 Reloading widgets consumes system resources and causes battery drain due to additional networking and processing. To reduce this performance impact and maintain all-day battery life, limit the frequency and number of updates you request to what’s necessary.
@@ -15,8 +15,9 @@ WidgetKit maintains different budgets for each active widget the user adds to th
 
 A widget’s budget applies to a 24-hour period. WidgetKit tunes the 24-hour window to the user’s daily usage pattern, which means the daily budget doesn’t necessarily reset at exactly midnight. For a widget the user frequently views, a daily budget typically includes from 40 to 70 refreshes. This rate roughly translates to widget reloads every 15 to 60 minutes, but it’s common for these intervals to vary due to the many factors involved.
 
+
 .. toctree::
    :maxdepth: 1
    :titlesonly:
    
-   Infrastructure 2<child/infrastructure2>
+   Infrastructure 3<child2/infrastructure3>
