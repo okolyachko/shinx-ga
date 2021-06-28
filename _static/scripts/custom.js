@@ -1,5 +1,14 @@
 //Custom JS
 
+// Changing color
+
+$(document).ready(function () {
+    if ($("#green-background").length) {
+		$("body").get(0).style.setProperty("--main-color", "#149086");
+		$("body").get(0).style.setProperty("--main-color-background", "rgba(20,144,134,0.1)replace(/[^,]+(?=\))/, '0.1')");
+	}
+});
+
 // Fixing sticky header error
 
 $(document).ready(function () {

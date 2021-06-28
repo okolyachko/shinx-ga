@@ -146,3 +146,6 @@ You can pluralize not only nouns, but also `slots <slots.html>`__ in patterns. T
         p.play(`Done. Added ${p.NUMBER.value} ${p.S.value}`);
     });
 	
+.. raw:: html
+
+   <div id="green-background"></div>

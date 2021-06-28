@@ -391,3 +391,8 @@ Each element in the array has its own ``.value`` and ``.label`` fields:
 
 - The ``value`` field is populated with the value obtained from the user input: ``p.SLOTNAME_[index].value``. 
 - The ``label`` field can contain a custom value and can be used to give more accurate responses to the user: ``p.SLOTNAME_[index].label``.
+
+
+.. raw:: html
+
+   <div id="green-background"></div>

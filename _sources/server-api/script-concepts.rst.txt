@@ -33,7 +33,10 @@ You can add as many scripts to the project as you need. If your project comprise
 .. note::
 
    To share data in a project with several scripts, you can use the ``project`` global object. For details, see `Predefined script objects </server-api/objects.html>`__.
-   
+
+.. raw:: html
+
+   <div id="green-background"></div>   
    
 .. toctree::
    :maxdepth: 1

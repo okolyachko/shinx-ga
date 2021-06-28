@@ -146,3 +146,7 @@ In the example below, if the user asks: ``What is the weather?``, the first inte
 
 .. tip:: 
    To see the match score assigned to a voice command, in Alan logs, click the command and check the **Score** field.
+
+.. raw:: html
+
+   <div id="green-background"></div>

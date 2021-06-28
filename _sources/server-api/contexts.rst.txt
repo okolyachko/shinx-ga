@@ -547,4 +547,7 @@ Using onEnter() function
         p.play("Sure, Let's go");
         p.then(countContext);
     });
-	
+
+.. raw:: html
+
+   <div id="green-background"></div>

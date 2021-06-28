@@ -279,3 +279,7 @@ See also
 --------
 
 `Using dynamic entities in voice commands tutorial </tutorials/list/using-dynamic-entities.html>`__
+
+.. raw:: html
+
+   <div id="green-background"></div>

@@ -116,4 +116,7 @@ Lodash is available to you in global scope under the ``_`` object name. For exam
     intent(`select $(COLOR ${COLOR_INTENT})`, p=> {
          p.play(`You selected ${p.COLOR.value} color number ${p.COLOR.label}`);
     });
-	
+
+.. raw:: html
+
+   <div id="green-background"></div>	

@@ -29,3 +29,7 @@ Here is a list of callbacks that can be used in Alan:
 -  `onVisualState </server-api/api/api-reference#onvisualstate>`__: This callback is invoked when the visual state is sent from the client app.
 -  `onEnter </server-api/api/api-reference#onenter>`__: This callback is invoked when a context added to the script is activated.
 -  `onUserEvent </server-api/api/api-reference#onuserevent>`__: This callback invoked when Alan emits events driven by users’ interactions with the voice assistant in the app.
+
+.. raw:: html
+
+   <div id="green-background"></div>
