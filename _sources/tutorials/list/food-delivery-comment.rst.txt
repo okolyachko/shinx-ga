@@ -1,0 +1,46 @@
+Step 14: Capture a comment
+==========================
+
+The user may leave a comment to the order, which can be any phrase. To capture an open-end phrase, we can use a `slot with a greedy RegEx <../../server-api/slots.html#getting-any-user-input>`__.
+
+1. To the voice script, add the ``getComment`` context with a command to capture the user's comment:
+
+   .. code:: javascript
+
+      let getComment = context(() => {
+          intent('My comment is $(COMMENT* (.+))', p => {
+              p.play(`I'll' take a note: ${p.COMMENT.value}`);
+          });
+      });
+
+2. Update the intent in the ``getTime`` context: activate the ``getComment`` context from it and add another ``p.play()`` function to prompt the user to leave a comment:
+
+   .. code-block:: javascript
+     :emphasize-lines: 12,14
+
+      let getTime = context(() => {
+          intent('$(TIME)', '$(T now|asap|right now|as soon as possible)', p => {
+              let time, date;
+              if (p.T) {
+                  time = api.moment().tz(p.timeZone).add(30, 'minutes').format("h:mm a");
+              }
+              if (p.TIME) {
+                  time = p.TIME.value;
+              }
+              p.play(`We will deliver your order at ${time}`);
+              // Prompting for leaving comments
+              p.play('Any comments?');
+              // Activating the getComment context
+              p.then(getComment);
+          });
+      });
+
+      let getComment = context(() => {
+          intent('My comment is $(COMMENT* (.+))', p => {
+              p.play(`I'll' take a note: ${p.COMMENT.value}`);
+          });
+      });
+
+   `Web page source <../../_static/assets/img/tutorial2/4.html.txt>`__ | `Voice script <../../_static/assets/img/tutorial2/7.js>`__
+
+Now, you can try the dialog with different phrases for a comment.

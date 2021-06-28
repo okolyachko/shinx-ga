@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Food Delivery Example</title>
+      <link href="https://storage.googleapis.com/alan-tutorial/web-sdk/styles.css" rel="stylesheet">
+   </head>
+   <body>
+      <h1>Food Delivery</h1>
+      <h3>Menu</h3>
+      <div class="menu">
+         <div class="menu-item" id="pepperoni">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/pepperoni.jpg"/>
+            Pepperoni
+         </div>
+         <div class="menu-item" id="margherita">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/margherita.jpg"/>
+            Margherita
+         </div>
+         <div class="menu-item" id="burrito">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/burrito.jpg"/>
+            Burrito
+         </div>
+         <div class="menu-item" id="burger">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/burger.jpg"/>
+            Burger
+         </div>
+         <div class="menu-item" id="taco">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/taco.jpg"/>
+            Taco
+         </div>
+         <div class="menu-item" id="apple-pie">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/applepie.jpg"/>
+            Apple Pie
+         </div>
+      </div>
+      <div id="order-details">
+         <div id="order"></div>
+         <div id="address"></div>
+         <div id="time"></div>
+         <div id="comment"></div>
+      </div>
+      <div class="alan-btn"></div>
+      <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+      <script>
+         var alanBtnInstance = alanBtn({
+         	key: "<YOUR-VOICE-ASSISTANT-PROJECT-KEY>",
+           	// Handling the updateOrder command
+	   	onCommand: function (commandData) {
+           		if (commandData.command == "updateOrder") {
+                		changeOrder(commandData.item, commandData.quantity);
+                	}
+           	},
+           	rootEl: document.getElementById("alan-btn"),
+         });
+         
+         // Setting the order
+         let order = {};
+         
+         // Showing the order on the page
+         function updateCart() {
+	 	let html = "";
+		for (let key in order) {
+			html += `<tr><td>${key}</td><td>${order[key]}</td>`;
+		}
+		html = `<table border="0">${html}</table>`;
+		document.getElementById("order").innerHTML = html;
+	}
+         
+         // Changing the number of items in the order
+         function changeOrder(item, quantity) {
+	 	let number = (order[item] ? order[item] : 0) + quantity;
+	 	order[item] = number;
+	 	updateCart();
+         }
+      </script>
+   </body>
+</html>

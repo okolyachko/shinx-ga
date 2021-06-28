@@ -1,0 +1,148 @@
+Commands and responses
+======================
+
+To let users interact with your voice assistant, you need to add to the voice script commands that users can give. A voice command describes a task or action that the user wants to fulfil. Learn how `voice commands <#intent>`__ can be defined and what `response actions <#response>`__ can be triggered for these commands.
+
+Intent
+------
+
+You can define a voice command in the script with the ``intent()`` function. This function can be used to complete tasks requested by users or answer users' questions.
+
+In the ``intent()`` function, you must specify one or more `patterns </server-api/patterns.html>`__ — user's utterances that invoke the command, and one or more `response actions <#responding-to-the-user>`__ that must be triggered when the command is invoked. In the example below, the command is invoked when the user says: ``Hello world``. As a response action, Alan plays ``Hello`` to the user.
+
+.. code:: JavaScript
+
+    intent('Hello world', p => {
+        p.play('Hello');
+    });
+
+When writing commands, you can add predefined and user-defined `slots <slots.html>`__ to intent patterns. Slots are 'variables' in user's utterance that allow Alan to identify and retrieve useful information.
+
+.. code:: JavaScript
+
+    intent('I want to go to $(LOC) on $(DATE)', p => {
+        p.play('Great, have a nice trip');
+    });
+
+
+Response
+--------
+
+In Alan, you can trigger response actions for voice commands with the following functions:
+
+-  `play() <#play>`__
+-  `reply() <#reply>`__
+
+Play
+~~~~
+
+``play()`` is a predefined function for response actions. You can use it to `respond to the user <#responding-to-the-user>`__ or `send commands to the client app <#sending-commands-to-the-app>`__.
+
+Responding to the user
+^^^^^^^^^^^^^^^^^^^^^^
+
+To play a response to the user, you need to define a `pattern <patterns.html>`__ in the ``play()`` function. Alan will
+use this phrase as a response.
+
+.. code:: JavaScript
+
+    intent('Talk to me', p => {
+        p.play('Sure, what do you want to talk about?');
+    });
+
+You can define more than one pattern. In this case, only one of them will be picked at random and played back to the user. To provide multiple patterns, separate them with a comma.
+
+.. code:: JavaScript
+
+    intent('Talk to me', p => {
+        p.play('Sure, what do you want to talk about?',
+               'Sorry, I am not in the mood to talk to anyone');
+    });
+
+You can also use `slots <slots.html>`__ in responses.
+
+.. code:: JavaScript
+
+    intent('Say $(W hello|goodbye)', p => {
+        p.play(`${p.W.value}`);
+    });
+
+Sending commands to the app
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``play()`` function can be used to send commands to the client app integrated with Alan. Such commands let you perform specific activities on the app side, for example, navigate to another page in the app, highlight UI elements on the screen and so on. This way, you can synchronize voice and visuals and create a multi-modal interface for your app.
+
+To send a command, pass JSON to the ``play()`` function.
+
+.. code:: JavaScript
+
+    intent('Open the menu', p => {
+        p.play({"command": "navigate", "screen": "menu"});
+        p.play('Opening the menu');
+    });
+
+    intent('Go back', p => {
+        p.play({"command": "navigate", "screen": "back"});
+        p.play('Going back');
+    });
+
+To handle the command on the app side, you must define a handler for commands received from Alan's voice script. For details, see `onCommand handler </client-api/methods/command-handler.html>`__.
+
+When you send a command to the app, you most commonly accompany this command with Alan's comment so that the user understands what actions are taking place at the moment. If you place the command before Alan's message, Alan will send the command right after the intent is matched.
+If you place the command after Alan's message, the command will be sent after the text has finished playing. For example:
+
+.. code:: js
+
+    // Sending a command when the intent is matched
+    intent(`Add $(ITEM Bacon Burger|Mexican Spicy Burger|Cheese Burger) to the cart`, p => {
+        p.play({"command": "addToCart", "item": p.ITEM.value});
+        p.play(`Adding ${p.ITEM.value} to the cart`);
+    });
+
+    // Sending a command after the message is played
+    intent(`Add $(ITEM Bacon Burger|Mexican Spicy Burger|Cheese Burger) to the cart`, p => {
+        p.play(`Adding ${p.ITEM.value} to the cart`);
+        p.play({"command": "addToCart", "item": p.ITEM.value});
+    });
+
+Reply
+~~~~~
+
+``reply()`` is a predefined function that can be used if you only need to give a response to the user, without making any complex actions.
+
+.. code:: JavaScript
+
+    intent('Hello world',
+        reply('Hello'));
+
+In the ``reply()`` function, you can use
+`patterns <patterns.html>`__ and `slots <slots.html>`__ in
+the same way as in the ``play()`` function.
+
+.. code:: JavaScript
+
+    intent('Say $(W hello|goodbye)',
+        reply('$(W)'));
+
+
+Intent matching
+---------------
+
+Your project can have many voice commands. When the user gives a command, Alan matches the command to the most appropriate intent in the script. To do this, Alan evaluates every intent separately and assigns different weights, or match scores, to intents.
+
+Match score values range from 1 — the most accurate match, to 0 — no match. The command with the highest score is selected as the best match.
+
+In the example below, if the user asks: ``What is the weather?``, the first intent will be selected as the best match. The second intent will not be matched since it contains more words than user's utterance. And vice versa, if the user asks: ``What is the weather today?``, the second intent will have a higher score since it is the most accurate match.
+
+.. code:: JavaScript
+
+    intent('What is the weather?', p => {
+        p.play('The weather is a word');
+    });
+
+    intent('What is the weather today?', p => {
+        p.play('The weather today is great!')
+    });
+
+.. tip:: 
+   To see the match score assigned to a voice command, in Alan logs, click the command and check the **Score** field.

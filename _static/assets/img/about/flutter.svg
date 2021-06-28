@@ -1,0 +1,69 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 22 22">
+    <path fill="url(#prefix__paint0_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <mask id="prefix__a" width="15" height="18" x="3" y="2" maskUnits="userSpaceOnUse">
+        <path fill="#fff" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    </mask>
+    <g mask="url(#prefix__a)">
+        <path fill="#39CEFD" d="M7.287 15.103l2.855 2.945L18 9.948h-5.713l-5 5.155z"/>
+    </g>
+    <path fill="url(#prefix__paint1_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <mask id="prefix__b" width="15" height="18" x="3" y="2" maskUnits="userSpaceOnUse">
+        <path fill="#fff" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    </mask>
+    <g mask="url(#prefix__b)">
+        <path fill="#39CEFD" d="M12.287 1.836H18L5.858 13.82 3 10.999l9.287-9.163z"/>
+    </g>
+    <path fill="url(#prefix__paint2_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <mask id="prefix__c" width="15" height="18" x="3" y="2" maskUnits="userSpaceOnUse">
+        <path fill="#fff" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    </mask>
+    <g mask="url(#prefix__c)">
+        <path fill="#03569B" d="M10.142 18.048l2.145 2.114H18l-5-4.934-2.858 2.82z"/>
+    </g>
+    <path fill="url(#prefix__paint3_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <mask id="prefix__d" width="15" height="18" x="3" y="2" maskUnits="userSpaceOnUse">
+        <path fill="#fff" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    </mask>
+    <g mask="url(#prefix__d)">
+        <path fill="url(#prefix__paint4_linear)" d="M14.38 16.6L13 15.227l-2.858 2.82 4.239-1.449z"/>
+    </g>
+    <path fill="url(#prefix__paint5_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <mask id="prefix__e" width="15" height="18" x="3" y="2" maskUnits="userSpaceOnUse">
+        <path fill="#fff" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    </mask>
+    <g mask="url(#prefix__e)">
+        <path fill="#16B9FD" d="M7.286 15.227l2.858-2.82 2.858 2.82-2.858 2.82-2.858-2.82z"/>
+    </g>
+    <path fill="url(#prefix__paint6_radial)" fill-rule="evenodd" d="M3 11l9.21-9H18L5.858 13.819 3 10.999zm10 4.228l5-5.128h-5.713l-5.002 5.128L12.21 20H18l-5-4.772z" clip-rule="evenodd"/>
+    <defs>
+        <radialGradient id="prefix__paint0_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <radialGradient id="prefix__paint1_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <radialGradient id="prefix__paint2_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <radialGradient id="prefix__paint3_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <radialGradient id="prefix__paint5_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <radialGradient id="prefix__paint6_radial" cx="0" cy="0" r="1" gradientTransform="matrix(22.7239 0 0 27.2687 3.421 3.227)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".01"/>
+        </radialGradient>
+        <linearGradient id="prefix__paint4_linear" x1="12.555" x2="13.695" y1="19.3" y2="16.757" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#1A237E" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#1A237E" stop-opacity=".01"/>
+        </linearGradient>
+    </defs>
+</svg>

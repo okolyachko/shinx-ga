@@ -1,0 +1,57 @@
+Voice-enabled apps
+==================
+
+Voice controlled news app (React)
+---------------------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/rqw3OftE5sA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>
+
+Pacman with voice commands (JavaScript)
+---------------------------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/kBVaH3D92H8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>
+
+E-commerce app (React)
+----------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/4xwruFAvEHA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>
+
+AI-powered voice assistant radio app (Flutter)
+----------------------------------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/p4xh7zTt6i0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>
+
+Voice assisted FAQ app (React)
+------------------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/roqwqDr-yRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>
+
+
+AI-powered shopping cart (React)
+--------------------------------
+
+.. raw:: html
+
+   <div class="video-container">
+   <iframe class="responsive-iframe" src="https://www.youtube.com/embed/ShufCBZi_r8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   </div>

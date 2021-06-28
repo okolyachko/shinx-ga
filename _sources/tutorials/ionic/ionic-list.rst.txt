@@ -1,0 +1,36 @@
+Ionic tutorials
+===============
+
+Use these tutorials to quickly voice enable apps built with Ionic:
+
+- `Building a voice assistant for an Ionic Angular app <iintegrating-angular.html>`_
+   
+  Learn how create a voice interface for an Ionic Angular app from scratch and write simple voice commands.
+	 
+- `Navigating between tabs in an Ionic Angular app <navigating-angular.html>`__
+   
+  Learn how to send commands to an Ionic Angular app, handle commands on the app side and navigate between tabs with voice.
+	 
+- `Passing the app state to the voice script (Ionic Angular) <sending-data-angular.html>`__
+   
+  Learn how to pass the app state from an Ionic Angular app to the voice script with visual state, access the data passed with visual state in the voice script and filter intents by the app state.
+	 
+- `Building a voice assistant for an Ionic React app <integrating-react.html>`_
+   
+  Learn how create a voice interface for an Ionic React app from scratch and write simple voice commands.
+	 
+- `Navigating between tabs in an Ionic React app <navigating-react.html>`__
+   
+  Learn how to send commands to an Ionic React app, handle commands on the app side and navigate between tabs with voice.
+
+  
+  .. toctree::
+   :caption: Web
+   :maxdepth: 1
+   :hidden:
+   
+   Building a voice assistant for an Ionic Angular app<integrating-angular>
+   Navigating between tabs in an Ionic Angular app<navigating-angular>
+   Passing the app state to the voice script (Ionic Angular)<sending-data-angular>
+   Building a voice assistant for an Ionic React app<integrating-react>
+   Navigating between tabs in an Ionic React app<navigating-react>

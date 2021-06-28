@@ -3,15 +3,58 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Index
-========================================
+Getting started
+===============
 
-Some info here
+Want to create a voice assistant for your app? Follow the steps below to
+get started with Alan.
 
+
+1. Sign up for Alan Studio
+--------------------------
+
+Sign up for Alan Studio or sign in if you are already registered. Alan Studio is where you will create dialogs, or voice scripts, for your assistants. 
+
+To get started with Alan Studio, watch this walkthrough:
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/j__wtb5CDCM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   
+
+2. Create a voice script
+-------------------------- 
+
+In Alan Studio, write a voice script. Voice scripts describe the structure of the dialog with the user, or the expected conversation scenario.
+
+.. panels::
+
+	---
+   :card: border-0
+   :opticon:`code,size=24` **Example scripts**
+   
+   
+   In Alan Studio, select predefined voice assistants to see how voice scripts can be organized. Start with 'Hello World'.
+
+   ---
+   :card: border-0
+   :opticon:`gear,size=24` **Server API**
+
+   Learn what Alan functionality you can use to create a script for your voice assistant in Alan Studio.
+
+
+
+If you encounter a bug, have a question or want to submit a feature request, you can also go to Alan GitHub, select the necessary Alan SDK, navigate the **Issues** section and create an issue there.
+   
+   
 .. toctree::
    :maxdepth: 1
-   :titlesonly:
+   :hidden:
    
-   How something works<usage/how-works>
-   No child page<usage/no-children>
+   How Alan works<usage/hiw/about>
+   Alan Studio<usage/guides/studio>
+   Alan button<usage/button/overview>
+   Alan examples<usage/examples/overview>
+   Videos</usage/video/overview>
+   Additional resources<usage/additional/overview>
 

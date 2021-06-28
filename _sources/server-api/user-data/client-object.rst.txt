@@ -1,0 +1,71 @@
+Client object
+=============
+
+With Alan's ``client`` object, you can get general information about users interacting with the voice assistant:
+
+-  Approximate user's location
+-  Interactions statistics for the user
+
+In the example below, Alan writes to Alan logs information about every user interacting with the voice assistant and `user
+events <events.html>`__.
+
+.. code:: JavaScript
+
+    onUserEvent((p, e)=> {
+        console.log(e, p.client);  
+    });
+
+Client object data
+------------------
+
+The ``client`` object provides the following user data:
+
+.. code:: JavaScript
+
+    {
+        geoLoc: {
+            city: 'Sunnyvale',
+            continent: 'North America',
+            country: 'United States',
+            lat: 37.3479,
+            lon: -122.0351,
+            source: 'ip-address'
+        },
+        ip: '67.195.198.201',
+        stats: {
+            interactions: 0,
+            lastConnectTs: 1617975166387,
+            lastInteractionTs: 0,
+            recognized: 0,
+            unrecognized: 0
+        },
+        timeZone: 'America/Los_Angeles'
+    }
+
++-------------------------+-----------------+--------------------------------------------------------------+
+| **Field name**          | **Data type**   | **Description**                                              |
++=========================+=================+==============================================================+
+| ``city``                | String          | User’s city                                                  |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``continent``           | String          | User’s continent                                             |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``lat``                 | Float           | Latitude of the user’s position                              |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``lon``                 | Float           | Longitude of the user’s position                             |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``source``              | String          | Data source                                                  |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``ip``                  | String          | User’s IP address                                            |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``interactions``        | Integer         | Number of interactions with the user                         |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``lastConnectTs``       | Integer         | Timestamp of the last connection to the voice assistant      |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``lastInteractionTs``   | Integer         | Timestamp of the last interaction with the voice assistant   |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``recognized``          | Integer         | Number of recognized user’s interactions                     |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``unrecognized``        | Integer         | Number of unrecognized user’s interactions                   |
++-------------------------+-----------------+--------------------------------------------------------------+
+| ``timeZone``            | String          | User’s time zone                                             |
++-------------------------+-----------------+--------------------------------------------------------------+

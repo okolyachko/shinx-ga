@@ -1,0 +1,550 @@
+Contexts
+========
+
+Just like in real world conversations, in voice scripts some user commands may have meaning only within a context. For example, the user can say: ``What about tomorrow?`` To answer this question in the best way, you need to understand the situation to which the user is referring.
+
+To let you organize dialogs with such commands, Alan provides contexts. Contexts are useful if you create a multi-stage conversation where some commands or dialog branches do not make sense as standalone utterances. In this case, you can place them in contexts.
+
+Consider the following script:
+
+.. image:: /_static/assets/img/script-concepts/contexts.svg
+
+Here the ``What about tomorrow?`` and ``And the humidity?`` questions are meaningless if put as simple intents. That's why they should be presented as a part of a context.
+
+Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can `define contexts <#defining-contexts>`__ on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the `title() <#labeling-contexts>`__ function.
+
+Typically, contexts contain commands that are needed at a specific stage of the dialog. To let the user give commands from a context, this context must be `activated <#activating-contexts>`__. Once the context is active, voice commands in it become active, and Alan considers them for matching. When the part of the dialog presented as a context is no longer needed, the user exits the context, and the context is `deactivated <#exiting-contexts>`__.
+
+.. warning::
+   All voice scripts added to the project can have a maximum of 50 contexts.
+
+Defining contexts
+-----------------
+
+You can define a context in the voice script in the following way:
+
+.. code:: JavaScript
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`Your order is: ${p.D.value}.`);
+        })
+    });
+
+Activating contexts
+-------------------
+
+A context is activated with the `then() </server-api/api/api-reference#then>`__ function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
+it.
+
+When the parent intent is matched, the context is activated, and all commands in the context become available for matching.
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('I can offer you a pizza or a burger');
+        p.then(chooseDish);
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`Your order is: ${p.D.value}. Is it correct?`);
+            p.then(confirmOrder);
+        })
+    });
+
+    let confirmOrder = context(() => {
+        intent('Yes', p => {
+            p.play('Your order has been confirmed');
+        });
+
+        intent('No', p => {
+            p.play('Your order has been cancelled');
+        });
+    });
+
+In the example above, we have two inactive contexts: ``chooseDish`` and ``confirmOrder``. The contexts contain commands that are required at specific stages of the dialog:
+
+1. When the user places the order
+2. When the user confirms the order
+
+To activate these contexts, we use the ``then()`` function inside intents. As soon as the user asks: ``What do you have?``, Alan activates the ``chooseDish`` context. After the user chooses the dish, Alan activates the ``confirmOrder`` context.
+
+.. note::
+   If you need to activate several contexts in the dialog, you should activate one context from another context as shown in the example above. Technically, you can use the ``then()`` function in one intent several times to activate several contexts. However, such a conversation flow is strongly not recommended.
+
+Exiting contexts
+----------------
+
+When you activate several contexts, Alan maintains a recursive context structure. Every newly activated context is bound to the parent intent from which it is activated, and to the parent context containing this intent.
+
+If the user gives a command outside an active context, this context is deactivated. In case several contexts are activated one after another and the user gives a command outside the active contexts, these contexts are deactivated in a recursive manner.
+
+Let's use the previous example and add the ``Cancel the order`` intent to the global context.
+
+.. code:: JavaScript
+
+    intent('Cancel the order', p => {
+        p.play('Your order has been cancelled');
+    });
+
+After the user says: ``What do you have?`` > ``Get me a pizza``, we have 3 active contexts: \* ``global`` \* ``chooseDish`` \* ``confirmOrder``
+
+Now, if the user says: ``Cancel the order``, which is outside the user-defined contexts scope, the ``chooseDish`` and ``confirmOrder`` contexts will be deactivated.
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('I can offer you a pizza or a burger');
+        p.then(chooseDish);
+    });
+
+    intent('Cancel the order', p => {
+        p.play('Your order has been cancelled');
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`Your order is: ${p.D.value}. Is it correct?`);
+            p.then(confirmOrder);
+        })
+    });
+
+    let confirmOrder = context(() => {
+        intent('Yes', p => {
+            p.play('Your order has been confirmed');
+        });
+
+        intent('No', p => {
+            p.play('Your order has been cancelled');
+        });
+    });
+
+You can also let the user exit the context by deactivating it manually. To do this, you need to add the ``resolve()`` function to the context. In the example below, after the user says ``Yes``, the ``confirmOrder`` context is deactivated immediately.
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('I can offer you a pizza or a burger');
+        p.then(chooseDish);
+    });
+
+    intent('Cancel the order', p => {
+        p.play('Your order has been cancelled');
+    });
+
+    let confirmOrder = context(() => {
+        intent('Yes', p => {
+            p.play('Your order has been confirmed');
+            p.resolve();
+        });
+
+        intent('No', p => {
+            p.play('Your order has been cancelled');
+        });
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`You have ordered a ${p.D.value}. Is it correct?`);
+            p.then(confirmOrder);
+        })
+    });
+
+Using commands in contexts
+--------------------------
+
+You can place the following types of commands in contexts:
+
+-  `intents <#intents-in-contexts>`__
+-  `noContext intents <#nocontext-intents>`__
+-  `fallbacks <#fallbacks-in-contexts>`__
+
+Intents in contexts
+~~~~~~~~~~~~~~~~~~~
+
+Intents in contexts perform their regular functions — they let you fulfil user’s requests and answer users’ questions. However, such intents are context-dependent: they remain inactive until the context to which they belong is activated.
+
+.. code:: JavaScript
+
+    intent('What is the weather in Boston?', p => {
+        p.play('45 °F, light cloud and a fresh breeze');
+        p.then(weatherDetails);
+    });
+
+    let weatherDetails = context(() => {
+        intent('What about tomorrow?', p => {
+            p.play('42 °F, light rain and a moderate breeze');
+        });
+
+        intent('And the humidity?', p => {
+            p.play('92%');
+        });
+    });
+
+.. image:: /_static/assets/img/script-concepts/intents-in-contexts.svg	
+
+In the example above, the ``What about tomorrow?`` and ``And the humidity?`` intents become active only after the parent intent to which the context is bound is matched — the user asks: ``What is the weather in Boston?``
+
+.. image:: /_static/assets/img/script-concepts/intents-in-contexts-matched.svg	
+
+The intents in the context remain active until the context is deactivated. For details, see `Exiting contexts <#exiting-contexts>`__.
+
+noContext intents
+~~~~~~~~~~~~~~~~~
+
+In some cases, you may need to add voice commands that must not affect the user's path in the conversation. For example, you can provide the user with the ability to ask general questions like: ``What information can I get?`` or ``What phrases can I use here?`` at any moment of the dialog, without deactivating the current context.
+
+To define such commands, you can use noContext intents. When Alan matches such an intent, it fulfills the request defined by it, but does not switch to the context to which this intent belongs. As a result, the user remains in the same dialog branch as before, and the commands from this dialog branch (context) are still available to the user.
+
+You can use noContext intents in the global context and user-defined contexts. To define a noContext intent, wrap the intent in the ``noContext()`` function:
+
+.. code:: JavaScript
+
+    noContext(() => {
+        intent(`What weather details can I get?`, 
+        reply(`Any details like temperature, humidity for any location`));
+    });
+
+Or you can pass the ``noctx`` parameter to such an intent:
+
+.. code:: JavaScript
+
+    intent(noctx, `What weather details can I get?`, 
+        reply(`Any details like temperature, humidity for any location`)
+    );
+
+In the example below, when the user asks about the weather in Boston, the ``weatherDetails`` context will become active. All context-dependent commands in this context will be available for matching.
+
+However, the user can ask ``What weather details can I get?`` at any time later. Alan will answer this question, but will not switch back to the global context since the ``What weather details can I get?`` intent has the ``noctx`` parameter. The ``weatherDetails`` context will remain active, and the user will have an ability to go on with follow-up questions like: ``What about tomorrow?`` and ``And the humidity?``
+
+.. code:: JavaScript
+
+    intent(noctx, 'What weather details can I get?', 
+        reply ('Any details like temperature, humidity for any location');
+    );
+
+    intent('What is the weather in Boston?', p => {
+        p.play('45 °F, light cloud and a fresh breeze');
+        p.then(weatherDetails);
+    });
+
+    let weatherDetails = context(() => {
+        intent('What about tomorrow?', p => {
+            p.play('42 °F, light rain and a moderate breeze');
+        });
+
+        intent('And the humidity?', p => {
+            p.play('92%');
+        });
+    });
+	
+.. image:: /_static/assets/img/script-concepts/nocontext.svg	
+
+Fallbacks in contexts
+~~~~~~~~~~~~~~~~~~~~~
+
+The ``fallback()`` function helps you handle unexpected user’s utterances. This command is triggered if Alan does not understand what the user is saying and cannot match the user’s utterance to any command in the context. You can add a fallback to the context to prompt the user for a specific type of input or fail gracefully.
+
+Fallbacks can be used in user-defined and global contexts. For details, see `Prompting and handling user
+errors <#prompting-and-handling-user-errors>`__.
+
+Using async contexts
+--------------------
+
+Alan fully supports asynchronous JavaScript programming in voice scripts. For example, some parts of your voice script may require making API calls. If you need to get the result of the API call before you proceed further in the voice command, you can use the ``await`` operator instead of callbacks. The ``await`` operator can also be used if you expect an additional input from the user.
+
+In the example below, the arrow function is defined as ``async`` and ``Promise.resolve`` is used in the return statement:
+
+.. code:: JavaScript
+
+    intent("what is my location?", async p => {
+        let addr = await getLocation(p);
+        if (addr) {
+            p.play(`You are at ${addr}`);
+        }
+        else {
+            p.play("I can't understand where you are");
+        }
+    });
+
+    function getLocation(p) {
+        let address = "test address"; //Here will be some api call
+        if (address) {
+            return Promise.resolve(address);
+        }
+        else {
+            return Promise.resolve();
+        }
+    }
+
+Using ``await`` stops the script execution until the function returns some result through resolve. If you do not use ``await`` here, your script will not wait for the address from API, and the ``p.play('You are at ${addr}')`` response will never be given.
+
+Using ``await`` and ``resolve()`` with contexts can help you in some cases, for example, when you want to receive either the ``Yes`` or ``No`` response from the user. Let's use one of our previous examples:
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('I can offer you a pizza or a burger');
+        p.then(chooseDish);
+    });
+
+    let confirmOrder = context(() => {
+        intent('$(A yes|no)', p => {
+            return p.resolve(p.A.value);
+        });
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', async p => {
+            p.play(`You have ordered a ${p.D.value}. Do you confirm?`);
+            let answer = await p.then(confirmOrder);
+            if (answer === "yes") {
+                p.play('Your order has been confirmed');
+                p.resolve();
+            } else {
+                p.play('OK, choose another dish that you want');
+            }
+        })
+    });
+
+Now, when the user chooses a dish, Alan waits for the ``Yes/No`` response in the ``confirmOrder`` context and, depending on the response, we either resolve the ``chooseDish`` context (as the order has been finished and confirmed) or we leave it active, allowing the user to choose another dish.
+
+Labeling contexts
+-----------------
+
+In the voice script, every context gets a unique identifier:
+
+-  The global context is identified with the ``global`` label.
+-  User-defined contexts are identified with numeric IDs.
+
+You can check the context ID in Alan Studio logs. To do this, open the logs section and select the necessary command. In the displayed command statistics, the **Context** field will show the ID assigned to the context.
+
+If necessary, you can label contexts in the voice script with user-friendly names. The context names are displayed in Alan Studio logs instead of numeric IDs, which allows for better debugging. To label a context, add the ``title()`` function to it. You can label both user-defined and global contexts.
+
+.. code:: JavaScript
+
+    // Labeling the global context
+    title('Main context');
+
+    intent(`(Set|Change|Replace) the (delivery|) address`,
+        p => {
+            p.play('What is the delivery address?');
+            p.then(checkout);
+        });
+
+    let checkout = context(() => {
+
+        // Labeling a user-defined context
+        title('Delivery address context');
+
+        intent('$(LOC)', p => {
+            p.play({
+                command: "address",
+                address: p.LOC.value
+            });
+            p.play({
+                command: "highlight",
+                id: "address"
+            });
+        });
+    });
+
+Prompting and handling user errors
+----------------------------------
+
+In some cases, Alan cannot understand the user’s input and match it to any available voice command. To let you handle error situations and get the user back on track gracefully, you can add fallbacks to the voice script.
+
+Alan provides the following types of fallbacks:
+
+-  `Default fallback <#default-fallback>`__
+-  `Fallbacks in user-defined
+   contexts <#fallbacks-in-user-defined-contexts>`__
+
+Default fallback
+~~~~~~~~~~~~~~~~
+
+The default fallback lets you handle error situations. With it, you customize the phrases with which Alan replies in no-match cases. To add the default fallback, use the ``fallback()`` function in the global context and specify one or more phrases in it, for example:
+
+.. code:: JavaScript
+
+    fallback('Please say it again', 'Sorry, I did not get it', 'Please rephrase your request');
+
+Now, if the user says something that is not expected, the default fallback will be matched, and Alan will reply with one of these phrases picked at random.
+
+You can add a more complex logic to the ``fallback()`` function:
+
+.. code:: JavaScript
+
+    fallback(p => {
+        p.play('Sorry, I have no answer');
+        console.log('An error in the dialog is encountered');
+    });
+
+Fallbacks in user-defined contexts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When placed in contexts, fallbacks provide a user-friendly way to ‘lock’ the user at a certain point of the dialog. They can be helpful if you expect a specific input from the user and don't want the dialog flow to be interrupted by other commands available in the script.
+
+A fallback added to a context matches any input that is not matched by other voice commands in this context. Mind that such fallbacks are context-dependent — they are active only if the contexts to which they belong are activated.
+
+Check the ``chooseDish`` context in the example below:
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('I can offer you a pizza or a burger');
+        p.then(chooseDish);
+    });
+
+    intent('I want to order some drinks', p => {
+        p.play('I can offer you a soda or a juice');
+        p.then(chooseDrink);
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`Here is your ${p.D.value}`);
+            p.resolve();
+        });
+        
+        intent('Cancel (the order|)', p => {
+            p.play('Your order is cancelled');
+            p.resolve();
+        });
+        
+        fallback('We are expecting you to choose a dish. Say: get me a pizza or get me a burger. You can also cancel your order.');
+    });
+
+    let chooseDrink = context(() => {
+        intent('Get me a $(D soda|juice)', p => {
+            p.play(`Here is your ${p.D.value}`);
+            p.resolve();
+        });
+        
+        intent('Cancel (the order|)', p => {
+            p.play('Your order is cancelled');
+            p.resolve();
+        });
+        
+        fallback('We are expecting you to choose a drink. Say: get me a soda or get me a juice. You can also cancel your order.');
+    });
+
+Now, if the user enters the ``chooseDish`` context by saying: ``What do you have?``, he or she will need to finish this step either by ordering a dish or by cancelling the order. Until then, the user will remain in the context because of the ``fallback()`` function. Voice commands from the global context, for example: ``I want to order some drinks``, will not be available before the user exits the context and it is deactivated.
+
+Sharing information between contexts
+------------------------------------
+
+To share information between intent calls, you can use the following
+means:
+
+-  `userData object <#userdata-object>`__
+-  `state object <#state-object>`__
+-  `resolve() function <#resolve-function>`__
+
+userData object
+~~~~~~~~~~~~~~~
+
+You can store the application state in a special ``userData`` variable that persists between voice sessions. This way of data sharing can be used to store global application variables that must be accessible from any context of any project script and must be available during all user interactions.
+
+.. code:: JavaScript
+
+    intent("I want to order $(R latte|black coffee)", p => {
+        p.userData.coffee = p.R.value;
+        p.play(`Sure, wait a bit I'll get you some ${p.R.value}`);
+    });
+
+    intent("What is my order?", p => {
+        p.play(`You have ordered ${p.userData.coffee}`);
+    });
+
+state object
+~~~~~~~~~~~~
+
+Each context contains a special object named ``state``. ``state`` can be used as a dictionary, and you can put there anything you want.
+Everything you put in the ``state`` will be saved between each intent calls (activation).
+
+.. code:: JavaScript
+
+    intent("I want to order $(R latte|black coffee)", p => {
+        p.state.coffee = p.R.value;
+        p.play(`Sure, wait a bit I'll get you some ${p.R.value}`);
+    });
+
+    intent("What is my order?", p => {
+        p.play(`You have ordered ${p.state.coffee}`);
+    });
+
+``state`` can be passed or overwritten when a new context is activated using the ``then()`` function. The example below shows how to pass the state of the current context to a new one on activation.
+
+.. code:: JavaScript
+
+    let coffeeContext = context(() => {
+        intent("What is my order?", p => {
+            p.play(`You have ordered ${p.state.coffee}`);
+        });
+    });
+
+    intent("I want to order $(R latte|black coffee)", p => {
+        p.state.coffee = p.R.value;
+        p.play(`Sure, wait a bit I'll get you some ${p.R.value}`);
+        p.then(coffeeContext, {state: p.state});
+    });
+
+You can also create a new state object and pass it to the context.
+
+.. code:: JavaScript
+
+    let coffeeContext = context(() => {
+        intent("What is my order?", p => {
+            p.play(`You have ordered ${p.state.coffee}`);
+        });
+    });
+
+    intent("I want to order $(R latte|black coffee)", p => {
+        let state = {coffee:p.R.value};
+        p.play(`Sure, wait a bit I'll get you some ${p.R.value}`);
+        p.then(coffeeContext, {state: state});
+    });
+
+resolve() function
+~~~~~~~~~~~~~~~~~~
+
+If necessary, you can pass values between contexts with the ``resolve()`` function. In the example below, the user's rating is
+captured with the ``userRating`` context and passed to the global context:
+
+.. code:: js
+
+    let userRating = context(() => {
+        intent(`$(NUMBER)`, async p => p.resolve(p.NUMBER.value))
+    });
+
+    intent(`I want to take survey`, async p => {
+        p.play("Please rate the product on the scale of 1 to 5");
+        let rating = await p.then(userRating);
+        p.play(`Thank you for sharing your opinion. Your rating is: ${rating}`);
+    });
+
+Using onEnter() function
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+``onEnter()`` is a special predefined function activated each time the script enters the context. Take a look at the following example:
+
+.. code:: JavaScript
+
+    let countContext = context(() => {
+        onEnter(p => {
+            p.state.result = 0;
+        });
+        
+        intent('Yes', p => {
+            p.state.result += 1;
+            p.play(p.state.result.toString());
+        });
+    });
+
+    intent("Count how many times I've said yes", p =>{
+        p.play("Sure, Let's go");
+        p.then(countContext);
+    });
+	

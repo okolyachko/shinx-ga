@@ -1,0 +1,21 @@
+Step 19: Let Alan start the dialog
+==================================
+
+When users open the app, we want Alan to greet them and prompt what they can do with voice. To do this, we will use Alan's `onUserEvent() predefined callback <../../server-api/api/api-reference.html#onuserevent>`__.
+
+To the voice script, add the following code:
+
+.. code:: javascript
+
+   onUserEvent((p, e) => {
+       if (e.event == 'micPermissionPrompt') {
+           p.play('Hi, this is Alan, your voice assistant!');
+           p.play('To order food with voice, click Allow microphone and say: I want two burritos or I will take a pepperoni, please');
+       }
+   });
+
+`Web page source <../../_static/assets/img/tutorial2/7.html.txt>`__ | `Voice script <../../_static/assets/img/tutorial2/12.js>`__
+
+Now, when the user clicks the Alan button and the microphone permission prompt is displayed, Alan will play a prompt on how the user can order food with voice.
+
+Refresh the page and click the Alan button to test this scenario.
