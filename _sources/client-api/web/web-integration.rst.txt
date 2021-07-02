@@ -1,0 +1,33 @@
+Integration with Web projects
+===========
+
+To integrate Alan with a web project, you can use the following SDKs:
+
+- `Alan Web SDK <web-api.html>`__ to integrate with:
+
+  - `React <react.html>`__
+  - `Angular <angular.html>`__
+  - `Vue <vue.html>`__
+  - `Ember <ember.html>`__
+  - `JavaScript <vanilla.html>`__
+  - `Electron <electron.html>`__
+
+- `Alan Web component <web-component.html>`__ to integate with cross-platform frameworks like Ionic.
+
+.. raw:: html
+
+   <div id="purple-background"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   Alan Web SDK<web-api>
+   React<react>
+   Angular<angular>
+   Vue<vue>
+   Ember<ember>
+   JavaScript<vanilla>
+   Electron<electron>
+   Server-side rendering<server-side-rendering>
+   Web component<web-component>

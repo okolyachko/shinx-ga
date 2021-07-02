@@ -1,0 +1,81 @@
+JavaScript
+==========
+
+Available on: :badge:`Web platform,badge-primary badge-pill`
+
+You can integrate the Alan button into a simple HTML page with
+JavaScript without any frameworks.
+
+Integration
+-----------
+
+As a script
+~~~~~~~~~~~
+
+1. Add the ``script`` tag to the page:
+
+   .. code:: html
+
+       <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+
+2. Add a div for appending the Alan button:
+
+   .. code:: html
+
+       <div class="alan-btn"></div>
+
+3. Add the Alan button in the ``script`` tag like this:
+
+   .. code:: html
+
+       <script>
+           var alanBtnInstance = alanBtn({
+               key: "YOUR_KEY_FROM_ALAN_STUDIO_HERE",
+               onCommand: function (commandData) {
+                   if (commandData.command === "go:back") {
+                       // Call the client code that will react to the received command
+                   }
+               },
+               rootEl: document.getElementById("alan-btn"),
+           });
+       </script>
+
+   For details, see `Alan button parameters <web-api.html#alan-button-parameters>`__.
+
+As an NPM package
+~~~~~~~~~~~~~~~~~
+
+1. Install ``@alan-ai/alan-sdk-web`` using `npm <https://www.npmjs.com/package/@alan-ai/alan-sdk-web>`__:
+
+   .. code:: bash
+
+       $ npm install @alan-ai/alan-sdk-web --save
+
+2. Add a div for appending the Alan button:
+
+   .. code:: html
+
+       <div class="alan-btn"></div>
+
+3. Import ``alanBtn`` function from the ``@alan-ai/alan-sdk-web`` package and add the Alan button to the page:
+
+   .. code:: javascript
+
+       import alanBtn from "@alan-ai/alan-sdk-web";
+
+       var alanBtnInstance = alanBtn({
+           key: "YOUR_KEY_FROM_ALAN_STUDIO_HERE",
+           onCommand: function (commandData) {
+               if (commandData.command === "go:back") {
+                   // Call the client code that will react to the received command
+               }
+           },
+           rootEl: document.getElementById("alan-btn"),
+       });
+
+   For details, see `Alan button parameters <web-api.html#alan-button-parameters>`__.
+   
+   
+.. raw:: html
+
+   <div id="purple-background"></div>
