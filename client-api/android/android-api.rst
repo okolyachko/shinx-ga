@@ -1,0 +1,338 @@
+Alan Android SDK
+================
+
+Alan can be integrated with Android apps developed in Java and Kotlin. The integration procedure for Android Java/Kotlin apps is the same. To add Alan voice to an Android app, you need to do the following:
+
+1. `Add the Alan SDK dependency <#add-the-alan-sdk-dependency>`__
+2. `Add the Alan button to the app layout <#add-the-alan-button-to-the-app-layout>`__
+3. `Add the AlanConfig object <#add-the-alanconfig-object>`__
+4. `Connect to the Alan Studio project <#connect-to-the-alan-studio-project>`__
+
+
+Add the Alan SDK dependency
+---------------------------
+
+You need to add the Alan SDK dependency to the Android app. You can do it in two ways:
+
+-  `Add a reference as a Maven dependency <#add-a-reference-as-a-maven-dependency>`__
+-  `Download the aar package and include it manually <#download-the-aar-package-and-include-it-manually>`__
+
+Add a reference as a Maven dependency
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do the following:
+
+1. Open the ``build.gradle`` file at the module level.
+2. In the ``dependencies`` block, add the dependency configuration for the Alan Android SDK, for example:
+   ``implementation 'app.alan:sdk:4.7.15'``.
+
+.. code:: java
+
+    //build.gradle file at the module level
+    ...
+    dependencies {
+        ...
+        //Add Alan SDK dependency
+        implementation "app.alan:sdk:<latest.version>"
+    }
+
+Download the aar package and include it manually
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do the following:
+
+1. Download the Alan SDK from the releases section in the Alan Git repository.
+
+2. Put it in your ``<project>/app/libs`` folder. Create the ``libs`` folder if needed.
+
+3. Open the ``build.gradle`` file at the module level.
+
+4. In the ``repositories`` block, add the name of the folder in which the aar package resides.
+
+5. In the ``dependencies`` block, add the dependency configuration for the Alan Android SDK.
+
+.. code:: gradle
+
+    //build.gradle file at the module level
+    repositories {
+        ...
+        //Add the following line to the repositories section
+            flatDir {
+                dirs 'libs'
+            }
+    }
+    ...
+    dependencies {
+        ...
+        //Add the Alan SDK dependency
+        implementation (name: 'AlanSdk-<version>', ext: 'aar')
+    }
+
+Add the Alan button to the app layout
+-------------------------------------
+
+To add the Alan button to the layout of your app, use the ``AlanButton`` class. The ``AlanButton`` class provides a view with the voice button and instance methods to communicate with Alan Studio.
+
+In ``activity_main.xml``, create a new ``AlanButton`` instance using the following XML layout:
+
+.. code:: xml
+
+    //activity_main.xml file
+    <com.alan.alansdk.button.AlanButton
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/alan_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+.. note:: 
+   The ``layout_width`` param should be set to ``match_parent``.
+
+
+Add the AlanConfig object
+-------------------------
+
+You need to add the ``AlanConfig`` object to your app. This object describes the parameters that are provided for ``AlanButton``. In the
+``MainActivity.java`` file (for Android Java apps) or the ``MainActivity.kt`` file (for Android Kotlin apps), use ``AlanConfig.Builder`` to create a config with the necessary parameters:
+
++--------------+----------------------+----------------------------------------------------------------------------------------------+
+| **Name**     | **Type**             | **Description**                                                                              |
++==============+======================+==============================================================================================+
+| projectId    | String               | Project key from Alan Studio                                                                 |
++--------------+----------------------+----------------------------------------------------------------------------------------------+
+| dialogId     | String               | (Optional) Dialog ID to connect to the necessary dialog                                      |
++--------------+----------------------+----------------------------------------------------------------------------------------------+
+| dataObject   | String\|JSONObject   | (Optional) Valid JSON string or JSON object that must be passed to the Alan Studio project   |
++--------------+----------------------+----------------------------------------------------------------------------------------------+
+
+.. tabbed:: Java
+
+   .. code:: java
+      
+    //MainActivity.java file
+	
+    public class MainActivity extends AppCompatActivity {
+		...
+		@Override protected void onCreate(Bundle savedInstanceState) {
+			...
+			// Alan button
+			AlanButton alanButton = findViewById(R.id.alan_button);
+				
+			// Alan config object
+			AlanConfig alanConfig = AlanConfig.builder()
+				.setProjectId("")
+				.build();
+			alanButton.initWithConfig(alanConfig);
+		}
+	}
+
+.. tabbed:: Kotlin
+
+   .. code:: kotlin
+   
+    //MainActivity.kt file
+   
+    class MainActivity : AppCompatActivity() {     
+		...
+		override fun onCreate(savedInstanceState: Bundle?) {
+			...
+			// Alan config object
+			val config = AlanConfig.builder()
+			.setProjectId("")
+			.build()
+			alan_button.initWithConfig(config)
+		}
+    }
+    
+
+Connect to the Alan Studio project
+----------------------------------
+
+As the last step, you need to connect the Android app to the Alan Studio project in which you create voice scripts for the app. In
+``setProjectId`` of ``MainActivity``, provide the Alan SDK Key for your project in Alan Studio. To get the key, in Alan Studio, at the top of the code editor click **Integrations** and copy the key value from the **Alan SDK Key** field.
+
+.. tabbed:: Java
+
+   .. code:: java
+      
+    //MainActivity.java file
+	
+    public class MainActivity extends AppCompatActivity {
+		...
+		@Override protected void onCreate(Bundle savedInstanceState) {
+			...
+			AlanButton alanButton = findViewById(R.id.alan_button);
+				
+			AlanConfig alanConfig = AlanConfig.builder()
+				// Set the Alan Studio project ID
+				.setProjectId("9c0f83473715c10b7d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/prod")
+				.build();
+			alanButton.initWithConfig(alanConfig);
+		}
+	}
+
+.. tabbed:: Kotlin
+
+   .. code:: kotlin
+   
+    //MainActivity.kt file
+   
+    class MainActivity : AppCompatActivity() {     
+		...
+		override fun onCreate(savedInstanceState: Bundle?) {
+			...
+			val config = AlanConfig.builder()
+			// Set the Alan Studio project ID
+			.setProjectId("9c0f83473715c10b7d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/prod")
+			.build()
+			alan_button.initWithConfig(config)
+		}
+    }
+
+
+Your app is now integrated with Alan. You can now add voice commands to the script in Alan Studio, run the app, tap the Alan button and interact with the app with voice.
+
+
+Handle events from the Alan Android SDK
+---------------------------------------
+
+When you run an Android app with Alan voice, multiple callbacks come from the Alan backend. To handle them, you should extend the
+``AlanCallback`` class and register a listener to the ``AlanButton`` object.
+
+You can handle the following events:
+
+-  **onConnectStateChanged**: This callback is invoked when the state of the connection to the backend changes.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+	* Invoked on backend connection state change
+	* @param connectState
+	*/
+	public void onConnectStateChanged(@NonNull ConnectionState connectState) {
+	
+	}
+
+-  **onDialogStateChanged**: This callback is invoked when the Alan button interaction state changes.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked on button interaction state change 
+    * @param dialogState
+    */
+    public void onDialogStateChanged(@NonNull DialogState dialogState) {
+
+    }
+
+-  **onRecognizedEvent**: This callback is invoked when the user utterance is recognized at the backend.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked when user speech is recognized at backend
+    * @param eventRecognised
+    */
+    public void onRecognizedEvent(EventRecognised eventRecognised) {
+
+    }
+
+-  **onCommandReceived**: This callback is invoked when the app receives a command from the voice script.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked when some command from the voice script is received
+    * @param eventCommand
+    */
+    public void onCommandReceived(EventCommand eventCommand) {
+
+    }
+
+-  **onTextEvent**: This callback is invoked when an answer from the script is received.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked on answer from the script
+    * @param eventText
+    */
+    public void onTextEvent(EventText eventText) {
+
+    }
+
+-  **onEvent**: This callback is invoked on any other Alan event.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked on any other event
+    * @param event
+    * @param payload
+    */
+    public void onEvent(String event, String payload) {
+
+    }
+
+-  **onError**: This callback is invoked on an Alan error event.
+
+   Callback definition:
+
+   .. code:: java
+
+    /**
+    * Invoked on Alan errors
+    */
+    public void onError(String error) {
+
+    }
+
+The example below demonstrates how to handle commands coming from the voice script to the app:
+
+.. tabbed:: Java
+
+   .. code:: java
+      
+    AlanCallback myCallback = new AlanCallback() {
+    @Override
+        public void onCommandReceived(EventCommand eventCommand) {
+            super.onCommandReceived(eventCommand);
+            //Handle command here
+        }
+    };
+	alanButton.registerCallback(myCallback);
+
+.. tabbed:: Kotlin
+
+   .. code:: kotlin
+   
+    val myCallback: AlanCallback = object : AlanCallback() {
+		override fun onCommandReceived(eventCommand: EventCommand) {
+			super.onCommandReceived(eventCommand)
+			//Handle command here
+		}
+	}
+	alan_button.registerCallback(myCallback)
+
+Set extended logging
+--------------------
+
+You can set extended logging with a static ``enableLogging`` method of the Alan object:
+
+``Alan.enableLogging(true);``
+
+.. raw:: html
+
+   <div id="purple-background"></div>

@@ -1,0 +1,474 @@
+API Reference
+=============
+
+Commands and responses
+----------------------
+
+Intent
+~~~~~~
+.. admonition:: Function syntax
+   :class: syntax
+   
+   intent([filter,] [noctx,] pattern1 [, pattern2, ..., patternN], action) 
+
+
++---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Name**      | **Type**   | **Description**                                                                                                                                                                  |
++===============+============+==================================================================================================================================================================================+
+| ``filter``    | function   | Defines the conditions on when the intent can be invoked.                                                                                                                        |
++---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``noctx``     | function   | Signals that the intent must not switch the current context. For details, see `noContext intents <../contexts.html#nocontext-intents>`__.                                        |
++---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``pattern``   | string     | Comma separated strings, each represents a `pattern <../patterns.html>`__ invoking the intent.                                                                                   |
++---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``action``    | function   | Defines what actions must be taken when one of the intent `patterns <../patterns.html>`__ is matched. Either an anonymous arrow function or the `reply() <#reply>`__ function.   |
++---------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+``intent()`` is a predefined function to define a voice command. In the function, you specify expected user inputs — `patterns <../patterns.html>`__, conditions on when the voice command must be available for the user — `visual
+filters <../sending-data/visual-state.html>`__, and actions that must occur when the user's input matches one of the `patterns <../patterns.html>`__.
+
+For details, see `Intent <../commands-and-responses.html#intent>`__.
+
+Play
+~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   play([voice,] response1 [, response2, ..., responseN])
+   
+Or 
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   play(command)
+
++----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| **Name**       | **Type**        | **Description**                                                                                                                   |
++================+=================+===================================================================================================================================+
+| ``voice``      | function        | Defines the `language-specific voice <../../server-api/commands-and-responses.html#response-accent>`__ for natural pronunciation. |
++----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| ``response``   | string/number   | Comma separated strings or numbers, each represents a `pattern <../patterns.html>`__ of a voice response from Alan.               |
++----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| ``command``    | object          | An arbitrary JSON object used to send commands to the client app.                                                                 |
++----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+Supported voice languages: 
+
+- English (en)
+- French (fr)
+- German (de)
+- Italian (it)
+- Portuguese (pt)
+- Russian (ru)
+- Spanish (es)
+- Turkish (tr)
+
+``play()`` is a predefined function used to play voice responses or to send ``JSON`` commands to the web/mobile client app. If more than one response is passed to the ``play()`` function, only one response will be played at random.
+
+For details, see `Play <../commands-and-responses.html#play>`__.
+
+Reply
+~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   reply(response1 [, response2, ..., responseN])
+
++----------------+------------+-----------------------------------------------------------------------------------------------------------+
+| **Name**       | **Type**   | **Description**                                                                                           |
++================+============+===========================================================================================================+
+| ``response``   | string     | Comma separated strings, each represents a `pattern <../patterns.html>`__ of a voice response from Alan.  |
++----------------+------------+-----------------------------------------------------------------------------------------------------------+
+
+``reply()`` is a predefined action function playing the specified voice response to the user. If more than one response is passed to the ``reply()`` function, only one response will be played at random.
+
+For details, see `Reply <../commands-and-responses.html#reply>`__.
+
+Contexts
+--------
+
+Then
+~~~~
+.. admonition:: Function syntax
+   :class: syntax
+   
+   then(context[, state])
+
++---------------+------------+---------------------------------------------------------------+
+| **Name**      | **Type**   | **Description**                                               |
++===============+============+===============================================================+
+| ``context``   | function   | Represents the variable name with which context is defined.   |
++---------------+------------+---------------------------------------------------------------+
+| ``state``     | object     | Predefined object that exists in every context.               |
++---------------+------------+---------------------------------------------------------------+
+
+``then()`` is a predefined function used to activate the `context <../contexts.html>`__. If you need to share data between the current context and the activated one, you can pass this data with the `state <../objects.html#state>`__ object.
+
+For details, see `Activating contexts <../contexts.html#activating-contexts>`__.
+
+Resolve
+~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   resolve([returnValue])
+
++-------------------+------------+---------------------------------------------------------+
+| **Name**          | **Type**   | **Description**                                         |
++===================+============+=========================================================+
+| ``returnValue``   | object     | Represents the object returned to the parent context.   |
++-------------------+------------+---------------------------------------------------------+
+
+``resolve()`` is a predefined function used to manually deactivate the current `context <../contexts.html>`__ and return to its parent context. You can pass any data to it, this data will be available in the parrent context.
+
+For details, see `Exiting contexts <../contexts.html#exiting-contexts>`__.
+
+Fallback
+~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   fallback(pattern1 [, pattern2, ..., patternN])
+
++---------------+------------+-----------------------------------------------------------------------------------------------------------+
+| **Name**      | **Type**   | **Description**                                                                                           |
++===============+============+===========================================================================================================+
+| ``pattern``   | string     | Comma separated strings, each represents a `pattern <../patterns.html>`__ of a voice response from Alan.  |
++---------------+------------+-----------------------------------------------------------------------------------------------------------+
+
+For each `context <../contexts.html>`__, you can define a fallback response which will be activated if this context is active and no `intent <#intent>`__ from this context has been matched.
+
+For details, see `Prompting and handling user errors <../contexts.html#prompting-and-handling-user-errors>`__.
+
+noContext
+~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   noContext(() => {intent1 [, intent2, ..., intentN]});
+
++--------------+------------+--------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                    |
++==============+============+====================================================================+
+| ``intent``   | function   | An intent that must not switch the current context when invoked.   |
++--------------+------------+--------------------------------------------------------------------+
+
+The ``noContext`` function wraps all intents that must not switch the current context, for example, general questions in the dialog.
+
+For details, see `noContext intents <../contexts.html#nocontext-intents>`__.
+
+State
+~~~~~
+
+Each `context <../contexts.html>`__ has a special predefined object — ``state``. You can access it via ``p.state``. This object should be treated as the knowledge base that is available to Alan in the current conversational context. You can store any data in it.
+
+For details, see `state <../objects.html#state>`__.
+
+onEnter
+~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onEnter(action)
+
++--------------+------------+---------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                     |
++==============+============+=====================================================================+
+| ``action``   | function   | Defines what actions must be taken when the context is activated.   |
++--------------+------------+---------------------------------------------------------------------+
+
+``onEnter()`` is a special predefined callback activated each time the script enters a `context <../contexts.html>`__.
+
+For details, see `Using onEnter() function <../contexts.html#using-onenter-function>`__.
+
+Title
+~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   title(contextName)
+
++-------------------+------------+---------------------------------------------------------------+
+| **Name**          | **Type**   | **Description**                                               |
++===================+============+===============================================================+
+| ``contextName``   | string     | Represents the name of a context that will be shown in logs   |
++-------------------+------------+---------------------------------------------------------------+
+
+``title()`` is a special predefined function used to label a `context <../contexts.html>`__.
+
+For details, see `Labeling contexts <../contexts.html#labeling-contexts>`__.
+
+
+Session-specific objects and methods
+------------------------------------
+
+Session-specific objects and methods are available via the predefined ``p`` object. These methods and objects persist during a user session, until the session is terminated. The user session is terminated after 30 minutes of inactivity or if the user quits the app.
+
+userData
+~~~~~~~~
+
+``p.userData`` is a runtime object that can be used to store any data. You can access it at any time from any script of your project regardless of the context. Take a note that the data stored in ``p.userData`` is available only during the given user session.
+
+For details, see `userData <../objects.html#userdata>`__.
+
+authData
+~~~~~~~~
+
+``p.authData`` is a runtime object that can be used to provide static device- or user-specific data, such as the user's credentials, to Alan's script or project. If you need to receive dynamic data from the app, use the `visual state <../sending-data/visual-state.html>`__ instead.
+
+visual
+~~~~~~
+
+``p.visual`` is a runtime object that can contain an arbitrary JSON object. It should be used to provide any dynamic data of the app state to Alan's script or project.
+
+For details, see `Visual state <../sending-data/visual-state.html>`__.
+
+Global objects and methods
+--------------------------
+
+project
+~~~~~~~
+
+``project`` is a global object that can be used to store any data you may need in separate voice scripts of your project.
+
+When Alan builds the dialog model for your project, it loads scripts in the order defined in the scripts panel, from top to bottom. The ``project`` object will be available in any script that is below the script where it is defined.
+
+.. code:: JavaScript
+
+    // Script 1
+    project.config = {initValue: 1};
+
+    // Script 2
+    console.log(`Init value is ${project.config.initValue}`);
+
+project API
+~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   projectAPI.functionName = function(p, data, callback) {}
+
++----------------+------------+-----------------------------------------------------------------------------------+
+| **Name**       | **Type**   | **Description**                                                                   |
++================+============+===================================================================================+
+| ``p``          | object     | Predefined object containing the user session data and exposing Alan's methods.   |
++----------------+------------+-----------------------------------------------------------------------------------+
+| ``data``       | object     | An object containing the data you want to pass to your script.                    |
++----------------+------------+-----------------------------------------------------------------------------------+
+| ``callback``   | function   | A callback function used to receive data back to the app.                         |
++----------------+------------+-----------------------------------------------------------------------------------+
+
+The project API can be used if you want to send data from the client app to the Alan voice script or perform some script logic without a voice command from the user. This can be done by setting up the logic for the project API and then calling it with Alan's client SDK method — `callProjectApi() </client-api/methods/common-api.html#callprojectapimethodstring-dataobject-callbackfunction>`__.
+
+For details, see `Project API <../sending-data/project-api.html>`__.
+
+.. code:: JavaScript
+
+    projectAPI.setToken = function(p, param, callback) {
+        if (!param || !param.token) {
+            callback("error: token is undefined");
+        }
+        p.userData.token = param.token;
+        callback();
+    };
+
+Speech recognition biasing
+--------------------------
+
+Recognition hints
+~~~~~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   recognitionHints(recognitionHint1 [, recognitionHint2, ..., recognitionHintN])
+
++-----------------------+------------+-----------------------------------------------------------------------------------------------------------+
+| **Name**              | **Type**   | **Description**                                                                                           |
++=======================+============+===========================================================================================================+
+| ``recognitionHint``   | string     | Comma separated strings (hints), each represents a `pattern <../patterns.html>`__ of a user voice input.  |
++-----------------------+------------+-----------------------------------------------------------------------------------------------------------+
+
+``recognitionHints`` allow you to provide a list of hints for the voice assistant to help it recognize specific terms, words or phrase patterns that are not used in everyday life but are expected in the user's input. Use it to avoid frequent errors in speech recognition. 
+
+
+.. code:: javascript
+
+    recognitionHints("Open ICIK");
+
+    intent ('Open $(PARAM~ ICIK~ICIK)', p => {
+        p.play(`Opening ${p.PARAM.label}`);
+    });
+
+Predefined callbacks
+--------------------
+
+After you create a voice assistant with Alan, the dialog goes through several states: the project is created, the user connects to the app and so on. When the dialog state changes, you may want to perform activities that are appropriate to this state. For example, when a new user connects to the dialog session, it may be necessary to set user-specific
+data.
+
+To perform actions at different stages of the dialog lifecycle, you can use the following predefined callback functions:
+
+-  `onCreateProject <#oncreateproject>`__
+-  `onCreateUser <#oncreateuser>`__
+-  `onCleanupUser <#oncleanupuser>`__
+-  `onVisualState <#onvisualstate>`__
+-  `onUserEvent <#onuserevent>`__
+
+onCreateProject
+~~~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onCreateProject(()=> {action})
+
++--------------+------------+----------------------------------------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                                                    |
++==============+============+====================================================================================================+
+| ``action``   | function   | Defines what actions must be taken when the dialog model is created on the server in Alan Cloud.   |
++--------------+------------+----------------------------------------------------------------------------------------------------+
+
+``onCreateProject`` is invoked when the dialog model for the voice script is created. You can use this function to perform activities required immediately after the dialog model is built, for example, for any data initialization.
+
+In the example below, ``onCreateProject`` is used to define values for ``project.drinks``.
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.drinks = "green tea|black tea|oolong";
+    });
+
+onCreateUser
+~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onCreateUser(p => {action})
+
++--------------+------------+------------------------------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                                          |
++==============+============+==========================================================================================+
+| ``p``        | object     | Predefined Alan's object containing the user session data and exposing Alan's methods.   |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``action``   | function   | Defines what actions must be taken when a new user starts a dialog session.              |
++--------------+------------+------------------------------------------------------------------------------------------+
+
+``onCreateUser`` is invoked when a new user starts a dialog session. You can use this function to set user-specific data.
+
+In the example below, the ``onCreateUser`` function is used to assign the value to ``p.userData.favorites``:
+
+.. code:: JavaScript
+
+    onCreateUser(p => {
+        p.userData.favorites = "nature|landscape|cartoons";
+    });
+
+onCleanupUser
+~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onCleanupUser(p => {action})
+
++--------------+------------+------------------------------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                                          |
++==============+============+==========================================================================================+
+| ``p``        | object     | Predefined Alan's object containing the user session data and exposing Alan's methods.   |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``action``   | function   | Defines what actions must be taken when the user session ends.                           |
++--------------+------------+------------------------------------------------------------------------------------------+
+
+``onCleanupUser`` is invoked when the user session ends. You can use this function for any cleanup activities.
+
+In the example below, the ``onUserCleanup`` function is used to reset ``p.userData.favorites`` value:
+
+.. code:: JavaScript
+
+    onCleanupUser(p => {
+        p.userData.favorites = "";
+    });
+
+onVisualState
+~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onVisualState((p, s) => {action})
+
++--------------+------------+------------------------------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                                          |
++==============+============+==========================================================================================+
+| ``p``        | object     | Predefined Alan's object containing the user session data and exposing Alan's methods.   |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``s``        | object     | JSON object passed with the visual state.                                                |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``action``   | function   | Defines what actions must be taken when the visual state is sent.                        |
++--------------+------------+------------------------------------------------------------------------------------------+
+
+``onVisualState`` is invoked when the visual state object is set. You can use this function, for example, to process data passed in the visual state.
+
+In the example below, the ``onVisualState`` function is used to define values for dynamic entities created with the help of the visual state.
+
+.. code:: JavaScript
+
+    // Set visual state
+    {
+        values: ["pasta", "burger", "quesadilla"]
+    }
+
+    onVisualState((p, s) => {
+        if (s.values) {
+            p.visual.ent = s.values.join('|');
+        }
+        else {
+            p.visual.ent = "";
+        }   
+    });
+
+onUserEvent
+~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+   
+   onUserEvent((p, e) => {action})
+
++--------------+------------+------------------------------------------------------------------------------------------+
+| **Name**     | **Type**   | **Description**                                                                          |
++==============+============+==========================================================================================+
+| ``p``        | object     | Predefined Alan's object containing the user session data and exposing Alan's methods.   |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``e``        | object     | Event fired by Alan.                                                                     |
++--------------+------------+------------------------------------------------------------------------------------------+
+| ``action``   | function   | Defines what actions must be taken when the event is fired.                              |
++--------------+------------+------------------------------------------------------------------------------------------+
+
+``onUserEvent`` is invoked when Alan emits a specific event driven by users’ interactions with the voice assistant in the app. For the events list, see `User events <../user-data/events.html>`__.
+
+In the example below, the voice assistant listens to the ``firstActivate`` event and, if the user activates the voice assistant for the first time, plays a greeting to the user.
+
+.. code:: js
+
+    onUserEvent((p, e)=> {
+        console.log(e);
+        if (e.event === "firstActivate") {
+            p.play('Hi, this is Alan, your voice assistant! You can talk to me, ask questions and perform tasks with voice.');
+        }
+    });
+	
+.. raw:: html
+
+   <div id="green-background"></div>

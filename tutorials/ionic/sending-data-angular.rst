@@ -1,0 +1,172 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Passing the app state to the voice script (Ionic Angular)
+=========================================================
+
+When the user interacts with an Ionic Angular app, it may be necessary to send some data from the app to the voice script. For example, you may need to provide the voice script with information about the current app
+state.
+
+In Alan, you can send data from the app to the voice script in the following ways:
+
+-  With `visual state <../../server-api/sending-data/visual-state.html>`__
+-  With `project API <../../server-api/sending-data/project-api.html>`__
+
+In this tutorial, we will work with an example Ionic app with three tabs. We will send information about the currently opened tab to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:
+
+-  Create a voice command that will let Alan reply differently depending on the tab open in the app
+-  Create a tab-specific command that can be matched only if the necessary tab is open
+
+What you will learn
+-------------------
+
+-  How to pass the app state from an Ionic app to the voice script with the visual state
+-  How to access the data passed with the visual state in the voice script
+-  How to filter intents by the app state
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  In this tutorial, we will continue using the example Ionic app provided by Alan. You can also use your own app with several tabs.
+   
+   Make sure you have completed all steps from the previous tutorials:
+
+   -  `Building a voice assistant for an Ionic Angular app <integrating-angular.html>`__
+   -  `Navigating between tabs in an app (Ionic Angular) <navigating-angular.html>`__.
+
+-  The environment for using the Ionic framework is properly set up. For details, see `Ionic documentation <https://ionicframework.com/docs/intro/environment>`__.
+
+
+Step 1: Get routing information
+-------------------------------
+
+First, we need to subscribe to route changes so that our app knows what tab is currently open. In the example Ionic app, go to the ``src/app`` folder, open ``app.component.ts`` and make the following changes:
+
+1. At the top of the file, add the following import statement:
+
+   .. code:: javascript
+
+      import { Router, NavigationEnd } from '@angular/router'
+
+2. To the constructor of the ``AppComponent`` class, inject ``Router``:
+
+   .. code:: javascript
+
+      private router: Router
+
+3. And subscribe to the router events:
+
+   .. code:: javascript
+
+      ...
+      export class AppComponent {
+
+          @ViewChild('alanBtnEl', {static:false}) alanBtnComponent: ElementRef<HTMLAlanButtonElement>;
+
+          private visualState: any = {};
+
+          constructor(
+              private platform: Platform,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar,
+              private navCtrl: NavController,
+              private router: Router
+           ) {
+              this.initializeApp();
+
+              //subscribe to router events
+              this.router.events.subscribe((event) => {
+                  if (event instanceof NavigationEnd) {
+                      console.log(event.url); // will be "/tabs/tab1" or "/tabs/tab2" depending on the open tab           
+                  }
+              }); 
+          }
+      ...
+
+Now the app logs the currently open tab to the console.
+
+
+Step 2: Send the app state to the voice script
+----------------------------------------------
+
+To send data from the app to the voice script, you can use Alan's visual state object. This method can be particularly helpful if the dialog flow in your app depends on the app state. In this case, you need to know the app state on the script side to adjust the dialog logic. For example, you may want to use the app state to filter out some voice commands, give responses applicable to the current app state and so on.
+
+The visual state allows you to send a arbitrary JSON object from the app to the script. You can access the passed data in the script through the ``p.visual`` runtime variable.
+
+Let's modify our app to send information about the currently open tab to the script.
+
+1. Open ``app.component.ts``.
+
+2. To the subscribe code block, add the
+   `setVisualState() <../../client-api/methods/common-api.html#setvisualstate>`__
+   method:
+
+   .. code:: js
+
+      this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+              console.log(event.url); // will be "/tabs/tab1" or "/tabs/tab2" depending on the open tab
+
+              //set visual state
+              this.alanBtnComponent.nativeElement.setVisualState({
+                  tab: parseInt(event.url.replace('/tabs/tab', ''), 10)
+              });
+          }
+      });
+
+Now, when we navigate to a specific tab, the app will send a JSON object with the tab number to the voice script.
+
+
+Step 3: Add a voice command with different answers for tabs
+-----------------------------------------------------------
+
+Imagine we want to provide the user with a possibility to ask: ``Where am I?`` in the app, and Alan must reply differently depending on the tab open. Let's go back to Alan Studio and add a new intent:
+
+.. code:: javascript
+
+   intent('Where am I?', p => {
+       const tab = p.visual.tab;
+       switch (tab) {
+           case 1:
+               p.play('This is the first tab');           
+               break;
+           case 2:
+               p.play('This is the second tab');           
+               break;
+           case 3:
+               p.play('This is the third tab');           
+               break;
+           default:
+               p.play('This is an example Ionic app by Alan');
+       }      
+   });
+
+Here we use the ``p.visual.tab`` variable to access data passed with the visual state. Depending on the variable value, Alan plays back different responses.
+
+You can test it: run the app, click the Alan button and ask: ``Where am I?`` Alan will reply: ``This is an example Ionic app by Alan``. Now say: ``Go to the second tab`` and ask: ``Where am I?`` again. Alan will get
+back with: ``This is the second tab``. Then try navigating through the app with voice or using the UI. The response to: ``Where am I?`` must be correct in any case since we capture the app state.
+
+
+Step 4: Create a tab-specific command
+-------------------------------------
+
+If an app has several screens or tabs, it may be necessary to create voice commands that will work for specific tabs only. In Alan, you can create tab-specific commands with the help of `filters <../../server-api/sending-data/visual-state.html#filtering-commands>`__ added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
+open tab as the filter.
+
+Let's add another voice command that will work only if the third tab is open. In Alan Studio, add the following intent:
+
+.. code:: javascript
+
+   const vScreen = visual({tab: 3});
+
+   intent(vScreen, `Go forward`, p => {
+       p.play('Sorry, there are no more tabs in this app')
+   });
+
+The filter comes as the first parameter in the intent. This intent will be matched only if the third tab is open and the visual state is ``{tab: 3}``.
+
+You can test it: run the app, navigate to the third tab with voice and say: ``Go forward``. Alan will reply:
+``Sorry, there are no more tabs in this app``. Then navigate to the second tab and say: ``Go forward``. Alan will not be able to match the intent.

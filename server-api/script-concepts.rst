@@ -1,0 +1,56 @@
+Script concepts
+===============
+
+The Alan Voice AI Platform provides a framework for fast and easy
+development and deployment of voice UX for any app. To design a dialog
+for your voice assistant, you need to create voice scripts using
+JavaScript in Alan Studio.
+
+Alan augments the standard JavaScript and offers predefined functions
+and objects to create visual voice experiences. To get started with
+voice scripts, see the following sections:
+
+-  `Commands and responses <commands-and-responses.html>`__
+-  `Patterns <patterns.html>`__
+-  `Slots <slots.html>`__
+-  `Contexts <contexts.html>`__
+-  `Dynamic entities <dynamic-entities.html>`__
+-  `Built-in JavaScript libraries <built-in-javascript-libraries.html>`__
+-  `Predefined script objects <objects.html>`__
+-  `Visual state <sending-data/visual-state.html>`__
+-  `Project API <sending-data/project-api.html>`__
+-  `Voice assistant lifecycle <server-api/lifecycle.html>`__
+-  (Experimental) `Alan button popups <popups.html>`__
+
+To get reference information about all functions and objects that you can use in voice scripts, see the `API
+reference <api/api-reference.html>`__.
+
+Multiple scripts in the project
+-------------------------------
+
+You can add as many scripts to the project as you need. If your project comprises several scripts, the scripts are loaded in the order of their placement in the script panel in Alan Studio. Upper scripts are loaded first. Please keep it in mind when defining the logic for your voice assistant.
+
+.. note::
+
+   To share data in a project with several scripts, you can use the ``project`` global object. For details, see `Predefined script objects </server-api/objects.html>`__.
+
+.. raw:: html
+
+   <div id="green-background"></div>   
+   
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   Commands and responses<commands-and-responses>
+   Patterns<patterns>
+   Slots<slots>
+   Contexts<contexts>
+   Dynamic entities<dynamic-entities>
+   Built-in JavaScript libraries<built-in-javascript-libraries>
+   Predefined script objects <objects>
+   Voice assistant lifecycle<lifecycle>
+   Alan button popups<popups>
+   Communication with the app<sending-data/communication>
+   User data<user-data/overview>
+   API reference<api/api-reference>
