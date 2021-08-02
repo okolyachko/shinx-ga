@@ -1,0 +1,76 @@
+Alan Power Apps Framework
+=========================
+
+To add Alan's voice to a Microsoft Power Apps project, you need to do
+the following:
+
+1. `Get the Alan SDK for Power Apps <#step-1-get-the-alan-sdk-for-power-apps>`__
+2. `Add the Alan Button Component to your app <#step-2-add-the-alan-button-component-to-your-app>`__
+3. `Provide the Alan SDK key <#step-3-provide-the-alan-sdk-key>`__
+4. `Save, publish and share your app <#step-4-save-publish-and-share-your-app>`__
+
+.. note:: 
+
+   At present, Alan's voice assistants for Power Apps can communicate with users through the dialog created in Alan Studio. Sending commands to the app and using the Alan Client API methods are not supported.
+
+Step 1. Get the Alan SDK for Power Apps
+---------------------------------------
+
+First, you need to get the Alan Power Apps SDK and import it to the Power Apps Studio.
+
+1. Open the Alan Power Apps SDK release page on Alan GitHub.
+2. Download the ``AlanButtonComponent.zip`` file from the `latest release <https://github.com/alan-ai/alan-sdk-pcf/releases>`__.
+3. Log in to the Power Apps Studio. In the left menu, select **Solutions**.
+4. On the command bar at the top, select **Import**.
+5. On the **Import a solution** page, click **Browse** and select the ZIP file you have downloaded.
+6. Proceed with import using the default options. At the last step, click **Import**. For more details on importing components, see `Import Solutions <https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions>`__.
+
+.. image:: /_static/assets/img/powerapps/powerapps.png
+
+Step 2. Add the Alan Button Component to your app
+-------------------------------------------------
+
+You need to add the Alan Button Component you have obtained to your
+Power Apps project. 
+
+1. In the left menu of the Power Apps Studio, click **Apps**. 
+2. Create a new app or open an existing app to which you want to add Alan's voice. 
+3. Go to **Insert** > **Custom** > **Import component**. 
+4. On the **Import components** page, open the **Code** tab, select the Alan Button Component and click **Import**. 
+5. In the left menu, click the plus icon, expand **Code components** and click **Alan Button Component** to add it to your app.
+
+.. tip::
+
+   You do not need to define the Alan button position — the button is automatically set in the bottom right corner of the screen.
+
+.. image:: /_static/assets/img/powerapps/powerapps-component.png
+
+Step 3. Provide the Alan SDK key
+--------------------------------
+
+You need to define the Alan SDK key of your Alan Studio project in the
+Alan Button Component properties.
+
+1. In Alan Studio, go to **Integrations** and copy the value from the **Alan SDK Key** field.
+2. In the Power Apps Studio, select the Alan Button Component added to your app.
+3. In the **Controls** pane, open the **Advanced** tab and in the **alanSdkKey** field, paste the key value you have copied inside the quotes.
+
+.. image:: /_static/assets/img/powerapps/powerapps-key.png
+
+Step 4. Save, publish and share your app
+----------------------------------------
+
+After you add the Alan button to your project, you can publish and share your app to let users communicate with it through voice: 
+
+- To preview the app, click its name in the apps list or select the app and on the command bar, click the **Play** button. 
+- To save and publish the app, from the **File** menu, select **Save as** and choose the destination: Cloud or Your computer. For details, see `Save and publish a canvas app in Power Apps <https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/save-publish-app>`__. 
+- To share the app, select it in the apps list and on the command bar, click the **Share** button. For details, see `Share a canvas app in Power Apps  <https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/share-app>`__.
+
+See also
+--------
+
+`Power Apps component framework overview <https://docs.microsoft.com/en-us/powerapps/developer/component-framework/overview>`__
+
+.. raw:: html
+
+   <div id="purple-background"></div>

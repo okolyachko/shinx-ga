@@ -1,0 +1,26 @@
+.. Alan AI Docs documentation master file, created by
+   sphinx-quickstart on Tue Apr 27 18:35:57 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Additional resources
+========================================
+
+To let you quickly get started with Alan, here we have collected additional resources that may help.
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   
+   Supported platforms<supported-platforms>
+   FAQ<faq>
+   
+
+
+
+
+

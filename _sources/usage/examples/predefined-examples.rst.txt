@@ -1,0 +1,94 @@
+Voice script examples
+=====================
+
+Alan Studio comes with a set of predefined voice scripts. You can add these scripts to your project at any time and use them as examples of conversation flows that you can create with Alan.
+
+To add a predefined script, in the left pane of your Alan Studio project, click **Add script** and select the scripts you want to add.
+
+.. note:: 
+
+   Some of examples like Jeopardy game have their data distributed between several scripts. To see how they work, you need to add the whole set of scripts to the project.
+
+Beside viewing the code of predefined scripts in Alan Studio and testing them in the Debugging Chat, you can check how these scripts work when run in a real app. To do this, you need to install Alan Playground on iOS or Android and select the necessary example app in it.
+
+Alan Playground offers the following examples:
+
+
+.. panels::
+   
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/customer-survey.png 
+   
+   **Survey**: A chatbot to take conduct customer survey and get user feedback about the product.
+   
+    
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/bitcoin.png 
+
+   **Bitcoin**: A voice assistant to get information about the Bitcoin price from the external server.
+   
+   
+   
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/calculator.png
+   
+   **Calculator**: A chatbot that allows making mathematical calculations with voice.
+   
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/news.png
+   
+   **News**: A news app that allows listening to the headlines of the latest news on a specific topic.
+  
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/crm.png
+
+   **CRM**: A voice assistant that allows getting the latest data on account opportunities.
+
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/smalltalk.png
+
+   **Small Talk**: A simple chatbot that can engage in a simple small talk.
+   
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/weather.png
+   
+   **Weather**: A weather forecast chatbot.
+
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/jeopardy.png
+
+   **Jeopardy**: A chatbot that allows playing the Jeopardy game.
+
+   ---
+   :card: border-0 + custom-style-blue
+   
+   .. image:: /_static/assets/img/about/translation.png
+
+   **Translation**: A voice bot for translating words and phrases to different languages.
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+
+
+
+
+
+
+
