@@ -1,0 +1,70 @@
+Project API
+===========
+
+You can use the project API if you need to send information from the client app to the voice script or want to perform some logic without a voice command from the user. For example, you may want Alan to play a message, call a function or set variable values when the user performs certain activities in the app UI.
+
+To use the project API, you need to define a project API method with an arbitrary name in the voice script. In the example below, the ``setClientData`` method is defined:
+
+.. code:: JavaScript
+
+    projectAPI.setClientData = function(p, param, callback) {
+      p.userData = param;
+      callback();
+    };
+
+The defined project API method must then be called in the client app with `callProjectApi() <../../client-api/methods/common-api.html#callprojectapi>`__. ``callProjectApi()`` takes the following arguments: 
+
+- Name of the project API method defined in the voice script 
+- Data to be sent to the voice script 
+- Callback that needs to be invoked from the project API method
+
+.. code:: JavaScript
+
+    // Client app
+    alanBtnInstance.callProjectApi("setClientData", {value:"your data"}, function (error, result){
+        // handle error and result here
+    });
+
+Let's assume we want Alan to play the ``Thank you for your feedback!`` phrase when the user clicks a button in the app and send the feedback value to the voice script. We can add the following project API method to the voice script:
+
+.. code:: JavaScript
+
+    projectAPI.sendFeedback = function(p, param, callback) {   
+        p.userData.feedback = param.data;   
+        console.log(p.userData.feedback);
+        p.play('Thank you for your feedback!');
+        callback(null, 'Feedback is received by Alan');
+    }
+
+On the client app side, we will call the defined ``sendFeedback`` method with ``callProjectApi``:
+
+.. code:: html
+
+   <button type="button" onclick="userFeedback()">Submit</button>
+
+   <script>
+   function userFeedback() {
+       alanBtnInstance.callProjectApi("sendFeedback", {
+           "data": "User's feedback"
+       }, function(error, result) {
+           if (error) {
+               console.error(error);
+               return;
+           }
+           console.log(result);
+       });
+   };
+   <script>
+
+Now, when the user clicks the button, the ``sendFeedback`` method is called. The method sends the ``User's feedback`` value to the voice script that is saved to the ``p.userData.feedback`` variable on the script side and written to Alan logs. Alan then plays: ``Thank you for your feedback!``
+
+In the client app, the result value specified for the callback: ``Feedback is received by Alan`` is logged to the console.
+
+See also
+--------
+
+`Client API methods <../../client-api/methods/common-api.html>`__
+
+.. raw:: html
+
+   <div id="green-background"></div>

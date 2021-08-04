@@ -1,0 +1,157 @@
+Alan Web SDK
+============
+
+.. raw:: html
+   
+   <a href="https://www.npmjs.com/package/@alan-ai/alan-sdk-web">
+   <img src="https://img.shields.io/npm/v/@alan-ai/alan-sdk-web.svg" align="left" style="border:inherit; padding-right:10px" /></a>
+
+   <a href="https://github.com/alan-ai/alan-sdk-web/releases">
+   <img src="https://img.shields.io/github/v/release/alan-ai/alan-sdk-web" align="left" style="border:inherit"/></a>
+   
+   <br/>
+   
+   
+Alan Web SDK can bring voice to any website. It's a lightweight JavaScript library for adding a voice experience to your website or web application.
+
+Integration
+-----------
+
+The Alan button can be added to your application as an `NPM package <#npm-module>`__ or a `javascript library <#browser-library-mode>`__. Check the instructions on how you can add the Alan button to the page:
+
+NPM module
+~~~~~~~~~~
+
+1. Install `@alan-ai/alan-sdk-web <https://www.npmjs.com/package/@alan-ai/alan-sdk-web>`__ using NPM:
+
+   .. code-block:: bash
+   
+      $ npm install @alan-ai/alan-sdk-web --save
+
+2. Add <div> for appending the Alan button:
+
+   .. code-block:: html
+      
+	  <div class="alan-btn"></div>
+
+3. Import ``alanBtn`` function from the ``@alan-ai/alan-sdk-web`` package and add the Alan button to the page.
+
+   .. code:: JavaScript
+   
+      import alanBtn from "@alan-ai/alan-sdk-web";
+
+      alanBtn({
+        key: "ALAN_STUDIO_API_KEY",
+        rootEl: document.getElementById("alan-btn"),
+      });
+  
+
+Browser library mode
+~~~~~~~~~~~~~~~~~~~~
+
+Alan Web SDK can be also added to the page via the ``script`` tag. To do this:
+
+1. Add the script to the page:
+
+   .. code-block:: html
+      
+	  <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.js"></script>
+
+2. Add a div for appending the Alan button:
+
+   .. code-block:: html
+   
+      <div class="alan-btn"></div>
+
+3. It will now be available as a global variable named ``alanBtn``.
+
+   .. code:: JavaScript
+   
+      var alanBtnInstance = alanBtn({
+        key: "ALAN_STUDIO_API_KEY",
+        rootEl: document.getElementById("alan-btn"),
+      });
+
+	  
+Alan button parameters
+----------------------
+
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Name**                             | **Type**      | **Description**                                                                                                                                                                                                                                                       |
++======================================+===============+=======================================================================================================================================================================================================================================================================+
+| ``key``                              | string        | The Alan SDK key for the Alan Studio project.                                                                                                                                                                                                                         |
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``rootEl``                           | HTMLElement   | The element where Alan button will be added. If no ``rootEl`` is provided, the Alan button is added to the ``body``.                                                                                                                                                  |
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``showOverlayOnMicPermissionPrompt`` | Boolean       | The property signaling whether the overlay fade effect must be used when the microphone permission prompt in the browser is displayed. The overlay effect makes the prompt more noticeable and helps make sure users provide microphone access to the voice assistant.|
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``onCommand``                        | function      | A callback for handling commands from the Alan voice script. In this callback, you can set up logic on how your app must react to commands received from the voice script. For details, see `onCommand handler <../methods/command-handler.html>`__.                  |
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``onButtonState``                    | function      | A callback for receiving the connection state of the Alan button. For details, see `onButtonState handler <../methods/state-handler.html>`__.                                                                                                                         |
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``onEventHandler``                   | function      | A callback Responsible for handling events received from Alan. For details, see `onEvent handler <../methods/event-handler.html>`__.                                                                                                                                  |
++--------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Example of using the ``onCommandCb`` callback:
+
+.. code:: JavaScript
+
+   // Voice script
+   intent("Go back","Go back to the previous screen", (p) => {
+      p.play("Navigating to the previous screen");
+      p.play({command:"go:back"});
+   });
+
+   // Client-side script
+   var alanBtnInstance = alanBtn({
+     key: "0717498b05e694d0b083b897e50a49102e956eca572e1d8b807a3e2338fdd0dc/stage",
+     onCommand: function (commandData) {
+       if (commandData.command === "go:back") {
+         // Call client code that will react to the received command
+       }
+     },
+     rootEl: document.getElementById("alan-btn"),
+   });
+
+Example of using the ``onConnectionStatus`` callback:
+
+.. code:: JavaScript
+
+   var alanBtnInstance = alanBtn({
+     key: "0717498b05e694d0b083b897e50a49102e956eca572e1d8b807a3e2338fdd0dc/stage",
+     onConnectionStatus: function (status) {
+        // status could be connected or disconnected
+     },
+     rootEl: document.getElementById("alan-btn"),
+   });
+
+
+Alan button position
+--------------------
+
+By default, the Alan button is placed in the bottom right corner of the
+window. To change the Alan button position, you can use the following
+options for the ``alanBtn`` variable:
+
+-  ``left``: sets the Alan button position from the left edge
+-  ``right``: sets the Alan button position from the right edge
+-  ``top``: sets the Alan button position from the top edge
+-  ``bottom``: sets the Alan button position from the bottom edge
+-  ``zIndex``: sets the z-order of a the Alan button
+
+.. code:: JavaScript
+
+   var alanBtnInstance = alanBtn({
+      key: "0717498b05e694d0b083b897e50a49102e956eca572e1d8b807a3e2338fdd0dc/stage",
+      onConnectionStatus: function(status) {
+         // status could be connected or disconnected
+      },
+      rootEl: document.getElementById("alan-btn"),
+      bottom: '50px',
+      left: '50px',
+      zIndex: 10
+   });
+   
+.. raw:: html
+
+   <div id="purple-background"></div>
