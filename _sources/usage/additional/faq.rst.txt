@@ -1,0 +1,284 @@
+Frequently Asked Questions
+==========================
+
+Alan Studio
+-----------
+
+.. dropdown:: How can I test my scripts in Alan Studio?
+   :animate: fade-in
+
+   You can test your scripts with the Debugging Chat in the right pane of Alan Studio. Prior to testing, be sure to save your changes using the **Save Changes** button.
+
+
+.. dropdown:: Can I edit and delete predefined scripts added to my Alan Studio project?
+   :animate: fade-in
+
+   Yes, after you add predefined scripts to your project, you can edit or delete them as you’d like.
+   
+.. dropdown:: How many projects can I have in my Alan Studio account?
+
+   You can create as many projects as you need in your Alan Studio account. 
+   
+   
+.. dropdown:: Can I share my scripts with other developers using Alan Studio?
+
+   Currently, Alan Studio does not support sharing scripts or script permissions. However, you can easily export scripts from Alan Studio and share them between teams, for example, send by email.
+
+.. dropdown:: What is the QR code used for in Alan Studio?
+
+   With the QR code, you can test an app integrated with Alan on your mobile device. Download and install Alan Playground on your iOS or Android device, scan the QR code with the device camera and tap the Alan button in the app to start testing it.
+
+Integration and implementation
+------------------------------
+
+.. dropdown:: What platforms does Alan integrate with?
+
+   Alan integrates with any iOS, Android or web app. It also integrates with cross-platform apps like Flutter, Ionic and React Native.
+
+.. dropdown:: How can I test my new Alan project on mobile?
+
+   There are two ways to test your Alan Studio project on the mobile platform:
+   
+   - With Alan Playground: In Alan Studio, go to the **Playground** section — here you will see the QR code. In Alan Playground, click **Scan QR Code**, scan the QR code of the project with the device camera and test the voice interface of your project on the device.
+
+   - Using your app UI: if your app already has the Alan button, you can    use it to test a new Alan Studio project. Launch the app on mobile, tap the Alan button and hold it for 8 seconds. In Alan Studio, go to the **Playground** section and scan the QR code with the device camera. You can now test your Alan project.
+
+.. dropdown:: Can I customize the Alan button?
+
+   You can `change the look and feel <../button/customization#changing-the-alan-button-visual-style>`__ for the Alan button in Alan Studio:
+   
+   - The button colors are fully customizable to match any graphic or app theme. 
+   - The Alan logo can be replaced with a custom icon or logo.
+
+.. dropdown:: Can I change Alan's voice to female voice?
+
+   You can `set the voice type <../button/customization#changing-alans-voice-and-accent>`__ in Alan Studio. Alan lets you select the voice type: male or female, and the regional accent for all languages you want to use in your voice assistant.
+   
+.. dropdown:: Can I define my own entities in Alan?
+
+   In Alan, users can define their own entities from either discrete sets of data (for example, days of the week), regular expressions or through custom slots with fuzzy matching where entities can be constructed around 'hard-to-pronounce' words or phrases.
+
+.. dropdown: Can I define my own entities in Alan?
+
+   In Alan, users can define their own entities from either discrete sets of data (for example, days of the week), regular expressions or through custom slots with fuzzy matching where entities can be constructed around 'hard-to-pronounce' words or phrases.
+
+.. dropdown:: What extra permissions do Alan apps need?
+
+   Apps that use Alan only need the user to grant microphone access to work.
+
+.. dropdown:: Can I customize the 'Hey Alan' wake word?
+
+   As of now, the 'Hey Alan' wake word cannot be customized.
+
+.. dropdown:: I do not see the Alan button on my webpage
+
+   -  Check if you run the Alan button in a browser that supports an Audio API.
+   -  If you use 'http', run the page on the localhost (otherwise use 'https').
+   -  Make sure the Alan button isn't disabled in Alan Studio: check the button settings in the **Integrations** section for your project.
+
+.. dropdown:: How can I stop voice interaction?
+
+   To stop interacting with Alan, you can do one of the following:
+
+   -  Use the `deactivate() <../../client-api/methods/common-api#deactivate>`__ method of the Alan Client API.
+   -  Tap the Alan button in the app
+   -  Say one of the following phrases:
+
+      -  ``Thanks Alan``
+      -  ``Thank you Alan``
+      -  ``Alan thank you``
+      -  ``Alan thanks``
+      -  ``Stop Alan``
+      -  ``Alan stop``
+
+.. dropdown:: How can I disable my Alan button?
+
+   You can disable the Alan button through the button options in the **Integrations** view of Alan Studio.
+
+.. dropdown:: Does the microphone usage with Alan drain the battery faster?
+
+   Battery consumption with Alan from the microphone is minimal. The Alan SDKs have default settings that turn the microphone off automatically after a brief period of inactivity; however, the microphone timeout can be increased or decreased based on developer preferences in Alan Studio.
+
+.. dropdown:: What if I migrate my data from one service to another?
+
+   Your data can be hosted anywhere, you will still be able to work with Alan.
+
+.. dropdown:: Is everything written in JavaScript?
+
+   Commands and responses in Alan Studio must be written in JavaScript.
+
+.. dropdown:: How to pass POST parameters from Alan Studio?
+
+   In Alan Studio, you can use `built-in JavaScript libraries  <../../server-api/built-in-javascript-libraries#working-with-api-calls>`__ to do this in a usual way.
+
+.. dropdown:: Does Alan Studio have different instances for Development, QA and Production?
+
+   Alan Studio has three separate instances for you to use in any project: Development, Testing and Production.
+
+.. dropdown:: Is there an activation phrase?
+
+   Yes, 'Hey Alan' is the activation phrase, sometimes called a wake word.
+
+.. dropdown:: How is it better than Dialogflow?
+
+   The Alan Platform offers very easy integration with web/mobile apps and a more flexible way to create voice enabled apps by using the JavaScript language. This allows users to build complex enterprise-level apps.
+
+.. dropdown:: How much does it cost to get started?
+
+   Only $1 for developers!
+
+.. dropdown:: Can I use any database or backend?
+
+   Yes, any database or backend can be used.
+
+.. dropdown:: I saw the infrastructure scheme of the Alan Platform. What parts do I have to deploy?
+
+   You only need an app or device to run Alan.
+
+.. dropdown:: What is does 'p' mean in Alan Studio example scripts?
+
+   This is a name of the variable that references an object you can use to call Alan Studio SDK methods. It also contains data for a user voice session and other contextual information. You can use any name for this variable.
+
+   This object has:
+
+   -  Slot values for intents, for example:
+   
+      .. code:: JavaScript
+   
+         intent("$(A cat|dog|pig)", p => p.play("You say " + p.A)).
+		 
+   -  ``play``: a method to playback voice responses.
+   -  ``state``: an object for storing context data.
+   -  ``userData``: an object for storing user data during the current dialog session.
+   -  ``auth``: an object that accepts configuration from the client (mobile or web). Typically, it can be used for passing authorization data for external services.
+   -  You can return a ``value`` from the current context by calling ``p.resolve(value)``.
+
+.. dropdown:: How do I catch unrecognized voice commands?
+
+   To see the list of commands that have not been recognized, do either of the following:
+
+   -  Open Alan Studio logs and click the **Unrecognized** filter option.
+   -  Go to the **Analytics** view and check the **Interactions** widget. Make sure the **Unrecognized** filter is on.
+
+   If you want to catch the utterance as the user pronounces it, you can use the **Record intent audio** option. In Alan Studio, go to the **Integrations** section and in the button settings section, enable this option. With this option enabled, you will see the play icon to next to an unrecognized command in Alan Studio logs. Click this icon to listen to the intent audio.
+   
+.. dropdown:: Can I integrate Alan with WordPress?
+
+   Alan can be integrated with any project built with the `supported languages and frameworks <../../client-api/client-sdks>`__. The backend of your app does not matter since integration is accomplished mostly on the frontend side.
+
+.. dropdown:: I get an error when downloading Alan Client SDK files
+
+   Check the Internet connection to your device and your computer.
+   
+iOS
+---
+
+.. dropdown:: How to pass parameters from iOS to Alan Studio?
+
+   You can do this in a few ways: 
+   
+   - When you are creating a connection, you can pass a JSON object. 
+   - You can call a JS function with parameters. 
+   - We have functionality to set the visual context using the SDK.
+
+.. dropdown:: I get permissions errors on iOS. What should I do?
+
+   In iOS, the user must explicitly grant permission for an app to access the device microphone and camera. The ``Info.plist`` file of the app must contain ``NSMicrophoneUsageDescription`` and ``NSCameraUsageDescription`` keys with string values explaining how the app uses this data.
+
+   To add these keys, go to **Info** > **Custom iOS Target Properties**, add the **Privacy - Microphone Usage Description** and **Privacy - Camera Usage Description** permissions to the list and provide the descriptions for them. For details, see iOS Developer documentation.
+
+.. dropdown:: Why does the Alan button request microphone permissions after every page refresh in iOS browsers?
+
+   By default, the browser is configured to ask you about granting camera and microphone permissions. To allow the microphone usage for Alan permanently, to the left of the address bar in the browser, tap **aA** > **Website Settings**. In the **Settings** window, under **Microphone**, change the permission to *Allow*.
+
+   .. note:: 
+      This setting is available in iOS 13 and later.
+
+.. dropdown:: How do I allow the microphone usage for a website viewed locally?
+
+   If you add the Alan button to a webpage or website viewed locally, for example, for debugging purposes, the browser will require you to allow microphone access every time you activate the button. To allow microphone access permanently, in Safari, go to **Safari** > **Preferences** > **Websites**, select **Microphone** and change the microphone permission to *Allow*.
+   
+.. dropdown:: The Alan button is overlapped by another UI element on the screen
+
+   The Alan button must be added to the topmost view in the view hierarchy so that it appears on top of all UI elements. You can create a container view and add the Alan button to it.
+   
+   
+.. dropdown:: My app with the Alan button fails on the iOS simulator with Apple Silicon Mac
+
+   .. note::
+   
+      The steps below are applicable for the ``AlanSDK.framework`` bundle. You do not need to perform additional actions if you use the ``AlanSDK.xcframework`` bundle.
+   
+   When running an app with the Alan button on the iOS simulator with Apple Silicon Mac, you may encounter the following error: ``Building for iOS Simulator, but linking in object file built for iOS...``.
+
+   To work around this issue, do the following:
+
+   1. `Integrate the Alan SDK for iOS to your project <../../client-api/ios/ios-api>`__.
+   2. In the XCode project, go to **Build Settings**.
+   3. Set the **Excluded Architectures** option to ``arm64`` (``EXCLUDED_ARCHS = arm64``).
+   4. Set the **Validate Workspace** option to ``YES`` (``VALIDATE_WORKSPACE = YES``).
+   5. Set the **Enable Bitcode** option to ``NO`` (``ENABLE_BITCODE = NO``).
+   
+Android
+-------
+
+.. dropdown:: I get the minSDK error on Android. How do I fix it?
+
+   The minimum possible Android SDK version required by the Alan Android SDK library is 21. If the version in your project is lower, you may encounter an error of this type: ``AndroidManifest.xml Error: uses-sdk:minSdkVersion 16 cannot be smaller than version 21 declared in library [:alan_voice]``. To fix it, open the ``./android/app/build.gradle`` file, under ``defaultConfig``, locate ``minSdkVersion`` and change the version to 21.
+
+Security and privacy
+--------------------
+
+.. dropdown:: Does Alan record my conversations?
+
+   Alan does not record or store your conversations audio data. Alan does store the Speech to Text commands and responses from your app’s usage, which is entirely private to you and inaccessible to Alan employees and any third-party engines.
+   
+.. dropdown:: Does Alan encrypt data?
+
+   The client app and Alan Cloud exchange data on an encrypted HTTPS/TLS channel. The Alan Platform supports the latest recommended secure cipher suites to encrypt all traffic in transit, including the TLS 1.2 protocol, and SHA2 signatures.
+
+   The Alan Client SDKs store no data on the local device. The Alan Cloud stores analytics and performance data in files and databases. This data is encrypted using AES-256 encryption and can be further enhanced with enterprise private keys.
+
+Alan technologies
+-----------------
+
+.. dropdown:: What is SLU?
+
+   Spoken Language Understanding (SLU) is a voice processing technology designed to work with the error-prone output of Automatic Speech Recognition (ASR) instead of written text, like chatbots.
+
+.. dropdown:: What is the Domain Language Model?
+
+   The Domain Language Model is a unique procedure Alan uses for training our Speech Recognition software to better recognize the specialized language of your app, dynamically adapting to your users' conversational style.
+
+.. dropdown:: What is an intent?
+
+   An intent is a voice command the user says to receive a voice response or perform some action in an app.
+
+.. dropdown:: What is an entity?
+
+   An entity is a specific part of speech or text holding data such as name or height. Each entity is part of an intent and conveys a set of information to the developer, for example, date, location and so on.
+
+.. dropdown:: What is a context?
+
+   A context is the situation in which a conversation occurs. Contexts are a cornerstone in Alan’s conversational design as they dictate the flow of the conversation, much like in the real world, where different contexts may provide different meanings to the same sentence. In Alan Studio, developers can create unique context functions to specify the steps of the dialog and create interactive multi-stage conversations.
+
+Billing
+-------
+
+.. dropdown:: What is an interaction?
+
+   An interaction is a user's utterance associated with Alan's reply.
+
+.. dropdown:: What is a user?
+
+   A unique user is a device from which the user connects to the voice assistant in your app. That is, if the user initiates several dialog sessions from the same device, he or she will still be considered a unique user.
+
+
+Still have questions?
+---------------------
+
+`Contact us <mailto:support@alan.app>`__
+
+.. raw:: html
+
+   <div id="blue-background"></div>

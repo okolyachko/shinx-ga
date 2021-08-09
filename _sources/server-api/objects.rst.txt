@@ -1,0 +1,105 @@
+Predefined script objects
+=========================
+
+Alan provides several predefined objects that you can use to store and share data in voice scripts:
+
+-  `project <#project>`__
+-  `state <#state>`__
+-  `userData <#userdata>`__
+-  `visual <#visual>`__ 
+
+project
+-------
+
+``project`` is a special object that can be used in the global project scope. The data stored in ``project`` is accessible from any script added to the project of your voice assistant. For example, if you need some variable to be available across all project scripts, you can save its value to ``project``.
+
+``project`` can be helpful if you want to split a complex script and separate configuration and data structures from functions and project logic. This way, your project will be more transparent and easier to support.
+
+Let's assume you have two scripts: ``script1`` followed by ``script2``. In ``script1``, we define ``project.config = {initValue: 1}``. You can then use ``project.config`` in ``script2`` as an already existing and defined variable:
+
+.. code:: JavaScript
+
+    //script1
+    project.config = {initValue: 1};
+
+    //script2
+    console.log("Init value is " + project.config.initValue);
+
+To store data in ``project``, you can use ``onCreateProject`` callback. For details, see `Predefined
+callbacks <api/api-reference#predefined-callbacks>`__.
+
+state
+-----
+
+``state`` can be used if you work with contexts in the voice script. Every context has a predefined ``state`` object. You can think of ``state`` as a dictionary or knowledge base in which you can store any information you need.
+
+The data stored in ``state`` is available in the current conversational context and can be accessed through the ``p.state`` variable in the script. When a new context is activated, you can send this data to it or overwrite it with the ``then`` function. For details, see `Sharing information between contexts <contexts#sharing-information-between-contexts>`__.
+
+.. code:: js
+
+    let startGame = context(() => {
+        follow('What is my current score?', p => {
+            p.play(`Your score is ${p.state.result.toString()}`);
+        });
+    });
+
+    intent("Let's start the game", p =>{
+        p.play("Sure, let's go");
+        p.then(startGame, {state: {result:0}});
+    });
+
+userData
+--------
+
+``userData`` is a runtime object that can be used during a voice session with a specific user. The session starts when the user launches your app with the voice assistant to interact with it. The session is closed when the user quits your app or is terminated if the user is inactive for a 30-minute period.
+
+In ``userData``, you can store arbitrary data that must be available during the current voice session. This data can be accessed through the ``p.userData`` variable in the voice script, from any script or context of the project.
+
+.. code:: js
+
+    onCreateUser(p => {
+        p.userData.favorites = ("action");
+    });
+
+    intent("What movies would you recommend?", p => {
+        p.play(`Here are some popular movies in the ${p.userData.favorites} genre...`);
+    });
+
+To store and reset data in ``userData``, you can use ``onCreateUser`` and ``onCleanupUser`` callbacks. For details, see `Predefined callbacks <api/api-reference#predefined-callbacks>`__.
+
+visual
+------
+
+The ``visual`` object is used to store the visual state that is received from the client app. You can use this object to differentiate and filter commands in the voice script based on the current visual context of your app.
+
+The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions. For details, see `Visual state <sending-data/visual-state>`__.
+
+.. code:: js
+
+    intent(
+        'What (screen|) is this?',
+        'Where am I?',
+        p => {
+            if (!p.visual.screen) {
+                p.play('This is an e-commerce app with the voice assistant');
+                return;
+            }
+            switch (p.visual.screen) {
+                case 'all':
+                    p.play('This is the main screen showing all available products.');
+                    break;
+
+                case 'clothing':
+                    p.play('These are all of the available clothing.');
+                    break;
+
+                case 'accessories':
+                    p.play('These are all of the available accessories.');
+                    break;
+            }
+        },
+    );
+	
+.. raw:: html
+
+   <div id="green-background"></div>

@@ -1,0 +1,140 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Building a voice assistant for an Ember app
+===========================================
+
+You can create a voice assistant or chatbot and embed it to your Ember app with Alan's `voice assistant SDK for
+Web <../../client-api/web/web-api>`__. In this tutorial, we will create a simple voice enabled Ember app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
+
+What you will learn
+-------------------
+
+-  How to add a voice interface to an Ember app
+-  How to write simple voice commands for an Ember app
+
+
+What you will need
+------------------
+
+To go through this tutorial, make sure Node.js and the Ember CLI are installed on your machine. For details, see `Ember documentation <https://guides.emberjs.com/v3.4.0/getting-started/quick-start/>`__.
+
+
+Step 1. Sign up for Alan Studio
+-------------------------------
+
+First, we need to sign up for Alan Studio — the web portal where we will create a dialog scenario, or the voice script, for our voice assistant.
+
+1. Go to Alan Studio.
+2. Sign up with a Google or GitHub account or with your email address.
+
+   .. tip:: 
+      When you sign up, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, sign up with your GitHub account or connect your Alan account with your GitHub account and give stars to `Alan repositories <https://github.com/alan-ai>`__.
+
+3. In Alan Studio, click **Create Voice Assistant**. Select to create an empty project and give it any name you want.
+
+
+Step 2: Create an Ember app
+---------------------------
+
+Now let's create a simple Ember app:
+
+1. On your machine, navigate to the folder in which the app will reside and run the following command:
+
+   .. code:: bash
+   
+      $ ember new my-app
+	  
+2. Switch to the folder with the app:
+
+   .. code:: bash
+   
+      $ cd my-app
+	  
+3. Start the app:
+
+   .. code:: bash
+
+      $ ember serve
+
+   .. image:: /_static/assets/img/web-frameworks/ember-starter-app.png
+
+Step 3: Install the Alan Web component
+--------------------------------------
+
+We need to add the Alan Web component to the app.
+
+1. In the app folder, install the Alan Web component with the following command:
+
+   .. code:: bash
+   
+      $ npm i @alan-ai/alan-sdk-web
+
+2. Install the ``ember-auto-import`` package to have the ability to use packages from npm:
+
+   .. code:: bash
+
+      npm install ember-auto-import --save
+
+
+Step 4: Add the Alan button to the app
+--------------------------------------
+
+Now we will update our app to add the Alan button to it.
+
+1. In the ``app`` folder, open the ``app.js`` file.
+2. At the top of the file, add the import statement for the Alan Web component: 
+
+   .. code:: javascript
+   
+      import alanBtn from "@alan-ai/alan-sdk-web";
+
+3. Below, add the code for the Alan button:
+
+   .. code:: javascript
+
+      loadInitializers(App, config.modulePrefix);
+
+      // Adding the Alan button
+      alanBtn({ 
+          key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+          onCommand: (commandData) => {
+              if (commandData.command === 'go:back') {
+                  // Call the client code that will react to the received command
+              }
+          },
+      });
+
+4. In the ``key`` field above, we need to replace ``YOUR_KEY_FROM_ALAN_STUDIO_HERE`` with the Alan SDK key for our Alan
+   Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, copy the value provided in the **Alan SDK Key** field and paste this value to ``key``.
+
+   .. code:: javascript
+
+      alanBtn({ 
+          key: '28b4365114e0f2f67d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/stage',
+          onCommand: (commandData) => {
+              if (commandData.command === 'go:back') {
+                  // Call the client code that will react to the received command
+              }
+          },
+      });
+
+Step 5. Add voice commands
+--------------------------
+
+Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with our Ember app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
+
+.. code:: javascript
+
+   intent (`What is your name?`, p => {
+       p.play(`It's Alan, and yours?`);
+   });
+
+   intent (`How are you doing?`, p => {
+       p.play(`Good, thank you. What about you?`);
+   });
+
+Now in the app click the Alan button and ask: ``What is your name?`` and ``How are you doing?`` Alan will give responses provided in the intents.
+
+.. image:: /_static/assets/img/web-frameworks/ember-app-button.png

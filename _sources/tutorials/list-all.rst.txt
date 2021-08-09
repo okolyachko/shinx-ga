@@ -1,0 +1,149 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Alan tutorials
+==============
+
+The Alan tutorials teach you how to use Alan Conversational Voice AI to build voice interfaces for apps created for different platforms.
+
+Choose the necessary platform:
+   
+.. tabbed:: Web
+
+   - `Building a voice assistant for web (JavaScript) <list/adding-voice-to-a-web-application>`__
+     
+     Learn how to to create a voice interface for a web app or a website from scratch and write simple voice commands.
+	  
+   - `Creating a voice-enabled food delivery app: complete tutorial <list/food-delivery-tutorial>`__
+     
+     Learn how to create a completely voice-enabled food delivery application.
+
+   - `Using dynamic entities in the voice script <list/using-dynamic-entities>`__
+   
+     Learn how to make the dialog with your voice assistant flexible and adjusting to dynamically changing data.
+
+.. tabbed:: Web frameworks
+
+   - `Building a voice assistant for a React app <web/integrating-react-app>`__
+     
+     Learn how to to create a voice interface for a React app from scratch and write simple voice commands.
+	  
+   - `Building a voice assistant for an Angular app <web/integrating-angular-app>`__
+     
+     Learn how to to create a voice interface for an Angular app from scratch and write simple voice commands.
+	 
+   - `Building a voice assistant for a Vue app <web/integrating-vue-app>`__
+     
+     Learn how to to create a voice interface for a Vue app from scratch and write simple voice commands.
+	 
+   - `Building a voice assistant for an Ember app <web/integrating-ember-app>`__
+     
+     Learn how to to create a voice interface for an Ember app from scratch and write simple voice commands.
+	 
+   - `Building a voice assistant for an Electron app <web/integrating-electron-app>`__
+     
+     Learn how to to create a voice interface for an Electron app from scratch and write simple voice commands.
+	  
+.. tabbed:: iOS
+
+   - `Building a voice assistant for an iOS app <ios/integrating-swift>`__
+   
+     Learn how create a voice interface for an iOS Swift app from scratch and write simple voice commands.
+
+   - `Navigating between views in an iOS app <ios/navigating-swift>`__
+
+     Learn how to send commands to an iOS Swift app, handle commands on the app side and navigate between views with voice.
+
+   - `Passing the app state to the voice script <ios/sending-data-swift>`__
+
+     Learn how to pass the app state from an iOS Swift app to the voice script with visualState, access the data passed with visual state in the voice script and filter intents by the app state.
+
+   - `Highlighing items with voice <ios/highlighting-swift>`__
+
+     Learn how to go through the list of items with voice and highlight the current item in the app UI.
+
+   - `Triggering voice script actions without commands <ios/triggering-info-swift>`__
+
+     Learn how to make Alan tell detailed information about an item selected in the app UI without giving a voice command.
+
+   - `Playing a greeting in an iOS Swift app <ios/greeting-swift>`__
+
+     Learn how to make Alan play a greeting to the user when the app is launched.
+	 
+.. tabbed:: Android
+
+   - `Building a voice assistant for an Android Java or Kotlin app <android/integrating-java-kotlin>`__
+   
+     Learn how create a voice interface for an Android Java or Kotlin app from scratch and write simple voice commands.
+	 
+   - `Navigating between screens in an Android app (Kotlin) <android/navigating-kotlin>`__
+   
+     Learn how to send commands to an iOS Swift app, handle commands on the app side and navigate between screens with voice.
+
+   - `Passing the app state to the voice script <android/sending-data>`__
+   
+     Learn how to pass the app state from an Android app to the voice script with visual state, access the data passed with visual state in the voice script and filter intents by the app state.
+	 
+   - `Highlighting items with voice (Kotlin) <android/highlighting-kotlin>`__
+   
+     Learn how to go through the list of items with voice and highlight the current item in the app UI.
+	 
+.. tabbed:: Flutter
+
+   - `Building a voice assistant for a Flutter app <flutter/integrating-flutter>`__
+   
+     Learn how create a voice interface for a Flutter app from scratch and write simple voice commands.
+
+   - `Navigating between views in a Flutter app <flutter/navigating-flutter>`__
+
+     Learn how to send commands to a Flutter app, handle commands on the app side and navigate between views with voice.
+
+   - `Passing the app state to the voice script <flutter/sending-data-flutter>`__
+
+     Learn how to pass the app state from a Flutter app to the voice script with visual state, access the data passed with visual state in the voice script and filter intents by the app state.
+	 
+.. tabbed:: Ionic
+
+   - `Building a voice assistant for an Ionic Angular app <ionic/integrating-angular>`_
+   
+     Learn how create a voice interface for an Ionic Angular app from scratch and write simple voice commands.
+	 
+   - `Navigating between tabs in an Ionic Angular app <ionic/navigating-angular>`__
+   
+     Learn how to send commands to an Ionic Angular app, handle commands on the app side and navigate between tabs with voice.
+	 
+   - `Passing the app state to the voice script (Ionic Angular) <ionic/sending-data-angular>`__
+   
+     Learn how to pass the app state from an Ionic Angular app to the voice script with visual state, access the data passed with visual state in the voice script and filter intents by the app state.
+	 
+   - `Building a voice assistant for an Ionic React app <ionic/integrating-react>`_
+   
+     Learn how create a voice interface for an Ionic React app from scratch and write simple voice commands.
+	 
+   - `Navigating between tabs in an Ionic React app <ionic/navigating-react>`__
+   
+     Learn how to send commands to an Ionic React app, handle commands on the app side and navigate between tabs with voice.
+	 
+	 
+.. tabbed:: React Native
+
+   - `Building a voice assistant for a React Native app <react-native/integrating-react-native>`__
+   
+     Learn how create a voice interface for a React Native app from scratch and write simple voice commands.
+	 
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   Web<list/web-list>
+   Web frameworks<web/frameworks-list>
+   iOS<ios/ios-list>
+   Android<android/android-list>
+   Flutter<flutter/flutter-list>
+   Ionic<ionic/ionic-list>
+   React Native<react-native/react-native-list>
+   
+   
+	

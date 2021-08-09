@@ -1,0 +1,149 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Triggering voice script actions without commands
+================================================
+
+In an app with a multimodal interface, it is sometimes necessary to trigger an action on the Alan script side without a voice command from the user. For example, if the user wants to get detailed information about some item in the app, he or she can either ask: ``Tell me more about this item``, or tap an item in the UI. In the latter case, you can not only open a view with the item details, but
+also let Alan provide detailed information about the item with voice.
+
+In this tutorial, we will continue working with items in the table. We will add a function that will make Alan describe details of a selected item. To achieve this, we will use Alan's `project API <../../server-api/sending-data/project-api>`__. With the project API, you can define a method in the voice script, and then call this method in the app whenever needed.
+
+What you will learn
+-------------------
+
+-  How to make Alan say some information without a voice command
+-  How to use the project API
+
+What you will need
+------------------
+
+For this tutorial, we will continue using the starter iOS app created in the previous tutorials. You can also use an example app provided by Alan: `SwiftTutorial.part4.zip <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part4.zip>`__. This is an XCode project of the app with two views already integrated with Alan. A table with items is added to the second view.
+
+Step 1: Add the detail button to the app
+----------------------------------------
+
+First, let's update our second View Controller to add the detail button to each item in the table.
+
+1. In XCode, open the ``SecondViewController.swift`` file.
+2. To the ``tableView()`` function, add the detail button:
+
+   .. code:: swift
+
+      class SecondViewController: UIViewController, UITableViewDataSource {
+      ...
+          func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+              /// Get the item from dummy data array
+              let item = self.items[indexPath.row]
+              /// Prepare a cell
+              let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as UITableViewCell
+              /// Add text with the item name to the cell
+              cell.textLabel?.text = item
+
+              /// Add the detail button to the cell
+              cell.accessoryType = .detailButton
+
+              /// Return the cell
+              return cell
+          }
+      ...
+      }
+
+Run the app. In the first view, tap ``Show Second View``, and the view with the table will be displayed. We can now see the detail button added to each cell in the table.
+
+.. image:: /_static/assets/img/tutorial-ios/xcode-tableview-detail.png
+
+Step 2: Add a project API method to the voice script
+----------------------------------------------------
+
+Let's get back to Alan Studio and add the ``selectItem()`` method to it:
+
+.. code:: js
+
+
+   projectAPI.selectItem = function(p, param, callback) {
+       if (!param || !param.item) {
+           callback("error: item is undefined");
+       }
+       p.play(`This is detailed information about item ${param.item}`);
+        callback();
+   };
+
+When this method is called, Alan does the only thing — plays the following response:
+``This is detailed information about item ${param.item}``.
+
+Step 3: Call the project API method from the app
+------------------------------------------------
+
+The project API method is defined in the voice script, but is not yet called in our app anywhere. Let's get back to Xcode and adjust our app to call it.
+
+1. In Xcode, open the ``ViewController.swift`` file and add the following function to the ``ViewController`` class:
+
+   .. code:: swift
+
+      class ViewController: UINavigationController {
+      ...
+          func selectItem(item: String) {
+              /// Call api "callProjectApi"
+              /// "method" should be defined in the Alan Studio script
+              /// "data" will be sent to the Alan Studio script
+              /// "callback" will handle the result from the Alan Studio script
+              self.button.callProjectApi("selectItem", withData: ["item": item]) { (_, _) in
+                  print("callProjectApi was called")
+              }
+          }
+      ...
+      }
+
+2. Open the ``SecondViewController.swift`` file and locate the following line:
+
+   .. code:: swift
+
+      class SecondViewController: UIViewController, UITableViewDataSource {
+
+   replace it with:
+
+   .. code:: swift
+
+      class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+   Here we are adding a new protocol declaration to our class to be able to respond to the detail button tapping.
+
+3. To the ``SecondViewController`` class, add the following function:
+
+   .. code:: swift
+
+      class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+      ...
+          func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+              /// Get the item from dummy data array
+              let item = self.items[indexPath.row]
+              /// Get the view controller with the Alan button
+              if let rootVC = self.view.window?.rootViewController as? ViewController {
+                  /// Select an item (call projectAPI)
+                  rootVC.selectItem(item: item)
+              }
+          }
+      ...
+      }
+
+Here is how this function works: when the user taps the detail button next to a specific item in the table, the ``selectItem()`` function is called. The function calls the Alan's project API method named
+``selectItem()`` from the voice script and passes the item string to it.
+Alan then plays the following response: ``This is detailed information about item ${param.item}``.
+
+You can test it: run the app, navigate to the second view and tap the detail button next to the first item in the table. Alan will get back with: ``This is detailed information about item one``.
+
+What you finally get
+--------------------
+
+After you pass through this tutorial, you will have an iOS app with a table in the second app view and will be able to listen to information about a specific item when it is tapped. You can get an example of such an app from the Alan GitHub to make sure you have set up your app correctly.
+
+-  `SwiftTutorial.part5.zip <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part5.zip>`__: XCode project of the app
+-  `SwiftTutorial.part5.js <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part5.js>`__: voice commands used for this tutorial
+
+
+What's next?
+------------
+
+Have a look at the next tutorial: `Playing a greeting in an iOS Swift app <greeting-swift>`__.
