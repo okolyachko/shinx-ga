@@ -1,0 +1,996 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Dynamic entities" href="dynamic-entities.html" /><link rel="prev" title="Slots" href="slots.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Contexts - Alan AI docs</title>
+      <link rel="stylesheet" href="../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.png">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159851478-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-198019952-1');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.png">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159851478-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-198019952-1');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../search.html">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../contents.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/hiw/about.html">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/hiw/basics.html">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/hiw/infrastructure.html">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/hiw/deployment.html">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/hiw/voice-processing.html">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/guides/studio.html">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/projects.html">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/scripts.html">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/versioning.html">Versions and environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/script-testing.html">Script testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/playground.html">Alan Playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/analytics.html">Voice analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/billing.html">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/button/overview.html">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/customization.html">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/cohorts.html">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/activation.html">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/examples/overview.html">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/predefined-examples.html">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/code.html">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/github.html">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/video/overview.html">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/studio.html">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/alan-platform.html">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/integration.html">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/apps.html">Voice-enabled apps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/additional/overview.html">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/additional/supported-platforms.html">Supported platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/additional/faq.html">FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="script-concepts.html">Script concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands-and-responses.html">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slots.html">Slots</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic-entities.html">Dynamic entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built-in-javascript-libraries.html">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popups.html">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="sending-data/communication.html">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/visual-state.html">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/project-api.html">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="user-data/overview.html">User data</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="user-data/events.html">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-data/client-object.html">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/api-reference.html">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../client-api/client-sdks.html">Alan Client SDKs</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/integration.html">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/web/web-integration.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-api.html">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/react.html">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/angular.html">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vue.html">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/ember.html">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vanilla.html">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/electron.html">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/server-side-rendering.html">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-component.html">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/ios/ios-api.html">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/android/android-api.html">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/cross-platform/overview.html">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/ionic.html">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/cordova.html">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/flutter.html">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/react-native.html">React Native</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/powerapps.html">Microsoft Power Apps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../client-api/methods/common-api.html">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/methods/handlers.html">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/command-handler.html">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/state-handler.html">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/event-handler.html">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-tos.html">How-tos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/list-all.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/list/web-list.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/adding-voice-to-a-web-application.html">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../tutorials/list/food-delivery-tutorial.html">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-app.html">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-voice-assistant.html">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-integrate.html">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-add-command.html">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-alternatives.html">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slots.html">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-several-items.html">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-display-items.html">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slot-labels.html">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-remove-items.html">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-highlight-items.html">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-checkout-context.html">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-time.html">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-comment.html">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-populate-fields.html">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-api-call.html">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-visual-context.html">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-balance.html">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-start-dialog.html">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-popup.html">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/using-dynamic-entities.html">Using dynamic entities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/web/frameworks-list.html">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-react-app.html">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-angular-app.html">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-vue-app.html">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-ember-app.html">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-electron-app.html">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ios/ios-list.html">iOS</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/integrating-swift.html">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/navigating-swift.html">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/sending-data-swift.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/highlighting-swift.html">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/triggering-info-swift.html">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/greeting-swift.html">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/android/android-list.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/integrating-java-kotlin.html">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/navigating-kotlin.html">Navigating between screens in an Android app (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/sending-data.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/highlighting-kotlin.html">Highlighting items with voice (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/flutter/flutter-list.html">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/integrating-flutter.html">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/navigating-flutter.html">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/sending-data-flutter.html">Passing the app state to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ionic/ionic-list.html">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-angular.html">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-angular.html">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/sending-data-angular.html">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-react.html">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-react.html">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/react-native/react-native-list.html">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/integrating-react-native.html">Building a voice assistant for a React Native app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="contexts">
+<h1>Contexts<a class="headerlink" href="#contexts" title="Permalink to this headline">¶</a></h1>
+<p>Just like in real world conversations, in voice scripts some user commands may have meaning only within a context. For example, the user can say: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> To answer this question in the best way, you need to understand the situation to which the user is referring.</p>
+<p>To let you organize dialogs with such commands, Alan provides contexts. Contexts are useful if you create a multi-stage conversation where some commands or dialog branches do not make sense as standalone utterances. In this case, you can place them in contexts.</p>
+<p>Consider the following script:</p>
+<img alt="../_images/contexts.svg" src="../_images/contexts.svg"/><p>Here the <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> and <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">the</span> <span class="pre">humidity?</span></code> questions are meaningless if put as simple intents. That’s why they should be presented as a part of a context.</p>
+<p>Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can <a class="reference external" href="#defining-contexts">define contexts</a> on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the <a class="reference external" href="#labeling-contexts">title()</a> function.</p>
+<p>Typically, contexts contain commands that are needed at a specific stage of the dialog. To let the user give commands from a context, this context must be <a class="reference external" href="#activating-contexts">activated</a>. Once the context is active, voice commands in it become active, and Alan considers them for matching. When the part of the dialog presented as a context is no longer needed, the user exits the context, and the context is <a class="reference external" href="#exiting-contexts">deactivated</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All voice scripts added to the project can have a maximum of 50 contexts.</p>
+</div>
+<div class="section" id="defining-contexts">
+<h2>Defining contexts<a class="headerlink" href="#defining-contexts" title="Permalink to this headline">¶</a></h2>
+<p>You can define a context in the voice script in the following way:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Your order is: </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activating-contexts">
+<h2>Activating contexts<a class="headerlink" href="#activating-contexts" title="Permalink to this headline">¶</a></h2>
+<p>A context is activated with the <a class="reference external" href="api/api-reference.html#then">then()</a> function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
+it.</p>
+<p>When the parent intent is matched, the context is activated, and all commands in the context become available for matching.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a pizza or a burger'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDish</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Your order is: </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">. Is it correct?`</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">confirmOrder</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">confirmOrder</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been confirmed'</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'No'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>In the example above, we have two inactive contexts: <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> and <code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code>. The contexts contain commands that are required at specific stages of the dialog:</p>
+<ol class="arabic simple">
+<li><p>When the user places the order</p></li>
+<li><p>When the user confirms the order</p></li>
+</ol>
+<p>To activate these contexts, we use the <code class="docutils literal notranslate"><span class="pre">then()</span></code> function inside intents. As soon as the user asks: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">do</span> <span class="pre">you</span> <span class="pre">have?</span></code>, Alan activates the <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> context. After the user chooses the dish, Alan activates the <code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code> context.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you need to activate several contexts in the dialog, you should activate one context from another context as shown in the example above. Technically, you can use the <code class="docutils literal notranslate"><span class="pre">then()</span></code> function in one intent several times to activate several contexts. However, such a conversation flow is strongly not recommended.</p>
+</div>
+</div>
+<div class="section" id="exiting-contexts">
+<h2>Exiting contexts<a class="headerlink" href="#exiting-contexts" title="Permalink to this headline">¶</a></h2>
+<p>When you activate several contexts, Alan maintains a recursive context structure. Every newly activated context is bound to the parent intent from which it is activated, and to the parent context containing this intent.</p>
+<p>If the user gives a command outside an active context, this context is deactivated. In case several contexts are activated one after another and the user gives a command outside the active contexts, these contexts are deactivated in a recursive manner.</p>
+<p>Let’s use the previous example and add the <code class="docutils literal notranslate"><span class="pre">Cancel</span> <span class="pre">the</span> <span class="pre">order</span></code> intent to the global context.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Cancel the order'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>After the user says: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">do</span> <span class="pre">you</span> <span class="pre">have?</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Get</span> <span class="pre">me</span> <span class="pre">a</span> <span class="pre">pizza</span></code>, we have 3 active contexts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">global</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chooseDish</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code></p></li>
+</ul>
+<p>Now, if the user says: <code class="docutils literal notranslate"><span class="pre">Cancel</span> <span class="pre">the</span> <span class="pre">order</span></code>, which is outside the user-defined contexts scope, the <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> and <code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code> contexts will be deactivated.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a pizza or a burger'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDish</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Cancel the order'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Your order is: </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">. Is it correct?`</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">confirmOrder</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">confirmOrder</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been confirmed'</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'No'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>You can also let the user exit the context by deactivating it manually. To do this, you need to add the <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> function to the context. In the example below, after the user says <code class="docutils literal notranslate"><span class="pre">Yes</span></code>, the <code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code> context is deactivated immediately.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a pizza or a burger'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDish</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Cancel the order'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">confirmOrder</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been confirmed'</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'No'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been cancelled'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered a </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">. Is it correct?`</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">confirmOrder</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-commands-in-contexts">
+<h2>Using commands in contexts<a class="headerlink" href="#using-commands-in-contexts" title="Permalink to this headline">¶</a></h2>
+<p>You can place the following types of commands in contexts:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#intents-in-contexts">intents</a></p></li>
+<li><p><a class="reference external" href="#nocontext-intents">noContext intents</a></p></li>
+<li><p><a class="reference external" href="#fallbacks-in-contexts">fallbacks</a></p></li>
+</ul>
+<div class="section" id="intents-in-contexts">
+<h3>Intents in contexts<a class="headerlink" href="#intents-in-contexts" title="Permalink to this headline">¶</a></h3>
+<p>Intents in contexts perform their regular functions — they let you fulfil user’s requests and answer users’ questions. However, such intents are context-dependent: they remain inactive until the context to which they belong is activated.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What is the weather in Boston?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'45 °F, light cloud and a fresh breeze'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">weatherDetails</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">weatherDetails</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'What about tomorrow?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'42 °F, light rain and a moderate breeze'</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'And the humidity?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'92%'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<img alt="../_images/intents-in-contexts.svg" src="../_images/intents-in-contexts.svg"/><p>In the example above, the <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> and <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">the</span> <span class="pre">humidity?</span></code> intents become active only after the parent intent to which the context is bound is matched — the user asks: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">weather</span> <span class="pre">in</span> <span class="pre">Boston?</span></code></p>
+<img alt="../_images/intents-in-contexts-matched.svg" src="../_images/intents-in-contexts-matched.svg"/><p>The intents in the context remain active until the context is deactivated. For details, see <a class="reference external" href="#exiting-contexts">Exiting contexts</a>.</p>
+</div>
+<div class="section" id="nocontext-intents">
+<h3>noContext intents<a class="headerlink" href="#nocontext-intents" title="Permalink to this headline">¶</a></h3>
+<p>In some cases, you may need to add voice commands that must not affect the user’s path in the conversation. For example, you can provide the user with the ability to ask general questions like: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">information</span> <span class="pre">can</span> <span class="pre">I</span> <span class="pre">get?</span></code> or <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">phrases</span> <span class="pre">can</span> <span class="pre">I</span> <span class="pre">use</span> <span class="pre">here?</span></code> at any moment of the dialog, without deactivating the current context.</p>
+<p>To define such commands, you can use noContext intents. When Alan matches such an intent, it fulfills the request defined by it, but does not switch to the context to which this intent belongs. As a result, the user remains in the same dialog branch as before, and the commands from this dialog branch (context) are still available to the user.</p>
+<p>You can use noContext intents in the global context and user-defined contexts. To define a noContext intent, wrap the intent in the <code class="docutils literal notranslate"><span class="pre">noContext()</span></code> function:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">noContext</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="sb">`What weather details can I get?`</span><span class="p">,</span>
+    <span class="nx">reply</span><span class="p">(</span><span class="sb">`Any details like temperature, humidity for any location`</span><span class="p">));</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Or you can pass the <code class="docutils literal notranslate"><span class="pre">noctx</span></code> parameter to such an intent:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="nx">noctx</span><span class="p">,</span> <span class="sb">`What weather details can I get?`</span><span class="p">,</span>
+    <span class="nx">reply</span><span class="p">(</span><span class="sb">`Any details like temperature, humidity for any location`</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>In the example below, when the user asks about the weather in Boston, the <code class="docutils literal notranslate"><span class="pre">weatherDetails</span></code> context will become active. All context-dependent commands in this context will be available for matching.</p>
+<p>However, the user can ask <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">weather</span> <span class="pre">details</span> <span class="pre">can</span> <span class="pre">I</span> <span class="pre">get?</span></code> at any time later. Alan will answer this question, but will not switch back to the global context since the <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">weather</span> <span class="pre">details</span> <span class="pre">can</span> <span class="pre">I</span> <span class="pre">get?</span></code> intent has the <code class="docutils literal notranslate"><span class="pre">noctx</span></code> parameter. The <code class="docutils literal notranslate"><span class="pre">weatherDetails</span></code> context will remain active, and the user will have an ability to go on with follow-up questions like: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> and <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">the</span> <span class="pre">humidity?</span></code></p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="nx">noctx</span><span class="p">,</span> <span class="s1">'What weather details can I get?'</span><span class="p">,</span>
+    <span class="nx">reply</span> <span class="p">(</span><span class="s1">'Any details like temperature, humidity for any location'</span><span class="p">);</span>
+<span class="p">);</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'What is the weather in Boston?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'45 °F, light cloud and a fresh breeze'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">weatherDetails</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">weatherDetails</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'What about tomorrow?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'42 °F, light rain and a moderate breeze'</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'And the humidity?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'92%'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<img alt="../_images/nocontext.svg" src="../_images/nocontext.svg"/></div>
+<div class="section" id="fallbacks-in-contexts">
+<h3>Fallbacks in contexts<a class="headerlink" href="#fallbacks-in-contexts" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">fallback()</span></code> function helps you handle unexpected user’s utterances. This command is triggered if Alan does not understand what the user is saying and cannot match the user’s utterance to any command in the context. You can add a fallback to the context to prompt the user for a specific type of input or fail gracefully.</p>
+<p>Fallbacks can be used in user-defined and global contexts. For details, see <a class="reference external" href="#prompting-and-handling-user-errors">Prompting and handling user
+errors</a>.</p>
+</div>
+</div>
+<div class="section" id="using-async-contexts">
+<h2>Using async contexts<a class="headerlink" href="#using-async-contexts" title="Permalink to this headline">¶</a></h2>
+<p>Alan fully supports asynchronous JavaScript programming in voice scripts. For example, some parts of your voice script may require making API calls. If you need to get the result of the API call before you proceed further in the voice command, you can use the <code class="docutils literal notranslate"><span class="pre">await</span></code> operator instead of callbacks. The <code class="docutils literal notranslate"><span class="pre">await</span></code> operator can also be used if you expect an additional input from the user.</p>
+<p>In the example below, the arrow function is defined as <code class="docutils literal notranslate"><span class="pre">async</span></code> and <code class="docutils literal notranslate"><span class="pre">Promise.resolve</span></code> is used in the return statement:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"what is my location?"</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">addr</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getLocation</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">addr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You are at </span><span class="si">${</span><span class="nx">addr</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"I can't understand where you are"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">getLocation</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">"test address"</span><span class="p">;</span> <span class="c1">//Here will be some api call</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">address</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">address</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">await</span></code> stops the script execution until the function returns some result through resolve. If you do not use <code class="docutils literal notranslate"><span class="pre">await</span></code> here, your script will not wait for the address from API, and the <code class="docutils literal notranslate"><span class="pre">p.play('You</span> <span class="pre">are</span> <span class="pre">at</span> <span class="pre">${addr}')</span></code> response will never be given.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">await</span></code> and <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> with contexts can help you in some cases, for example, when you want to receive either the <code class="docutils literal notranslate"><span class="pre">Yes</span></code> or <code class="docutils literal notranslate"><span class="pre">No</span></code> response from the user. Let’s use one of our previous examples:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a pizza or a burger'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDish</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">confirmOrder</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'$(A yes|no)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">A</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered a </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">. Do you confirm?`</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">confirmOrder</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="s2">"yes"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order has been confirmed'</span><span class="p">);</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'OK, choose another dish that you want'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Now, when the user chooses a dish, Alan waits for the <code class="docutils literal notranslate"><span class="pre">Yes/No</span></code> response in the <code class="docutils literal notranslate"><span class="pre">confirmOrder</span></code> context and, depending on the response, we either resolve the <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> context (as the order has been finished and confirmed) or we leave it active, allowing the user to choose another dish.</p>
+</div>
+<div class="section" id="labeling-contexts">
+<h2>Labeling contexts<a class="headerlink" href="#labeling-contexts" title="Permalink to this headline">¶</a></h2>
+<p>In the voice script, every context gets a unique identifier:</p>
+<ul class="simple">
+<li><p>The global context is identified with the <code class="docutils literal notranslate"><span class="pre">global</span></code> label.</p></li>
+<li><p>User-defined contexts are identified with numeric IDs.</p></li>
+</ul>
+<p>You can check the context ID in Alan Studio logs. To do this, open the logs section and select the necessary command. In the displayed command statistics, the <strong>Context</strong> field will show the ID assigned to the context.</p>
+<p>If necessary, you can label contexts in the voice script with user-friendly names. The context names are displayed in Alan Studio logs instead of numeric IDs, which allows for better debugging. To label a context, add the <code class="docutils literal notranslate"><span class="pre">title()</span></code> function to it. You can label both user-defined and global contexts.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Labeling the global context</span>
+<span class="nx">title</span><span class="p">(</span><span class="s1">'Main context'</span><span class="p">);</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="sb">`(Set|Change|Replace) the (delivery|) address`</span><span class="p">,</span>
+    <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'What is the delivery address?'</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">checkout</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">checkout</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+
+    <span class="c1">// Labeling a user-defined context</span>
+    <span class="nx">title</span><span class="p">(</span><span class="s1">'Delivery address context'</span><span class="p">);</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'$(LOC)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span>
+            <span class="nx">command</span><span class="o">:</span> <span class="s2">"address"</span><span class="p">,</span>
+            <span class="nx">address</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">LOC</span><span class="p">.</span><span class="nx">value</span>
+        <span class="p">});</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span>
+            <span class="nx">command</span><span class="o">:</span> <span class="s2">"highlight"</span><span class="p">,</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s2">"address"</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prompting-and-handling-user-errors">
+<h2>Prompting and handling user errors<a class="headerlink" href="#prompting-and-handling-user-errors" title="Permalink to this headline">¶</a></h2>
+<p>In some cases, Alan cannot understand the user’s input and match it to any available voice command. To let you handle error situations and get the user back on track gracefully, you can add fallbacks to the voice script.</p>
+<p>Alan provides the following types of fallbacks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#default-fallback">Default fallback</a></p></li>
+<li><p><a class="reference external" href="#fallbacks-in-user-defined-contexts">Fallbacks in user-defined
+contexts</a></p></li>
+</ul>
+<div class="section" id="default-fallback">
+<h3>Default fallback<a class="headerlink" href="#default-fallback" title="Permalink to this headline">¶</a></h3>
+<p>The default fallback lets you handle error situations. With it, you customize the phrases with which Alan replies in no-match cases. To add the default fallback, use the <code class="docutils literal notranslate"><span class="pre">fallback()</span></code> function in the global context and specify one or more phrases in it, for example:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">fallback</span><span class="p">(</span><span class="s1">'Please say it again'</span><span class="p">,</span> <span class="s1">'Sorry, I did not get it'</span><span class="p">,</span> <span class="s1">'Please rephrase your request'</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, if the user says something that is not expected, the default fallback will be matched, and Alan will reply with one of these phrases picked at random.</p>
+<p>You can add a more complex logic to the <code class="docutils literal notranslate"><span class="pre">fallback()</span></code> function:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">fallback</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Sorry, I have no answer'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error in the dialog is encountered'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fallbacks-in-user-defined-contexts">
+<h3>Fallbacks in user-defined contexts<a class="headerlink" href="#fallbacks-in-user-defined-contexts" title="Permalink to this headline">¶</a></h3>
+<p>When placed in contexts, fallbacks provide a user-friendly way to ‘lock’ the user at a certain point of the dialog. They can be helpful if you expect a specific input from the user and don’t want the dialog flow to be interrupted by other commands available in the script.</p>
+<p>A fallback added to a context matches any input that is not matched by other voice commands in this context. Mind that such fallbacks are context-dependent — they are active only if the contexts to which they belong are activated.</p>
+<p>Check the <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> context in the example below:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a pizza or a burger'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDish</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'I want to order some drinks'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I can offer you a soda or a juice'</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">chooseDrink</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDish</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D pizza|burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Here is your </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Cancel (the order|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order is cancelled'</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">fallback</span><span class="p">(</span><span class="s1">'We are expecting you to choose a dish. Say: get me a pizza or get me a burger. You can also cancel your order.'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">chooseDrink</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me a $(D soda|juice)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Here is your </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Cancel (the order|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Your order is cancelled'</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">fallback</span><span class="p">(</span><span class="s1">'We are expecting you to choose a drink. Say: get me a soda or get me a juice. You can also cancel your order.'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Now, if the user enters the <code class="docutils literal notranslate"><span class="pre">chooseDish</span></code> context by saying: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">do</span> <span class="pre">you</span> <span class="pre">have?</span></code>, he or she will need to finish this step either by ordering a dish or by cancelling the order. Until then, the user will remain in the context because of the <code class="docutils literal notranslate"><span class="pre">fallback()</span></code> function. Voice commands from the global context, for example: <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">order</span> <span class="pre">some</span> <span class="pre">drinks</span></code>, will not be available before the user exits the context and it is deactivated.</p>
+</div>
+</div>
+<div class="section" id="sharing-information-between-contexts">
+<h2>Sharing information between contexts<a class="headerlink" href="#sharing-information-between-contexts" title="Permalink to this headline">¶</a></h2>
+<p>To share information between intent calls, you can use the following
+means:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#userdata-object">userData object</a></p></li>
+<li><p><a class="reference external" href="#state-object">state object</a></p></li>
+<li><p><a class="reference external" href="#resolve-function">resolve() function</a></p></li>
+</ul>
+<div class="section" id="userdata-object">
+<h3>userData object<a class="headerlink" href="#userdata-object" title="Permalink to this headline">¶</a></h3>
+<p>You can store the application state in a special <code class="docutils literal notranslate"><span class="pre">userData</span></code> variable that persists between voice sessions. This way of data sharing can be used to store global application variables that must be accessible from any context of any project script and must be available during all user interactions.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"I want to order $(R latte|black coffee)"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">coffee</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, wait a bit I'll get you some </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s2">"What is my order?"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">coffee</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="state-object">
+<h3>state object<a class="headerlink" href="#state-object" title="Permalink to this headline">¶</a></h3>
+<p>Each context contains a special object named <code class="docutils literal notranslate"><span class="pre">state</span></code>. <code class="docutils literal notranslate"><span class="pre">state</span></code> can be used as a dictionary, and you can put there anything you want.
+Everything you put in the <code class="docutils literal notranslate"><span class="pre">state</span></code> will be saved between each intent calls (activation).</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"I want to order $(R latte|black coffee)"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">coffee</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, wait a bit I'll get you some </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s2">"What is my order?"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">coffee</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">state</span></code> can be passed or overwritten when a new context is activated using the <code class="docutils literal notranslate"><span class="pre">then()</span></code> function. The example below shows how to pass the state of the current context to a new one on activation.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">coffeeContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s2">"What is my order?"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">coffee</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s2">"I want to order $(R latte|black coffee)"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">coffee</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, wait a bit I'll get you some </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">coffeeContext</span><span class="p">,</span> <span class="p">{</span><span class="nx">state</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>You can also create a new state object and pass it to the context.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">coffeeContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="s2">"What is my order?"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">coffee</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s2">"I want to order $(R latte|black coffee)"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">coffee</span><span class="o">:</span><span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="p">};</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, wait a bit I'll get you some </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">coffeeContext</span><span class="p">,</span> <span class="p">{</span><span class="nx">state</span><span class="o">:</span> <span class="nx">state</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="resolve-function">
+<h3>resolve() function<a class="headerlink" href="#resolve-function" title="Permalink to this headline">¶</a></h3>
+<p>If necessary, you can pass values between contexts with the <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> function. In the example below, the user’s rating is
+captured with the <code class="docutils literal notranslate"><span class="pre">userRating</span></code> context and passed to the global context:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">userRating</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">intent</span><span class="p">(</span><span class="sb">`$(NUMBER)`</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">NUMBER</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="sb">`I want to take survey`</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"Please rate the product on the scale of 1 to 5"</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">rating</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">userRating</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Thank you for sharing your opinion. Your rating is: </span><span class="si">${</span><span class="nx">rating</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-onenter-function">
+<h3>Using onEnter() function<a class="headerlink" href="#using-onenter-function" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">onEnter()</span></code> is a special predefined function activated each time the script enters the context. Take a look at the following example:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">countContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">onEnter</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="nx">intent</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">result</span> <span class="o">+=</span> <span class="mf">1</span><span class="p">;</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s2">"Count how many times I've said yes"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"Sure, Let's go"</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">countContext</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div id="green-background"></div></div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="dynamic-entities.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Dynamic entities</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="slots.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Slots</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Contexts</a><ul>
+<li><a class="reference internal" href="#defining-contexts">Defining contexts</a></li>
+<li><a class="reference internal" href="#activating-contexts">Activating contexts</a></li>
+<li><a class="reference internal" href="#exiting-contexts">Exiting contexts</a></li>
+<li><a class="reference internal" href="#using-commands-in-contexts">Using commands in contexts</a><ul>
+<li><a class="reference internal" href="#intents-in-contexts">Intents in contexts</a></li>
+<li><a class="reference internal" href="#nocontext-intents">noContext intents</a></li>
+<li><a class="reference internal" href="#fallbacks-in-contexts">Fallbacks in contexts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-async-contexts">Using async contexts</a></li>
+<li><a class="reference internal" href="#labeling-contexts">Labeling contexts</a></li>
+<li><a class="reference internal" href="#prompting-and-handling-user-errors">Prompting and handling user errors</a><ul>
+<li><a class="reference internal" href="#default-fallback">Default fallback</a></li>
+<li><a class="reference internal" href="#fallbacks-in-user-defined-contexts">Fallbacks in user-defined contexts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sharing-information-between-contexts">Sharing information between contexts</a><ul>
+<li><a class="reference internal" href="#userdata-object">userData object</a></li>
+<li><a class="reference internal" href="#state-object">state object</a></li>
+<li><a class="reference internal" href="#resolve-function">resolve() function</a></li>
+<li><a class="reference internal" href="#using-onenter-function">Using onEnter() function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/custom.js"></script>
+    <script src="../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>
