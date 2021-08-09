@@ -1,0 +1,40 @@
+Deployment options
+==================
+
+Alan offers the following deployment options for the Alan AI
+infrastructure:
+
+-  `Alan Cloud <#alan-cloud>`__
+-  `On premise or private cloud <#on-premise-or-private-cloud>`__
+
+Alan Cloud
+----------
+
+The Alan Cloud is the default deployment scenario. In this scenario, all resources such as VMs with voice scripts and VUI speech components are hosted in the public cloud. Alan owns and manages these resources and provisions them to you based on your needs.
+
+The advantages of the Alan Cloud environment are: 
+
+- **Serverless environment**: you do not need to care about resource planning and provisioning, all components are deployed and set up for you. You access Alan Studio and your apps communicate with the voice scripts running in the cloud over the Internet. 
+
+- **No maintenance**: Alan provides maintenance services for you. 
+
+- **Unlimited scalability**: when the number of app users grows, Alan immediately adds resources to meet your app's requirements.
+
+The public cloud is a multi-tenant environment. That is, you share the infrastructure resources with other companies that use the Alan AI platform. Alan takes care of data security so that each company's data is isolated and invisible to other companies. It allocates dedicated VMs to run voice scripts for specific apps, so only you have access to your
+data. And to guarantee additional data security in the cloud, Alan encrypts data in transit and at rest.
+
+On premise or private cloud
+---------------------------
+
+The Alan infrastructure can be easily deployed anywhere using containers: on premise or in the private cloud. This scenario can be used if your company wants to run voice services locally or some regulations prevent you from placing data in the public cloud. In this case, Alan speech components are placed on the company site, and the voice traffic stays in the private network.
+
+For more details on this deployment type, `contact the Alan AI team <mailto:hello@alan.app>`__.
+
+See also
+--------
+
+`Alan infrastructure <infrastructure.html>`__
+
+.. raw:: html
+
+   <div id="blue-background"></div>
