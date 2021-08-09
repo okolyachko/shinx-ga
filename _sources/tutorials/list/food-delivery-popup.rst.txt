@@ -1,0 +1,32 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Step 20: Show a popup next to the Alan button
+=============================================
+
+We want our users to notice the Alan button in the app and engage them to interact with the voice assistant. To do this, we can `show popups <../../server-api/popups>`__ next to the Alan button at different moments of the dialog session. Let's add a popup prompting the users to allow microphone access when the voice assistant is activated.
+
+In the voice script, update the ``onUserEvent`` callback we have:
+
+.. code:: javascript
+
+   onUserEvent((p, e) => {
+       if (e.event == 'micPermissionPrompt') {
+           p.showPopup({
+               html: '<div class="info-popup"> <div class="info-popup_header"></div><div class="info-popup_body"> <div>Click <b>Allow microphone</b> to talk to me</div>',
+               style: ".info-popup{max-width:394px;height:250px;max-height:250px;background:#fff;-webkit-box-shadow:0 5px 14px rgba(0,0,0,.25);box-shadow:0 5px 14px rgba(0,0,0,.25);overflow:hidden;border-radius:10px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.top .info-popup{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.top .info-popup_body{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;padding-top:20px}.info-popup_header{height:191px;background-image:url(https://alan.app/assets/script-concepts/popup-image.png);background-repeat:no-repeat;background-position:center center;background-size:100% 100%}.info-popup_body{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;font-weight:400;font-size:16px;line-height:28px;text-align:left;color:#000;padding:6px 70px 0;max-width:350px;height:70px}",
+               overlay: true,
+               buttonMarginInPopup: 10,
+               force: false,
+           });
+           p.play('Hi, this is Alan, your voice assistant!');
+           p.play('To order food with voice, click Allow microphone and say: I want two burritos or I will take a pepperoni, please');
+       }
+   });
+
+`Web page source <../../_static/assets/img/tutorial2/7.html.txt>`__ | `Voice script <../../_static/assets/img/tutorial2/13.js>`__
+
+Now, when the microphone permission prompt is displayed in the browser, Alan will show a popup to make sure the user notices the prompt and allows Alan to access the microphone.
+
+.. image:: /_static/assets/img/tutorial2/popup.png

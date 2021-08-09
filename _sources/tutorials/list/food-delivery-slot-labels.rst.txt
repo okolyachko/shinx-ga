@@ -1,0 +1,27 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Step 9: Use slot labels to display the order
+============================================
+
+The user can ask for a ``burger`` or ``burgers`` (in plural). Alan will capture the pronounced grammar form with ``p.ITEM.value`` and display this form in the cart in the app. To make sure we add both variants to the same line, let's use the `label <../../server-api/slots#slot-values-and-labels>`__ field of a slot. In the slot label, you can provide any description to identify or classify the slot values.
+
+To each slot value, add the tilde ``~`` character with a slot value in singular. Modify the ``updateOrder`` command to send ``p.ITEM.label``, not ``p.ITEM.value``:
+
+.. code-block:: javascript
+  :emphasize-lines: 7,8
+
+   const itemList = "pepperoni_~pepperoni|margherita_~margherita|burrito_~burrito|burger_~burger|taco_~taco|apple pie_~apple pie";
+
+   intent(`(I want|I will take|Add|) (a|an|) $(ITEM ${itemList}), (please|)`, 
+          `(I want|I will take|Add|) $(NUMBER) $(ITEM ${itemList}), (please|)`, p => {
+       p.play(`Adding ${p.ITEM.value} for you`, 'Sure', 'Here you go');
+       let number = p.NUMBER ? p.NUMBER.number : 1;
+       // Sending the ITEM label instead of the ITEM value
+       p.play({command: 'updateOrder', item: p.ITEM.label, quantity: number});
+   });
+
+`Web page source <../../_static/assets/img/tutorial2/1.html.txt>`__ | `Voice script <../../_static/assets/img/tutorial2/2.js>`__
+
+Try ordering food with voice in the app. Alan will now add ``One burger`` and ``Five burgers`` to the same line in the cart.
