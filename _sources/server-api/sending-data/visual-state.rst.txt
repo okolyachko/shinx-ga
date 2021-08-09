@@ -1,0 +1,112 @@
+Visual state
+============
+
+To inform Alan about the state of the client app, the app can send the visual state object to the voice script at any time. The visual state lets you pass the information about the current visual context, for example:
+
+-  What page or screen the user is viewing now
+-  What data is currently available to the user
+-  What element is selected and so on
+
+The visual state can help you give relevant responses to the user and synchronize the visuals and voice UX in your app.
+
+To send the visual state object to the voice script, you must call the ``setVisualState()`` method of the `Alan
+SDK <../../client-api/methods/common-api.html#setvisualstatevisualstatedataobject>`__ on the app side. In the method, you pass a JSON object representing the visual state, for example:
+
+.. code:: JavaScript
+
+    // Client app
+    alanBtnInstance.setVisualState({data: "your data"});
+
+On the script side, the sent JSON object is accessible through the ``p.visual`` runtime variable. You can use it to:
+
+-  `Differentiate the command logic <#differentiating-the-command-logic>`__
+-  `Filter commands in the script <#filtering-commands>`__
+
+.. note::
+   The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions.
+
+Differentiating the command logic
+---------------------------------
+
+You can use the information sent in the visual state object to differentiate the voice command logic and play relevant responses to the user.
+
+Let's assume your app sends the ``{"screen": "Products"}`` object when the user opens the products screen and the ``{"screen": "Checkout"}`` object when the checkout screen is active. On the voice script side, this data becomes available in the ``p.visual.screen`` runtime variable. 
+
+Now we can let Alan play different responses depending on the visual state received from the app:
+
+.. code:: JavaScript
+
+    // Voice script
+    intent("What is it?", "What screen am I viewing?", p => {
+        let screen = p.visual.screen;
+        switch (screen) {
+            case "Products":
+                p.play("This is the Products screen");
+                break;
+            case "Checkout":
+                p.play("This is the Checkout screen");
+                break;
+            default:
+                p.play("(Sorry,|) I have no data about this screen");
+        }
+    });
+
+Filtering commands
+------------------
+
+Visual states can be used as conditional filters for voice commands. To follow this scenario, add the ``visual()`` function to the script. In the function, you need to define either a JSON object or filter that must be matched and pass this filter as a parameter to the necessary voice command. If the data sent in the visual state matches the filter, the voice command will be invoked.
+
+Let's assume your app sends the same JSON object: ``{"screen": "Products"}`` or ``{"screen": "Checkout"}``.
+
+.. code:: JavaScript
+
+    const vProductsScreen = visual(state => state.screen === "Products");
+    const vCheckoutScreen = visual({"screen": "Checkout"});
+
+    intent(vProductsScreen, 'What is it?', p => {
+        p.play('This is the Products screen');
+    });
+
+    intent(vCheckoutScreen, 'What is it?', p => {
+        p.play('This is the Checkout screen');
+    });
+
+Now, depending on the visual state received from the app, only one of these intents will be invoked and matched at a time, even though they have the same patterns.
+
+As you write your voice script, you may have several commands using the same visual state. These commands may be scattered across the script.
+
+For your convenience, you can group commands under the same visual filter. This will greatly increase the readability of your script should you need to change anything in it.
+
+.. code:: JavaScript
+
+    const vProductsScreen = visual(state => state.screen === "Products");
+    const vCheckoutScreen = visual({"screen": "Checkout"});
+
+    vProductsScreen(() => {
+        intent('What is it?', p => {
+            p.play('This is the Products screen');
+        });
+        
+        intent('What can I do here', p => {
+            p.play('On this screen you can choose the products that you want to order');
+        });
+    });
+
+    vCheckoutScreen(() => {
+        intent('What is it?', p => {
+            p.play('This is the Checkout screen');
+        });
+        
+        intent('What can I do here', p => {
+            p.play('On this screen you can complete your order or remove some products');
+        });
+    });
+
+See also
+--------
+
+`Client API methods <../../client-api/methods/common-api.html>`__
+
+.. raw:: html
+
+   <div id="green-background"></div>
