@@ -1003,8 +1003,8 @@ How to send commands to the app<div class="summary-down docutils">
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8aef8fc2-1fa9-4f9e-af02-9b0845e58ea8" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="8aef8fc2-1fa9-4f9e-af02-9b0845e58ea8">
+<input checked="checked" id="c0789e0a-bd6e-4cf6-b661-78aef3bd1973" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="c0789e0a-bd6e-4cf6-b661-78aef3bd1973">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">alanBtnInstance</span> <span class="o">=</span> <span class="nx">alanBtn</span><span class="p">({</span>
   <span class="nx">key</span><span class="o">:</span> <span class="s2">"YOUR_KEY_FROM_ALAN_STUDIO_HERE"</span><span class="p">,</span>
@@ -1018,8 +1018,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f8d09751-1d20-4ff3-a111-d4a08f5cfa9c" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="f8d09751-1d20-4ff3-a111-d4a08f5cfa9c">
+<input id="adc1d589-eb5f-4c1a-9609-7f4288f86633" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="adc1d589-eb5f-4c1a-9609-7f4288f86633">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">onCommand</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
   <span class="bp">NSString</span><span class="o">*</span> <span class="n">commandName</span> <span class="o">=</span> <span class="p">[</span><span class="n">command</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@"command"</span><span class="p">];</span>
@@ -1029,8 +1029,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="eddece32-9c7a-4c9d-8c10-b5559b80bb29" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="eddece32-9c7a-4c9d-8c10-b5559b80bb29">
+<input id="07dbc7af-f992-4e6a-a499-85579a7b96e9" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="07dbc7af-f992-4e6a-a499-85579a7b96e9">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">onCommand</span> <span class="p">=</span> <span class="p">{</span> <span class="n">command</span> <span class="k">in</span>
   <span class="k">guard</span> <span class="kd">let</span> <span class="nv">commandName</span> <span class="p">=</span> <span class="n">command</span><span class="p">?[</span><span class="s">"command"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span> <span class="k">else</span> <span class="p">{</span>
@@ -1042,8 +1042,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9d250c29-7273-413c-8fa0-724b5b74d2c1" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="9d250c29-7273-413c-8fa0-724b5b74d2c1">
+<input id="6fda71ed-f805-45a3-87d9-40ea85cf222f" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="6fda71ed-f805-45a3-87d9-40ea85cf222f">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span> <span class="nv">alanCallback</span><span class="p">:</span> <span class="n">AlanCallback</span> <span class="o">=</span> <span class="k">object</span> <span class="p">:</span> <span class="nc">AlanCallback</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCommand</span><span class="p">(</span><span class="n">eventCommand</span><span class="p">:</span> <span class="n">EventCommand</span><span class="p">)</span> <span class="p">{</span>
@@ -1060,8 +1060,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="539c9ee9-6a0d-4682-9ee1-76b47837434f" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="539c9ee9-6a0d-4682-9ee1-76b47837434f">
+<input id="c677e2a4-4c8d-4941-bb73-f1b45b71c4b3" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="c677e2a4-4c8d-4941-bb73-f1b45b71c4b3">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">AlanCallback</span> <span class="n">alanCallback</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AlanCallback</span><span class="p">()</span> <span class="p">{</span>
   <span class="nd">@Override</span>
@@ -1079,8 +1079,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c82baa34-1fec-4d46-ada1-e580f74e83e6" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="c82baa34-1fec-4d46-ada1-e580f74e83e6">
+<input id="c0f44b89-0faa-470b-8c40-660ed0c1a29c" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="c0f44b89-0faa-470b-8c40-660ed0c1a29c">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="p">...</span>
@@ -1099,8 +1099,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d6a9e706-592a-401e-a5f9-6b2308dc239f" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="d6a9e706-592a-401e-a5f9-6b2308dc239f">
+<input id="e6c1516a-ba92-49f1-a434-4923ead5e1a6" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="e6c1516a-ba92-49f1-a434-4923ead5e1a6">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'command'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">commandData</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">detail</span><span class="p">;</span>
@@ -1111,8 +1111,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f2b62f4b-19c4-4a61-af45-1dacfb67931c" name="a10376ef-992e-4e90-b42b-ac83c1d4acef" type="radio"/>
-<label class="tabbed-label" for="f2b62f4b-19c4-4a61-af45-1dacfb67931c">
+<input id="8734895f-82bb-406c-89b8-02c94de79cc1" name="e8e63d79-a2a5-4928-acef-691275c7e681" type="radio"/>
+<label class="tabbed-label" for="8734895f-82bb-406c-89b8-02c94de79cc1">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1177,8 +1177,8 @@ How to send data from the app to the voice script<div class="summary-down docuti
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="69308e6d-a74e-4ee1-8689-62e391ac8690" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="69308e6d-a74e-4ee1-8689-62e391ac8690">
+<input checked="checked" id="e9ec4e14-01e2-40e0-ae6a-cdeb626eea21" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="e9ec4e14-01e2-40e0-ae6a-cdeb626eea21">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">function</span> <span class="nx">sendData</span><span class="p">()</span> <span class="p">{</span>
@@ -1190,8 +1190,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="35e094a4-e6a0-4953-8a82-0655ba5ec222" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="35e094a4-e6a0-4953-8a82-0655ba5ec222">
+<input id="8c65a3af-6d74-4dc4-90d3-359e22267f10" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="8c65a3af-6d74-4dc4-90d3-359e22267f10">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span> <span class="p">{</span>
@@ -1200,8 +1200,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="762c468c-a3b6-4631-b311-72c5d17fb966" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="762c468c-a3b6-4631-b311-72c5d17fb966">
+<input id="182b0367-d9c8-4ef6-be2d-e9b1907df593" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="182b0367-d9c8-4ef6-be2d-e9b1907df593">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1210,8 +1210,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="be836062-1885-43e7-bf0f-3767487d1e13" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="be836062-1885-43e7-bf0f-3767487d1e13">
+<input id="fe0cb248-9114-41e8-8d5f-13a4319ae9dc" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="fe0cb248-9114-41e8-8d5f-13a4319ae9dc">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1226,8 +1226,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dcc88d22-86e9-48f0-9a3f-6b73d957fbba" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="dcc88d22-86e9-48f0-9a3f-6b73d957fbba">
+<input id="41f6bb12-8707-491c-9507-4f02331a4dca" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="41f6bb12-8707-491c-9507-4f02331a4dca">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1242,8 +1242,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4593d48e-b9a9-4c2d-9c13-2e3496cbe368" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="4593d48e-b9a9-4c2d-9c13-2e3496cbe368">
+<input id="63a43568-e771-4350-9843-b10f32bbc502" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="63a43568-e771-4350-9843-b10f32bbc502">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Calling the project API method on button click</span>
@@ -1255,8 +1255,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3cb565d7-c563-47ed-9cd3-36627f4b221a" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="3cb565d7-c563-47ed-9cd3-36627f4b221a">
+<input id="5b160dc4-7b6c-4cbd-acb6-04b083bf9c18" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="5b160dc4-7b6c-4cbd-acb6-04b083bf9c18">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1268,8 +1268,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1d6afd63-1c28-4b64-aebd-95d0f9bc8ee6" name="2ad1afd0-c8bc-4b70-ad50-72aea6054525" type="radio"/>
-<label class="tabbed-label" for="1d6afd63-1c28-4b64-aebd-95d0f9bc8ee6">
+<input id="f5f79df3-a1a1-4f25-8296-69a9319d61da" name="3e13847a-5350-48a4-bf59-63c207af3323" type="radio"/>
+<label class="tabbed-label" for="f5f79df3-a1a1-4f25-8296-69a9319d61da">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1326,8 +1326,8 @@ How to call a function in the voice script from the app<div class="summary-down 
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e184748c-4943-4842-8061-10c5636e8e70" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="e184748c-4943-4842-8061-10c5636e8e70">
+<input checked="checked" id="2845ae69-1a1a-4ca4-877c-40e9225774f8" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="2845ae69-1a1a-4ca4-877c-40e9225774f8">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">function</span> <span class="nx">sendData</span><span class="p">()</span> <span class="p">{</span>
@@ -1339,8 +1339,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1e00aa9c-8666-4970-b02a-99a990c17177" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="1e00aa9c-8666-4970-b02a-99a990c17177">
+<input id="42649976-e528-4c5b-b026-97828c22eb52" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="42649976-e528-4c5b-b026-97828c22eb52">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span> <span class="p">{</span>
@@ -1349,8 +1349,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ff36bc72-b8f2-41cc-9611-d9a6913edbcf" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="ff36bc72-b8f2-41cc-9611-d9a6913edbcf">
+<input id="1f1b68ca-e8de-4bfe-90e6-8ef5f007499b" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="1f1b68ca-e8de-4bfe-90e6-8ef5f007499b">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1359,8 +1359,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2cd24f64-d762-4ac4-b6c1-db3becae7289" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="2cd24f64-d762-4ac4-b6c1-db3becae7289">
+<input id="bbb07bd5-9d34-46bd-b9ba-0ac2f3de5e96" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="bbb07bd5-9d34-46bd-b9ba-0ac2f3de5e96">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1375,8 +1375,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="aa5bfbd7-8ab6-49fc-a652-3377ae02fb84" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="aa5bfbd7-8ab6-49fc-a652-3377ae02fb84">
+<input id="cdd42492-4f67-49a3-8958-dde4a7311112" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="cdd42492-4f67-49a3-8958-dde4a7311112">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1391,8 +1391,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="666c044a-2280-4b17-ad83-5c9c16db3e6f" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="666c044a-2280-4b17-ad83-5c9c16db3e6f">
+<input id="28e5bd13-ec00-446c-a1d1-dbfb7f2264b6" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="28e5bd13-ec00-446c-a1d1-dbfb7f2264b6">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Calling the project API method on choosing a location</span>
@@ -1404,8 +1404,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a838a198-c75a-4bc6-bd66-9c272ee35cb6" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="a838a198-c75a-4bc6-bd66-9c272ee35cb6">
+<input id="b73b6c0e-74b3-4337-8c2d-4c3b2aae2d24" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="b73b6c0e-74b3-4337-8c2d-4c3b2aae2d24">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1417,8 +1417,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5e8cc343-25c3-4727-8264-87d18d88006b" name="6a83c25b-9395-4279-96f8-5727268d5862" type="radio"/>
-<label class="tabbed-label" for="5e8cc343-25c3-4727-8264-87d18d88006b">
+<input id="b10905b9-076b-481c-89c9-8a04d4b66fa8" name="ec5ee774-52c6-44d3-ae6e-002be301790f" type="radio"/>
+<label class="tabbed-label" for="b10905b9-076b-481c-89c9-8a04d4b66fa8">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1463,15 +1463,15 @@ How to send information about the app visual context to the voice script<div cla
 </ol>
 <p class="card-text">Let’s assume we want to provide users with a possibility to ask about available functions and want Alan to respond differently depending on the screen open. To do this, we need to send the visual state from the app like this:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="96c60e0d-4cc7-4f19-aac0-0ac398932704" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="96c60e0d-4cc7-4f19-aac0-0ac398932704">
+<input checked="checked" id="3b4cb3f0-2455-47ec-b76f-0681af5cf026" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="3b4cb3f0-2455-47ec-b76f-0681af5cf026">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span><span class="s2">"main"</span><span class="p">});</span>
 </pre></div>
 </div>
 </div>
-<input id="c6fd8178-d986-4063-9ec1-6aefd5caacce" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="c6fd8178-d986-4063-9ec1-6aefd5caacce">
+<input id="e616ac30-5278-4e2e-b664-29abe4323cc4" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="e616ac30-5278-4e2e-b664-29abe4323cc4">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setVisualState</span> <span class="p">{</span>
  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">setVisualState</span><span class="p">:</span><span class="l">@{</span><span class="s">@"screen"</span><span class="o">:</span><span class="s">@"main"</span><span class="l">}</span><span class="p">];</span>
@@ -1479,8 +1479,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e8d06118-4252-4296-878c-69f901c8ec5b" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="e8d06118-4252-4296-878c-69f901c8ec5b">
+<input id="e37fcb97-cf84-40ce-8433-e72d1cd670f1" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="e37fcb97-cf84-40ce-8433-e72d1cd670f1">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">([</span><span class="s">"screen"</span><span class="p">:</span><span class="s">"main"</span><span class="p">])</span>
@@ -1488,8 +1488,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="fee39bf3-4c42-4f64-afbd-94fdaedcc0c7" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="fee39bf3-4c42-4f64-afbd-94fdaedcc0c7">
+<input id="fa1dd224-067b-4166-b4d1-2ab9b3c6adce" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="fa1dd224-067b-4166-b4d1-2ab9b3c6adce">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">val</span> <span class="nv">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
@@ -1503,8 +1503,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5ef84237-ae21-421c-976e-5185a021e4a1" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="5ef84237-ae21-421c-976e-5185a021e4a1">
+<input id="35b39bcc-8dff-422c-88a9-42fcd87a4ad5" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="35b39bcc-8dff-422c-88a9-42fcd87a4ad5">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
@@ -1518,8 +1518,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3fef444c-6f29-44ec-8d98-d6982e139b88" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="3fef444c-6f29-44ec-8d98-d6982e139b88">
+<input id="50b6b046-d71c-4549-b621-b05b98b3b5ff" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="50b6b046-d71c-4549-b621-b05b98b3b5ff">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">void</span> <span class="n">_setVisualState</span><span class="p">()</span> <span class="p">{</span>
@@ -1530,8 +1530,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d1cb79e5-d354-44b7-aa52-4162ab818303" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="d1cb79e5-d354-44b7-aa52-4162ab818303">
+<input id="70322c8c-8d1a-433f-a63c-9dba7b7107ce" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="70322c8c-8d1a-433f-a63c-9dba7b7107ce">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 
@@ -1541,8 +1541,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d70a023c-0477-49ef-a96b-7544ebb829e1" name="c0c48c05-2368-4a34-b3dd-48d67780c2fa" type="radio"/>
-<label class="tabbed-label" for="d70a023c-0477-49ef-a96b-7544ebb829e1">
+<input id="c1582e93-6ce4-434f-b101-f4969d0101d1" name="43625b93-fca5-4158-8e82-17b8a4e52658" type="radio"/>
+<label class="tabbed-label" for="c1582e93-6ce4-434f-b101-f4969d0101d1">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span><span class="s2">"main"</span><span class="p">});</span>
