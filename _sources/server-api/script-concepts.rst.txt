@@ -10,17 +10,17 @@ Alan augments the standard JavaScript and offers predefined functions
 and objects to create visual voice experiences. To get started with
 voice scripts, see the following sections:
 
--  `Commands and responses </server-api/commands-and-responses/>`__
--  `Patterns </server-api/patterns>`__
--  `Slots </server-api/slots>`__
--  `Contexts </server-api/contexts>`__
--  `Dynamic entities </server-api/dynamic-entities>`__
--  `Built-in JavaScript libraries </server-api/built-in-javascript-libraries>`__
--  `Predefined script objects </server-api/objects>`__
--  `Visual state </server-api/sending-data/visual-state>`__
--  `Project API </server-api/sending-data/project-api>`__
--  `Voice assistant lifecycle </server-api/lifecycle>`__
--  (Experimental) `Alan button popups </server-api/popups>`__
+-  :doc:`Commands and responses <commands-and-responses>`
+-  :doc:`Patterns <patterns>`
+-  :doc:`Slots <slots>`
+-  :doc:`Contexts <contexts>`
+-  :doc:`Dynamic entities <dynamic-entities>`
+-  :doc:`Built-in JavaScript libraries <built-in-javascript-libraries>`
+-  :doc:`Predefined script objects <objects>`
+-  :doc:`Visual state <sending-data/visual-state>`
+-  :doc:`Project API <sending-data/project-api>`
+-  :doc:`Voice assistant lifecycle <lifecycle>`
+-  (Experimental) :doc:`Alan button popups <popups>`
 
 To get reference information about all functions and objects that you can use in voice scripts, see the `API
 reference <api/api-reference>`__.
