@@ -1,0 +1,28 @@
+.. Alan AI Docs documentation master file, created by
+   sphinx-quickstart on Tue Apr 27 18:35:57 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Videos
+======
+
+If you are a visual learner, these videos will help you to get started with Alan Studio. Choose the topic you are interested in:
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   
+   Alan Studio videos<studio>
+   Alan Platform videos<alan-platform>
+   Integration videos<integration>
+   Voice-enabled apps<apps>
+   
+
+
+
+
+
