@@ -1,0 +1,214 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Building a voice assistant for an Ionic React app
+=================================================
+
+You can create a voice assistant or chatbot and embed it to your Ionic React app with Alan's `voice assistant SDK for Ionic <../../client-api/cross-platform/ionic>`__. In this tutorial, we will create a simple Ionic app with three tabs. The app users will be able to click the Alan button and give custom voice commands on each tab, and Alan will reply to them.
+
+
+What you will learn
+-------------------
+
+-  How to add a voice interface to an Ionic React app
+-  How to write simple voice commands for an Ionic app
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  You have signed up to Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
+-  The environment for using the Ionic framework is properly set up. For details, see `Ionic documentation <https://ionicframework.com/docs/intro/environment>`__.
+
+.. tip:: 
+   When you sign up, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, sign up with your GitHub account or connect your Alan account with your GitHub account and give stars to `Alan repositories <https://github.com/alan-ai>`__.
+
+
+Step 1: Install the Ionic CLI
+-----------------------------
+
+Run the following command to install the Ionic CLI:
+
+.. code:: bash
+
+   $ npm install -g ionic
+
+.. note::    
+   For this tutorial, we do not need the free Ionic Appflow SDK. If the Ionic CLI asks you during the installation process: ``Install the free Ionic Appflow SDK and connect your app? (y/n)``, choose ``no``.
+
+   
+Step 2: Create a template Ionic app and run it
+----------------------------------------------
+
+We will be using a pre-made app template provided by Alan.
+
+1. Navigate to the folder in which the app will reside and run the following command:
+
+   .. code:: bash
+
+      $ ionic start alan-react-ionic tabs --type=react
+
+2. Switch to the folder with the app:
+
+   .. code:: bash
+
+      $ cd alan-react-ionic
+
+3. Install dependencies:
+
+   .. code:: bash
+
+      $ npm install
+
+4. Run the app:
+
+   .. code:: bash
+
+      $ ionic serve
+
+5. In the browser, a new window with the app will be opened. Make sure you see the right UI:
+
+   .. image:: /_static/assets/img/tutorial6/ionic-ang-template.png
+
+Step 3: Install Alan SDK Cordova and Alan Web components
+--------------------------------------------------------
+
+We need to add the Alan SDK Cordova component and the Alan button Web component to the app.
+
+.. note:: 
+   For Ionic apps, you need the `@alan-ai/alan-button <https://www.npmjs.com/package/@alan-ai/alan-button>`__ and `@alan-ai/cordova-plugin-alan-voice <https://www.npmjs.com/package/@alan-ai/cordova-plugin-alan-voice>`__ packages, not the `@alan-ai/alan-sdk-web package <https://www.npmjs.com/package/@alan-ai/alan-sdk-web>`__. Ionic apps can be run on mobile devices with Cordova; they require special versions of the Alan button.
+
+1. In the app folder, install the Alan SDK Cordova component:
+
+   .. code:: bash
+
+      $ npm install @alan-ai/cordova-plugin-alan-voice --save
+
+2. Install the Alan Web Component package:
+
+   .. code:: bash
+
+      $ npm install @alan-ai/alan-button --save
+
+
+Step 4: Add the Alan button to the app
+--------------------------------------
+
+Now we need to update our app to add the Alan button to it.
+
+1. Create a wrapper component for the Alan button. To do this, in the ``src/components`` folder, create the ``AlanBtn.tsx`` file with the following content:
+
+   .. code:: javascript
+
+      //AlanBtn.tsx file
+      import React, {
+          useEffect,
+          useRef,
+      } from 'react';
+      import { withRouter } from 'react-router';
+
+      const AlanBtn: React.FC = (props: any) => {
+          const alanBtnComponent = useRef<any>(null);
+
+          useEffect(() => {
+              alanBtnComponent.current.addEventListener('command', (data: CustomEvent) => {
+                  const commandData = data.detail;
+
+                  if (commandData.command === 'command') {
+                       //call client code that will react to the received command
+                  }
+              });
+          }, []);
+
+          return <alan-button ref={alanBtnComponent} alan-key="YOUR_KEY_FROM_ALAN_STUDIO_HERE" />;
+      };
+
+      export default withRouter(AlanBtn);
+
+2. In the ``alan-button`` tag above, we need to replace ``YOUR_KEY_FROM_ALAN_STUDIO_HERE`` with the Alan SDK key for our Alan Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, copy the code provided in the **Alan SDK Key** field and paste this code to ``alan-key``.
+
+   .. image:: /_static/assets/img/tutorial6/alan-sdk-key-react.png
+
+3. In the ``src`` folder, open the ``App.tsx`` file and update it to add the Alan button.
+
+   a. At the top of the file, add the import statement for the Alan button component:
+
+      .. code:: javascript
+
+          import AlanBtn from './components/AlanBtn';
+
+   b. Inside the ``IonReactRouter`` component, add ``<AlanBtn />``:
+
+   .. code:: html
+
+       //App.tsx file
+       ...
+       const App: React.FC = () => (
+           <IonApp>
+               <IonReactRouter>
+                   ...
+                   <AlanBtn />
+               </IonReactRouter>
+           </IonApp>
+       );
+       ...
+
+4. In the ``src`` folder, create the typescript declaration file named ``alan-btn.d.ts`` with the following content:
+
+   .. code:: javascript
+
+      //alan-btn.d.ts file
+      declare namespace JSX {
+          interface IntrinsicElements {
+              [tagName:string]: any
+          }
+      }
+
+5. The final step is to add the Alan button loader to the entry point of our app. In the ``src`` folder, open the ``index.tsx`` file and add the following:
+
+   .. code:: js
+
+      //index.tsx file
+      ...
+      import {
+          applyPolyfills,
+          defineCustomElements,
+      } from '@alan-ai/alan-button/dist/loader';
+
+      ...
+      applyPolyfills().then(_ => {
+          defineCustomElements();
+      }); 
+
+Run the app. On all app tabs, we can see the Alan button. Click it and say: ``Hello``.
+
+.. image:: /_static/assets/img/tutorial6/ionic-ang-button.png
+
+
+Step 5. Add voice commands
+--------------------------
+
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+
+.. code:: javascript
+
+   intent (`What is your name?`, p => {
+       p.play(`It's Alan, and yours?`);
+   });
+
+   intent (`How are you doing?`, p => {
+       p.play(`Good, thank you. What about you?`);
+    );
+
+Now in the app click the Alan button and ask: ``What is your name?`` and ``How are you doing?`` Alan will give responses provided in the intents.
+
+What's next?
+------------
+
+You can now proceed to building a voice interface with Alan. Use the following resources:
+
+-  Have a look at the next tutorial: :doc:`Navigating between tabs in an Ionic React app <navigating-react>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
