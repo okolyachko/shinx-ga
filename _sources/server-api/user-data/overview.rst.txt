@@ -3,8 +3,8 @@ User data
 
 While writing voice scripts, you can use the following means to make a dialog with the user specific:
 
-- `User events <events>`__
-- `Client object <client-object>`__
+- :doc:`User events <events>`
+- :doc:`Client object <client-object>`
 
 .. raw:: html
 

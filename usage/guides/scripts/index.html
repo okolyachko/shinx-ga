@@ -391,10 +391,10 @@
         <div class="section" id="voice-scripts">
 <h1>Voice scripts<a class="headerlink" href="#voice-scripts" title="Permalink to this headline">¶</a></h1>
 <p>To let users interact with your application with their voice, you must create a voice script in Alan Studio. A voice script is a scenario by which the dialog with the user is carried out. It contains a set of commands that the user can execute and actions that must be taken in response to these commands.</p>
-<p>Voice scripts are written in JavaScript. You can use Alan objects and entities and standard JavaScript means to write scripts. For details, see <a class="reference external" href="../../server-api/script-concepts">Server API</a>.</p>
+<p>Voice scripts are written in JavaScript. You can use Alan objects and entities and standard JavaScript means to write scripts. For details, see <a class="reference internal" href="../../../server-api/script-concepts/"><span class="doc">Server API</span></a>.</p>
 <p>In Alan, you can create custom scripts or use predefined scripts. Alan comes with a library of script templates that can give you a good example of how a voice script can be organized. You can add and remove predefined scripts from the project at any moment.</p>
 <p>An Alan project can contain one or multiple voice scripts. Multiple scripts can be helpful, for example, if you want to split the project logic and separate configuration and data structures from utility functions. This will make your project more transparent and easier to support.</p>
-<p>In projects with multiple scripts, scripts are loaded in the order they are set up, starting from the upper one. You can use the Alan built-in functionality to share data and make it accessible between scripts. For details, see <a class="reference external" href="../../server-api/script-concepts#multiple-scripts-in-the-project">Multiple scripts in the project</a>.</p>
+<p>In projects with multiple scripts, scripts are loaded in the order they are set up, starting from the upper one. You can use the Alan built-in functionality to share data and make it accessible between scripts. For details, see <span class="xref std std-doc">Multiple scripts in the project</span>.</p>
 <p>To work with scripts in Alan Studio, you can do the following:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#managing-scripts">Add, rename and delete scripts</a></p></li>
@@ -415,7 +415,7 @@
 <li><p>Do either of the following:</p>
 <ul class="simple">
 <li><p>To add a custom script, in the <strong>New script name</strong> field, enter the script name and click <strong>Add New Script</strong>.</p></li>
-<li><p>To add a predefined script, in the <strong>Add script example</strong> list, select one or more scripts and click <strong>Add Predefined Scripts</strong>. For details, see <a class="reference external" href="../examples/predefined-examples">Voice scripts examples</a>.</p></li>
+<li><p>To add a predefined script, in the <strong>Add script example</strong> list, select one or more scripts and click <strong>Add Predefined Scripts</strong>. For details, see <a class="reference internal" href="../../examples/predefined-examples/"><span class="doc">Voice scripts examples</span></a>.</p></li>
 </ul>
 </li>
 </ol>
@@ -463,7 +463,7 @@
 <p>GitHub integration settings are configured separately for every voice assistant project. You can store data both in public and private repositories.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Together with voice scripts, Alan saves test cases created in the Test View to a GitHub repository. For details, see <a class="reference external" href="script-testing#saving-test-cases-to-github">Saving test cases to GitHub</a>.</p>
+<p>Together with voice scripts, Alan saves test cases created in the Test View to a GitHub repository. For details, see <span class="xref std std-doc">Saving test cases to GitHub</span>.</p>
 </div>
 <p>To sync with GitHub:</p>
 <ol class="arabic simple">
@@ -485,14 +485,14 @@
 <p>To get a visual representation of your voice script, you can use the flowchart panel in Alan Studio. The flowchart can help you better understand the script workflow, analyze its design and identify potential flaws.</p>
 <p>The flowchart panel is located at the bottom right of the code editor. To expand it, in the bottom left corner of the panel, click the expand icon.</p>
 <img alt="../../../_images/flowchart.png" src="../../../_images/flowchart.png"/>
-<p>The flowchart presents the voice script as a diagram consisting of a set of blocks — the <a class="reference external" href="../../server-api/contexts">global context and user-defined
-contexts</a>. The global context is depicted on the left, while user-defined contexts are available on the right. All <a class="reference external" href="../../server-api/commands-and-responses">voice commands</a> added to the voice script belong to this or that context block.</p>
+<p>The flowchart presents the voice script as a diagram consisting of a set of blocks — the <a class="reference internal" href="../../../server-api/contexts/"><span class="doc">global context and user-defined
+contexts</span></a>. The global context is depicted on the left, while user-defined contexts are available on the right. All <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">voice commands</span></a> added to the voice script belong to this or that context block.</p>
 <p>User-defined contexts are connected to voice commands with arrows. This way, you can easily see from which place in the script a context is activated. In a script with a great number of contexts, the number of connections can be great as well. To see how a specific element is linked with others, hover over it, and all connections going from or pointing at it will be highlighted.</p>
 <p>For even better visualization, Alan displays the following script objects in the flowchart:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="../../server-api/slots">Slots</a> added to voice commands are presented as colored blocks inside commands.</p></li>
-<li><p><a class="reference external" href="../../server-api/sending-data/visual-state">Visual filters</a> are presented in the block at the top left of the chart.</p></li>
-<li><p><a class="reference external" href="../../server-api/objects">Project variables</a> are presented in the block at the top right of the chart.</p></li>
+<li><p><cite>:doc:Slots &lt;../../server-api/slots&gt;</cite> added to voice commands are presented as colored blocks inside commands.</p></li>
+<li><p><a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">Visual filters</span></a> are presented in the block at the top left of the chart.</p></li>
+<li><p><a class="reference internal" href="../../../server-api/objects/"><span class="doc">Project variables</span></a> are presented in the block at the top right of the chart.</p></li>
 </ul>
 <p>Visual filters and project variables are linked to voice commands in which they are used.</p>
 <div class="admonition tip">
@@ -521,8 +521,8 @@ contexts</a>. The global context is depicted on the left, while user-defined con
 <h2>Using shortcuts<a class="headerlink" href="#using-shortcuts" title="Permalink to this headline">¶</a></h2>
 <p>While writing voice scripts, you can use the following shortcuts:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2cc6e9a5-f611-4e2b-b5c1-55bf050217bb" name="c8a2d782-09ec-463a-b673-eeed5998c693" type="radio"/>
-<label class="tabbed-label" for="2cc6e9a5-f611-4e2b-b5c1-55bf050217bb">
+<input checked="checked" id="7df7372d-44e6-4c38-ba9c-13dc58f3d4c9" name="0e0d4104-bd35-441b-aae6-e75fc3a69505" type="radio"/>
+<label class="tabbed-label" for="7df7372d-44e6-4c38-ba9c-13dc58f3d4c9">
 macOS</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p><strong>Cmd</strong> + <strong>/</strong> — comment out the current line or block of code or uncomment the previously commented one</p></li>
@@ -535,8 +535,8 @@ macOS</label><div class="tabbed-content docutils">
 <li><p><strong>Shift</strong> + Backspace — navigate back</p></li>
 </ul>
 </div>
-<input id="5f3a5361-fc68-4f67-a58b-3c757825026c" name="c8a2d782-09ec-463a-b673-eeed5998c693" type="radio"/>
-<label class="tabbed-label" for="5f3a5361-fc68-4f67-a58b-3c757825026c">
+<input id="45152e1b-1fcb-4db9-b660-d828eafc1754" name="0e0d4104-bd35-441b-aae6-e75fc3a69505" type="radio"/>
+<label class="tabbed-label" for="45152e1b-1fcb-4db9-b660-d828eafc1754">
 Windows</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p><strong>Ctrl</strong> + <strong>/</strong> — comment out the current line or block of code or uncomment the previously commented one</p></li>
@@ -554,8 +554,8 @@ Windows</label><div class="tabbed-content docutils">
 <div class="section" id="finding-and-replacing-text">
 <h2>Finding and replacing text<a class="headerlink" href="#finding-and-replacing-text" title="Permalink to this headline">¶</a></h2>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7fa1360f-0e20-4834-a48e-8a688d2abd86" name="742a4ac1-8109-4b8f-828d-d64d52cd69fe" type="radio"/>
-<label class="tabbed-label" for="7fa1360f-0e20-4834-a48e-8a688d2abd86">
+<input checked="checked" id="d52735bd-15fb-426a-ac9c-4278fa58fe55" name="6ccafd5a-875e-4f97-a6b6-383362014d18" type="radio"/>
+<label class="tabbed-label" for="d52735bd-15fb-426a-ac9c-4278fa58fe55">
 macOS</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p><strong>Cmd</strong> + <strong>F</strong> — open the search bar</p></li>
@@ -567,8 +567,8 @@ macOS</label><div class="tabbed-content docutils">
 <li><p><strong>Esc</strong> — close the search bar</p></li>
 </ul>
 </div>
-<input id="c2016486-562b-4bc3-9a8c-706ed0fc1c9d" name="742a4ac1-8109-4b8f-828d-d64d52cd69fe" type="radio"/>
-<label class="tabbed-label" for="c2016486-562b-4bc3-9a8c-706ed0fc1c9d">
+<input id="3897876a-1f9f-468e-bd66-3848db9d35a6" name="6ccafd5a-875e-4f97-a6b6-383362014d18" type="radio"/>
+<label class="tabbed-label" for="3897876a-1f9f-468e-bd66-3848db9d35a6">
 Windows</label><div class="tabbed-content docutils">
 <ul class="simple">
 <li><p><strong>Ctrl</strong> + <strong>F</strong> — open the search bar</p></li>

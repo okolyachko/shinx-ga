@@ -3,24 +3,24 @@ Integrating with Alan
 
 To learn how to integrate your app with Alan, choose the platform or framework from the list below:
 
--  `Web <web/web-api>`__
+-  :doc:`Web <web/web-api>`
 
-   - `React <web/react>`__
-   - `Angular <web/angular>`__
-   - `Vue <web/vue>`__
-   - `Ember <web/ember>`__
-   - `JavaScript <web/vanilla>`__
-   - `Electron <web/electron>`__
+   - :doc:`React <web/react>`
+   - :doc:`Angular <web/angular>`
+   - :doc:`Vue <web/vue>`
+   - :doc:`Ember <web/ember>`
+   - :doc:`JavaScript <web/vanilla>`
+   - :doc:`Electron <web/electron>`
    
--  `iOS <ios/ios-api>`__: Swift and Objective-C
--  `Android <android/android-api>`__: Kotlin and Java
--  `Cross-platform solutions <cross-platform/overview>`__
+-  :doc:`iOS <ios/ios-api>`: Swift and Objective-C
+-  :doc:`Android <android/android-api>`: Kotlin and Java
+-  :doc:`Cross-platform solutions <cross-platform/overview>`
 
-   -  `Ionic <cross-platform/ionic>`__
-   -  `Apache Cordova <cross-platform/cordova>`__
-   -  `Flutter <cross-platform/flutter>`__
-   -  `React Native <cross-platform/react-native>`__
-   -  `Microsoft Power Apps <cross-platform/powerapps>`__
+   -  :doc:`Ionic <cross-platform/ionic>`
+   -  :doc:`Apache Cordova <cross-platform/cordova>`
+   -  :doc:`Flutter <cross-platform/flutter>`
+   -  :doc:`React Native <cross-platform/react-native>`
+   -  :doc:`Microsoft Power Apps <cross-platform/powerapps>`
 
 .. raw:: html
 

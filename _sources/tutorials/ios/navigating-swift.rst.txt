@@ -18,14 +18,14 @@ What you will learn
 What you will need
 ------------------
 
-To go through this tutorial, make sure you have completed the following tutorial: `Building a voice assistant for an iOS Swift app <integrating-swift>`__. You can also use an example app provided by Alan: `SwiftTutorial.part1.zip <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip>`__. This is an XCode project of the app already integrated with Alan.
+To go through this tutorial, make sure you have completed the following tutorial: :doc:`Building a voice assistant for an iOS Swift app <integrating-swift>`. You can also use an example app provided by Alan: `SwiftTutorial.part1.zip <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip>`__. This is an XCode project of the app already integrated with Alan.
 
 Step 1: Add a new view to the app
 ---------------------------------
 .. note:: 
-   This step is required if you are using the starter iOS app created in the `previous tutorial <integrating-swift>`__. You can also use your own app with several views. In this case, skip this step and go to `step 2 <#step-2-add-voice-commands-to-navigate-between-views>`__.
+   This step is required if you are using the starter iOS app created in the :doc:`previous tutorial <integrating-swift>`. You can also use your own app with several views. In this case, skip this step and go to `step 2 <#step-2-add-voice-commands-to-navigate-between-views>`__.
 
-In the `Building a voice assistant for an iOS Swift app <integrating-swift>`__ tutorial, we have created an iOS app with a single view, and added the Alan button to it. Let's add a new view to this app. We will use the Navigation Controller to manage the app views.
+In the :doc:`Building a voice assistant for an iOS Swift app <integrating-swift>` tutorial, we have created an iOS app with a single view, and added the Alan button to it. Let's add a new view to this app. We will use the Navigation Controller to manage the app views.
 
 1. In Xcode, open the app's storyboard: ``Main.storyboard``.
 2. In the storyboard, select the app view by clicking the view dock.
@@ -56,7 +56,7 @@ Run the app. When the app is launched on the simulator, tap the ``Show Second Vi
 Step 2: Add voice commands to navigate between views
 ----------------------------------------------------
 
-We can navigate between views using the app's UI. Now we need to add new `commands <../../server-api/commands-and-responses>`__ to the Alan script to navigate between views with voice. In Alan Studio, open the project and in the code editor, add the following intents:
+We can navigate between views using the app's UI. Now we need to add new :doc:`commands <../../server-api/commands-and-responses>` to the Alan script to navigate between views with voice. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -187,4 +187,4 @@ You can get an example of such an app from the Alan GitHub to make sure you have
 What's next?
 ------------
 
-Have a look at the next tutorial: `Passing the app state to the voice script <sending-data-swift>`__.
+Have a look at the next tutorial: :doc:`Passing the app state to the voice script <sending-data-swift>`.

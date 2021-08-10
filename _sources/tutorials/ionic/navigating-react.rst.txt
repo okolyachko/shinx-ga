@@ -20,10 +20,10 @@ What you will need
 
 To go through this tutorial, make sure the following prerequisites are met:
 
--  You have completed the following tutorial: `Building a voice assistant for an Ionic React app <integrating-react>`__.
+-  You have completed the following tutorial: :doc:`Building a voice assistant for an Ionic React app <integrating-react>`.
 -  The environment for using the Ionic framework is properly set up. For details, see Ionic documentation.
 
-We will use an example Ionic React app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the `previous tutorial <integrating-react>`__.
+We will use an example Ionic React app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the :doc:`previous tutorial <integrating-react>`.
 
 .. note:: 
 
@@ -32,7 +32,7 @@ We will use an example Ionic React app provided by Alan. You can also use your o
 Step 1: Add voice commands for navigation
 -----------------------------------------
 
-We need to add a new `command <../../server-api/commands-and-responses>`__ to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:
+We need to add a new :doc:`command <../../server-api/commands-and-responses>` to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:
 
 .. code:: javascript
 
@@ -45,7 +45,7 @@ We need to add a new `command <../../server-api/commands-and-responses>`__ to th
        }
    });
 
-The user can now give a voice command to go to a specific tab in the app. In the intent, we use the `ORDINAL <../../server-api/slots#ordinal>`__ predefined slot. This slot allows us to catch the ordinal number in the
+The user can now give a voice command to go to a specific tab in the app. In the intent, we use the :doc:`ORDINAL <../../server-api/slots#ordinal>` predefined slot. This slot allows us to catch the ordinal number in the
 user utterance. If the caught number is ``first``, ``second`` or ``third``, the ``navigation`` command and the tab number will be sent from the voice script to the app. If the voice command contains some other number, Alan will report that such tab is not found.
 
 

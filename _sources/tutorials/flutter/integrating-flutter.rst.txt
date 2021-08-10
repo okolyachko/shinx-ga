@@ -20,7 +20,7 @@ What you will need
 To go through this tutorial, make sure the following prerequisites are met:
 
 -  You have signed up to Alan Studio.
--  You have `created a project <../../usage/guides/projects>`__ in Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
 -  You have set up the Flutter environment and it is functioning properly. For details, see `Flutter documentation <https://flutter.dev/docs/get-started/install>`__.
 -  The device on which you are planning to test drive the Flutter app is connected to the Internet. The Internet connection is required to let the Flutter app communicate with the voice script run in the Alan Cloud.
 
@@ -108,7 +108,7 @@ However, if you try to ask: ``How are you doing?`` Alan will not give an appropr
 Step 3: Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -130,7 +130,7 @@ What's next?
 
 You can now proceed to building a voice interface with Alan. Here are some helpful resources:
 
--  Have a look at the next tutorial: `Navigating between screens in a Flutter app <navigating-flutter>`__.
--  Go to `Server API <../../server-api/script-concepts>`__ to learn about Alan concepts and functionality you can use to create a voice script.
+-  Have a look at the next tutorial: :doc:`Navigating between screens in a Flutter app <navigating-flutter>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
 -  In Alan Git, get the `Flutter example app <https://github.com/alan-ai/alan-sdk-flutter/tree/master/examples/ShrineApp>`__. Use this app to see how integration for Flutter apps can be implemented.
 -  In Alan Git, get the Flutter Shrine app. Use this app to explore how a voice interface for a shopping app can be organized. To get voice scripts for this example app, in Alan Studio, click **Create New Project** and select **Flutter Shrine Example**.

@@ -15,7 +15,7 @@ The Alan button can be added to your app as a Web Component. Using the Alan Butt
     <alan-button alan-key="YOUR_KEY_FROM_ALAN_STUDIO_HERE"></alan-button>
 
 .. note:: 
-   It is recommended that you use the Alan Button Web Component with cross-platform frameworks (Ionic). To integrate Alan voice into a non cross-platform app or page, use `Alan Web SDK <web-api>`__.
+   It is recommended that you use the Alan Button Web Component with cross-platform frameworks (Ionic). To integrate Alan voice into a non cross-platform app or page, use :doc:`Alan Web SDK <web-api>`.
 
 
 Web Component API
@@ -64,7 +64,7 @@ setVisualState
 
    setVisualState (visualStateData: object)
 
-Method for setting the visual state. For details, see `Visual state <../../server-api/sending-data/visual-state>`__.
+Method for setting the visual state. For details, see :doc:`Visual state <../../server-api/sending-data/visual-state>`.
 
 * ``visualStateData`` - data that represents a visual state
 
@@ -86,8 +86,8 @@ callProjectApi
    callProjectApi (method:string, data:object, callback:function)
 
 
-Method for calling a project API defined in the script in the Alan Studio project. For details, see `Project
-API <../../server-api/sending-data/project-api>`__.
+Method for calling a project API defined in the script in the Alan Studio project. For details, see :doc:`Project
+API <../../server-api/sending-data/project-api>`.
 
 * ``method`` - project API method name that was defined in the voice script
 

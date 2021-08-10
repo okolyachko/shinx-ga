@@ -25,15 +25,15 @@ Let's assume you have two scripts: ``script1`` followed by ``script2``. In ``scr
     //script2
     console.log("Init value is " + project.config.initValue);
 
-To store data in ``project``, you can use ``onCreateProject`` callback. For details, see `Predefined
-callbacks <api/api-reference#predefined-callbacks>`__.
+To store data in ``project``, you can use ``onCreateProject`` callback. For details, see :doc:`Predefined
+callbacks <api/api-reference#predefined-callbacks>`.
 
 state
 -----
 
 ``state`` can be used if you work with contexts in the voice script. Every context has a predefined ``state`` object. You can think of ``state`` as a dictionary or knowledge base in which you can store any information you need.
 
-The data stored in ``state`` is available in the current conversational context and can be accessed through the ``p.state`` variable in the script. When a new context is activated, you can send this data to it or overwrite it with the ``then`` function. For details, see `Sharing information between contexts <contexts#sharing-information-between-contexts>`__.
+The data stored in ``state`` is available in the current conversational context and can be accessed through the ``p.state`` variable in the script. When a new context is activated, you can send this data to it or overwrite it with the ``then`` function. For details, see :doc:`Sharing information between contexts <contexts#sharing-information-between-contexts>`.
 
 .. code:: js
 
@@ -65,14 +65,14 @@ In ``userData``, you can store arbitrary data that must be available during the 
         p.play(`Here are some popular movies in the ${p.userData.favorites} genre...`);
     });
 
-To store and reset data in ``userData``, you can use ``onCreateUser`` and ``onCleanupUser`` callbacks. For details, see `Predefined callbacks <api/api-reference#predefined-callbacks>`__.
+To store and reset data in ``userData``, you can use ``onCreateUser`` and ``onCleanupUser`` callbacks. For details, see :doc:`Predefined callbacks <api/api-reference#predefined-callbacks>`.
 
 visual
 ------
 
 The ``visual`` object is used to store the visual state that is received from the client app. You can use this object to differentiate and filter commands in the voice script based on the current visual context of your app.
 
-The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions. For details, see `Visual state <sending-data/visual-state>`__.
+The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions. For details, see :doc:`Visual state <sending-data/visual-state>`.
 
 .. code:: js
 

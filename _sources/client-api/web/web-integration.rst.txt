@@ -3,16 +3,16 @@ Integration with Web projects
 
 To integrate Alan with a web project, you can use the following SDKs:
 
-- `Alan Web SDK <web-api>`__ to integrate with:
+- :doc:`Alan Web SDK <web-api>` to integrate with:
 
-  - `React <react>`__
-  - `Angular <angular>`__
-  - `Vue <vue>`__
-  - `Ember <ember>`__
-  - `JavaScript <vanilla>`__
-  - `Electron <electron>`__
+  - :doc:`React <react>`
+  - :doc:`Angular <angular>`
+  - :doc:`Vue <vue>`
+  - :doc:`Ember <ember>`
+  - :doc:`JavaScript <vanilla>`
+  - :doc:`Electron <electron>`
 
-- `Alan Web component <web-component>`__ to integate with cross-platform frameworks like `Ionic <../cross-platform/ionic>`__.
+- :doc:`Alan Web component <web-component>` to integate with cross-platform frameworks like :doc:`Ionic <../cross-platform/ionic>`.
 
 .. raw:: html
 

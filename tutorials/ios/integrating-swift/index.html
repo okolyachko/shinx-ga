@@ -390,7 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="building-a-voice-assistant-for-an-ios-swift-app">
 <h1>Building a voice assistant for an iOS Swift app<a class="headerlink" href="#building-a-voice-assistant-for-an-ios-swift-app" title="Permalink to this headline">¶</a></h1>
-<p>You can create a voice assistant or chatbot like Siri and embed it to your iOS Swift app with Alan’s <a class="reference external" href="../../client-api/ios/ios-api">voice assistant SDK for iOS</a>. In this tutorial, we will create a single view iOS app with Alan voice and test drive it on a simulator.
+<p>You can create a voice assistant or chatbot like Siri and embed it to your iOS Swift app with Alan’s <a class="reference internal" href="../../../client-api/ios/ios-api/"><span class="doc">voice assistant SDK for iOS</span></a>. In this tutorial, we will create a single view iOS app with Alan voice and test drive it on a simulator.
 The app users will be able to tap the Alan button and give custom voice commands, and Alan will reply to them.</p>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
@@ -404,7 +404,7 @@ The app users will be able to tap the Alan button and give custom voice commands
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul class="simple">
 <li><p>You have signed up to Alan Studio.</p></li>
-<li><p>You have <a class="reference external" href="../../usage/guides/projects">created a project</a> in Alan Studio.</p></li>
+<li><p>You have <a class="reference internal" href="../../../usage/guides/projects/"><span class="doc">created a project</span></a> in Alan Studio.</p></li>
 <li><p>You have set up Xcode on your computer.</p></li>
 </ul>
 <div class="admonition tip">
@@ -432,8 +432,8 @@ The app users will be able to tap the Alan button and give custom voice commands
 <h2>Step 2: Add the Alan iOS SDK to the project<a class="headerlink" href="#step-2-add-the-alan-ios-sdk-to-the-project" title="Permalink to this headline">¶</a></h2>
 <p>The next step is to add the Alan iOS SDK to the app project. There are two ways to do it:</p>
 <ul class="simple">
-<li><p>with <a class="reference external" href="../../client-api/ios/ios-api#set-up-an-xcode-project-with-cocoapods">CocoaPods</a></p></li>
-<li><p><a class="reference external" href="../../client-api/ios/ios-api#set-up-an-xcode-project-manually">manually</a></p></li>
+<li><p>with <span class="xref std std-doc">CocoaPods</span></p></li>
+<li><p><span class="xref std std-doc">manually</span></p></li>
 </ul>
 <p>Let’s add the SDK manually:</p>
 <ol class="arabic">
@@ -546,7 +546,7 @@ key in the list and click the plus icon to the right.</p></li>
 </div>
 <div class="section" id="step-5-add-voice-commands">
 <h2>Step 5: Add voice commands<a class="headerlink" href="#step-5-add-voice-commands" title="Permalink to this headline">¶</a></h2>
-<p>Let’s add some <a class="reference external" href="../../server-api/commands-and-responses">voice commands</a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<p>Let’s add some <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">voice commands</span></a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span> <span class="p">(</span><span class="sb">`What is your name?`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`It's Alan, and yours?`</span><span class="p">);</span>
 <span class="p">});</span>
@@ -570,8 +570,8 @@ key in the list and click the plus icon to the right.</p></li>
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>You can now proceed to building a voice interface with Alan. Here are some helpful resources:</p>
 <ul class="simple">
-<li><p>Have a look at the next tutorial: <a class="reference external" href="navigating-swift">Navigating between views in an iOS Swift app</a>.</p></li>
-<li><p>Go to <a class="reference external" href="../../server-api/script-concepts">Server API</a> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
+<li><p>Have a look at the next tutorial: <a class="reference internal" href="../navigating-swift/"><span class="doc">Navigating between views in an iOS Swift app</span></a>.</p></li>
+<li><p>Go to <a class="reference internal" href="../../../server-api/script-concepts/"><span class="doc">Script concepts</span></a> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
 <li><p>In Alan Git, get the <a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/tree/master/examples/alan-example-integration-swift">iOS Swift example app</a>. Use this example app to see how integration for iOS apps can be implemented.</p></li>
 </ul>
 </div>

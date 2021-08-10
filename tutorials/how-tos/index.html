@@ -400,13 +400,13 @@ How to send data to a client application<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To send data to a client application, use the <a class="reference external" href="../server-api/commands-and-responses#play">play()</a> function. In the        function, define the JSON object of the command to be sent:</p>
+<p class="card-text">To send data to a client application, use the <span class="xref std std-doc">play()</span> function. In the     function, define the JSON object of the command to be sent:</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"Change color to $(C red|green|blue)"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s2">"setColor"</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">C</span><span class="p">});</span>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p class="card-text">In the client application, you need handle commands received from the voice script. For details, see <a class="reference external" href="../server-api/commands-and-responses#sending-commands-to-the-app">Sending commands to the app</a>.</p>
+<p class="card-text">In the client application, you need handle commands received from the voice script. For details, see <span class="xref std std-doc">Sending commands to the app</span>.</p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 fade-in">
 <summary class="summary-title card-header">
@@ -415,7 +415,7 @@ How to capture the entire user input<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you need to get the entire utterance from the user input, you can use a <a class="reference external" href="../server-api/slots#regular-expressions">greedy RegEx syntax</a> in a slot, for example: <code class="docutils literal notranslate"><span class="pre">"$(I*</span> <span class="pre">.+)"</span></code>. Such a RegEx pattern matches any string with one or more characters.</p>
+<p class="card-text">If you need to get the entire utterance from the user input, you can use a <span class="xref std std-doc">greedy RegEx syntax</span> in a slot, for example: <code class="docutils literal notranslate"><span class="pre">"$(I*</span> <span class="pre">.+)"</span></code>. Such a RegEx pattern matches any string with one or more characters.</p>
 <p class="card-text">Consider the following example: you need to get the user feedback and send this information to your app. You can add the following command to the voice script:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"I want to give feedback"</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"Thank you! What do you think about our product?"</span><span class="p">);</span>
@@ -468,13 +468,13 @@ How to create slots with item names from arrays<div class="summary-down docutils
 <span class="p">);</span>
 </pre></div>
 </div>
-<p class="card-text">In the example above, we are using a <a class="reference external" href="../server-api/slots#slots-with-fuzzy-matching">slot with fuzzy matching</a> to capture the item name. Each item name in the slot is accompanied with the label. Now, thanks to fuzzy matching, Alan can capture different variants of item names, even if they are close but not exact:</p>
+<p class="card-text">In the example above, we are using a <span class="xref std std-doc">slot with fuzzy matching</span> to capture the item name. Each item name in the slot is accompanied with the label. Now, thanks to fuzzy matching, Alan can capture different variants of item names, even if they are close but not exact:</p>
 <ul class="simple">
 <li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">does</span> <span class="pre">Double</span> <span class="pre">Cheese</span> <span class="pre">cost?</span></code></p></li>
 <li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">does</span> <span class="pre">Double</span> <span class="pre">Cheese</span> <span class="pre">Burger</span> <span class="pre">cost?</span></code></p></li>
 </ul>
 <p class="card-text">When such a pattern is matched, the <code class="docutils literal notranslate"><span class="pre">value</span></code> field of the <code class="docutils literal notranslate"><span class="pre">MENU_ITEM</span></code> slot will contain the user input, and the <code class="docutils literal notranslate"><span class="pre">.label</span></code> field will contain the item name provided in the label. In this voice command, <code class="docutils literal notranslate"><span class="pre">p.MENU_ITEM.label</span></code> is used to tell about the item price.</p>
-<p class="card-text">To capture any name of the item that is not on the menu, we are using <a class="reference external" href="../server-api/slots#regular-expressions">RegEx</a> for the <code class="docutils literal notranslate"><span class="pre">UNAVAILABLE_ITEM</span></code> slot.</p>
+<p class="card-text">To capture any name of the item that is not on the menu, we are using <span class="xref std std-doc">RegEx</span> for the <code class="docutils literal notranslate"><span class="pre">UNAVAILABLE_ITEM</span></code> slot.</p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 fade-in">
 <summary class="summary-title card-header">
@@ -483,7 +483,7 @@ How to run a query with words from the user input<div class="summary-down docuti
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you need to run a query with user’s words, you can add a slot with a <a class="reference external" href="../server-api/slots#regular-expressions">greedy RegEx syntax</a> to the command pattern to capture the user’s input.</p>
+<p class="card-text">If you need to run a query with user’s words, you can add a slot with a <span class="xref std std-doc">greedy RegEx syntax</span> to the command pattern to capture the user’s input.</p>
 <p class="card-text">In the example below, when the user asks to translate a word or phrase, Alan captures this word or phrase with a greedy RegEx, makes an API call to an external translation service and plays the result with the Italian accent: <code class="docutils literal notranslate"><span class="pre">p.play(voice('it'),</span> <span class="pre">response.translated)</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'(How|) (do you|would you|to|) say $(W* .+)?'</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">translate</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">W</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
@@ -527,7 +527,7 @@ How to use predefined slots<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you need to capture specific values from the user input, for example, dates or numbers, you can add <a class="reference external" href="../server-api/slots#predefined-slots">predefined slots</a> to voice commands:</p>
+<p class="card-text">If you need to capture specific values from the user input, for example, dates or numbers, you can add <span class="xref std std-doc">predefined slots</span> to voice commands:</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="sb">`I have a meeting with $(NAME) from $(ORG) $(DATE) (at|) $(TIME) (in|at|near|) $(LOC)`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Adding to your schedule: Meeting </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">NAME</span><span class="si">}</span><span class="sb"> from </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORG</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">DATE</span><span class="si">}</span><span class="sb"> at </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">TIME</span><span class="si">}</span><span class="sb"> in the </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">LOC</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 <span class="p">})</span>
@@ -541,7 +541,7 @@ How to get the right answer from the user<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">In some cases, the user’s answer may be not precise. As a result, you will not be able to get from the user input the data you need for the subsequent dialog flow. To get the necessary information, you can use an <a class="reference external" href="../server-api/contexts#using-async-contexts">async context</a> in the voice script.</p>
+<p class="card-text">In some cases, the user’s answer may be not precise. As a result, you will not be able to get from the user input the data you need for the subsequent dialog flow. To get the necessary information, you can use an <span class="xref std std-doc">async context</span> in the voice script.</p>
 <p class="card-text">Consider the following example: you need to get the coffee type from the user input, but instead the user just says: <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">want</span> <span class="pre">a</span> <span class="pre">coffee</span></code>. You can add the following command to the voice script:</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"I want a coffee"</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"What coffee do you prefer?"</span><span class="p">);</span>
@@ -554,7 +554,7 @@ How to get the right answer from the user<div class="summary-down docutils">
 <span class="p">})</span>
 </pre></div>
 </div>
-<p class="card-text">Here, once you receive an answer that should be more specific, Alan plays: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">coffee</span> <span class="pre">do</span> <span class="pre">you</span> <span class="pre">prefer?</span></code>, activates the <code class="docutils literal notranslate"><span class="pre">whatCoffee</span></code> context and stops the script execution until the user gives the necessary answer. If the user answer matches one of the values listed in the <code class="docutils literal notranslate"><span class="pre">COFFEE</span></code> <a class="reference external" href="../server-api/slots">slot</a>, Alan exits the context, and the coffee type is returned. Alan then plays: <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">${coffee}</span> <span class="pre">coffee</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">ready</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">moment</span></code> with the coffee type obtained.</p>
+<p class="card-text">Here, once you receive an answer that should be more specific, Alan plays: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">coffee</span> <span class="pre">do</span> <span class="pre">you</span> <span class="pre">prefer?</span></code>, activates the <code class="docutils literal notranslate"><span class="pre">whatCoffee</span></code> context and stops the script execution until the user gives the necessary answer. If the user answer matches one of the values listed in the <code class="docutils literal notranslate"><span class="pre">COFFEE</span></code> <a class="reference internal" href="../../server-api/slots/"><span class="doc">slot</span></a>, Alan exits the context, and the coffee type is returned. Alan then plays: <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">${coffee}</span> <span class="pre">coffee</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">ready</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">moment</span></code> with the coffee type obtained.</p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 fade-in">
 <summary class="summary-title card-header">
@@ -563,7 +563,7 @@ How to handle unexpected voice commands from the user<div class="summary-down do
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">The user may give an answer of the type inappropriate for you. In this case, you can lock the user in the context with the <a class="reference external" href="../server-api/contexts#prompting-and-handling-user-errors">fallback()</a> function until the necessary user input is received.</p>
+<p class="card-text">The user may give an answer of the type inappropriate for you. In this case, you can lock the user in the context with the <span class="xref std std-doc">fallback()</span> function until the necessary user input is received.</p>
 <p class="card-text">Consider the following example: a voice script for a simple math checker offers the user to add two random numbers.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"Check my math"</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mf">10</span><span class="p">)</span>
@@ -580,7 +580,7 @@ How to handle unexpected voice commands from the user<div class="summary-down do
 <span class="p">})</span>
 </pre></div>
 </div>
-<p class="card-text">Here, after Alan asks a question, it activates the <code class="docutils literal notranslate"><span class="pre">getNumber</span></code> context and stops the script execution until the answer of the appropriate type is received. The answer must be captured by the <a class="reference external" href="../server-api/slots#number">NUMBER</a> predefined slot: in this case, Alan exits it the context, and the user answer is returned. If the answer is of any other type, the user remains in the context. To instruct the user on the rules, Alan plays: <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">have</span> <span class="pre">to</span> <span class="pre">say</span> <span class="pre">a</span> <span class="pre">number</span></code>.</p>
+<p class="card-text">Here, after Alan asks a question, it activates the <code class="docutils literal notranslate"><span class="pre">getNumber</span></code> context and stops the script execution until the answer of the appropriate type is received. The answer must be captured by the <span class="xref std std-doc">NUMBER</span> predefined slot: in this case, Alan exits it the context, and the user answer is returned. If the answer is of any other type, the user remains in the context. To instruct the user on the rules, Alan plays: <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">have</span> <span class="pre">to</span> <span class="pre">say</span> <span class="pre">a</span> <span class="pre">number</span></code>.</p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 fade-in">
 <summary class="summary-title card-header">
@@ -671,11 +671,11 @@ How to iterate over a list of objects (back and forward)<div class="summary-down
 </div>
 <p class="card-text">Here, the list of fruits is first saved to the <code class="docutils literal notranslate"><span class="pre">fruits</span></code> array. When the user says: <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">want</span> <span class="pre">fruits</span></code>, Alan gives some instructions on how to pick fruits, names the first fruit in the list and activates the <code class="docutils literal notranslate"><span class="pre">selectFruit</span></code> context. The voice script execution stops until the user makes his or her choice and exits the <code class="docutils literal notranslate"><span class="pre">selectFruit</span></code> context by saying: <code class="docutils literal notranslate"><span class="pre">Finish|Stop|It's</span> <span class="pre">all</span></code>.</p>
 <p class="card-text">In the <code class="docutils literal notranslate"><span class="pre">selectFruit</span></code> context, the user can select the named fruit, go forward or back with voice commands and tell Alan to stop iterating over the list. In the latter case, Alan exits the context, and we get back to executing the script in the initial voice command.</p>
-<p class="card-text">The context also has the <a class="reference external" href="../server-api/contexts#prompting-and-handling-user-errors">fallback()</a> function to lock the user if the necessary answer is not given.</p>
+<p class="card-text">The context also has the <span class="xref std std-doc">fallback()</span> function to lock the user if the necessary answer is not given.</p>
 <p class="card-text">To iterate over the list of fruits, the following Alan objects and variables are added to the script:</p>
 <ul class="simple">
-<li><p class="card-text"><a class="reference external" href="../server-api/objects#userdata">userData</a>: this variable can be used to store data that can be accessed between contexts. In this example, the user choice is saved to the <code class="docutils literal notranslate"><span class="pre">p.userData.favorites</span></code> array in the <code class="docutils literal notranslate"><span class="pre">selectFruit</span></code> context. The resulting list is played to the user after the user exits the context.</p></li>
-<li><p class="card-text"><a class="reference external" href="../server-api/objects#state">state</a>: this is a special object that сan be used as a ‘dictionary’. In this example, the <code class="docutils literal notranslate"><span class="pre">state</span></code> object stores the index of the current element in the fruits array. When the context is activated, the index is set to 0, and the <code class="docutils literal notranslate"><span class="pre">state</span></code> object is passed to the context. With each new step forward or backward in the context, the index is incremented or decremented.</p></li>
+<li><p class="card-text"><span class="xref std std-doc">userData</span>: this variable can be used to store data that can be accessed between contexts. In this example, the user choice is saved to the <code class="docutils literal notranslate"><span class="pre">p.userData.favorites</span></code> array in the <code class="docutils literal notranslate"><span class="pre">selectFruit</span></code> context. The resulting list is played to the user after the user exits the context.</p></li>
+<li><p class="card-text"><span class="xref std std-doc">state</span>: this is a special object that сan be used as a ‘dictionary’. In this example, the <code class="docutils literal notranslate"><span class="pre">state</span></code> object stores the index of the current element in the fruits array. When the context is activated, the index is set to 0, and the <code class="docutils literal notranslate"><span class="pre">state</span></code> object is passed to the context. With each new step forward or backward in the context, the index is incremented or decremented.</p></li>
 </ul>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 fade-in">
@@ -727,7 +727,7 @@ How to pass information to the context<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you need to pass some information to the context, you can use the <a class="reference external" href="../server-api/objects#state">state</a> object. <code class="docutils literal notranslate"><span class="pre">state</span></code> is a kind of ‘dictionary’ where you can store any data you want.</p>
+<p class="card-text">If you need to pass some information to the context, you can use the <span class="xref std std-doc">state</span> object. <code class="docutils literal notranslate"><span class="pre">state</span></code> is a kind of ‘dictionary’ where you can store any data you want.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"I have friends"</span><span class="p">,</span> <span class="k">async</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"How many friends do you have?"</span><span class="p">);</span>
     <span class="kd">let</span> <span class="nx">number</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">p</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">numberContext</span><span class="p">)</span>
@@ -775,7 +775,7 @@ How to use voice commands with fuzzy parameters<div class="summary-down docutils
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you want Alan to recognize users’ commands that are close to those added to the voice script but are not 100% matching, you can use <a class="reference external" href="../server-api/slots#slots-with-fuzzy-matching">slots with fuzzy matching</a>. Add <code class="docutils literal notranslate"><span class="pre">~</span></code> after the slot name and define labels for each slot value.</p>
+<p class="card-text">If you want Alan to recognize users’ commands that are close to those added to the voice script but are not 100% matching, you can use <span class="xref std std-doc">slots with fuzzy matching</span>. Add <code class="docutils literal notranslate"><span class="pre">~</span></code> after the slot name and define labels for each slot value.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"small"</span><span class="p">,</span> <span class="s2">"medium"</span><span class="p">,</span> <span class="s2">"large"</span><span class="p">];</span>
 <span class="nx">intent</span><span class="p">(</span><span class="sb">`$(ORD~ one~1|first~1|two~2|second~2|middle~2|three~3|third~3|last~3)`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// one is value, 1 is label</span>
@@ -844,7 +844,7 @@ How to allow users to say synonyms for the same thing<div class="summary-down do
 <span class="p">})</span>
 </pre></div>
 </div>
-<p class="card-text">Here is another example of how to construct a list of slot values out of the JSON object passed with <code class="docutils literal notranslate"><span class="pre">visualState</span></code>. In this example, we are using <a class="reference external" href="../server-api/dynamic-entities">dynamic entities</a> to get the user feedback. The list of slot values is constructed out of the values passed in the <code class="docutils literal notranslate"><span class="pre">synonyms</span></code> key, and the values in the <code class="docutils literal notranslate"><span class="pre">category</span></code> key are used as the label.</p>
+<p class="card-text">Here is another example of how to construct a list of slot values out of the JSON object passed with <code class="docutils literal notranslate"><span class="pre">visualState</span></code>. In this example, we are using <a class="reference internal" href="../../server-api/dynamic-entities/"><span class="doc">dynamic entities</span></a> to get the user feedback. The list of slot values is constructed out of the values passed in the <code class="docutils literal notranslate"><span class="pre">synonyms</span></code> key, and the values in the <code class="docutils literal notranslate"><span class="pre">category</span></code> key are used as the label.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="c1">//Passed visualState</span>
 <span class="p">{</span>
     <span class="s2">"answers"</span><span class="o">:</span> <span class="p">[</span>
@@ -907,8 +907,8 @@ How to respond differently based on the visual context<div class="summary-down d
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If your app has several views or screens, you may need Alan to respond differently to the same voice command when this or that view or screen is active. To do this, you can <a class="reference external" href="../client-api/methods/common-api#setvisualstate">set the visual state object</a> on the client side, and it will be available in <code class="docutils literal notranslate"><span class="pre">p.visual</span></code> object in the voice script when the user input matches the intent.</p>
-<p class="card-text"><a class="reference external" href="list-all">Check our tutorials</a> to see how to send the visual state from apps on different platforms.</p>
+<p class="card-text">If your app has several views or screens, you may need Alan to respond differently to the same voice command when this or that view or screen is active. To do this, you can <span class="xref std std-doc">set the visual state object</span> on the client side, and it will be available in <code class="docutils literal notranslate"><span class="pre">p.visual</span></code> object in the voice script when the user input matches the intent.</p>
+<p class="card-text"><a class="reference internal" href="../list-all/"><span class="doc">Check our tutorials</span></a> to see how to send the visual state from apps on different platforms.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What can I do here?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">visual</span><span class="p">.</span><span class="nx">screen</span><span class="p">)</span> <span class="p">{</span>
        <span class="k">case</span> <span class="s2">"main"</span><span class="o">:</span>
@@ -943,7 +943,7 @@ How to send a POST request from the voice script<div class="summary-down docutil
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">You can send POST requests using the <a class="reference external" href="../server-api/built-in-javascript-libraries#working-with-api-calls">built-in axios and request HTTP clients</a>.</p>
+<p class="card-text">You can send POST requests using the <span class="xref std std-doc">built-in axios and request HTTP clients</span>.</p>
 <p class="card-text">In the example below, a POST request is made to get information about the opportunity status:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">COMPANIES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Bird'</span><span class="p">,</span> <span class="s1">'Starbucks'</span><span class="p">,</span> <span class="s1">'Microsoft'</span><span class="p">,</span> <span class="s1">'Postmates'</span><span class="p">,</span> <span class="s1">'Wag'</span><span class="p">,</span> <span class="s1">'Apple'</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">'|'</span><span class="p">);</span>
 
@@ -991,8 +991,8 @@ How to send commands to the app<div class="summary-down docutils">
 </summary><div class="summary-content card-body docutils">
 <p class="card-text">To trigger activities in the app with voice, you need to send commands from the voice script to the app. Do the following:</p>
 <ol class="arabic simple">
-<li><p class="card-text">Use the <a class="reference external" href="../server-api/commands-and-responsespopups#play">play()</a> function in the voice script to send a command to the app.</p></li>
-<li><p class="card-text">In the app, add the <a class="reference external" href="../client-api/methods/command-handler">onCommand handler</a> and define what actions must be taken when the command is received.</p></li>
+<li><p class="card-text">Use the <span class="xref std std-doc">play()</span> function in the voice script to send a command to the app.</p></li>
+<li><p class="card-text">In the app, add the <a class="reference internal" href="../../client-api/methods/command-handler/"><span class="doc">onCommand handler</span></a> and define what actions must be taken when the command is received.</p></li>
 </ol>
 <p class="card-text">Let’s assume we want to open the cart when the user says: <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">cart</span></code>. To do this, in the voice script we will add the <code class="docutils literal notranslate"><span class="pre">play()</span></code> function with the command object:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'(Show|Open|Go) (to|) (the|) cart'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -1003,8 +1003,8 @@ How to send commands to the app<div class="summary-down docutils">
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="643b42fb-c8d1-456e-ae22-111ddb1b02cc" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="643b42fb-c8d1-456e-ae22-111ddb1b02cc">
+<input checked="checked" id="445fe570-af91-4358-8df8-a39ad8058f7b" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="445fe570-af91-4358-8df8-a39ad8058f7b">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">alanBtnInstance</span> <span class="o">=</span> <span class="nx">alanBtn</span><span class="p">({</span>
   <span class="nx">key</span><span class="o">:</span> <span class="s2">"YOUR_KEY_FROM_ALAN_STUDIO_HERE"</span><span class="p">,</span>
@@ -1018,8 +1018,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6ed3ef7b-11d1-43d5-af20-cdb452d65765" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="6ed3ef7b-11d1-43d5-af20-cdb452d65765">
+<input id="8059a778-aa51-48a2-9277-937efeb0e79f" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="8059a778-aa51-48a2-9277-937efeb0e79f">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">onCommand</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
   <span class="bp">NSString</span><span class="o">*</span> <span class="n">commandName</span> <span class="o">=</span> <span class="p">[</span><span class="n">command</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@"command"</span><span class="p">];</span>
@@ -1029,8 +1029,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9e9c30fa-c275-412c-9a7d-fead55e6d0a8" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="9e9c30fa-c275-412c-9a7d-fead55e6d0a8">
+<input id="a83361ff-7e4b-4d5b-8a38-0835f49bbc5f" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="a83361ff-7e4b-4d5b-8a38-0835f49bbc5f">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">onCommand</span> <span class="p">=</span> <span class="p">{</span> <span class="n">command</span> <span class="k">in</span>
   <span class="k">guard</span> <span class="kd">let</span> <span class="nv">commandName</span> <span class="p">=</span> <span class="n">command</span><span class="p">?[</span><span class="s">"command"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span> <span class="k">else</span> <span class="p">{</span>
@@ -1042,8 +1042,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="59d3586e-8cd8-4b19-a648-486b89f0c337" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="59d3586e-8cd8-4b19-a648-486b89f0c337">
+<input id="82c0b25d-3b22-4527-ad81-364911473793" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="82c0b25d-3b22-4527-ad81-364911473793">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span> <span class="nv">alanCallback</span><span class="p">:</span> <span class="n">AlanCallback</span> <span class="o">=</span> <span class="k">object</span> <span class="p">:</span> <span class="nc">AlanCallback</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCommand</span><span class="p">(</span><span class="n">eventCommand</span><span class="p">:</span> <span class="n">EventCommand</span><span class="p">)</span> <span class="p">{</span>
@@ -1060,8 +1060,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d55d1ff2-24a8-4e33-b7fd-5892e13538b8" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="d55d1ff2-24a8-4e33-b7fd-5892e13538b8">
+<input id="3f875d25-96f2-4f93-af26-3eaa9fff1614" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="3f875d25-96f2-4f93-af26-3eaa9fff1614">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">AlanCallback</span> <span class="n">alanCallback</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AlanCallback</span><span class="p">()</span> <span class="p">{</span>
   <span class="nd">@Override</span>
@@ -1079,8 +1079,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ce9a0b48-9df6-4db8-9c92-2c2c83cc85f1" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="ce9a0b48-9df6-4db8-9c92-2c2c83cc85f1">
+<input id="336b6542-1729-4522-bf2e-7c657da37be6" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="336b6542-1729-4522-bf2e-7c657da37be6">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="p">...</span>
@@ -1099,8 +1099,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="420f171b-64ea-4bb6-a660-ab82c26f2d49" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="420f171b-64ea-4bb6-a660-ab82c26f2d49">
+<input id="e9ae858b-ee4d-4b6a-ae7e-489f455d769d" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="e9ae858b-ee4d-4b6a-ae7e-489f455d769d">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'command'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">commandData</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">detail</span><span class="p">;</span>
@@ -1111,8 +1111,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="10ff0bbd-c0bf-4889-ba7d-709f734b930d" name="fa62f53b-d46b-43a1-a368-3386205c469c" type="radio"/>
-<label class="tabbed-label" for="10ff0bbd-c0bf-4889-ba7d-709f734b930d">
+<input id="2e04ebaa-1a86-48a8-85f8-2f38767643a0" name="359da5bb-56c7-45f1-ad87-e15a0ab4585c" type="radio"/>
+<label class="tabbed-label" for="2e04ebaa-1a86-48a8-85f8-2f38767643a0">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1142,7 +1142,7 @@ How to send data from the voice script to the app<div class="summary-down docuti
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To send data to the application, in the <a class="reference external" href="../server-api/commands-and-responses#play">play()</a> function, define a JSON object of the command with all the data to be sent.</p>
+<p class="card-text">To send data to the application, in the <span class="xref std std-doc">play()</span> function, define a JSON object of the command with all the data to be sent.</p>
 <p class="card-text">In this example, together with the navigate command, we are sending the route to the page that must be opened when the command is received. The logic for command handling is defined in the onCommand handler as described in the how-to above.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'(Show|Open) (the|) cart'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s1">'navigate'</span><span class="p">,</span> <span class="nx">route</span><span class="o">:</span> <span class="s1">'home'</span><span class="p">});</span>
@@ -1158,10 +1158,10 @@ How to send data from the app to the voice script<div class="summary-down docuti
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To send any data from your app to the voice script, you can use the <a class="reference external" href="../server-api/sending-data/project-api">project API functionality</a>. Do the following:</p>
+<p class="card-text">To send any data from your app to the voice script, you can use the <a class="reference internal" href="../../server-api/sending-data/project-api/"><span class="doc">project API functionality</span></a>. Do the following:</p>
 <ol class="arabic simple">
 <li><p class="card-text">Define a project API method in your voice script.</p></li>
-<li><p class="card-text"><a class="reference external" href="../client-api/methods/common-api#callprojectapi">Call the defined method</a> from your app using Alan’s <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code>. When calling the project API method, provide the method name and a JSON object with the data you want to send.</p></li>
+<li><p class="card-text"><span class="xref std std-doc">Call the defined method</span> from your app using Alan’s <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code>. When calling the project API method, provide the method name and a JSON object with the data you want to send.</p></li>
 </ol>
 <p class="card-text">Let’s assume we want to send the user’s name to the voice script and greet the user when the user logs in to the system. To do this, we will define the <code class="docutils literal notranslate"><span class="pre">greetUser()</span></code> project API method in the voice script:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defining a project API method in the voice script</span>
@@ -1177,8 +1177,8 @@ How to send data from the app to the voice script<div class="summary-down docuti
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="19992603-d3aa-44dd-ae11-611f2567b42c" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="19992603-d3aa-44dd-ae11-611f2567b42c">
+<input checked="checked" id="5c5a8130-9db0-464a-a4e9-ca8fb93ee02c" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="5c5a8130-9db0-464a-a4e9-ca8fb93ee02c">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">function</span> <span class="nx">sendData</span><span class="p">()</span> <span class="p">{</span>
@@ -1190,8 +1190,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="82cce239-1211-4253-bec9-9f25de622f86" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="82cce239-1211-4253-bec9-9f25de622f86">
+<input id="520d0e45-22db-4c51-b712-c8fb7e1346f6" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="520d0e45-22db-4c51-b712-c8fb7e1346f6">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span> <span class="p">{</span>
@@ -1200,8 +1200,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="1f66487e-f99b-416c-a966-814ff4bd17d1" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="1f66487e-f99b-416c-a966-814ff4bd17d1">
+<input id="b0777a35-ce2b-4279-bdad-65cad503f87d" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="b0777a35-ce2b-4279-bdad-65cad503f87d">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1210,8 +1210,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="33ad9e89-504a-44f7-8858-a6c6eab406cd" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="33ad9e89-504a-44f7-8858-a6c6eab406cd">
+<input id="5533fef0-3e28-4597-b817-8f82e2de64af" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="5533fef0-3e28-4597-b817-8f82e2de64af">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kd">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1226,8 +1226,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c93e4632-2ebb-449d-b516-5b4a979ffcaa" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="c93e4632-2ebb-449d-b516-5b4a979ffcaa">
+<input id="09658a7d-59e5-45ec-b925-1ede9f3bb7dd" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="09658a7d-59e5-45ec-b925-1ede9f3bb7dd">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on button click</span>
 <span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1242,8 +1242,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="da712d48-76ac-4d8a-bcd8-74fd5ae7c22b" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="da712d48-76ac-4d8a-bcd8-74fd5ae7c22b">
+<input id="2ee5ea10-79b5-4e86-911b-a409cc7f522c" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="2ee5ea10-79b5-4e86-911b-a409cc7f522c">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Calling the project API method on button click</span>
@@ -1255,8 +1255,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2a096308-275e-44f9-944c-172f34d4e4da" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="2a096308-275e-44f9-944c-172f34d4e4da">
+<input id="8b74a1ea-358e-41fc-8a4f-2431cbc8de96" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="8b74a1ea-358e-41fc-8a4f-2431cbc8de96">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1268,8 +1268,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="92ea60b7-d0da-40ea-8277-fba0415fc1e1" name="85aed750-4aec-4bea-b765-fbceb58d7310" type="radio"/>
-<label class="tabbed-label" for="92ea60b7-d0da-40ea-8277-fba0415fc1e1">
+<input id="8e8dcf04-080b-4324-b6a4-e6493ee770df" name="570620e7-5304-4fd2-a021-beeaf592248f" type="radio"/>
+<label class="tabbed-label" for="8e8dcf04-080b-4324-b6a4-e6493ee770df">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1306,10 +1306,10 @@ How to call a function in the voice script from the app<div class="summary-down 
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">If you need to call a function from the app and perform some activities in the voice script, you can use the <a class="reference external" href="../server-api/sending-data/project-api">project API functionality</a>. Do the following:</p>
+<p class="card-text">If you need to call a function from the app and perform some activities in the voice script, you can use the <a class="reference internal" href="../../server-api/sending-data/project-api/"><span class="doc">project API functionality</span></a>. Do the following:</p>
 <ol class="arabic simple">
 <li><p class="card-text">Define a project API method in your voice script.</p></li>
-<li><p class="card-text"><a class="reference external" href="../client-api/methods/common-api#callprojectapi">Call the defined method</a> from your app using Alan’s <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code>.</p></li>
+<li><p class="card-text"><span class="xref std std-doc">Call the defined method</span> from your app using Alan’s <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code>.</p></li>
 </ol>
 <p class="card-text">Let’s assume we want Alan to inform users about the closest stores available with voice when they select a location in the app. To do this, we will define the <code class="docutils literal notranslate"><span class="pre">getLocations()</span></code> function in the voice script:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defining a project API method in the voice script</span>
@@ -1326,8 +1326,8 @@ How to call a function in the voice script from the app<div class="summary-down 
 </div>
 <p class="card-text">In the app, we will use the <code class="docutils literal notranslate"><span class="pre">onCommand</span> <span class="pre">handler</span></code> and define the logic for the showCart command in it:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="52782d5f-e491-4ec0-987c-bd05468ccef1" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="52782d5f-e491-4ec0-987c-bd05468ccef1">
+<input checked="checked" id="1f028bf7-56c1-4e2f-9203-27647d88bfeb" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="1f028bf7-56c1-4e2f-9203-27647d88bfeb">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">function</span> <span class="nx">sendData</span><span class="p">()</span> <span class="p">{</span>
@@ -1339,8 +1339,8 @@ Web</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8ef16336-eeff-4595-b501-e631f90fa28e" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="8ef16336-eeff-4595-b501-e631f90fa28e">
+<input id="45309dc4-3308-4d3d-a48a-f490fb1041c7" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="45309dc4-3308-4d3d-a48a-f490fb1041c7">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span> <span class="p">{</span>
@@ -1349,8 +1349,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a4cf2973-533a-4375-98bf-ee1ffd9e4282" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="a4cf2973-533a-4375-98bf-ee1ffd9e4282">
+<input id="68531e80-54e4-4316-b501-b55ee024adc1" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="68531e80-54e4-4316-b501-b55ee024adc1">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1359,8 +1359,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="98e98c8e-c597-4fc0-8b0b-dd853e961f8e" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="98e98c8e-c597-4fc0-8b0b-dd853e961f8e">
+<input id="612c3d1b-64f1-42e5-b57e-0b88e0c805de" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="612c3d1b-64f1-42e5-b57e-0b88e0c805de">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kd">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1375,8 +1375,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c8c750b8-0b75-4398-bdcf-2be0d80c9e01" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="c8c750b8-0b75-4398-bdcf-2be0d80c9e01">
+<input id="67bd8edc-f2e5-41e4-8c66-18b73b806dbe" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="67bd8edc-f2e5-41e4-8c66-18b73b806dbe">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method on choosing a location</span>
 <span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
@@ -1391,8 +1391,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e2d2f3a0-cf8a-4e7b-b3ca-2f307a43909a" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="e2d2f3a0-cf8a-4e7b-b3ca-2f307a43909a">
+<input id="91a2b559-a8eb-4642-89d3-c6ba43028a8c" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="91a2b559-a8eb-4642-89d3-c6ba43028a8c">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Calling the project API method on choosing a location</span>
@@ -1404,8 +1404,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="020654df-3374-4de1-a1ac-0f0ca988184b" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="020654df-3374-4de1-a1ac-0f0ca988184b">
+<input id="8c56f38d-f657-4d8a-a23f-2d5fb7c38de2" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="8c56f38d-f657-4d8a-a23f-2d5fb7c38de2">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1417,8 +1417,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6bb37b9b-ba23-44b8-8657-7c9c716a11e1" name="c9062e32-f89b-4925-90a0-ed5a718537cc" type="radio"/>
-<label class="tabbed-label" for="6bb37b9b-ba23-44b8-8657-7c9c716a11e1">
+<input id="305ecefd-d527-4bd7-97b6-e397ff270658" name="f5889f8d-f194-4fa3-854e-06b5d894efd8" type="radio"/>
+<label class="tabbed-label" for="305ecefd-d527-4bd7-97b6-e397ff270658">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span><span class="nx">AlanView</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'./AlanSDK.js'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">NativeEventEmitter</span><span class="p">,</span> <span class="nx">NativeModules</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-native'</span><span class="p">;</span>
@@ -1456,22 +1456,22 @@ How to send information about the app visual context to the voice script<div cla
 <div class="summary-up docutils">
 <svg aria-hidden="true" class="octicon octicon-chevron-up" height="24" version="1.1" viewbox="0 0 24 24" width="24"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">To build a smart voice assistant, you should be able to provide Alan with information about the app’s visual context: what screen is currently open, what options are enabled at the moment and so on. To do this, you can use the <a class="reference external" href="../server-api/sending-data/visual-state">visual state functionality</a>. Do the following:</p>
+<p class="card-text">To build a smart voice assistant, you should be able to provide Alan with information about the app’s visual context: what screen is currently open, what options are enabled at the moment and so on. To do this, you can use the <a class="reference internal" href="../../server-api/sending-data/visual-state/"><span class="doc">visual state functionality</span></a>. Do the following:</p>
 <ol class="arabic simple">
-<li><p class="card-text">Use the <a class="reference external" href="../client-api/methods/common-api#setvisualstate">setVisualState() function</a> in the app to send the information about the current visual context to the voice script.</p></li>
-<li><p class="card-text">In the voice script, differentiate responses using the <a class="reference external" href="../server-api/objects#visual">visual</a> object.</p></li>
+<li><p class="card-text">Use the <span class="xref std std-doc">setVisualState() function</span> in the app to send the information about the current visual context to the voice script.</p></li>
+<li><p class="card-text">In the voice script, differentiate responses using the <span class="xref std std-doc">visual</span> object.</p></li>
 </ol>
 <p class="card-text">Let’s assume we want to provide users with a possibility to ask about available functions and want Alan to respond differently depending on the screen open. To do this, we need to send the visual state from the app like this:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="9f85d75f-98d3-46b3-a0cb-3f273385d01b" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="9f85d75f-98d3-46b3-a0cb-3f273385d01b">
+<input checked="checked" id="c6dbabe2-0275-4574-803c-120402972da1" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="c6dbabe2-0275-4574-803c-120402972da1">
 Web</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span><span class="s2">"main"</span><span class="p">});</span>
 </pre></div>
 </div>
 </div>
-<input id="ef816793-9009-4cf4-a268-cf1eb38580e2" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="ef816793-9009-4cf4-a268-cf1eb38580e2">
+<input id="fa905cf9-ba42-475a-aec6-c477ed491f2a" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="fa905cf9-ba42-475a-aec6-c477ed491f2a">
 Objective-C</label><div class="tabbed-content docutils">
 <div class="highlight-obj-c notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setVisualState</span> <span class="p">{</span>
  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">setVisualState</span><span class="p">:</span><span class="l">@{</span><span class="s">@"screen"</span><span class="o">:</span><span class="s">@"main"</span><span class="l">}</span><span class="p">];</span>
@@ -1479,8 +1479,8 @@ Objective-C</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e92e237c-53a5-4a18-a019-7935c02d2896" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="e92e237c-53a5-4a18-a019-7935c02d2896">
+<input id="c6ca6298-7bcf-4585-b75c-0b43ce2c960e" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="c6ca6298-7bcf-4585-b75c-0b43ce2c960e">
 Swift</label><div class="tabbed-content docutils">
 <div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">([</span><span class="s">"screen"</span><span class="p">:</span><span class="s">"main"</span><span class="p">])</span>
@@ -1488,8 +1488,8 @@ Swift</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c03fc5a1-e632-4193-9736-88f9cb02c5a8" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="c03fc5a1-e632-4193-9736-88f9cb02c5a8">
+<input id="eca606b9-6169-41d0-98d1-7be0242f8a15" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="eca606b9-6169-41d0-98d1-7be0242f8a15">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">val</span> <span class="nv">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
@@ -1503,8 +1503,8 @@ Kotlin</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="83163bbb-d1bd-4791-bf7d-9be3142fe0ab" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="83163bbb-d1bd-4791-bf7d-9be3142fe0ab">
+<input id="774dcf2e-dfdd-4421-bace-78db566bc0c3" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="774dcf2e-dfdd-4421-bace-78db566bc0c3">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
@@ -1518,8 +1518,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3610e91c-b406-4787-947c-66cbf954d2fd" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="3610e91c-b406-4787-947c-66cbf954d2fd">
+<input id="88b75b0d-c969-48e7-b23a-57a68ca4b291" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="88b75b0d-c969-48e7-b23a-57a68ca4b291">
 Flutter</label><div class="tabbed-content docutils">
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">void</span> <span class="n">_setVisualState</span><span class="p">()</span> <span class="p">{</span>
@@ -1530,8 +1530,8 @@ Flutter</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a406ec34-fd36-474f-8d92-4e8244c5b937" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="a406ec34-fd36-474f-8d92-4e8244c5b937">
+<input id="0c0be34a-79ca-45d5-a41c-e82cde66d786" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="0c0be34a-79ca-45d5-a41c-e82cde66d786">
 Ionic</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
 
@@ -1541,8 +1541,8 @@ Ionic</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dd2ca13c-ddd9-4d17-a63b-bd1421b8b981" name="f4e3dd01-b605-4cb7-a6ec-214b9da6d6a1" type="radio"/>
-<label class="tabbed-label" for="dd2ca13c-ddd9-4d17-a63b-bd1421b8b981">
+<input id="9dd309b6-dfee-44a8-b588-53cb0ad28ebe" name="eeb606a2-79f9-46d7-a52d-47f2f85d09e2" type="radio"/>
+<label class="tabbed-label" for="9dd309b6-dfee-44a8-b588-53cb0ad28ebe">
 React Native</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">setVisualState</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span><span class="s2">"main"</span><span class="p">});</span>

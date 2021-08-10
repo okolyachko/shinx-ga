@@ -5,7 +5,7 @@
 Step 5: Specify alternatives and options
 ========================================
 
-The phrase used to invoke a voice command is called a `pattern <../../server-api/patterns>`__. At present, our command is invoked
+The phrase used to invoke a voice command is called a :doc:`pattern <../../server-api/patterns>`. At present, our command is invoked
 by one phrase: ``I want a pepperoni``. However, the users can give a voice command in different ways. For example:
 
 -  ``I will take a pepperoni``
@@ -13,7 +13,7 @@ by one phrase: ``I want a pepperoni``. However, the users can give a voice comma
 -  ``Add a pepperoni, please``
 -  Or just ``Pepperoni``
 
-To be sure the voice command is invoked by any of these phrases, we can add `alternatives  <../../server-api/patterns#patterns-with-alternatives>`__ and `options <../../server-api/patterns#optional-alternatives>`__ to the command pattern.
+To be sure the voice command is invoked by any of these phrases, we can add :doc:`alternatives  <../../server-api/patterns#patterns-with-alternatives>` and :doc:`options <../../server-api/patterns#optional-alternatives>` to the command pattern.
 
 -  To define alternatives, enclose all possible variants in brackets and use the ``|`` delimiter.
 -  To define optional parts of the user command, enclose these parts in brackets and add ``|`` at the end of them.

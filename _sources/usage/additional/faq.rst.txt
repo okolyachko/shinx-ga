@@ -109,7 +109,7 @@ Integration and implementation
 
 .. dropdown:: How to pass POST parameters from Alan Studio?
 
-   In Alan Studio, you can use `built-in JavaScript libraries  <../../server-api/built-in-javascript-libraries#working-with-api-calls>` to do this in a usual way.
+   In Alan Studio, you can use `built-in JavaScript libraries  :doc:`<../../server-api/built-in-javascript-libraries#working-with-api-calls>` to do this in a usual way.
 
 .. dropdown:: Does Alan Studio have different instances for Development, QA and Production?
 

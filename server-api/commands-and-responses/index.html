@@ -390,17 +390,17 @@
         </label>
         <div class="section" id="commands-and-responses">
 <h1>Commands and responses<a class="headerlink" href="#commands-and-responses" title="Permalink to this headline">¶</a></h1>
-<p>To let users interact with your voice assistant, you need to add to the voice script commands that users can give. A voice command describes a task or action that the user wants to fulfil. Learn how <a class="reference external" href="#intent">voice commands</a> can be defined and what <a class="reference external" href="#response">response actions</a> can be triggered for these commands.</p>
+<p>To let users interact with your voice assistant, you need to add to the voice script commands that users can give. A voice command describes a task or action that the user wants to fulfil. Learn how <span class="xref std std-doc">voice commands</span> can be defined and what <span class="xref std std-doc">response actions</span> can be triggered for these commands.</p>
 <div class="section" id="intent">
 <h2>Intent<a class="headerlink" href="#intent" title="Permalink to this headline">¶</a></h2>
 <p>You can define a voice command in the script with the <code class="docutils literal notranslate"><span class="pre">intent()</span></code> function. This function can be used to complete tasks requested by users or answer users’ questions.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">intent()</span></code> function, you must specify one or more <a class="reference external" href="patterns">patterns</a> — user’s utterances that invoke the command, and one or more <a class="reference external" href="#responding-to-the-user">response actions</a> that must be triggered when the command is invoked. In the example below, the command is invoked when the user says: <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code>. As a response action, Alan plays <code class="docutils literal notranslate"><span class="pre">Hello</span></code> to the user.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">intent()</span></code> function, you must specify one or more <a class="reference internal" href="../patterns/"><span class="doc">patterns</span></a> — user’s utterances that invoke the command, and one or more <span class="xref std std-doc">response actions</span> that must be triggered when the command is invoked. In the example below, the command is invoked when the user says: <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code>. As a response action, Alan plays <code class="docutils literal notranslate"><span class="pre">Hello</span></code> to the user.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Hello world'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>When writing commands, you can add predefined and user-defined <a class="reference external" href="slots">slots</a> to intent patterns. Slots are ‘variables’ in user’s utterance that allow Alan to identify and retrieve useful information.</p>
+<p>When writing commands, you can add predefined and user-defined <a class="reference internal" href="../slots/"><span class="doc">slots</span></a> to intent patterns. Slots are ‘variables’ in user’s utterance that allow Alan to identify and retrieve useful information.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'I want to go to $(LOC) on $(DATE)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Great, have a nice trip'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -416,10 +416,10 @@
 </ul>
 <div class="section" id="play">
 <h3>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">play()</span></code> is a predefined function for response actions. You can use it to <a class="reference external" href="#responding-to-the-user">respond to the user</a> or <a class="reference external" href="#sending-commands-to-the-app">send commands to the client app</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">play()</span></code> is a predefined function for response actions. You can use it to <span class="xref std std-doc">respond to the user</span> or <span class="xref std std-doc">send commands to the client app</span>.</p>
 <div class="section" id="responding-to-the-user">
 <h4>Responding to the user<a class="headerlink" href="#responding-to-the-user" title="Permalink to this headline">¶</a></h4>
-<p>To play a response to the user, you need to define a <a class="reference external" href="patterns">pattern</a> in the <code class="docutils literal notranslate"><span class="pre">play()</span></code> function. Alan will
+<p>To play a response to the user, you need to define a <a class="reference internal" href="../patterns/"><span class="doc">pattern</span></a> in the <code class="docutils literal notranslate"><span class="pre">play()</span></code> function. Alan will
 use this phrase as a response.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Talk to me'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Sure, what do you want to talk about?'</span><span class="p">);</span>
@@ -433,7 +433,7 @@ use this phrase as a response.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>You can also use <a class="reference external" href="slots">slots</a> in responses.</p>
+<p>You can also use <a class="reference internal" href="../slots/"><span class="doc">slots</span></a> in responses.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Say $(W hello|goodbye)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">W</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 <span class="p">});</span>
@@ -455,7 +455,7 @@ use this phrase as a response.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>To handle the command on the app side, you must define a handler for commands received from Alan’s voice script. For details, see <a class="reference external" href="../client-api/methods/command-handler">onCommand handler</a>.</p>
+<p>To handle the command on the app side, you must define a handler for commands received from Alan’s voice script. For details, see <a class="reference internal" href="../../client-api/methods/command-handler/"><span class="doc">onCommand handler</span></a>.</p>
 <p>When you send a command to the app, you most commonly accompany this command with Alan’s comment so that the user understands what actions are taking place at the moment. If you place the command before Alan’s message, Alan will send the command right after the intent is matched.
 If you place the command after Alan’s message, the command will be sent after the text has finished playing. For example:</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Sending a command when the intent is matched</span>
@@ -490,7 +490,7 @@ the same way as in the <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="section" id="response-accent">
 <h2>Response accent<a class="headerlink" href="#response-accent" title="Permalink to this headline">¶</a></h2>
-<p>To make sure Alan sounds natural, you can determine the language-specific voice, or accent, in which Alan’s responses must be played. To do this, add the <code class="docutils literal notranslate"><span class="pre">voice</span></code> parameter to the <a class="reference external" href="api/api-reference#play">p.play()</a> function and define the necessary language code in it:</p>
+<p>To make sure Alan sounds natural, you can determine the language-specific voice, or accent, in which Alan’s responses must be played. To do this, add the <code class="docutils literal notranslate"><span class="pre">voice</span></code> parameter to the <span class="xref std std-doc">p.play()</span> function and define the necessary language code in it:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Say Good morning in Spanish'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">voice</span><span class="p">(</span><span class="s1">'es'</span><span class="p">),</span> <span class="s1">'Buenos dias'</span><span class="p">);</span>
 <span class="p">})</span>

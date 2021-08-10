@@ -15,7 +15,7 @@ To create a project:
 
 .. image:: /_static/assets/img/studio/projects_list.png
 
-You can add predefined scripts to your project or create custom scripts for your application. For details, see `Voice scripts <scripts>`__.
+You can add predefined scripts to your project or create custom scripts for your application. For details, see :doc:`Voice scripts <scripts>`.
 
 If necessary, you can rename or delete a project.
 
@@ -24,7 +24,7 @@ If necessary, you can rename or delete a project.
    
 .. warning::
 
-	When you delete a project, all scripts you have in the project are permanently deleted as well. You may want to save your scripts beforehand. For details, see `Exporting scripts <scripts#exporting-scripts>`__.
+	When you delete a project, all scripts you have in the project are permanently deleted as well. You may want to save your scripts beforehand. For details, see :doc:`Exporting scripts <scripts#exporting-scripts>`.
 	
 
 Restarting a project

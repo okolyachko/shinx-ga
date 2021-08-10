@@ -13,7 +13,7 @@ Voice script
 .. dropdown:: How to send data to a client application
    :animate: fade-in
 
-   To send data to a client application, use the `play() <../server-api/commands-and-responses#play>`__ function. In the 	function, define the JSON object of the command to be sent:
+   To send data to a client application, use the :doc:`play() <../server-api/commands-and-responses#play>` function. In the 	function, define the JSON object of the command to be sent:
 
    .. code:: JavaScript
 
@@ -21,12 +21,12 @@ Voice script
           p.play({command: "setColor", color: p.C});
       });
 
-   In the client application, you need handle commands received from the voice script. For details, see `Sending commands to the app <../server-api/commands-and-responses#sending-commands-to-the-app>`__.
+   In the client application, you need handle commands received from the voice script. For details, see :doc:`Sending commands to the app <../server-api/commands-and-responses#sending-commands-to-the-app>`.
    
 .. dropdown:: How to capture the entire user input
    :animate: fade-in
 
-   If you need to get the entire utterance from the user input, you can use a `greedy RegEx syntax  <../server-api/slots#regular-expressions>`__ in a slot, for example: ``"$(I* .+)"``. Such a RegEx pattern matches any string with one or more characters.
+   If you need to get the entire utterance from the user input, you can use a :doc:`greedy RegEx syntax  <../server-api/slots#regular-expressions>` in a slot, for example: ``"$(I* .+)"``. Such a RegEx pattern matches any string with one or more characters.
 
    Consider the following example: you need to get the user feedback and send this information to your app. You can add the following command to the voice script:
 
@@ -80,19 +80,19 @@ Voice script
           }
       );
 
-   In the example above, we are using a `slot with fuzzy matching <../server-api/slots#slots-with-fuzzy-matching>`__ to capture the item name. Each item name in the slot is accompanied with the label. Now, thanks to fuzzy matching, Alan can capture different variants of item names, even if they are close but not exact:
+   In the example above, we are using a :doc:`slot with fuzzy matching <../server-api/slots#slots-with-fuzzy-matching>` to capture the item name. Each item name in the slot is accompanied with the label. Now, thanks to fuzzy matching, Alan can capture different variants of item names, even if they are close but not exact:
 
    -  ``How much does Double Cheese cost?``
    -  ``How much does Double Cheese Burger cost?``
 
    When such a pattern is matched, the ``value`` field of the ``MENU_ITEM`` slot will contain the user input, and the ``.label`` field will contain the item name provided in the label. In this voice command, ``p.MENU_ITEM.label`` is used to tell about the item price.
 
-   To capture any name of the item that is not on the menu, we are using `RegEx <../server-api/slots#regular-expressions>`__ for the ``UNAVAILABLE_ITEM`` slot.
+   To capture any name of the item that is not on the menu, we are using :doc:`RegEx <../server-api/slots#regular-expressions>` for the ``UNAVAILABLE_ITEM`` slot.
 
 .. dropdown:: How to run a query with words from the user input
    :animate: fade-in
    
-   If you need to run a query with user's words, you can add a slot with a `greedy RegEx syntax <../server-api/slots#regular-expressions>`__ to the command pattern to capture the user's input.
+   If you need to run a query with user's words, you can add a slot with a :doc:`greedy RegEx syntax <../server-api/slots#regular-expressions>` to the command pattern to capture the user's input.
 
    In the example below, when the user asks to translate a word or phrase, Alan captures this word or phrase with a greedy RegEx, makes an API call to an external translation service and plays the result with the Italian accent: ``p.play(voice('it'), response.translated)``.
 
@@ -134,7 +134,7 @@ Voice script
 .. dropdown:: How to use predefined slots
    :animate: fade-in
    
-   If you need to capture specific values from the user input, for example, dates or numbers, you can add `predefined slots <../server-api/slots#predefined-slots>`__ to voice commands:
+   If you need to capture specific values from the user input, for example, dates or numbers, you can add :doc:`predefined slots <../server-api/slots#predefined-slots>` to voice commands:
 
    .. code:: JavaScript
 
@@ -145,7 +145,7 @@ Voice script
 .. dropdown:: How to get the right answer from the user
    :animate: fade-in	
 
-   In some cases, the user's answer may be not precise. As a result, you will not be able to get from the user input the data you need for the subsequent dialog flow. To get the necessary information, you can use an `async context <../server-api/contexts#using-async-contexts>`__ in the voice script.
+   In some cases, the user's answer may be not precise. As a result, you will not be able to get from the user input the data you need for the subsequent dialog flow. To get the necessary information, you can use an :doc:`async context <../server-api/contexts#using-async-contexts>` in the voice script.
 
    Consider the following example: you need to get the coffee type from the user input, but instead the user just says: ``I want a coffee``. You can add the following command to the voice script:
 
@@ -161,12 +161,12 @@ Voice script
          intent("$(COFFEE Black|Americano|Latte|Cappuccino|Expresso|Macchiato)", p => p.resolve(p.COFFEE));
       })
 
-   Here, once you receive an answer that should be more specific, Alan plays: ``What coffee do you prefer?``, activates the ``whatCoffee`` context and stops the script execution until the user gives the necessary answer. If the user answer matches one of the values listed in the ``COFFEE`` `slot <../server-api/slots>`__, Alan exits the context, and the coffee type is returned. Alan then plays: ``Your ${coffee} coffee will be ready in a moment`` with the coffee type obtained. 
+   Here, once you receive an answer that should be more specific, Alan plays: ``What coffee do you prefer?``, activates the ``whatCoffee`` context and stops the script execution until the user gives the necessary answer. If the user answer matches one of the values listed in the ``COFFEE`` :doc:`slot <../server-api/slots>`, Alan exits the context, and the coffee type is returned. Alan then plays: ``Your ${coffee} coffee will be ready in a moment`` with the coffee type obtained. 
 
 .. dropdown:: How to handle unexpected voice commands from the user
    :animate: fade-in
    
-   The user may give an answer of the type inappropriate for you. In this case, you can lock the user in the context with the `fallback() <../server-api/contexts#prompting-and-handling-user-errors>`__ function until the necessary user input is received.
+   The user may give an answer of the type inappropriate for you. In this case, you can lock the user in the context with the :doc:`fallback() <../server-api/contexts#prompting-and-handling-user-errors>` function until the necessary user input is received.
 
    Consider the following example: a voice script for a simple math checker offers the user to add two random numbers.
 
@@ -186,7 +186,7 @@ Voice script
           fallback("You have to say a number")
       })
 
-   Here, after Alan asks a question, it activates the ``getNumber`` context and stops the script execution until the answer of the appropriate type is received. The answer must be captured by the `NUMBER <../server-api/slots#number>`__ predefined slot: in this case, Alan exits it the context, and the user answer is returned. If the answer is of any other type, the user remains in the context. To instruct the user on the rules, Alan plays: ``You have to say a number``.
+   Here, after Alan asks a question, it activates the ``getNumber`` context and stops the script execution until the answer of the appropriate type is received. The answer must be captured by the :doc:`NUMBER <../server-api/slots#number>` predefined slot: in this case, Alan exits it the context, and the user answer is returned. If the answer is of any other type, the user remains in the context. To instruct the user on the rules, Alan plays: ``You have to say a number``.
    
 .. dropdown:: How to allow adding comments with voice
    :animate: fade-in
@@ -276,12 +276,12 @@ Voice script
 
    In the ``selectFruit`` context, the user can select the named fruit, go forward or back with voice commands and tell Alan to stop iterating over the list. In the latter case, Alan exits the context, and we get back to executing the script in the initial voice command.
 
-   The context also has the `fallback() <../server-api/contexts#prompting-and-handling-user-errors>`__ function to lock the user if the necessary answer is not given.
+   The context also has the :doc:`fallback() <../server-api/contexts#prompting-and-handling-user-errors>` function to lock the user if the necessary answer is not given.
 
    To iterate over the list of fruits, the following Alan objects and variables are added to the script:
 
-   -  `userData <../server-api/objects#userdata>`__: this variable can be used to store data that can be accessed between contexts. In this example, the user choice is saved to the ``p.userData.favorites`` array in the ``selectFruit`` context. The resulting list is played to the user after the user exits the context.
-   -  `state <../server-api/objects#state>`__: this is a special object that сan be used as a 'dictionary'. In this example, the ``state`` object stores the index of the current element in the fruits array. When the context is activated, the index is set to 0, and the ``state`` object is passed to the context. With each new step forward or backward in the context, the index is incremented or decremented.
+   -  :doc:`userData <../server-api/objects#userdata>`: this variable can be used to store data that can be accessed between contexts. In this example, the user choice is saved to the ``p.userData.favorites`` array in the ``selectFruit`` context. The resulting list is played to the user after the user exits the context.
+   -  :doc:`state <../server-api/objects#state>`: this is a special object that сan be used as a 'dictionary'. In this example, the ``state`` object stores the index of the current element in the fruits array. When the context is activated, the index is set to 0, and the ``state`` object is passed to the context. With each new step forward or backward in the context, the index is incremented or decremented.
 
 .. dropdown:: How to sort items by price, name or category
    :animate: fade-in
@@ -325,7 +325,7 @@ Voice script
 .. dropdown:: How to pass information to the context
    :animate: fade-in
    
-   If you need to pass some information to the context, you can use the `state <../server-api/objects#state>`__ object. ``state`` is a kind of 'dictionary' where you can store any data you want.
+   If you need to pass some information to the context, you can use the :doc:`state <../server-api/objects#state>` object. ``state`` is a kind of 'dictionary' where you can store any data you want.
 
    .. code:: JavaScript
 
@@ -371,7 +371,7 @@ Voice script
 .. dropdown:: How to use voice commands with fuzzy parameters
    :animate: fade-in
    
-   If you want Alan to recognize users' commands that are close to those added to the voice script but are not 100% matching, you can use `slots with fuzzy matching <../server-api/slots#slots-with-fuzzy-matching>`__. Add ``~`` after the slot name and define labels for each slot value.
+   If you want Alan to recognize users' commands that are close to those added to the voice script but are not 100% matching, you can use :doc:`slots with fuzzy matching <../server-api/slots#slots-with-fuzzy-matching>`. Add ``~`` after the slot name and define labels for each slot value.
 
    .. code:: JavaScript
 
@@ -435,7 +435,7 @@ Voice script
            p.play(`We added ${p.ITEM.label} to your order`)
        })
 
-   Here is another example of how to construct a list of slot values out of the JSON object passed with ``visualState``. In this example, we are using `dynamic entities <../server-api/dynamic-entities>`__ to get the user feedback. The list of slot values is constructed out of the values passed in the ``synonyms`` key, and the values in the ``category`` key are used as the label.
+   Here is another example of how to construct a list of slot values out of the JSON object passed with ``visualState``. In this example, we are using :doc:`dynamic entities <../server-api/dynamic-entities>` to get the user feedback. The list of slot values is constructed out of the values passed in the ``synonyms`` key, and the values in the ``category`` key are used as the label.
 
    .. code:: JavaScript
 
@@ -495,9 +495,9 @@ Voice script
 .. dropdown:: How to respond differently based on the visual context
    :animate: fade-in
    
-   If your app has several views or screens, you may need Alan to respond differently to the same voice command when this or that view or screen is active. To do this, you can `set the visual state object  <../client-api/methods/common-api#setvisualstate>`__ on the client side, and it will be available in ``p.visual`` object in the voice script when the user input matches the intent.
+   If your app has several views or screens, you may need Alan to respond differently to the same voice command when this or that view or screen is active. To do this, you can :doc:`set the visual state object  <../client-api/methods/common-api#setvisualstate>` on the client side, and it will be available in ``p.visual`` object in the voice script when the user input matches the intent.
 
-   `Check our tutorials <list-all>`__ to see how to send the visual state from apps on different platforms.
+   :doc:`Check our tutorials <list-all>` to see how to send the visual state from apps on different platforms.
 
    .. code:: JavaScript
 
@@ -531,7 +531,7 @@ Voice script
 .. dropdown:: How to send a POST request from the voice script
    :animate: fade-in
    
-   You can send POST requests using the `built-in axios and request HTTP clients <../server-api/built-in-javascript-libraries#working-with-api-calls>`__. 
+   You can send POST requests using the :doc:`built-in axios and request HTTP clients <../server-api/built-in-javascript-libraries#working-with-api-calls>`. 
    
    In the example below, a POST request is made to get information about the opportunity status:
 
@@ -578,8 +578,8 @@ Communication with the app
    
    To trigger activities in the app with voice, you need to send commands from the voice script to the app. Do the following:
 
-   1. Use the `play() <../server-api/commands-and-responsespopups#play>`__ function in the voice script to send a command to the app.
-   2. In the app, add the `onCommand handler <../client-api/methods/command-handler>`__ and define what actions must be taken when the command is received.
+   1. Use the :doc:`play() <../server-api/commands-and-responsespopups#play>` function in the voice script to send a command to the app.
+   2. In the app, add the :doc:`onCommand handler <../client-api/methods/command-handler>` and define what actions must be taken when the command is received.
    
    Let's assume we want to open the cart when the user says: ``Go to the cart``. To do this, in the voice script we will add the ``play()`` function with the command object:
    
@@ -722,7 +722,7 @@ Communication with the app
 .. dropdown:: How to send data from the voice script to the app
    :animate: fade-in
    
-   To send data to the application, in the `play() <../server-api/commands-and-responses#play>`__ function, define a JSON object of the command with all the data to be sent.
+   To send data to the application, in the :doc:`play() <../server-api/commands-and-responses#play>` function, define a JSON object of the command with all the data to be sent.
 
    In this example, together with the navigate command, we are sending the route to the page that must be opened when the command is received. The logic for command handling is defined in the onCommand handler as described in the how-to above.
    
@@ -737,10 +737,10 @@ Communication with the app
 .. dropdown:: How to send data from the app to the voice script
    :animate: fade-in
    
-   To send any data from your app to the voice script, you can use the `project API functionality <../server-api/sending-data/project-api>`__. Do the following:
+   To send any data from your app to the voice script, you can use the :doc:`project API functionality <../server-api/sending-data/project-api>`. Do the following:
 
    1. Define a project API method in your voice script.
-   2. `Call the defined method <../client-api/methods/common-api#callprojectapi>`__ from your app using Alan's ``callProjectApi()``. When calling the project API method, provide the method name and a JSON object with the data you want to send.
+   2. :doc:`Call the defined method <../client-api/methods/common-api#callprojectapi>` from your app using Alan's ``callProjectApi()``. When calling the project API method, provide the method name and a JSON object with the data you want to send.
 
    Let's assume we want to send the user's name to the voice script and greet the user when the user logs in to the system. To do this, we will define the ``greetUser()`` project API method in the voice script:
    
@@ -877,10 +877,10 @@ Communication with the app
 .. dropdown:: How to call a function in the voice script from the app
    :animate: fade-in
    
-   If you need to call a function from the app and perform some activities in the voice script, you can use the `project API functionality <../server-api/sending-data/project-api>`__. Do the following:
+   If you need to call a function from the app and perform some activities in the voice script, you can use the :doc:`project API functionality <../server-api/sending-data/project-api>`. Do the following:
    
    1. Define a project API method in your voice script.
-   2. `Call the defined method <../client-api/methods/common-api#callprojectapi>`__ from your app using Alan's ``callProjectApi()``.
+   2. :doc:`Call the defined method <../client-api/methods/common-api#callprojectapi>` from your app using Alan's ``callProjectApi()``.
 
    Let's assume we want Alan to inform users about the closest stores available with voice when they select a location in the app. To do this, we will define the ``getLocations()`` function in the voice script:
    
@@ -1019,11 +1019,11 @@ Communication with the app
 .. dropdown:: How to send information about the app visual context to the voice script
    :animate: fade-in
    
-   To build a smart voice assistant, you should be able to provide Alan with information about the app's visual context: what screen is currently open, what options are enabled at the moment and so on. To do this, you can use the `visual state functionality <../server-api/sending-data/visual-state>`__. Do the following:
+   To build a smart voice assistant, you should be able to provide Alan with information about the app's visual context: what screen is currently open, what options are enabled at the moment and so on. To do this, you can use the :doc:`visual state functionality <../server-api/sending-data/visual-state>`. Do the following:
 
-   1. Use the `setVisualState() function <../client-api/methods/common-api#setvisualstate>`__ in the app to send the information about the current visual context to the voice script.
+   1. Use the :doc:`setVisualState() function <../client-api/methods/common-api#setvisualstate>` in the app to send the information about the current visual context to the voice script.
 
-   2. In the voice script, differentiate responses using the `visual <../server-api/objects#visual>`__ object.
+   2. In the voice script, differentiate responses using the :doc:`visual <../server-api/objects#visual>` object.
 
    Let's assume we want to provide users with a possibility to ask about available functions and want Alan to respond differently depending on the screen open. To do this, we need to send the visual state from the app like this:
 

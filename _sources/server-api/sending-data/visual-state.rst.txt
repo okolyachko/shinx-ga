@@ -9,8 +9,8 @@ To inform Alan about the state of the client app, the app can send the visual st
 
 The visual state can help you give relevant responses to the user and synchronize the visuals and voice UX in your app.
 
-To send the visual state object to the voice script, you must call the ``setVisualState()`` method of the `Alan
-SDK <../../client-api/methods/common-api#setvisualstate>`__ on the app side. In the method, you pass a JSON object representing the visual state, for example:
+To send the visual state object to the voice script, you must call the ``setVisualState()`` method of the :doc:`Alan
+SDK <../../client-api/methods/common-api#setvisualstate>` on the app side. In the method, you pass a JSON object representing the visual state, for example:
 
 .. code:: JavaScript
 
@@ -105,7 +105,7 @@ For your convenience, you can group commands under the same visual filter. This 
 See also
 --------
 
-`Client API methods <../../client-api/methods/common-api>`__
+:doc:`Client API methods <../../client-api/methods/common-api>`
 
 .. raw:: html
 

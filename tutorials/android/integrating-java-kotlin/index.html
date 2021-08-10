@@ -403,7 +403,7 @@
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul class="simple">
 <li><p>You have signed up to Alan Studio.</p></li>
-<li><p>You have <a class="reference external" href="../../usage/guides/projects">created a project</a> in Alan Studio.</p></li>
+<li><p>You have <a class="reference internal" href="../../../usage/guides/projects/"><span class="doc">created a project</span></a> in Alan Studio.</p></li>
 <li><p>You have set up the Android environment and it is functioning properly. For details, see <a class="reference external" href="https://developer.android.com/guide">Android developers documentation</a>.</p></li>
 <li><p>The device on which you are planning to test drive the Android app is connected to the Internet. The Internet connection is required to let the Android app communicate with the voice script run in the Alan Cloud.</p></li>
 </ul>
@@ -456,8 +456,8 @@
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">alanConfig</span></code> object to the app. This object describes the parameters that are provided for the Alan button. To do this, open the <code class="docutils literal notranslate"><span class="pre">MainActivity.java</span></code> or <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> file and add the following code to the <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> class:</p></li>
 </ol>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cea4b2bd-f31b-43b9-8e68-d7531e227a42" name="9c1f53f6-01f7-43d0-a68f-ce7c3740fe47" type="radio"/>
-<label class="tabbed-label" for="cea4b2bd-f31b-43b9-8e68-d7531e227a42">
+<input checked="checked" id="ac10d51e-1c50-44b6-8115-76428d634645" name="3a25b14a-a714-419b-8408-2e9cae47e5cc" type="radio"/>
+<label class="tabbed-label" for="ac10d51e-1c50-44b6-8115-76428d634645">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainActivity.java file</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="p">{</span>
@@ -477,8 +477,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a08b03bb-722b-4a33-8a6e-d5ea51c0f7ed" name="9c1f53f6-01f7-43d0-a68f-ce7c3740fe47" type="radio"/>
-<label class="tabbed-label" for="a08b03bb-722b-4a33-8a6e-d5ea51c0f7ed">
+<input id="82cc5e93-4e7f-4c34-85f7-9311f68796d1" name="3a25b14a-a714-419b-8408-2e9cae47e5cc" type="radio"/>
+<label class="tabbed-label" for="82cc5e93-4e7f-4c34-85f7-9311f68796d1">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// MainActivity.kt file</span>
 <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
@@ -511,7 +511,7 @@ Kotlin</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="step-3-add-voice-commands">
 <h2>Step 3: Add voice commands<a class="headerlink" href="#step-3-add-voice-commands" title="Permalink to this headline">¶</a></h2>
-<p>Let’s add some <a class="reference external" href="../../server-api/commands-and-responses">voice commands</a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<p>Let’s add some <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">voice commands</span></a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span> <span class="p">(</span><span class="sb">`What is your name?`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`It's Alan, and yours?`</span><span class="p">);</span>
 <span class="p">});</span>
@@ -528,8 +528,8 @@ Kotlin</label><div class="tabbed-content docutils">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>You can now proceed to building a voice interface with Alan. Here are some helpful resources:</p>
 <ul class="simple">
-<li><p>Have a look at the next tutorial: <a class="reference external" href="navigating-kotlin">Navigating between screens in an Android app</a>.</p></li>
-<li><p>Go to <a class="reference external" href="../../server-api/script-concepts">Server API</a> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
+<li><p>Have a look at the next tutorial: <a class="reference internal" href="../navigating-kotlin/"><span class="doc">Navigating between screens in an Android app</span></a>.</p></li>
+<li><p>Go to <a class="reference internal" href="../../../server-api/script-concepts/"><span class="doc">Server API</span></a> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
 <li><p>In Alan Git, get the <a class="reference external" href="https://github.com/alan-ai/alan-sdk-android/tree/master/examples/alan-example-integration-java">Android Java</a> example app or <a class="reference external" href="https://github.com/alan-ai/alan-sdk-android/tree/master/examples/alan-example-integration-kotlin">Android Kotlin</a> example app. Use this example app to see how integration for Android apps can be implemented.</p></li>
 </ul>
 </div>

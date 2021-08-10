@@ -7,7 +7,7 @@ To accompany user’s utterances with activities in the app UI, you can send com
 
 To send a command, use the ``play()`` function in the voice script and pass a JSON object to it. The JSON object contains the command name and, optionally, arbitrary data to be provided to the app. To handle the command on the client side, set up the logic in the ``onCommand`` handler in the app.
 
-For details, see `Sending commands to the app <../../server-api/commands-and-responses#sending-commands-to-the-app>`__.
+For details, see :doc:`Sending commands to the app <../../server-api/commands-and-responses#sending-commands-to-the-app>`.
 
 Examples
 --------

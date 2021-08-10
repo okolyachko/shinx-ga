@@ -5,8 +5,7 @@
 Building a voice assistant for a React app
 ==========================================
 
-You can create a voice assistant or chatbot and embed it to your React app with Alan's `voice assistant SDK for
-Web <../../client-api/web/web-api>`__. In this tutorial, we will create a simple voice enabled React app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
+You can create a voice assistant or chatbot and embed it to your React app with Alan's :doc:`voice assistant SDK for Web <../../client-api/web/web-api>`. In this tutorial, we will create a simple voice enabled React app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
 
 What you will learn
 -------------------
@@ -88,7 +87,7 @@ Now we need to update our app to add the Alan button to it.
       import React, { useEffect } from 'react';
 
    .. note:: 
-      For an app that uses React Class Components, you can add the Alan button with ``componentDidMount()``. For details, see `React <../../client-api/web/react>`__.
+      For an app that uses React Class Components, you can add the Alan button with ``componentDidMount()``. For details, see :doc:`React <../../client-api/web/react>`.
 
 4. In the function component, call ``useEffect``:
 
@@ -137,7 +136,7 @@ Now we need to update our app to add the Alan button to it.
 Step 5. Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__  so that we can interact with our React app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>`  so that we can interact with our React app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
 
 .. code:: javascript
 

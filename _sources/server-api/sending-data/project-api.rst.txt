@@ -12,7 +12,7 @@ To use the project API, you need to define a project API method with an arbitrar
       callback();
     };
 
-The defined project API method must then be called in the client app with `callProjectApi() <../../client-api/methods/common-api#callprojectapi>`__. ``callProjectApi()`` takes the following arguments: 
+The defined project API method must then be called in the client app with :doc:`callProjectApi() <../../client-api/methods/common-api#callprojectapi>`. ``callProjectApi()`` takes the following arguments: 
 
 - Name of the project API method defined in the voice script 
 - Data to be sent to the voice script 
@@ -63,7 +63,7 @@ In the client app, the result value specified for the callback: ``Feedback is re
 See also
 --------
 
-`Client API methods <../../client-api/methods/common-api>`__
+:doc:`Client API methods <../../client-api/methods/common-api>`
 
 .. raw:: html
 

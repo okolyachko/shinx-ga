@@ -21,10 +21,10 @@ In the example below, we define the ``D`` slot with the ``today`` value.
         p.play('It is great!');
     });
 
-When defining possible slot values, you can use the same rules as with `patterns <patterns>`__. You can:
+When defining possible slot values, you can use the same rules as with :doc:`patterns <patterns>`. You can:
 
--  List `multiple alternatives <patterns#patterns-with-alternatives>`__ separated with the \| delimiter.
--  Make slots `optional <patterns#optional-alternatives>`__ by adding another \| delimiter at the end of the slot.
+-  List :doc:`multiple alternatives <patterns#patterns-with-alternatives>` separated with the ``|`` delimiter.
+-  Make slots :doc:`optional <patterns#optional-alternatives>` by adding another ``|`` delimiter at the end of the slot.
 
 .. code:: javascript
 
@@ -89,8 +89,8 @@ In the example below, we use labels to adjust the logic of intents and provide m
 Slot values in responses
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can use slots in `patterns <patterns>`__ for response functions: `play  <api/api-reference#play>`__ and
-`reply <api/api-reference#reply>`__. Use the standard JavaScript syntax for template strings, that is, offset in backticks.
+You can use slots in :doc:`patterns <patterns>` for response functions: :doc:`play  <api/api-reference#play>` and
+:doc:`reply <api/api-reference#reply>`. Use the standard JavaScript syntax for template strings, that is, offset in backticks.
 
 You can also add slots to the string line.
 
@@ -115,7 +115,7 @@ You can also add slots to the string line.
 Regular expressions
 -------------------
 
-You can use regular expressions in `patterns <patterns>`__. To do this, you need to add ``*`` character to the slot name. This will signal Alan that this slot contains RegEx.
+You can use regular expressions in :doc:`patterns <patterns>`. To do this, you need to add ``*`` character to the slot name. This will signal Alan that this slot contains RegEx.
 
 For example, if you want to match the ``I want $(FLAVOUR) ice cream`` command, but you don’t know all possible flavours in advance, you can use the following expression:
 
@@ -131,7 +131,7 @@ For example, if you want to match the ``I want $(FLAVOUR) ice cream`` command, b
 
    If you need to use special characters in RegEx, you should escape them with ``\``. Such characters are: ``\``, ``'``.
 
-You can use regular expressions of any complexity. In the example below, the `intent <api/api-reference#intent>`__ will match all combinations of six letters and any number of digits going after the ``incident`` word. This will help if you need your users to input some uncommon abbreviations.
+You can use regular expressions of any complexity. In the example below, the :doc:`intent <api/api-reference#intent>` will match all combinations of six letters and any number of digits going after the ``incident`` word. This will help if you need your users to input some uncommon abbreviations.
 
 .. code:: javascript
 
@@ -227,8 +227,8 @@ The ``DATE`` slot matches the user's input when it can be represented as a corre
 
 Each ``DATE`` slot contains two special fields:
 
--  ``moment``: date object from the `moment.js <built-in-javascript-libraries#moment-timezone>`__ library 
--  ``luxon``: the `luxon <built-in-javascript-libraries#luxon>`__ date object
+-  ``moment``: date object from the :doc:`moment.js <built-in-javascript-libraries#moment-timezone>` library 
+-  ``luxon``: the :doc:`luxon <built-in-javascript-libraries#luxon>` date object
 
 You can call all available methods for date formatting or any kind of calculations on dates. These two objects already use the date in the user timezone which is also always available in ``p.timeZone``.
 

@@ -6,7 +6,7 @@ Alan button popups
 
 To make the Alan button more noticeable and engage users to interact with the voice assistant, you can show a popup window next to the Alan button in your app. The popup window can be styled in any way you like and provide any hint to the user.
 
-To display a popup window, use the ``showPopup()`` function in the script. You can show popups, for example, when the user launches your app or gives a specific voice command. In the example below, the popup window is displayed when the app is launched and the user activates the voice assistant for the first time. For more details, see `User events <user-data/events>`__.
+To display a popup window, use the ``showPopup()`` function in the script. You can show popups, for example, when the user launches your app or gives a specific voice command. In the example below, the popup window is displayed when the app is launched and the user activates the voice assistant for the first time. For more details, see :doc:`User events <user-data/events>`.
 
 .. code:: js
 

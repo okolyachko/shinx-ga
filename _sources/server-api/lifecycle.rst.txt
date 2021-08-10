@@ -23,12 +23,12 @@ As the dialog transitions from state to state, you may need to adjust the voice 
 
 Here is a list of callbacks that can be used in Alan:
 
--  `onCreateProject <api/api-reference#oncreateproject>`__: This callback is invoked when the project is created and the project model is built. You can perform any initialization activities that may be required for your voice assistant.
--  `onCreateUser <api/api-reference#oncreateuser>`__: This callback is invoked when a new user connects to Alan and starts the dialog session. Here, for example, you can set user-specific data.
--  `onCleanupUser <api/api-reference#oncleanupuser>`__: This callback is invoked when the user disconnects from Alan or the dialog is closed. Here you can perform any cleanup activities or save the user data.
--  `onVisualState <api/api-reference#onvisualstate>`__: This callback is invoked when the visual state is sent from the client app.
--  `onEnter <api/api-reference#onenter>`__: This callback is invoked when a context added to the script is activated.
--  `onUserEvent <api/api-reference#onuserevent>`__: This callback invoked when Alan emits events driven by users’ interactions with the voice assistant in the app.
+-  :doc:`onCreateProject <api/api-reference#oncreateproject>`: This callback is invoked when the project is created and the project model is built. You can perform any initialization activities that may be required for your voice assistant.
+-  :doc:`onCreateUser <api/api-reference#oncreateuser>`: This callback is invoked when a new user connects to Alan and starts the dialog session. Here, for example, you can set user-specific data.
+-  :doc:`onCleanupUser <api/api-reference#oncleanupuser>`: This callback is invoked when the user disconnects from Alan or the dialog is closed. Here you can perform any cleanup activities or save the user data.
+-  :doc:`onVisualState <api/api-reference#onvisualstate>`: This callback is invoked when the visual state is sent from the client app.
+-  :doc:`onEnter <api/api-reference#onenter>`: This callback is invoked when a context added to the script is activated.
+-  :doc:`onUserEvent <api/api-reference#onuserevent>`: This callback invoked when Alan emits events driven by users’ interactions with the voice assistant in the app.
 
 .. raw:: html
 

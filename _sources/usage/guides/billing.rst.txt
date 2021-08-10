@@ -103,7 +103,7 @@ To get free interactions:
 See also
 --------
 
-`Billing FAQ <../additional/faq#billing>`__
+:doc:`Billing FAQ <../additional/faq#billing>`
 
 .. raw:: html
 

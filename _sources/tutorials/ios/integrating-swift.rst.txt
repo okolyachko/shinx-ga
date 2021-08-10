@@ -5,7 +5,7 @@
 Building a voice assistant for an iOS Swift app
 ===============================================
 
-You can create a voice assistant or chatbot like Siri and embed it to your iOS Swift app with Alan's `voice assistant SDK for iOS <../../client-api/ios/ios-api>`__. In this tutorial, we will create a single view iOS app with Alan voice and test drive it on a simulator.
+You can create a voice assistant or chatbot like Siri and embed it to your iOS Swift app with Alan's :doc:`voice assistant SDK for iOS <../../client-api/ios/ios-api>`. In this tutorial, we will create a single view iOS app with Alan voice and test drive it on a simulator.
 The app users will be able to tap the Alan button and give custom voice commands, and Alan will reply to them.
 
 What you will learn
@@ -20,7 +20,7 @@ What you will need
 To go through this tutorial, make sure the following prerequisites are met:
 
 -  You have signed up to Alan Studio.
--  You have `created a project <../../usage/guides/projects>`__ in Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
 -  You have set up Xcode on your computer.
 
 .. tip:: 
@@ -50,8 +50,8 @@ Step 2: Add the Alan iOS SDK to the project
 
 The next step is to add the Alan iOS SDK to the app project. There are two ways to do it: 
 
-- with `CocoaPods <../../client-api/ios/ios-api#set-up-an-xcode-project-with-cocoapods>`__
-- `manually <../../client-api/ios/ios-api#set-up-an-xcode-project-manually>`__
+- with :doc:`CocoaPods <../../client-api/ios/ios-api#set-up-an-xcode-project-with-cocoapods>`
+- :doc:`manually <../../client-api/ios/ios-api#set-up-an-xcode-project-manually>`
 
 Let's add the SDK manually: 
 
@@ -178,7 +178,7 @@ Run the app. Here is our app running on the simulator. The app displays an alert
 Step 5: Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -207,6 +207,6 @@ What's next?
 
 You can now proceed to building a voice interface with Alan. Here are some helpful resources:
 
--  Have a look at the next tutorial: `Navigating between views in an iOS Swift app <navigating-swift>`__.
--  Go to `Server API <../../server-api/script-concepts>`__ to learn about Alan concepts and functionality you can use to create a voice script.
+-  Have a look at the next tutorial: :doc:`Navigating between views in an iOS Swift app <navigating-swift>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
 -  In Alan Git, get the `iOS Swift example app <https://github.com/alan-ai/alan-sdk-ios/tree/master/examples/alan-example-integration-swift>`__. Use this example app to see how integration for iOS apps can be implemented.

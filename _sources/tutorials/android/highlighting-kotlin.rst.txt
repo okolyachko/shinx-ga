@@ -16,7 +16,7 @@ What you will learn
 
 -  How to go through the list of items with voice
 -  How to accompany voice commands with visual effects in an app
--  How to use `visual state <../../server-api/sending-data/visual-state>`__ to send custom data to the voice script
+-  How to use :doc:`visual state <../../server-api/sending-data/visual-state>` to send custom data to the voice script
 
 What you will need
 ------------------
@@ -242,7 +242,7 @@ Let's add a set of elements that will make the RecyclerView display our items:
 Step 2: Send information about items to the voice script
 --------------------------------------------------------
 
-In our voice command, we will name items available in the list. For this reason, we need to send information about these items to the Alan script. To do this, we will use Alan's `visual state <../../server-api/sending-data/visual-state>`__.
+In our voice command, we will name items available in the list. For this reason, we need to send information about these items to the Alan script. To do this, we will use Alan's :doc:`visual state <../../server-api/sending-data/visual-state>`.
 
 In the project, open the ``MainActivity.kt`` file and in the ``onCreate()`` function of the ``MainActivity`` class, add the following:
 
@@ -262,7 +262,7 @@ In the project, open the ``MainActivity.kt`` file and in the ``onCreate()`` func
     }
 
 Here we add items from the list to a JSON array and send this array to the voice script with the
-`setVisualState <../../client-api/methods/common-api#setvisualstate>`__ method of the Alan button. On the voice script side, we will access the items array by addressing the ``p.visual.items`` variable.
+:doc:`setVisualState <../../client-api/methods/common-api#setvisualstate>` method of the Alan button. On the voice script side, we will access the items array by addressing the ``p.visual.items`` variable.
 
 Step 3: Add a voice command to pass through the items list
 ----------------------------------------------------------
@@ -298,7 +298,7 @@ Step 4: Add the command handler to the app
 When the user says: ``List all available items``, our app receives a set of commands to highlight current items. Let's handle the ``highlight`` command on the app side and call the ``turnHighlight()`` function so
 that a specific item is visually selected in the UI.
 
-In the IDE, open the ``MainActivity.kt`` file and in the ``MainActivity`` class, inside the ``onCreate`` function, register the `Alan callback <../../client-api/android/android-api#handle-events-from-the-alan-android-sdk>`__ to handle events received from the Alan voice script:
+In the IDE, open the ``MainActivity.kt`` file and in the ``MainActivity`` class, inside the ``onCreate`` function, register the :doc:`Alan callback <../../client-api/android/android-api#handle-events-from-the-alan-android-sdk>` to handle events received from the Alan voice script:
 
 .. code:: kotlin
 

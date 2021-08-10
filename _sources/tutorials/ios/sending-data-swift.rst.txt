@@ -9,8 +9,8 @@ When the user interacts with an iOS app, it may be necessary to send some data f
 
 In Alan, you can send data from the app to the voice script in the following ways:
 
--  With `visual state <../../server-api/sending-data/visual-state>`__
--  With `project API <../../server-api/sending-data/project-api>`__
+-  With :doc:`visual state <../../server-api/sending-data/visual-state>`
+-  With :doc:`project API <../../server-api/sending-data/project-api>`
 
 In this tutorial, we will work with an iOS app with two views. We will send information about the current view to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:
 
@@ -50,7 +50,7 @@ To send the visual state to the voice script, let's do the following:
       ...
       }
 
-   In this function, we call the `setVisualState() <../../client-api/methods/common-api#setvisualstate>`__ method of the Alan button and pass ``state`` in it.
+   In this function, we call the :doc:`setVisualState() <../../client-api/methods/common-api#setvisualstate>` method of the Alan button and pass ``state`` in it.
 
 2. In the project tree in Xcode, Control click the app folder and select **New File**. In the **Source** section, select **Cocoa Touch Class** and click **Next**. Name the class, for example,
    ``FirstViewController`` and click **Next**. Then click **Create**. A new file named ``FirstViewController.swift`` will be added to your app folder.
@@ -147,7 +147,7 @@ You can test it: run the app on the simulator and ask: ``What view is this?`` Al
 Step 3: Create a view-specific command
 --------------------------------------
 
-If an app has several views, it may be necessary to create voice commands that will work for specific views only. In Alan, you can create view-specific commands with the help of `filters <../../server-api/sending-data/visual-state#filtering-commands>`__ added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open view as the filter.
+If an app has several views, it may be necessary to create voice commands that will work for specific views only. In Alan, you can create view-specific commands with the help of :doc:`filters <../../server-api/sending-data/visual-state#filtering-commands>` added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open view as the filter.
 
 Let's modify the intent for getting back to the initial view. This command must work only if the second view is open; we cannot say ``Go back`` when at the initial view. In Alan Studio, update this intent to the following:
 
@@ -175,4 +175,4 @@ After you pass through this tutorial, you will have an iOS app with two views an
 What's next?
 ------------
 
-Have a look at the next tutorial: `Highlighting items with voice <highlighting-swift>`__.
+Have a look at the next tutorial: :doc:`Highlighting items with voice <highlighting-swift>`.

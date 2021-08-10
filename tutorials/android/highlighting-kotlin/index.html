@@ -398,7 +398,7 @@
 <ul class="simple">
 <li><p>How to go through the list of items with voice</p></li>
 <li><p>How to accompany voice commands with visual effects in an app</p></li>
-<li><p>How to use <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a> to send custom data to the voice script</p></li>
+<li><p>How to use <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a> to send custom data to the voice script</p></li>
 </ul>
 </div>
 <div class="section" id="what-you-will-need">
@@ -603,7 +603,7 @@ android:layout_marginTop="64dp"
 </div>
 <div class="section" id="step-2-send-information-about-items-to-the-voice-script">
 <h2>Step 2: Send information about items to the voice script<a class="headerlink" href="#step-2-send-information-about-items-to-the-voice-script" title="Permalink to this headline">¶</a></h2>
-<p>In our voice command, we will name items available in the list. For this reason, we need to send information about these items to the Alan script. To do this, we will use Alan’s <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a>.</p>
+<p>In our voice command, we will name items available in the list. For this reason, we need to send information about these items to the Alan script. To do this, we will use Alan’s <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a>.</p>
 <p>In the project, open the <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> file and in the <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> class, add the following:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
@@ -620,7 +620,7 @@ android:layout_marginTop="64dp"
 </pre></div>
 </div>
 <p>Here we add items from the list to a JSON array and send this array to the voice script with the
-<a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState</a> method of the Alan button. On the voice script side, we will access the items array by addressing the <code class="docutils literal notranslate"><span class="pre">p.visual.items</span></code> variable.</p>
+<span class="xref std std-doc">setVisualState</span> method of the Alan button. On the voice script side, we will access the items array by addressing the <code class="docutils literal notranslate"><span class="pre">p.visual.items</span></code> variable.</p>
 </div>
 <div class="section" id="step-3-add-a-voice-command-to-pass-through-the-items-list">
 <h2>Step 3: Add a voice command to pass through the items list<a class="headerlink" href="#step-3-add-a-voice-command-to-pass-through-the-items-list" title="Permalink to this headline">¶</a></h2>
@@ -649,7 +649,7 @@ android:layout_marginTop="64dp"
 <h2>Step 4: Add the command handler to the app<a class="headerlink" href="#step-4-add-the-command-handler-to-the-app" title="Permalink to this headline">¶</a></h2>
 <p>When the user says: <code class="docutils literal notranslate"><span class="pre">List</span> <span class="pre">all</span> <span class="pre">available</span> <span class="pre">items</span></code>, our app receives a set of commands to highlight current items. Let’s handle the <code class="docutils literal notranslate"><span class="pre">highlight</span></code> command on the app side and call the <code class="docutils literal notranslate"><span class="pre">turnHighlight()</span></code> function so
 that a specific item is visually selected in the UI.</p>
-<p>In the IDE, open the <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> file and in the <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> class, inside the <code class="docutils literal notranslate"><span class="pre">onCreate</span></code> function, register the <a class="reference external" href="../../client-api/android/android-api#handle-events-from-the-alan-android-sdk">Alan callback</a> to handle events received from the Alan voice script:</p>
+<p>In the IDE, open the <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> file and in the <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> class, inside the <code class="docutils literal notranslate"><span class="pre">onCreate</span></code> function, register the <span class="xref std std-doc">Alan callback</span> to handle events received from the Alan voice script:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
   <span class="p">...</span>

@@ -6,7 +6,7 @@ Step 6: Pick out important data with slots
 ==========================================
 
 In our app, users can order different items: pepperoni, burritos, burgers and so on. To capture the user's choice, we will add a
-`user-defined slot <../../server-api/slots#user-defined-slots>`__ to the voice command. Slots allow Alan to identify and retrieve the necessary information from the user's input.
+:doc:`user-defined slot <../../server-api/slots#user-defined-slots>` to the voice command. Slots allow Alan to identify and retrieve the necessary information from the user's input.
 
 1. To define a slot, enter ``$`` followed by brackets. In brackets, provide the slot name and a list of values separated with ``|``.
 

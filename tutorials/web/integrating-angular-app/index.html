@@ -390,8 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="building-a-voice-assistant-for-an-angular-app">
 <h1>Building a voice assistant for an Angular app<a class="headerlink" href="#building-a-voice-assistant-for-an-angular-app" title="Permalink to this headline">¶</a></h1>
-<p>You can create a voice assistant or chatbot and embed it to your Angular app with Alan’s <a class="reference external" href="../../client-api/web/web-api">voice assistant SDK for
-Web</a>. In this tutorial, we will create a simple voice enabled Angular app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to
+<p>You can create a voice assistant or chatbot and embed it to your Angular app with Alan’s <a class="reference internal" href="../../../client-api/web/web-api/"><span class="doc">voice assistant SDK for Web</span></a>. In this tutorial, we will create a simple voice enabled Angular app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to
 them.</p>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
@@ -491,7 +490,7 @@ Studio project. In Alan Studio, at the top of the code editor, click <strong>Int
 </div>
 <div class="section" id="step-5-add-voice-commands">
 <h2>Step 5. Add voice commands<a class="headerlink" href="#step-5-add-voice-commands" title="Permalink to this headline">¶</a></h2>
-<p>Let’s add some <a class="reference external" href="../../server-api/commands-and-responses">voice commands</a> so that we can interact with our Angular app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:</p>
+<p>Let’s add some <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">voice commands</span></a> so that we can interact with our Angular app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span> <span class="p">(</span><span class="sb">`What is your name?`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`It's Alan, and yours?`</span><span class="p">);</span>
 <span class="p">});</span>

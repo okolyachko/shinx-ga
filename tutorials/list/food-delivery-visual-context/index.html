@@ -395,10 +395,10 @@
 <li><p>If no items are added to the cart on the page, the voice assistant will inform the user about it.</p></li>
 <li><p>Otherwise, it will list all items added to the cart.</p></li>
 </ul>
-<p>For this step, we will use Alan’s <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a>. This predefined object
+<p>For this step, we will use Alan’s <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a>. This predefined object
 allows you to get information about the app visual context, such as what page is currently open or what data is displayed, and send it to the voice script.</p>
 <ol class="arabic">
-<li><p>In the app, update the <code class="docutils literal notranslate"><span class="pre">changeOrder()</span></code> function to call the <a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState() method</a>.</p>
+<li><p>In the app, update the <code class="docutils literal notranslate"><span class="pre">changeOrder()</span></code> function to call the <span class="xref std std-doc">setVisualState() method</span>.</p>
 <p>With the help of this method, we will send the information about the visual state of the app to the voice script. To the method, you can pass any object; in our case, it will be the <code class="docutils literal notranslate"><span class="pre">order</span></code> object we have in the app.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">changeOrder</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">number</span> <span class="o">=</span> <span class="p">(</span><span class="nx">order</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">?</span> <span class="nx">order</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">:</span> <span class="mf">0</span><span class="p">)</span> <span class="o">+</span> <span class="nx">quantity</span><span class="p">;</span>
@@ -428,7 +428,7 @@ allows you to get information about the app visual context, such as what page is
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>The visual state data sent from the app is accessible through <a class="reference external" href="../../server-api/objects#visual">Alan’s visual object</a>. In these commands, the object is used as a <a class="reference external" href="../../server-api/sending-data/visual-state#filtering-commands">filter</a>: if the object contains any data, the first command is matched. Otherwise, Alan matches the second command.</p>
+<p>The visual state data sent from the app is accessible through <span class="xref std std-doc">Alan’s visual object</span>. In these commands, the object is used as a <span class="xref std std-doc">filter</span>: if the object contains any data, the first command is matched. Otherwise, Alan matches the second command.</p>
 </li>
 <li><p>To make sure our voice assistant is context-aware, we should also update the voice command for removing items from the cart. If the item is not yet in the cart, Alan must inform the user about it; otherwise, it will remove the named items.</p>
 <p>In the voice script, replace the command for removing items with the following one:</p>

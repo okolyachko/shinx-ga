@@ -5,7 +5,7 @@
 Step 14: Capture a comment
 ==========================
 
-The user may leave a comment to the order, which can be any phrase. To capture an open-end phrase, we can use a `slot with a greedy RegEx <../../server-api/slots#getting-any-user-input>`__.
+The user may leave a comment to the order, which can be any phrase. To capture an open-end phrase, we can use a :doc:`slot with a greedy RegEx <../../server-api/slots#getting-any-user-input>`.
 
 1. To the voice script, add the ``getComment`` context with a command to capture the user's comment:
 

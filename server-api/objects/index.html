@@ -409,13 +409,13 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Init value is "</span> <span class="o">+</span> <span class="nx">project</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">initValue</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>To store data in <code class="docutils literal notranslate"><span class="pre">project</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">onCreateProject</span></code> callback. For details, see <a class="reference external" href="api/api-reference#predefined-callbacks">Predefined
-callbacks</a>.</p>
+<p>To store data in <code class="docutils literal notranslate"><span class="pre">project</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">onCreateProject</span></code> callback. For details, see <span class="xref std std-doc">Predefined
+callbacks</span>.</p>
 </div>
 <div class="section" id="state">
 <h2>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">state</span></code> can be used if you work with contexts in the voice script. Every context has a predefined <code class="docutils literal notranslate"><span class="pre">state</span></code> object. You can think of <code class="docutils literal notranslate"><span class="pre">state</span></code> as a dictionary or knowledge base in which you can store any information you need.</p>
-<p>The data stored in <code class="docutils literal notranslate"><span class="pre">state</span></code> is available in the current conversational context and can be accessed through the <code class="docutils literal notranslate"><span class="pre">p.state</span></code> variable in the script. When a new context is activated, you can send this data to it or overwrite it with the <code class="docutils literal notranslate"><span class="pre">then</span></code> function. For details, see <a class="reference external" href="contexts#sharing-information-between-contexts">Sharing information between contexts</a>.</p>
+<p>The data stored in <code class="docutils literal notranslate"><span class="pre">state</span></code> is available in the current conversational context and can be accessed through the <code class="docutils literal notranslate"><span class="pre">p.state</span></code> variable in the script. When a new context is activated, you can send this data to it or overwrite it with the <code class="docutils literal notranslate"><span class="pre">then</span></code> function. For details, see <span class="xref std std-doc">Sharing information between contexts</span>.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">startGame</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">follow</span><span class="p">(</span><span class="s1">'What is my current score?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
         <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Your score is </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
@@ -442,12 +442,12 @@ callbacks</a>.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>To store and reset data in <code class="docutils literal notranslate"><span class="pre">userData</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">onCreateUser</span></code> and <code class="docutils literal notranslate"><span class="pre">onCleanupUser</span></code> callbacks. For details, see <a class="reference external" href="api/api-reference#predefined-callbacks">Predefined callbacks</a>.</p>
+<p>To store and reset data in <code class="docutils literal notranslate"><span class="pre">userData</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">onCreateUser</span></code> and <code class="docutils literal notranslate"><span class="pre">onCleanupUser</span></code> callbacks. For details, see <span class="xref std std-doc">Predefined callbacks</span>.</p>
 </div>
 <div class="section" id="visual">
 <h2>visual<a class="headerlink" href="#visual" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">visual</span></code> object is used to store the visual state that is received from the client app. You can use this object to differentiate and filter commands in the voice script based on the current visual context of your app.</p>
-<p>The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions. For details, see <a class="reference external" href="sending-data/visual-state">Visual state</a>.</p>
+<p>The visual state object is different and independent for every user of your app. This object is session-specific: it does not persist between voice sessions. For details, see <a class="reference internal" href="../sending-data/visual-state/"><span class="doc">Visual state</span></a>.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span>
     <span class="s1">'What (screen|) is this?'</span><span class="p">,</span>
     <span class="s1">'Where am I?'</span><span class="p">,</span>

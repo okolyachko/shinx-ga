@@ -5,7 +5,7 @@
 Building a voice assistant for an Ionic Angular app
 ===================================================
 
-You can create a voice assistant or chatbot and embed it to your Ionic Angular app with Alan's `voice assistant SDK for Ionic <../../client-api/cross-platform/ionic>`__. In this tutorial, we will create a simple Ionic app with three tabs. The app users will be able to tap the Alan button and give custom voice commands on each tab, and Alan will reply to them.
+You can create a voice assistant or chatbot and embed it to your Ionic Angular app with Alan's :doc:`voice assistant SDK for Ionic <../../client-api/cross-platform/ionic>`. In this tutorial, we will create a simple Ionic app with three tabs. The app users will be able to tap the Alan button and give custom voice commands on each tab, and Alan will reply to them.
 
 What you will learn
 -------------------
@@ -19,7 +19,7 @@ What you will need
 To go through this tutorial, make sure the following prerequisites are met:
 
 -  You have signed up to Alan Studio.
--  You have `created a project <../../usage/guides/projects>`__ in Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
 -  The environment for using the Ionic framework is properly set up. For details, see `Ionic documentation <https://ionicframework.com/docs/intro/environment>`__.
 
 .. tip:: 
@@ -202,7 +202,7 @@ Run the app. On all app tabs, we can see the Alan button. Click it and say: ``He
 Step 5. Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -221,6 +221,6 @@ What's next?
 
 You can now proceed to building a voice interface with Alan. Use the following resources:
 
--  Have a look at the next tutorial: `Navigating between tabs in an Ionic Angular app <navigating-angular>`__.
--  Go to `Server API <../../server-api/script-concepts>`__ to learn about Alan concepts and functionality you can use to create a voice script.
+-  Have a look at the next tutorial: :doc:`Navigating between tabs in an Ionic Angular app <navigating-angular>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
 -  In Alan Git, get the Alan Food Delivery Ionic app. Use this app to explore how a voice interface for a delivery app can be built.

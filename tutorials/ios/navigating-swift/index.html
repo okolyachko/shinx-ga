@@ -401,15 +401,15 @@
 </div>
 <div class="section" id="what-you-will-need">
 <h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
-<p>To go through this tutorial, make sure you have completed the following tutorial: <a class="reference external" href="integrating-swift">Building a voice assistant for an iOS Swift app</a>. You can also use an example app provided by Alan: <a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip">SwiftTutorial.part1.zip</a>. This is an XCode project of the app already integrated with Alan.</p>
+<p>To go through this tutorial, make sure you have completed the following tutorial: <a class="reference internal" href="../integrating-swift/"><span class="doc">Building a voice assistant for an iOS Swift app</span></a>. You can also use an example app provided by Alan: <a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip">SwiftTutorial.part1.zip</a>. This is an XCode project of the app already integrated with Alan.</p>
 </div>
 <div class="section" id="step-1-add-a-new-view-to-the-app">
 <h2>Step 1: Add a new view to the app<a class="headerlink" href="#step-1-add-a-new-view-to-the-app" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This step is required if you are using the starter iOS app created in the <a class="reference external" href="integrating-swift">previous tutorial</a>. You can also use your own app with several views. In this case, skip this step and go to <a class="reference external" href="#step-2-add-voice-commands-to-navigate-between-views">step 2</a>.</p>
+<p>This step is required if you are using the starter iOS app created in the <a class="reference internal" href="../integrating-swift/"><span class="doc">previous tutorial</span></a>. You can also use your own app with several views. In this case, skip this step and go to <a class="reference external" href="#step-2-add-voice-commands-to-navigate-between-views">step 2</a>.</p>
 </div>
-<p>In the <a class="reference external" href="integrating-swift">Building a voice assistant for an iOS Swift app</a> tutorial, we have created an iOS app with a single view, and added the Alan button to it. Let’s add a new view to this app. We will use the Navigation Controller to manage the app views.</p>
+<p>In the <a class="reference internal" href="../integrating-swift/"><span class="doc">Building a voice assistant for an iOS Swift app</span></a> tutorial, we have created an iOS app with a single view, and added the Alan button to it. Let’s add a new view to this app. We will use the Navigation Controller to manage the app views.</p>
 <ol class="arabic">
 <li><p>In Xcode, open the app’s storyboard: <code class="docutils literal notranslate"><span class="pre">Main.storyboard</span></code>.</p></li>
 <li><p>In the storyboard, select the app view by clicking the view dock.</p></li>
@@ -435,7 +435,7 @@
 </div>
 <div class="section" id="step-2-add-voice-commands-to-navigate-between-views">
 <h2>Step 2: Add voice commands to navigate between views<a class="headerlink" href="#step-2-add-voice-commands-to-navigate-between-views" title="Permalink to this headline">¶</a></h2>
-<p>We can navigate between views using the app’s UI. Now we need to add new <a class="reference external" href="../../server-api/commands-and-responses">commands</a> to the Alan script to navigate between views with voice. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<p>We can navigate between views using the app’s UI. Now we need to add new <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">commands</span></a> to the Alan script to navigate between views with voice. In Alan Studio, open the project and in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="sb">`Navigate forward`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
         <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s1">'navigation'</span><span class="p">,</span> <span class="nx">route</span><span class="o">:</span> <span class="s1">'forward'</span><span class="p">});</span>
         <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Navigating forward`</span><span class="p">);</span>
@@ -558,7 +558,7 @@ You can get an example of such an app from the Alan GitHub to make sure you have
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Have a look at the next tutorial: <a class="reference external" href="sending-data-swift">Passing the app state to the voice script</a>.</p>
+<p>Have a look at the next tutorial: <a class="reference internal" href="../sending-data-swift/"><span class="doc">Passing the app state to the voice script</span></a>.</p>
 </div>
 </div>
 

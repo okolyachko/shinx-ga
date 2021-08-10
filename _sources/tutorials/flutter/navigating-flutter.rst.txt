@@ -19,8 +19,8 @@ What you will need
 
 To go through this tutorial, make sure the following prerequisites are met:
 
--  You have completed the following tutorial: `Building a voice assistant for a Flutter
-   app <integrating-flutter.html>`__.
+-  You have completed the following tutorial: :doc:`Building a voice assistant for a Flutter
+   app <integrating-flutter>`.
 -  You have set up the Flutter environment and it is functioning properly. For details, see Flutter documentation.
 -  The device on which you are planning to test drive the Flutter app is connected to the Internet. The Internet connection is required to let the Flutter app communicate with the voice script run in the Alan Cloud.
 
@@ -29,9 +29,9 @@ Step 1: Add a new screen to the Flutter app
 
 .. note::
 
-   This step is required if you are using the Flutter app created in the `previous tutorial <integrating-flutter.html>`__. You can also use your own app with several screens. In this case, skip this step and go to `step 2 <#step-2-add-voice-commands-for-navigation>`__.
+   This step is required if you are using the Flutter app created in the :doc:`previous tutorial <integrating-flutter>`. You can also use your own app with several screens. In this case, skip this step and go to `step 2 <#step-2-add-voice-commands-for-navigation>`__.
 
-In the `Adding voice to a Flutter app <integrating-flutter.html>`__ tutorial, we have created a single-screen Flutter app with the Alan button. Now let's add a new screen to this app.
+In the :doc:`Building a voice assitant for a Flutter app <integrating-flutter>` tutorial, we have created a single-screen Flutter app with the Alan button. Now let's add a new screen to this app.
 
 Open the app, go to the ``main.dart`` file and add the code for the second screen:
 
@@ -97,7 +97,7 @@ You can test it: run the app. Now our app has two screens, and we can navigate b
 Step 2: Add voice commands for navigation
 -----------------------------------------
 
-We need to add new `commands <../../server-api/commands-and-responses.html>`__ to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:
+We need to add new :doc:`commands <../../server-api/commands-and-responses>` to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -190,5 +190,5 @@ You can test it: run the app on the device, tap the Alan button and say: ``Navig
 What's next?
 ------------
 
-Have a look at the next tutorial: `Passing the app state to the voice
-script <sending-data-flutter>`__.
+Have a look at the next tutorial: :doc:`Passing the app state to the voice
+script <sending-data-flutter>`.

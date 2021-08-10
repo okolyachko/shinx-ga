@@ -394,7 +394,7 @@
 <p>To let you organize dialogs with such commands, Alan provides contexts. Contexts are useful if you create a multi-stage conversation where some commands or dialog branches do not make sense as standalone utterances. In this case, you can place them in contexts.</p>
 <p>Consider the following script:</p>
 <img alt="../../_images/contexts.svg" src="../../_images/contexts.svg"/><p>Here the <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> and <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">the</span> <span class="pre">humidity?</span></code> questions are meaningless if put as simple intents. That’s why they should be presented as a part of a context.</p>
-<p>Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can <a class="reference external" href="#defining-contexts">define contexts</a> on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the <a class="reference external" href="#labeling-contexts">title()</a> function.</p>
+<p>Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can <span class="xref std std-doc">define contexts</span> on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the <span class="xref std std-doc">title()</span> function.</p>
 <p>Typically, contexts contain commands that are needed at a specific stage of the dialog. To let the user give commands from a context, this context must be <a class="reference external" href="#activating-contexts">activated</a>. Once the context is active, voice commands in it become active, and Alan considers them for matching. When the part of the dialog presented as a context is no longer needed, the user exits the context, and the context is <a class="reference external" href="#exiting-contexts">deactivated</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -413,7 +413,7 @@
 </div>
 <div class="section" id="activating-contexts">
 <h2>Activating contexts<a class="headerlink" href="#activating-contexts" title="Permalink to this headline">¶</a></h2>
-<p>A context is activated with the <a class="reference external" href="api/api-reference#then">then()</a> function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
+<p>A context is activated with the <span class="xref std std-doc">then()</span> function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
 it.</p>
 <p>When the parent intent is matched, the context is activated, and all commands in the context become available for matching.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What do you have?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -552,7 +552,7 @@ it.</p>
 </pre></div>
 </div>
 <img alt="../../_images/intents-in-contexts.svg" src="../../_images/intents-in-contexts.svg"/><p>In the example above, the <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> and <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">the</span> <span class="pre">humidity?</span></code> intents become active only after the parent intent to which the context is bound is matched — the user asks: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">weather</span> <span class="pre">in</span> <span class="pre">Boston?</span></code></p>
-<img alt="../../_images/intents-in-contexts-matched.svg" src="../../_images/intents-in-contexts-matched.svg"/><p>The intents in the context remain active until the context is deactivated. For details, see <a class="reference external" href="#exiting-contexts">Exiting contexts</a>.</p>
+<img alt="../../_images/intents-in-contexts-matched.svg" src="../../_images/intents-in-contexts-matched.svg"/><p>The intents in the context remain active until the context is deactivated. For details, see <span class="xref std std-doc">Exiting contexts</span>.</p>
 </div>
 <div class="section" id="nocontext-intents">
 <h3>noContext intents<a class="headerlink" href="#nocontext-intents" title="Permalink to this headline">¶</a></h3>
@@ -597,8 +597,8 @@ it.</p>
 <div class="section" id="fallbacks-in-contexts">
 <h3>Fallbacks in contexts<a class="headerlink" href="#fallbacks-in-contexts" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">fallback()</span></code> function helps you handle unexpected user’s utterances. This command is triggered if Alan does not understand what the user is saying and cannot match the user’s utterance to any command in the context. You can add a fallback to the context to prompt the user for a specific type of input or fail gracefully.</p>
-<p>Fallbacks can be used in user-defined and global contexts. For details, see <a class="reference external" href="#prompting-and-handling-user-errors">Prompting and handling user
-errors</a>.</p>
+<p>Fallbacks can be used in user-defined and global contexts. For details, see <span class="xref std std-doc">Prompting and handling user
+errors</span>.</p>
 </div>
 </div>
 <div class="section" id="using-async-contexts">

@@ -404,10 +404,10 @@ between them.</p>
 <h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul class="simple">
-<li><p>You have completed the following tutorial: <a class="reference external" href="integrating-react">Building a voice assistant for an Ionic React app</a>.</p></li>
+<li><p>You have completed the following tutorial: <a class="reference internal" href="../integrating-react/"><span class="doc">Building a voice assistant for an Ionic React app</span></a>.</p></li>
 <li><p>The environment for using the Ionic framework is properly set up. For details, see Ionic documentation.</p></li>
 </ul>
-<p>We will use an example Ionic React app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the <a class="reference external" href="integrating-react">previous tutorial</a>.</p>
+<p>We will use an example Ionic React app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the <a class="reference internal" href="../integrating-react/"><span class="doc">previous tutorial</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this tutorial, we use Ionic React Router to navigate in the app. This component is already added to the example Alan app. If you prefer using your own app for this tutorial, make sure it has Ionic React Router. For details, see <a class="reference external" href="https://ionicframework.com/docs/react/navigation">Ionic documentation</a>.</p>
@@ -415,7 +415,7 @@ between them.</p>
 </div>
 <div class="section" id="step-1-add-voice-commands-for-navigation">
 <h2>Step 1: Add voice commands for navigation<a class="headerlink" href="#step-1-add-voice-commands-for-navigation" title="Permalink to this headline">¶</a></h2>
-<p>We need to add a new <a class="reference external" href="../../server-api/commands-and-responses">command</a> to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:</p>
+<p>We need to add a new <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">command</span></a> to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Go to the $(ORDINAL) tab'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">availableTabs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">]);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">availableTabs</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORDINAL</span><span class="p">.</span><span class="nx">number</span><span class="p">))</span> <span class="p">{</span>
@@ -426,7 +426,7 @@ between them.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>The user can now give a voice command to go to a specific tab in the app. In the intent, we use the <a class="reference external" href="../../server-api/slots#ordinal">ORDINAL</a> predefined slot. This slot allows us to catch the ordinal number in the
+<p>The user can now give a voice command to go to a specific tab in the app. In the intent, we use the <span class="xref std std-doc">ORDINAL</span> predefined slot. This slot allows us to catch the ordinal number in the
 user utterance. If the caught number is <code class="docutils literal notranslate"><span class="pre">first</span></code>, <code class="docutils literal notranslate"><span class="pre">second</span></code> or <code class="docutils literal notranslate"><span class="pre">third</span></code>, the <code class="docutils literal notranslate"><span class="pre">navigation</span></code> command and the tab number will be sent from the voice script to the app. If the voice command contains some other number, Alan will report that such tab is not found.</p>
 </div>
 <div class="section" id="step-2-handle-commands-on-the-app-side">

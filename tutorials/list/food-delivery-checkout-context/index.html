@@ -390,7 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="step-12-add-the-checkout-context">
 <h1>Step 12: Add the checkout context<a class="headerlink" href="#step-12-add-the-checkout-context" title="Permalink to this headline">¶</a></h1>
-<p>After users have ordered food, they can proceed to checking out and providing the delivery details. This step makes sense only after the food is in the cart. If the user provides the delivery details at the beginning of the dialog, this would be meaningless. For this reason, we will wrap this part of the dialog in a <a class="reference external" href="../../server-api/contexts">context</a>.</p>
+<p>After users have ordered food, they can proceed to checking out and providing the delivery details. This step makes sense only after the food is in the cart. If the user provides the delivery details at the beginning of the dialog, this would be meaningless. For this reason, we will wrap this part of the dialog in a <a class="reference internal" href="../../../server-api/contexts/"><span class="doc">context</span></a>.</p>
 <p>In Alan, a context is a conversational branch, or the part of the dialog, that should become active at a specific moment of time. Let’s update our voice script:</p>
 <ol class="arabic">
 <li><p>Add a new intent for initiating checkout:</p>
@@ -400,7 +400,7 @@
 </pre></div>
 </div>
 </li>
-<li><p>Define the <code class="docutils literal notranslate"><span class="pre">checkout</span></code> context. Inside the checkout context, we will place a voice command for getting the delivery address and use the <code class="docutils literal notranslate"><span class="pre">$(LOC)</span></code> <a class="reference external" href="../../server-api/slots#loc">predefined slot</a> to capture the location:</p>
+<li><p>Define the <code class="docutils literal notranslate"><span class="pre">checkout</span></code> context. Inside the checkout context, we will place a voice command for getting the delivery address and use the <code class="docutils literal notranslate"><span class="pre">$(LOC)</span></code> <span class="xref std std-doc">predefined slot</span> to capture the location:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">checkout</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">intent</span><span class="p">(</span><span class="s1">'(My address is|It is|) $(LOC)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
         <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Your order will be delivered to </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">LOC</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
@@ -409,7 +409,7 @@
 </pre></div>
 </div>
 </li>
-<li><p>Voice commands placed in a context are inactive until the context is <a class="reference external" href="../../server-api/contexts#activating-contexts">activated</a>. We need to activate the context after the food is in the cart. Update the voice command for initiating checkout — add the <code class="docutils literal notranslate"><span class="pre">p.then()</span></code> function and pass the context name to it:</p>
+<li><p>Voice commands placed in a context are inactive until the context is <span class="xref std std-doc">activated</span>. We need to activate the context after the food is in the cart. Update the voice command for initiating checkout — add the <code class="docutils literal notranslate"><span class="pre">p.then()</span></code> function and pass the context name to it:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="nx">intent</span><span class="p">(</span><span class="sb">`That's (all|it)`</span><span class="p">,</span> <span class="s1">'(Ready to|) checkout'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
      <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'What is the delivery address?'</span><span class="p">);</span>
      <span class="c1">// Activating the checkout context</span>

@@ -391,7 +391,7 @@
         <div id="orange-background"></div><div class="section" id="step-6-pick-out-important-data-with-slots">
 <h1>Step 6: Pick out important data with slots<a class="headerlink" href="#step-6-pick-out-important-data-with-slots" title="Permalink to this headline">¶</a></h1>
 <p>In our app, users can order different items: pepperoni, burritos, burgers and so on. To capture the user’s choice, we will add a
-<a class="reference external" href="../../server-api/slots#user-defined-slots">user-defined slot</a> to the voice command. Slots allow Alan to identify and retrieve the necessary information from the user’s input.</p>
+<span class="xref std std-doc">user-defined slot</span> to the voice command. Slots allow Alan to identify and retrieve the necessary information from the user’s input.</p>
 <ol class="arabic">
 <li><p>To define a slot, enter <code class="docutils literal notranslate"><span class="pre">$</span></code> followed by brackets. In brackets, provide the slot name and a list of values separated with <code class="docutils literal notranslate"><span class="pre">|</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="hll"> <span class="nx">intent</span><span class="p">(</span><span class="s1">'(I want|I will take|Add|) (a|an|) $(ITEM pepperoni|margherita|burrito|burger|taco|apple pie), (please|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>

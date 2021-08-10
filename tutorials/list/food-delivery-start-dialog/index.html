@@ -390,7 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="step-19-let-alan-start-the-dialog">
 <h1>Step 19: Let Alan start the dialog<a class="headerlink" href="#step-19-let-alan-start-the-dialog" title="Permalink to this headline">¶</a></h1>
-<p>When users open the app, we want Alan to greet them and prompt what they can do with voice. To do this, we will use Alan’s <a class="reference external" href="../../server-api/api/api-reference#onuserevent">onUserEvent() predefined callback</a>.</p>
+<p>When users open the app, we want Alan to greet them and prompt what they can do with voice. To do this, we will use Alan’s <span class="xref std std-doc">onUserEvent() predefined callback</span>.</p>
 <p>To the voice script, add the following code:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">onUserEvent</span><span class="p">((</span><span class="nx">p</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">event</span> <span class="o">==</span> <span class="s1">'micPermissionPrompt'</span><span class="p">)</span> <span class="p">{</span>

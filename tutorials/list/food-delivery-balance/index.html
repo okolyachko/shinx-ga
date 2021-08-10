@@ -390,8 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="step-18-get-the-balance">
 <h1>Step 18: Get the balance<a class="headerlink" href="#step-18-get-the-balance" title="Permalink to this headline">¶</a></h1>
-<p>Let’s assume every user has some amount on their account and can use this money to order food. We need to show the available amount on the page when the user logs in and allow asking about it with voice. To do this, we will use <a class="reference external" href="../../server-api/sending-data/project-api">Alan’s project
-API</a>.</p>
+<p>Let’s assume every user has some amount on their account and can use this money to order food. We need to show the available amount on the page when the user logs in and allow asking about it with voice. To do this, we will use <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">Alan’s project API</span></a>.</p>
 <p>The project API functionality allows sending any information from the app to the voice script and triggering activities without a voice command. To use it, you need to do the following:</p>
 <ol class="arabic simple">
 <li><p>Define a new project API method in the voice script</p></li>
@@ -474,7 +473,7 @@ logging in, sending a request to the server and obtaining an authentication toke
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Next, update the <code class="docutils literal notranslate"><span class="pre">login()</span></code> function: we will activate the Alan button programmatically with the <a class="reference external" href="../../client-api/methods/common-api#activate">activate()</a> method and <a class="reference external" href="../../client-api/methods/common-api#callprojectapi">call the new project API method</a> we have defined. In the <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code> method, we will also pass the user’s name and obtained token to the server script:</p>
+<p>Next, update the <code class="docutils literal notranslate"><span class="pre">login()</span></code> function: we will activate the Alan button programmatically with the <span class="xref std std-doc">activate()</span> method and <span class="xref std std-doc">call the new project API method</span> we have defined. In the <code class="docutils literal notranslate"><span class="pre">callProjectApi()</span></code> method, we will also pass the user’s name and obtained token to the server script:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">login</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'username'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
@@ -507,8 +506,7 @@ logging in, sending a request to the server and obtaining an authentication toke
 </div>
 <p>Try logging in with the same credentials again. When you click <strong>Login</strong>, you will hear a message from Alan. To make the message more unique, Alan plays the user’s name passed from the app.</p>
 </li>
-<li><p>We want to allow the user to ask about the balance with voice. First, we will save the passed token to the <a class="reference external" href="../../server-api/objects#userdata">userData
-object</a>. This object can be used to store any user-specific data and pass it between intent calls. In the voice script, update the <code class="docutils literal notranslate"><span class="pre">setToken()</span></code> method:</p>
+<li><p>We want to allow the user to ask about the balance with voice. First, we will save the passed token to the <span class="xref std std-doc">userData object</span>. This object can be used to store any user-specific data and pass it between intent calls. In the voice script, update the <code class="docutils literal notranslate"><span class="pre">setToken()</span></code> method:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="nx">projectAPI</span><span class="p">.</span><span class="nx">setToken</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">param</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">param</span> <span class="o">||</span> <span class="o">!</span><span class="nx">param</span><span class="p">.</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
          <span class="nx">callback</span><span class="p">(</span><span class="s2">"error: token undefined"</span><span class="p">);</span>

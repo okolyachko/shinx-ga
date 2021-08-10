@@ -403,8 +403,8 @@
 <h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul class="simple">
-<li><p>You have completed the following tutorial: <a class="reference external" href="integrating-flutter.html">Building a voice assistant for a Flutter
-app</a>.</p></li>
+<li><p>You have completed the following tutorial: <a class="reference internal" href="../integrating-flutter/"><span class="doc">Building a voice assistant for a Flutter
+app</span></a>.</p></li>
 <li><p>You have set up the Flutter environment and it is functioning properly. For details, see Flutter documentation.</p></li>
 <li><p>The device on which you are planning to test drive the Flutter app is connected to the Internet. The Internet connection is required to let the Flutter app communicate with the voice script run in the Alan Cloud.</p></li>
 </ul>
@@ -413,9 +413,9 @@ app</a>.</p></li>
 <h2>Step 1: Add a new screen to the Flutter app<a class="headerlink" href="#step-1-add-a-new-screen-to-the-flutter-app" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This step is required if you are using the Flutter app created in the <a class="reference external" href="integrating-flutter.html">previous tutorial</a>. You can also use your own app with several screens. In this case, skip this step and go to <a class="reference external" href="#step-2-add-voice-commands-for-navigation">step 2</a>.</p>
+<p>This step is required if you are using the Flutter app created in the <a class="reference internal" href="../integrating-flutter/"><span class="doc">previous tutorial</span></a>. You can also use your own app with several screens. In this case, skip this step and go to <a class="reference external" href="#step-2-add-voice-commands-for-navigation">step 2</a>.</p>
 </div>
-<p>In the <a class="reference external" href="integrating-flutter.html">Adding voice to a Flutter app</a> tutorial, we have created a single-screen Flutter app with the Alan button. Now let’s add a new screen to this app.</p>
+<p>In the <a class="reference internal" href="../integrating-flutter/"><span class="doc">Building a voice assitant for a Flutter app</span></a> tutorial, we have created a single-screen Flutter app with the Alan button. Now let’s add a new screen to this app.</p>
 <p>Open the app, go to the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file and add the code for the second screen:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kd">class</span> <span class="nc">SecondRoute</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
@@ -474,7 +474,7 @@ app</a>.</p></li>
 </div>
 <div class="section" id="step-2-add-voice-commands-for-navigation">
 <h2>Step 2: Add voice commands for navigation<a class="headerlink" href="#step-2-add-voice-commands-for-navigation" title="Permalink to this headline">¶</a></h2>
-<p>We need to add new <a class="reference external" href="../../server-api/commands-and-responses.html">commands</a> to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<p>We need to add new <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">commands</span></a> to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="sb">`Navigate forward`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s1">'navigation'</span><span class="p">,</span> <span class="nx">route</span><span class="o">:</span> <span class="s1">'forward'</span><span class="p">});</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Navigating forward`</span><span class="p">);</span>
@@ -561,8 +561,8 @@ app</a>.</p></li>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Have a look at the next tutorial: <a class="reference external" href="sending-data-flutter">Passing the app state to the voice
-script</a>.</p>
+<p>Have a look at the next tutorial: <a class="reference internal" href="../sending-data-flutter/"><span class="doc">Passing the app state to the voice
+script</span></a>.</p>
 </div>
 </div>
 

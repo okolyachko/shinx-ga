@@ -405,10 +405,10 @@
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>When defining possible slot values, you can use the same rules as with <a class="reference external" href="patterns">patterns</a>. You can:</p>
+<p>When defining possible slot values, you can use the same rules as with <a class="reference internal" href="../patterns/"><span class="doc">patterns</span></a>. You can:</p>
 <ul class="simple">
-<li><p>List <a class="reference external" href="patterns#patterns-with-alternatives">multiple alternatives</a> separated with the | delimiter.</p></li>
-<li><p>Make slots <a class="reference external" href="patterns#optional-alternatives">optional</a> by adding another | delimiter at the end of the slot.</p></li>
+<li><p>List <span class="xref std std-doc">multiple alternatives</span> separated with the <code class="docutils literal notranslate"><span class="pre">|</span></code> delimiter.</p></li>
+<li><p>Make slots <span class="xref std std-doc">optional</span> by adding another <code class="docutils literal notranslate"><span class="pre">|</span></code> delimiter at the end of the slot.</p></li>
 </ul>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'what (is|was|would be) the weather $(D yesterday|today|tomorrow|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
@@ -462,8 +462,8 @@
 </div>
 <div class="section" id="slot-values-in-responses">
 <h3>Slot values in responses<a class="headerlink" href="#slot-values-in-responses" title="Permalink to this headline">¶</a></h3>
-<p>You can use slots in <a class="reference external" href="patterns">patterns</a> for response functions: <a class="reference external" href="api/api-reference#play">play</a> and
-<a class="reference external" href="api/api-reference#reply">reply</a>. Use the standard JavaScript syntax for template strings, that is, offset in backticks.</p>
+<p>You can use slots in <a class="reference internal" href="../patterns/"><span class="doc">patterns</span></a> for response functions: <span class="xref std std-doc">play</span> and
+<span class="xref std std-doc">reply</span>. Use the standard JavaScript syntax for template strings, that is, offset in backticks.</p>
 <p>You can also add slots to the string line.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'what (is|was|would be) the weather $(D yesterday~past|last day~past|today~now|now~now|tomorrow~future|next day~future|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Value:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
@@ -486,7 +486,7 @@
 </div>
 <div class="section" id="regular-expressions">
 <h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
-<p>You can use regular expressions in <a class="reference external" href="patterns">patterns</a>. To do this, you need to add <code class="docutils literal notranslate"><span class="pre">*</span></code> character to the slot name. This will signal Alan that this slot contains RegEx.</p>
+<p>You can use regular expressions in <a class="reference internal" href="../patterns/"><span class="doc">patterns</span></a>. To do this, you need to add <code class="docutils literal notranslate"><span class="pre">*</span></code> character to the slot name. This will signal Alan that this slot contains RegEx.</p>
 <p>For example, if you want to match the <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">want</span> <span class="pre">$(FLAVOUR)</span> <span class="pre">ice</span> <span class="pre">cream</span></code> command, but you don’t know all possible flavours in advance, you can use the following expression:</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">regIce</span> <span class="o">=</span> <span class="s2">"\\w+"</span><span class="p">;</span>
 
@@ -499,7 +499,7 @@
 <p class="admonition-title">Note</p>
 <p>If you need to use special characters in RegEx, you should escape them with <code class="docutils literal notranslate"><span class="pre">\</span></code>. Such characters are: <code class="docutils literal notranslate"><span class="pre">\</span></code>, <code class="docutils literal notranslate"><span class="pre">'</span></code>.</p>
 </div>
-<p>You can use regular expressions of any complexity. In the example below, the <a class="reference external" href="api/api-reference#intent">intent</a> will match all combinations of six letters and any number of digits going after the <code class="docutils literal notranslate"><span class="pre">incident</span></code> word. This will help if you need your users to input some uncommon abbreviations.</p>
+<p>You can use regular expressions of any complexity. In the example below, the <span class="xref std std-doc">intent</span> will match all combinations of six letters and any number of digits going after the <code class="docutils literal notranslate"><span class="pre">incident</span></code> word. This will help if you need your users to input some uncommon abbreviations.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">letters_reg</span> <span class="o">=</span> <span class="s2">"([A-Za-z]{1}\\s?){6}"</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">num_reg</span> <span class="o">=</span> <span class="s2">"(\\d+\\s?)+"</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">reg</span> <span class="o">=</span> <span class="nx">letters_reg</span><span class="o">+</span><span class="nx">num_reg</span><span class="p">;</span>
@@ -592,8 +592,8 @@
 </div>
 <p>Each <code class="docutils literal notranslate"><span class="pre">DATE</span></code> slot contains two special fields:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">moment</span></code>: date object from the <a class="reference external" href="built-in-javascript-libraries#moment-timezone">moment.js</a> library</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">luxon</span></code>: the <a class="reference external" href="built-in-javascript-libraries#luxon">luxon</a> date object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moment</span></code>: date object from the <span class="xref std std-doc">moment.js</span> library</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">luxon</span></code>: the <span class="xref std std-doc">luxon</span> date object</p></li>
 </ul>
 <p>You can call all available methods for date formatting or any kind of calculations on dates. These two objects already use the date in the user timezone which is also always available in <code class="docutils literal notranslate"><span class="pre">p.timeZone</span></code>.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="sb">`what is (my|) timezone`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>

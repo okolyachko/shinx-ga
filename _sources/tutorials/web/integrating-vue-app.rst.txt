@@ -5,7 +5,7 @@
 Building a voice assistant for a Vue app
 ========================================
 
-You can create a voice assistant or chatbot and embed it to your Vue app with Alan's `voice assistant SDK for Web <../../client-api/web/web-api>`__. In this tutorial, we will create a simple voice enabled Vue app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
+You can create a voice assistant or chatbot and embed it to your Vue app with Alan's :doc:`voice assistant SDK for Web <../../client-api/web/web-api>`. In this tutorial, we will create a simple voice enabled Vue app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
 
 What you will learn
 -------------------
@@ -123,7 +123,7 @@ Now we need to update our app to add the Alan button to it.
 Step 5. Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with our Vue app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with our Vue app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
 
 .. code:: javascript
 

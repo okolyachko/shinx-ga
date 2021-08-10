@@ -403,16 +403,16 @@
 <h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul class="simple">
-<li><p>You have completed the following tutorial: <a class="reference external" href="integrating-angular">Building a voice assistant for an Ionic Angular
-app</a>.</p></li>
+<li><p>You have completed the following tutorial: <a class="reference internal" href="../integrating-angular/"><span class="doc">Building a voice assistant for an Ionic Angular
+app</span></a>.</p></li>
 <li><p>The environment for using the Ionic framework is properly set up. For details, see <a class="reference external" href="https://ionicframework.com/docs/intro/environment">Ionic documentation</a>.</p></li>
 </ul>
-<p>We will use an example Ionic Angular app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the <a class="reference external" href="integrating-angular">previous
-tutorial</a>.</p>
+<p>We will use an example Ionic Angular app provided by Alan. You can also use your own app with several tabs. Make sure you have added the Alan button to the app as described in the <a class="reference internal" href="../integrating-angular/"><span class="doc">previous
+tutorial</span></a>.</p>
 </div>
 <div class="section" id="step-1-add-voice-commands-for-navigation">
 <h2>Step 1: Add voice commands for navigation<a class="headerlink" href="#step-1-add-voice-commands-for-navigation" title="Permalink to this headline">¶</a></h2>
-<p>We need to add a new <a class="reference external" href="../../server-api/commands-and-responses">command</a> to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:</p>
+<p>We need to add a new <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">command</span></a> to the Alan script to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intent:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Go to the $(ORDINAL) tab'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">availableTabs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">]);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">availableTabs</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORDINAL</span><span class="p">.</span><span class="nx">number</span><span class="p">))</span> <span class="p">{</span>
@@ -423,7 +423,7 @@ tutorial</a>.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>The user can now give a voice command to go to a specific tab in the app. In the intent, we use the <a class="reference external" href="../../server-api/slots#ordinal">ORDINAL</a> predefined slot. This slot allows us to catch the ordinal number in the user utterance. If the caught number is <code class="docutils literal notranslate"><span class="pre">first</span></code>, <code class="docutils literal notranslate"><span class="pre">second</span></code> or <code class="docutils literal notranslate"><span class="pre">third</span></code>, the <code class="docutils literal notranslate"><span class="pre">navigation</span></code> command and the tab number will be sent from the voice script to the app. If the voice command contains some other number, Alan will report that such tab is not found.</p>
+<p>The user can now give a voice command to go to a specific tab in the app. In the intent, we use the <span class="xref std std-doc">ORDINAL</span> predefined slot. This slot allows us to catch the ordinal number in the user utterance. If the caught number is <code class="docutils literal notranslate"><span class="pre">first</span></code>, <code class="docutils literal notranslate"><span class="pre">second</span></code> or <code class="docutils literal notranslate"><span class="pre">third</span></code>, the <code class="docutils literal notranslate"><span class="pre">navigation</span></code> command and the tab number will be sent from the voice script to the app. If the voice command contains some other number, Alan will report that such tab is not found.</p>
 </div>
 <div class="section" id="step-2-inject-navcontroller">
 <h2>Step 2: Inject NavController<a class="headerlink" href="#step-2-inject-navcontroller" title="Permalink to this headline">¶</a></h2>
@@ -486,7 +486,7 @@ necessary tab when the command is received. To do this, we will add a handler to
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Have a look at the next tutorial: <a class="reference external" href="sending-data-angular">Passing the app state to the voice script (Ionic Angular)</a>.</p>
+<p>Have a look at the next tutorial: <a class="reference internal" href="../sending-data-angular/"><span class="doc">Passing the app state to the voice script (Ionic Angular)</span></a>.</p>
 </div>
 </div>
 

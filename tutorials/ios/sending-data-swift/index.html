@@ -393,8 +393,8 @@
 <p>When the user interacts with an iOS app, it may be necessary to send some data from the app to the voice script. For example, you may need to provide the voice script with information about the current app state.</p>
 <p>In Alan, you can send data from the app to the voice script in the following ways:</p>
 <ul class="simple">
-<li><p>With <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a></p></li>
-<li><p>With <a class="reference external" href="../../server-api/sending-data/project-api">project API</a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">project API</span></a></p></li>
 </ul>
 <p>In this tutorial, we will work with an iOS app with two views. We will send information about the current view to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:</p>
 <ul class="simple">
@@ -429,7 +429,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In this function, we call the <a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState()</a> method of the Alan button and pass <code class="docutils literal notranslate"><span class="pre">state</span></code> in it.</p>
+<p>In this function, we call the <span class="xref std std-doc">setVisualState()</span> method of the Alan button and pass <code class="docutils literal notranslate"><span class="pre">state</span></code> in it.</p>
 </li>
 <li><p>In the project tree in Xcode, Control click the app folder and select <strong>New File</strong>. In the <strong>Source</strong> section, select <strong>Cocoa Touch Class</strong> and click <strong>Next</strong>. Name the class, for example,
 <code class="docutils literal notranslate"><span class="pre">FirstViewController</span></code> and click <strong>Next</strong>. Then click <strong>Create</strong>. A new file named <code class="docutils literal notranslate"><span class="pre">FirstViewController.swift</span></code> will be added to your app folder.</p></li>
@@ -514,7 +514,7 @@ intent:</p>
 </div>
 <div class="section" id="step-3-create-a-view-specific-command">
 <h2>Step 3: Create a view-specific command<a class="headerlink" href="#step-3-create-a-view-specific-command" title="Permalink to this headline">¶</a></h2>
-<p>If an app has several views, it may be necessary to create voice commands that will work for specific views only. In Alan, you can create view-specific commands with the help of <a class="reference external" href="../../server-api/sending-data/visual-state#filtering-commands">filters</a> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open view as the filter.</p>
+<p>If an app has several views, it may be necessary to create voice commands that will work for specific views only. In Alan, you can create view-specific commands with the help of <span class="xref std std-doc">filters</span> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open view as the filter.</p>
 <p>Let’s modify the intent for getting back to the initial view. This command must work only if the second view is open; we cannot say <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">back</span></code> when at the initial view. In Alan Studio, update this intent to the following:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">vScreen</span> <span class="o">=</span> <span class="nx">visual</span><span class="p">({</span><span class="s2">"screen"</span><span class="o">:</span> <span class="s2">"second"</span><span class="p">});</span>
 
@@ -537,7 +537,7 @@ intent:</p>
 </div>
 <div class="section" id="what-s-next">
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Have a look at the next tutorial: <a class="reference external" href="highlighting-swift">Highlighting items with voice</a>.</p>
+<p>Have a look at the next tutorial: <a class="reference internal" href="../highlighting-swift/"><span class="doc">Highlighting items with voice</span></a>.</p>
 </div>
 </div>
 

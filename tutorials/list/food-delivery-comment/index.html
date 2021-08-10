@@ -390,7 +390,7 @@
         </label>
         <div id="orange-background"></div><div class="section" id="step-14-capture-a-comment">
 <h1>Step 14: Capture a comment<a class="headerlink" href="#step-14-capture-a-comment" title="Permalink to this headline">¶</a></h1>
-<p>The user may leave a comment to the order, which can be any phrase. To capture an open-end phrase, we can use a <a class="reference external" href="../../server-api/slots#getting-any-user-input">slot with a greedy RegEx</a>.</p>
+<p>The user may leave a comment to the order, which can be any phrase. To capture an open-end phrase, we can use a <span class="xref std std-doc">slot with a greedy RegEx</span>.</p>
 <ol class="arabic">
 <li><p>To the voice script, add the <code class="docutils literal notranslate"><span class="pre">getComment</span></code> context with a command to capture the user’s comment:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">getComment</span> <span class="o">=</span> <span class="nx">context</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>

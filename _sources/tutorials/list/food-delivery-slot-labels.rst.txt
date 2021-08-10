@@ -5,7 +5,7 @@
 Step 9: Use slot labels to display the order
 ============================================
 
-The user can ask for a ``burger`` or ``burgers`` (in plural). Alan will capture the pronounced grammar form with ``p.ITEM.value`` and display this form in the cart in the app. To make sure we add both variants to the same line, let's use the `label <../../server-api/slots#slot-values-and-labels>`__ field of a slot. In the slot label, you can provide any description to identify or classify the slot values.
+The user can ask for a ``burger`` or ``burgers`` (in plural). Alan will capture the pronounced grammar form with ``p.ITEM.value`` and display this form in the cart in the app. To make sure we add both variants to the same line, let's use the :doc:`label <../../server-api/slots#slot-values-and-labels>` field of a slot. In the slot label, you can provide any description to identify or classify the slot values.
 
 To each slot value, add the tilde ``~`` character with a slot value in singular. Modify the ``updateOrder`` command to send ``p.ITEM.label``, not ``p.ITEM.value``:
 

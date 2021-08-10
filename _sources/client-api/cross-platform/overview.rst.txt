@@ -3,11 +3,11 @@ Cross-platform
 
 Alan can be integrated with the following cross-platform apps:
 
--  `Ionic <ionic>`__
--  `Apache Cordova <cordova>`__
--  `Flutter <flutter>`__
--  `React Native <react-native>`__
--  `Microsoft Power Apps <powerapps>`__
+-  :doc:`Ionic <ionic>`
+-  :doc:`Apache Cordova <cordova>`
+-  :doc:`Flutter <flutter>`
+-  :doc:`React Native <react-native>`
+-  :doc:`Microsoft Power Apps <powerapps>`
 
 .. raw:: html
 

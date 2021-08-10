@@ -393,8 +393,8 @@
 <p>When the user interacts with a Flutter app, it may be necessary to send some data from the app to the voice script. For example, you may need to provide the voice script with information about the current app state.</p>
 <p>In Alan, you can send data from the app to the voice script in the following ways:</p>
 <ul class="simple">
-<li><p>With <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a></p></li>
-<li><p>With <a class="reference external" href="../../server-api/sending-data/project-api">project API</a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">project API</span></a></p></li>
 </ul>
 <p>In this tutorial, we will work with a Flutter app having two screens. We will send information about the currently open screen to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:</p>
 <ul class="simple">
@@ -415,8 +415,8 @@
 <ul class="simple">
 <li><p>In this tutorial, we will continue using the Flutter app created in the previous tutorials. You can also use your own app with several screens. Make sure you have completed all steps from the previous tutorials:</p>
 <ul>
-<li><p><a class="reference external" href="integrating-flutter">Building a voice assistant for a Flutter app</a></p></li>
-<li><p><a class="reference external" href="navigating-flutter">Navigating between screens in a Flutter app</a></p></li>
+<li><p><a class="reference internal" href="../integrating-flutter/"><span class="doc">Building a voice assistant for a Flutter app</span></a></p></li>
+<li><p><a class="reference internal" href="../navigating-flutter/"><span class="doc">Navigating between screens in a Flutter app</span></a></p></li>
 </ul>
 </li>
 <li><p>You have set up the Flutter environment and it is functioning properly. For details, see Flutter documentation.</p></li>
@@ -427,7 +427,7 @@
 <h2>Step 1: Send the app state to the voice script<a class="headerlink" href="#step-1-send-the-app-state-to-the-voice-script" title="Permalink to this headline">¶</a></h2>
 <p>To send data from the app to the voice script, you can use Alan’s visual state object. This method can be particularly helpful if the dialog flow in your app depends on the app state. In this case, you need to know the app state on the script side to adjust the dialog logic. For example, you may want to filter out some voice commands, give responses applicable to a specific app state and so on.</p>
 <p>The visual state allows you to send an arbitrary JSON object from the app to the script. You can then access the passed data through the <code class="docutils literal notranslate"><span class="pre">p.visual</span></code> runtime variable.</p>
-<p>To send the visual state to the voice script, let’s add the <code class="docutils literal notranslate"><span class="pre">setVisuals()</span></code> method to the <code class="docutils literal notranslate"><span class="pre">_MyHomePageState</span></code> class in the <code class="docutils literal notranslate"><span class="pre">dart.main</span></code> file. Here we call the <a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState()</a> method of the Alan button and pass the object containing information about the current screen.</p>
+<p>To send the visual state to the voice script, let’s add the <code class="docutils literal notranslate"><span class="pre">setVisuals()</span></code> method to the <code class="docutils literal notranslate"><span class="pre">_MyHomePageState</span></code> class in the <code class="docutils literal notranslate"><span class="pre">dart.main</span></code> file. Here we call the <span class="xref std std-doc">setVisualState()</span> method of the Alan button and pass the object containing information about the current screen.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="kt">void</span> <span class="n">setVisuals</span><span class="p">(</span><span class="kt">String</span> <span class="n">screen</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="n">visual</span> <span class="o">=</span>
@@ -560,7 +560,7 @@
 <div class="section" id="step-4-create-a-screen-specific-command">
 <h2>Step 4: Create a screen-specific command<a class="headerlink" href="#step-4-create-a-screen-specific-command" title="Permalink to this headline">¶</a></h2>
 <p>If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of
-<a class="reference external" href="../../server-api/sending-data/visual-state#filtering-commands">filters</a> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open screen as the filter.</p>
+<span class="xref std std-doc">filters</span> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open screen as the filter.</p>
 <p>Let’s modify the intent for getting back to the first screen. This command must work only if the second screen is open; we cannot say <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">back</span></code> when at the first screen. In Alan Studio, update this intent to the following:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">vScreen</span> <span class="o">=</span> <span class="nx">visual</span><span class="p">({</span><span class="s2">"screen"</span><span class="o">:</span> <span class="s2">"second"</span><span class="p">});</span>
 

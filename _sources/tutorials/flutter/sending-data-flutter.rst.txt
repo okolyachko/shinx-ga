@@ -9,8 +9,8 @@ When the user interacts with a Flutter app, it may be necessary to send some dat
 
 In Alan, you can send data from the app to the voice script in the following ways:
 
--  With `visual state <../../server-api/sending-data/visual-state>`__
--  With `project API <../../server-api/sending-data/project-api>`__
+-  With :doc:`visual state <../../server-api/sending-data/visual-state>`
+-  With :doc:`project API <../../server-api/sending-data/project-api>`
 
 In this tutorial, we will work with a Flutter app having two screens. We will send information about the currently open screen to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:
 
@@ -31,8 +31,8 @@ To go through this tutorial, make sure the following prerequisites are met:
 
 -  In this tutorial, we will continue using the Flutter app created in the previous tutorials. You can also use your own app with several screens. Make sure you have completed all steps from the previous tutorials:
 
-   -  `Building a voice assistant for a Flutter app <integrating-flutter>`__
-   -  `Navigating between screens in a Flutter app <navigating-flutter>`__
+   -  :doc:`Building a voice assistant for a Flutter app <integrating-flutter>`
+   -  :doc:`Navigating between screens in a Flutter app <navigating-flutter>`
 
 -  You have set up the Flutter environment and it is functioning properly. For details, see Flutter documentation.
 -  The device on which you are planning to test drive the Flutter app is connected to the Internet. The Internet connection is required to let the Flutter app communicate with the voice script run in the Alan Cloud.
@@ -44,7 +44,7 @@ To send data from the app to the voice script, you can use Alan's visual state o
 
 The visual state allows you to send an arbitrary JSON object from the app to the script. You can then access the passed data through the ``p.visual`` runtime variable.
 
-To send the visual state to the voice script, let's add the ``setVisuals()`` method to the ``_MyHomePageState`` class in the ``dart.main`` file. Here we call the `setVisualState() <../../client-api/methods/common-api#setvisualstate>`__ method of the Alan button and pass the object containing information about the current screen.
+To send the visual state to the voice script, let's add the ``setVisuals()`` method to the ``_MyHomePageState`` class in the ``dart.main`` file. Here we call the :doc:`setVisualState() <../../client-api/methods/common-api#setvisualstate>` method of the Alan button and pass the object containing information about the current screen.
 
 .. code:: dart
 
@@ -193,7 +193,7 @@ Step 4: Create a screen-specific command
 ----------------------------------------
 
 If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of
-`filters <../../server-api/sending-data/visual-state#filtering-commands>`__ added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open screen as the filter.
+:doc:`filters <../../server-api/sending-data/visual-state#filtering-commands>` added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the open screen as the filter.
 
 Let's modify the intent for getting back to the first screen. This command must work only if the second screen is open; we cannot say ``Go back`` when at the first screen. In Alan Studio, update this intent to the following:
 

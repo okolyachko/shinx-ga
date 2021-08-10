@@ -5,7 +5,7 @@
 Step 19: Let Alan start the dialog
 ==================================
 
-When users open the app, we want Alan to greet them and prompt what they can do with voice. To do this, we will use Alan's `onUserEvent() predefined callback <../../server-api/api/api-reference#onuserevent>`__.
+When users open the app, we want Alan to greet them and prompt what they can do with voice. To do this, we will use Alan's :doc:`onUserEvent() predefined callback <../../server-api/api/api-reference#onuserevent>`.
 
 To the voice script, add the following code:
 

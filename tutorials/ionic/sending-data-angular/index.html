@@ -394,8 +394,8 @@
 state.</p>
 <p>In Alan, you can send data from the app to the voice script in the following ways:</p>
 <ul class="simple">
-<li><p>With <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a></p></li>
-<li><p>With <a class="reference external" href="../../server-api/sending-data/project-api">project API</a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">project API</span></a></p></li>
 </ul>
 <p>In this tutorial, we will work with an example Ionic app with three tabs. We will send information about the currently opened tab to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:</p>
 <ul class="simple">
@@ -417,8 +417,8 @@ state.</p>
 <li><p>In this tutorial, we will continue using the example Ionic app provided by Alan. You can also use your own app with several tabs.</p>
 <p>Make sure you have completed all steps from the previous tutorials:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="integrating-angular">Building a voice assistant for an Ionic Angular app</a></p></li>
-<li><p><a class="reference external" href="navigating-angular">Navigating between tabs in an app (Ionic Angular)</a>.</p></li>
+<li><p><a class="reference internal" href="../integrating-angular/"><span class="doc">Building a voice assistant for an Ionic Angular app</span></a></p></li>
+<li><p><a class="reference internal" href="../navigating-angular/"><span class="doc">Navigating between tabs in an app (Ionic Angular)</span></a></p></li>
 </ul>
 </li>
 <li><p>The environment for using the Ionic framework is properly set up. For details, see <a class="reference external" href="https://ionicframework.com/docs/intro/environment">Ionic documentation</a>.</p></li>
@@ -476,9 +476,7 @@ state.</p>
 <p>Let’s modify our app to send information about the currently open tab to the script.</p>
 <ol class="arabic">
 <li><p>Open <code class="docutils literal notranslate"><span class="pre">app.component.ts</span></code>.</p></li>
-<li><p>To the subscribe code block, add the
-<a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState()</a>
-method:</p>
+<li><p>To the subscribe code block, add the <span class="xref std std-doc">setVisualState()</span> method:</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">event</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">event</span> <span class="k">instanceof</span> <span class="nx">NavigationEnd</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span> <span class="c1">// will be "/tabs/tab1" or "/tabs/tab2" depending on the open tab</span>
@@ -522,7 +520,7 @@ back with: <code class="docutils literal notranslate"><span class="pre">This</sp
 </div>
 <div class="section" id="step-4-create-a-tab-specific-command">
 <h2>Step 4: Create a tab-specific command<a class="headerlink" href="#step-4-create-a-tab-specific-command" title="Permalink to this headline">¶</a></h2>
-<p>If an app has several screens or tabs, it may be necessary to create voice commands that will work for specific tabs only. In Alan, you can create tab-specific commands with the help of <a class="reference external" href="../../server-api/sending-data/visual-state#filtering-commands">filters</a> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
+<p>If an app has several screens or tabs, it may be necessary to create voice commands that will work for specific tabs only. In Alan, you can create tab-specific commands with the help of <span class="xref std std-doc">filters</span> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
 open tab as the filter.</p>
 <p>Let’s add another voice command that will work only if the third tab is open. In Alan Studio, add the following intent:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">vScreen</span> <span class="o">=</span> <span class="nx">visual</span><span class="p">({</span><span class="nx">tab</span><span class="o">:</span> <span class="mf">3</span><span class="p">});</span>

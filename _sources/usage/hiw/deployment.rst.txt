@@ -32,7 +32,7 @@ For more details on this deployment type, `contact the Alan AI team <mailto:hell
 See also
 --------
 
-`Alan infrastructure <infrastructure>`__
+:doc:`Alan infrastructure <infrastructure>`
 
 .. raw:: html
 

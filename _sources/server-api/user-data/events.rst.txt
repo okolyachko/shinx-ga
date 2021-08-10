@@ -16,9 +16,9 @@ Alan emits several types of events driven by users’ interactions with the voic
 +--------------------------------------------------------+------------------------------------------------------------------------------------------------+
 | `firstActivate <#firstactivate-event>`__               | Fired if the user activates the voice assistant for the first time during the dialog session   |
 +--------------------------------------------------------+------------------------------------------------------------------------------------------------+
-| `showPopup <#showpopup-event>`__                       | Fired when a `popup <../popups>`__  next to the Alan button is displayed                       |
+| `showPopup <#showpopup-event>`__                       | Fired when a :doc:`popup <../popups>`  next to the Alan button is displayed                    |
 +--------------------------------------------------------+------------------------------------------------------------------------------------------------+
-| `popupCloseClicked <#popupcloseclicked-event>`__       | Fired when the user clicks the close icon in the `Alan button popup <../popups>`__             |
+| `popupCloseClicked <#popupcloseclicked-event>`__       | Fired when the user clicks the close icon in the :doc:`Alan button popup <../popups>`          |
 +--------------------------------------------------------+------------------------------------------------------------------------------------------------+
 
 In the example below, the voice assistant listens to the ``firstActivate`` event and, if the last interaction with the user
@@ -222,8 +222,7 @@ Fired if the user activates the voice assistant for the first time during the di
 showPopup event
 ---------------
 
-Fired when a popup next to the Alan button is displayed. For details, see `Alan button
-popups <../popups>`__.
+Fired when a popup next to the Alan button is displayed. For details, see :doc:`Alan button popups <../popups>`.
 
 .. code:: JavaScript
 
@@ -258,8 +257,7 @@ popups <../popups>`__.
 popupCloseClicked event
 -----------------------
 
-Fired when the user clicks the close icon in the popup displayed next to the Alan button. For details, see `Alan button
-popups <../popups>`__.
+Fired when the user clicks the close icon in the popup displayed next to the Alan button. For details, see :doc:`Alan button popups <../popups>`.
 
 .. code:: JavaScript
 

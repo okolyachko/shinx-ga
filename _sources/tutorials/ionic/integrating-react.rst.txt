@@ -20,7 +20,7 @@ What you will need
 To go through this tutorial, make sure the following prerequisites are met:
 
 -  You have signed up to Alan Studio.
--  You have `created a project <../../usage/guides/projects>`__ in Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
 -  The environment for using the Ionic framework is properly set up. For details, see `Ionic documentation <https://ionicframework.com/docs/intro/environment>`__.
 
 .. tip:: 
@@ -191,7 +191,7 @@ Run the app. On all app tabs, we can see the Alan button. Click it and say: ``He
 Step 5. Add voice commands
 --------------------------
 
-Let's add some `voice commands <../../server-api/commands-and-responses>`__ so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -210,5 +210,5 @@ What's next?
 
 You can now proceed to building a voice interface with Alan. Use the following resources:
 
--  Have a look at the next tutorial: `Navigating between tabs in an Ionic React app <navigating-react>`__.
--  Go to `Server API <../../server-api/script-concepts>`__ to learn about Alan concepts and functionality you can use to create a voice script.
+-  Have a look at the next tutorial: :doc:`Navigating between tabs in an Ionic React app <navigating-react>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.

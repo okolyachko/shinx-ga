@@ -8,7 +8,7 @@ Triggering voice script actions without commands
 In an app with a multimodal interface, it is sometimes necessary to trigger an action on the Alan script side without a voice command from the user. For example, if the user wants to get detailed information about some item in the app, he or she can either ask: ``Tell me more about this item``, or tap an item in the UI. In the latter case, you can not only open a view with the item details, but
 also let Alan provide detailed information about the item with voice.
 
-In this tutorial, we will continue working with items in the table. We will add a function that will make Alan describe details of a selected item. To achieve this, we will use Alan's `project API <../../server-api/sending-data/project-api>`__. With the project API, you can define a method in the voice script, and then call this method in the app whenever needed.
+In this tutorial, we will continue working with items in the table. We will add a function that will make Alan describe details of a selected item. To achieve this, we will use Alan's :doc:`project API <../../server-api/sending-data/project-api>`. With the project API, you can define a method in the voice script, and then call this method in the app whenever needed.
 
 What you will learn
 -------------------
@@ -146,4 +146,4 @@ After you pass through this tutorial, you will have an iOS app with a table in t
 What's next?
 ------------
 
-Have a look at the next tutorial: `Playing a greeting in an iOS Swift app <greeting-swift>`__.
+Have a look at the next tutorial: :doc:`Playing a greeting in an iOS Swift app <greeting-swift>`.

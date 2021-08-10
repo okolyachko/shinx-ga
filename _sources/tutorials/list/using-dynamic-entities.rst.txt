@@ -7,7 +7,7 @@ Using dynamic entities in voice commands
 
 If you are building a voice assistant for an app whose data changes frequently, you need to make sure your voice commands can be adjusted to the changing data. Imagine an app that gets a list of available items from the database, and the app users should be able to ask about item details. For a fluent dialog with users, it would be great if the voice assistant could react to: ``Show <item> details`` even for recently added items, and you do not have to edit the commands in the voice script all the time.
 
-To create such 'customizable' voice commands in Alan, you can use `dynamic entities <../../server-api/dynamic-entities>`__. Voice commands with dynamic entities are adjusted to the data passed to them, which makes the voice assistant very adaptable.
+To create such 'customizable' voice commands in Alan, you can use :doc:`dynamic entities <../../server-api/dynamic-entities>`. Voice commands with dynamic entities are adjusted to the data passed to them, which makes the voice assistant very adaptable.
 
 In this tutorial, we will create a voice assistant for a webpage that gets a list of popular movies from `The Movie Database (TMDB) <https://developers.themoviedb.org/3>`__. The list depends on the current movie ratings and can be updated every day, and even every hour. The app users will be able to learn what movies are top rated today and, once Alan names the movies, ask for an overview of a specific movie in the list.
 
@@ -25,7 +25,7 @@ What you will need
 To go through this tutorial, make sure the following prerequisites are met:
 
 -  You have signed up to Alan Studio.
--  You have `created a project <../../usage/guides/projects>`__ in Alan
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan
    Studio.
 
 Step 1: Create a webpage
@@ -136,7 +136,7 @@ Step 3: Add the onCreateProject callback
 
 Now, let's open the Alan Studio project and start building our voice script. At this step, we will add some code to make an API call to the TMDB service and retrieve the list of movies.
 
-We will use the `onCreateProject <../../server-api/api/api-reference#oncreateproject>`__ callback to initialize data when the project model is created.
+We will use the :doc:`onCreateProject <../../server-api/api/api-reference#oncreateproject>` callback to initialize data when the project model is created.
 
 1. In the script editor, add the following code:
 
@@ -247,7 +247,7 @@ Here, the following is done:
 
 2. We are joining the obtained data to receive a string like this: ``Project Power~605116|Tesla~517412|...``. The result is saved to
    ``project.videos``. This way, we get a string of movie titles associated with their IDs, or
-   `labels <../../server-api/slots#slot-values-and-labels>`__.
+   :doc:`labels <../../server-api/slots#slot-values-and-labels>`.
 
 3. We are saving the JSON object with movie data to ``savedMovies``.
 
@@ -297,7 +297,7 @@ Now, let's create one more command to play details of a movie available in the l
 This is where dynamic entities are used:
 
 1. In the intent, we have: ``$(MOVIE p:videos)``. This way, we are addressing ``project.videos``, which contains the list of movies just
-   as if it were a `user-defined slot <../../server-api/slots#user-defined-slots>`__. When the user asks for details of any movie added to ``project.videos``, Alan now plays: ``Here is something about <movieTitle>``.
+   as if it were a :doc:`user-defined slot <../../server-api/slots#user-defined-slots>`. When the user asks for details of any movie added to ``project.videos``, Alan now plays: ``Here is something about <movieTitle>``.
 2. Then, we are using ``p.MOVIE.label`` to get the ID associated with this movie and search our ``savedMovies`` object for the movie
    overview. The overview is played back to the user.
 
@@ -405,4 +405,4 @@ Save the changes and try interacting with Alan in the webpage as before. The lis
 See also
 --------
 
-`Dynamic entities <../../server-api/dynamic-entities>`__
+:doc:`Dynamic entities <../../server-api/dynamic-entities>`

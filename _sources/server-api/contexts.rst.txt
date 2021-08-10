@@ -11,7 +11,7 @@ Consider the following script:
 
 Here the ``What about tomorrow?`` and ``And the humidity?`` questions are meaningless if put as simple intents. That's why they should be presented as a part of a context.
 
-Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can `define contexts <#defining-contexts>`__ on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the `title() <#labeling-contexts>`__ function.
+Every voice script has one or more contexts. Alan implicitly creates the global context that wraps commands added directly to the script, and you can :doc:`define contexts <#defining-contexts>` on your own whenever you need them. Every context has a unique ID that is assigned to it automatically, and a title, either assigned by Alan or created with the :doc:`title() <#labeling-contexts>` function.
 
 Typically, contexts contain commands that are needed at a specific stage of the dialog. To let the user give commands from a context, this context must be `activated <#activating-contexts>`__. Once the context is active, voice commands in it become active, and Alan considers them for matching. When the part of the dialog presented as a context is no longer needed, the user exits the context, and the context is `deactivated <#exiting-contexts>`__.
 
@@ -34,7 +34,7 @@ You can define a context in the voice script in the following way:
 Activating contexts
 -------------------
 
-A context is activated with the `then() <api/api-reference#then>`__ function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
+A context is activated with the :doc:`then() <api/api-reference#then>` function added to an intent in the voice script. Such an intent becomes the parent intent for the context. The context activated from the parent intent is bound to
 it.
 
 When the parent intent is matched, the context is activated, and all commands in the context become available for matching.
@@ -192,7 +192,7 @@ In the example above, the ``What about tomorrow?`` and ``And the humidity?`` int
 
 .. image:: /_static/assets/img/script-concepts/intents-in-contexts-matched.svg	
 
-The intents in the context remain active until the context is deactivated. For details, see `Exiting contexts <#exiting-contexts>`__.
+The intents in the context remain active until the context is deactivated. For details, see :doc:`Exiting contexts <#exiting-contexts>`.
 
 noContext intents
 ~~~~~~~~~~~~~~~~~
@@ -250,8 +250,8 @@ Fallbacks in contexts
 
 The ``fallback()`` function helps you handle unexpected user’s utterances. This command is triggered if Alan does not understand what the user is saying and cannot match the user’s utterance to any command in the context. You can add a fallback to the context to prompt the user for a specific type of input or fail gracefully.
 
-Fallbacks can be used in user-defined and global contexts. For details, see `Prompting and handling user
-errors <#prompting-and-handling-user-errors>`__.
+Fallbacks can be used in user-defined and global contexts. For details, see :doc:`Prompting and handling user
+errors <#prompting-and-handling-user-errors>`.
 
 Using async contexts
 --------------------

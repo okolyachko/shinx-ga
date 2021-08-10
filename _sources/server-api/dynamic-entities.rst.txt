@@ -64,7 +64,7 @@ In the example below, values of a dynamic entity are saved to the ``project.movi
 
 .. note:: 
 
-   To define dynamic entities at the project level, you can use the `onCreateProject <api/api-reference#oncreateproject>`__ callback function.
+   To define dynamic entities at the project level, you can use the :doc:`onCreateProject <api/api-reference#oncreateproject>` callback function.
 
 Defining dynamic entities at the dialog session level
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +89,7 @@ In the example below, values of a dynamic entity are saved to the ``p.userData.c
     }); 
 
 .. note::
-   To define dynamic entities at the dialog session level, you can use the `onCreateUser <api/api-reference#oncreateuser>`__ and `onCleanupUser <api/api-reference#oncleanupuser>`__ callback functions.
+   To define dynamic entities at the dialog session level, you can use the :doc:`onCreateUser <api/api-reference#oncreateuser>` and :doc:`onCleanupUser <api/api-reference#oncleanupuser>` callback functions.
 
 Passing dynamic entity values from the app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,7 +118,7 @@ In the example below, we are retrieving the values passed in the ``visual`` obje
     });
 
 .. note:: 
-   For dynamic entities passed with the ``visual`` object, you can use the `onVisualState <api/api-reference#onvisualstate>`__ callback function.
+   For dynamic entities passed with the ``visual`` object, you can use the :doc:`onVisualState <api/api-reference#onvisualstate>` callback function.
 
 
 Changing dynamic entities values with voice commands
@@ -239,8 +239,7 @@ As well as user-defined slots, dynamic entities can be optional. To mark a dynam
 Using fuzzy matching with dynamic entities
 ------------------------------------------
 
-You can enable `fuzzy
-matching <slots#slots-with-fuzzy-matching>`__ for dynamic entities. Fuzzy matching can be used both with regular dynamic entities:
+You can enable :doc:`fuzzy matching <slots#slots-with-fuzzy-matching>` for dynamic entities. Fuzzy matching can be used both with regular dynamic entities:
 
 .. code:: JavaScript
 
@@ -272,7 +271,7 @@ and dynamic entities defined with a short form:
 See also
 --------
 
-`Using dynamic entities in voice commands tutorial <../tutorials/list/using-dynamic-entities>`__
+:doc:`Using dynamic entities in voice commands tutorial <../tutorials/list/using-dynamic-entities>`
 
 .. raw:: html
 

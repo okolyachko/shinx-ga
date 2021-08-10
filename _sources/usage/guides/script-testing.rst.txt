@@ -47,7 +47,7 @@ To set authentication data, at the bottom left of the Debugging Chat, click the 
 Setting the visual state
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **Set visual state** option allows you to emulate the situation when your app passes the `visual state <../../server-api/sending-data/visual-state>`__ to the script. As a result, commands that require the visual state will be processed as expected.
+The **Set visual state** option allows you to emulate the situation when your app passes the :doc:`visual state <../../server-api/sending-data/visual-state>` to the script. As a result, commands that require the visual state will be processed as expected.
 
 To set the visual state, at the bottom left of the Debugging Chat, click the **Set Visual State** button and enter the visual state as JSON. For example, if some commands in your script can be run only on specific app screens, you can specify the visual state in the following way: 
 
@@ -66,7 +66,7 @@ Connecting from a mobile device
 You can check how your voice script works using a mobile device. To do this, you need to connect to the script from the Alan Playground and give voice commands as if you are an app user. The given commands and replies will be sent to the Debugging Chat, and you will be able to review the results of voice commands execution in a convenient way.
 
 .. note::
-   To be able to test a voice script using a mobile device, you must have the Alan Playground installed on the device. For details, see `Alan Playground <playground>`__.
+   To be able to test a voice script using a mobile device, you must have the Alan Playground installed on the device. For details, see :doc:`Alan Playground <playground>`.
 
 To test how your script works using a mobile device: 
 
@@ -130,7 +130,7 @@ To save a test case for later or transfer it to another project on your account,
 Saving test cases to GitHub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can integrate your voice assistant project with GitHub and store the created test cases in a GitHub repository, just like voice script files. This option can be helpful, for example, if you want to share test cases with other team members working on your voice assistant. For details, see `Sharing and keeping scripts in GitHub <scripts#sharing-and-keeping-scripts-in-github>`__.
+You can integrate your voice assistant project with GitHub and store the created test cases in a GitHub repository, just like voice script files. This option can be helpful, for example, if you want to share test cases with other team members working on your voice assistant. For details, see `Sharing and keeping scripts in GitHub :doc:<scripts#sharing-and-keeping-scripts-in-github>`.
 
 Voice scripts and test cases are saved to the same target. Once you synchronize with GitHub, Alan pulls the content from the selected repository and branch and adds it to your project:
 

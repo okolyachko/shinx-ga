@@ -5,7 +5,7 @@
 Step 16: Make an API call to get ingredients
 ============================================
 
-Our users should be able to ask about the item ingredients with voice. To do this, we will make a call to the `Spoonacular food API <https://spoonacular.com/food-api>`__ using the built-in `axios HTTP client <../../server-api/built-in-javascript-libraries#axios>`__.
+Our users should be able to ask about the item ingredients with voice. To do this, we will make a call to the `Spoonacular food API <https://spoonacular.com/food-api>`__ using the built-in :doc:`axios HTTP client <../../server-api/built-in-javascript-libraries#axios>`.
 
 1. `Sign up to Spoonacular food API <https://spoonacular.com/food-api>`__.
 

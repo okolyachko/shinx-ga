@@ -5,8 +5,7 @@
 Step 18: Get the balance
 ------------------------
 
-Let's assume every user has some amount on their account and can use this money to order food. We need to show the available amount on the page when the user logs in and allow asking about it with voice. To do this, we will use `Alan's project
-API <../../server-api/sending-data/project-api>`__.
+Let's assume every user has some amount on their account and can use this money to order food. We need to show the available amount on the page when the user logs in and allow asking about it with voice. To do this, we will use :doc:`Alan's project API <../../server-api/sending-data/project-api>`.
 
 The project API functionality allows sending any information from the app to the voice script and triggering activities without a voice command. To use it, you need to do the following:
 
@@ -96,7 +95,7 @@ To let the user log in to the web page:
           callback();
       };
 
-   Next, update the ``login()`` function: we will activate the Alan button programmatically with the `activate() <../../client-api/methods/common-api#activate>`__ method and `call the new project API method   <../../client-api/methods/common-api#callprojectapi>`__ we have defined. In the ``callProjectApi()`` method, we will also pass the user's name and obtained token to the server script:
+   Next, update the ``login()`` function: we will activate the Alan button programmatically with the :doc:`activate() <../../client-api/methods/common-api#activate>` method and :doc:`call the new project API method <../../client-api/methods/common-api#callprojectapi>` we have defined. In the ``callProjectApi()`` method, we will also pass the user's name and obtained token to the server script:
 
    .. code:: javascript
 
@@ -131,8 +130,7 @@ To let the user log in to the web page:
 
    Try logging in with the same credentials again. When you click **Login**, you will hear a message from Alan. To make the message more unique, Alan plays the user's name passed from the app.
 
-4. We want to allow the user to ask about the balance with voice. First, we will save the passed token to the `userData
-   object <../../server-api/objects#userdata>`__. This object can be used to store any user-specific data and pass it between intent calls. In the voice script, update the ``setToken()`` method:
+4. We want to allow the user to ask about the balance with voice. First, we will save the passed token to the :doc:`userData object <../../server-api/objects#userdata>`. This object can be used to store any user-specific data and pass it between intent calls. In the voice script, update the ``setToken()`` method:
 
    .. code-block:: javascript
      :emphasize-lines: 6

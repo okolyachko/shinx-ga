@@ -9,8 +9,8 @@ When the user interacts with an Android app, it may be necessary to send some da
 
 In Alan, you can send data from the app to the voice script in the following ways:
 
--  With `visual state <../../server-api/sending-data/visual-state>`__
--  With `project API <../../server-api/sending-data/project-api>`__
+-  With :doc:`visual state <../../server-api/sending-data/visual-state>`
+-  With :doc:`project API <../../server-api/sending-data/project-api>`
 
 In this tutorial, we will work with an Android app with two activities. We will send information about the current foreground activity to the voice script with the help of the visual state. On the script side, we
 will use the passed state to do the following:
@@ -89,7 +89,7 @@ To send the visual state to the voice script, let's add the following code to th
        }
       ... 
 
-Now, when the activity is created, we call the `setVisualState() <../../client-api/methods/common-api#setvisualstate>`__ method of the Alan button and pass the JSON object containing information about the current activity.
+Now, when the activity is created, we call the :doc:`setVisualState() <../../client-api/methods/common-api#setvisualstate>` method of the Alan button and pass the JSON object containing information about the current activity.
 
 Let's repeat the same for ``SecondActivity``. Mind that for the second activity, we will set the visual state to ``second``. Our second activity should look like this:
 
@@ -125,7 +125,7 @@ You can test it: run the app and ask: ``What screen is this?`` Alan will get bac
 Step 3: Create a screen-specific command
 ----------------------------------------
 
-If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of `filters <../../server-api/sending-data/visual-state#filtering-commands>`__ added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
+If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of :doc:`filters <../../server-api/sending-data/visual-state#filtering-commands>` added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
 open screen as the filter.
 
 Let's modify the intent for getting back to the home screen. This command must work only if the second screen is open; we cannot say ``Go back`` when at the home screen. In Alan Studio, update this intent to the following:

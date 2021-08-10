@@ -7,7 +7,7 @@ Step 7: Add several items
 
 The user may want to order several items, for example three burgers or five burritos. Let's update our voice command to support this behavior.
 
-1. Add another pattern to invoke the voice command. Inside this pattern, we will use the ``$(NUMBER)`` `predefined slot <../../server-api/slots#number>`__ to capture the number of ordered items. The command patterns are separated with a comma.
+1. Add another pattern to invoke the voice command. Inside this pattern, we will use the ``$(NUMBER)`` :doc:`predefined slot <../../server-api/slots#number>` to capture the number of ordered items. The command patterns are separated with a comma.
 
    .. code-block:: javascript
      :emphasize-lines: 4

@@ -83,7 +83,7 @@ The Alan button can be added to your page as:
           </script>
 
 
-For details, see `Alan button parameters <web-api#alan-button-parameters>`__.  
+For details, see :doc:`Alan button parameters <web-api#alan-button-parameters>`.  
    
 .. raw:: html
 

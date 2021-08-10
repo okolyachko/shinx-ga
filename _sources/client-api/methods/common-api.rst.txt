@@ -27,7 +27,7 @@ Syntax
 
    setVisualState(visualStateData:object)
 
-Method for setting the visual state. For details, see `Visual state <../../server-api/sending-data/visual-state>`__.
+Method for setting the visual state. For details, see :doc:`Visual state <../../server-api/sending-data/visual-state>`.
 
 Parameters
 ~~~~~~~~~~
@@ -148,8 +148,7 @@ Syntax
    callProjectApi(method:string, data:object, callback:function)
 		
 
-Method for calling a project API defined in the script in the Alan Studio project. For details, see `Project
-API <../../server-api/sending-data/project-api>`__.
+Method for calling a project API defined in the script in the Alan Studio project. For details, see :doc:`Project API <../../server-api/sending-data/project-api>`.
 
 Parameters
 ~~~~~~~~~~

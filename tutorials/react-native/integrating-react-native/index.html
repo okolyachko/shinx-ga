@@ -403,7 +403,7 @@
 <p>To go through this tutorial, make sure the following prerequisites are met:</p>
 <ul>
 <li><p>You have signed up to Alan Studio.</p></li>
-<li><p>You have <a class="reference external" href="../../usage/guides/projects">created a project</a> in Alan Studio.</p></li>
+<li><p>You have <a class="reference internal" href="../../../usage/guides/projects/"><span class="doc">created a project</span></a> in Alan Studio.</p></li>
 <li><p>You have set up the React Native environment and it is functioning properly. For details, see <a class="reference external" href="https://reactnative.dev/docs/environment-setup">React Native documentation</a>.</p></li>
 <li><p>You have installed CocoaPods to manage dependencies for an Xcode project:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo gem install cocoapods
@@ -413,7 +413,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When you sign up to Alan Studio, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, link your Alan account with your GitHub account and give stars to Alan repositories. For details, see <a class="reference external" href="../../usage/guides/billing#adding-free-interactions">Adding free interactions</a>.</p>
+<p>When you sign up to Alan Studio, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, link your Alan account with your GitHub account and give stars to Alan repositories. For details, see <span class="xref std std-doc">Adding free interactions</span>.</p>
 </div>
 </div>
 <div class="section" id="step-1-create-a-react-native-app">
@@ -488,7 +488,7 @@ statement:</p>
 </pre></div>
 </div>
 </li>
-<li><p>In iOS, the user must explicitly grant permission for an app to access the microphone and camera. Alan will use the microphone for voice interactions and camera for <a class="reference external" href="../../usage/additional/faq">testing Alan projects on   mobile</a>. We need to add special keys with the description for the user why the app requires access to these resources.</p>
+<li><p>In iOS, the user must explicitly grant permission for an app to access the microphone and camera. Alan will use the microphone for voice interactions and camera for <a class="reference internal" href="../../../usage/additional/faq/"><span class="doc">testing Alan projects on   mobile</span></a>. We need to add special keys with the description for the user why the app requires access to these resources.</p>
 <ol class="loweralpha simple">
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">ios</span></code> folder, open the generated XCode workspace file: <code class="docutils literal notranslate"><span class="pre">&lt;appname&gt;.xcworkspace</span></code>.</p></li>
 <li><p>In Xcode, go to the <strong>Info</strong> tab.</p></li>
@@ -512,7 +512,7 @@ statement:</p>
 </div>
 <div class="section" id="step-3-add-voice-commands">
 <h2>Step 3: Add voice commands<a class="headerlink" href="#step-3-add-voice-commands" title="Permalink to this headline">¶</a></h2>
-<p>Let’s add some <a class="reference external" href="../../server-api/commands-and-responses">voice commands</a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<p>Let’s add some <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">voice commands</span></a> so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span> <span class="p">(</span><span class="s1">'What is your name?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is Alan, and yours?'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -528,7 +528,7 @@ statement:</p>
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>You can now proceed to building a voice interface with Alan. Here are some helpful resources:</p>
 <ul class="simple">
-<li><p>Go to <a class="reference external" href="../../server-api/script-concepts">Server API</a> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
+<li><p>Go to <cite>Script concepts &lt;../../server-api/script-concepts&gt;</cite> to learn about Alan concepts and functionality you can use to create a voice script.</p></li>
 <li><p>In Alan Git, get the <a class="reference external" href="https://github.com/alan-ai/alan-sdk-reactnative/tree/master/examples/testapp">React Native example app</a>. Use this app to see how integration for React Native apps can be implemented.</p></li>
 </ul>
 <div id="orange-background"></div></div>

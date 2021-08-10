@@ -85,7 +85,7 @@ Integrating with Alan
            });
          }
 
-For details, see `Alan button parameters <web-api#alan-button-parameters>`__.
+For details, see :doc:`Alan button parameters <web-api#alan-button-parameters>`.
 
 Integration example
 -------------------

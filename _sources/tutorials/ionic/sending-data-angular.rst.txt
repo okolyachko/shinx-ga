@@ -10,8 +10,8 @@ state.
 
 In Alan, you can send data from the app to the voice script in the following ways:
 
--  With `visual state <../../server-api/sending-data/visual-state>`__
--  With `project API <../../server-api/sending-data/project-api>`__
+-  With :doc:`visual state <../../server-api/sending-data/visual-state>`
+-  With :doc:`project API <../../server-api/sending-data/project-api>`
 
 In this tutorial, we will work with an example Ionic app with three tabs. We will send information about the currently opened tab to the voice script with the help of the visual state. On the script side, we will use the passed state to do the following:
 
@@ -34,8 +34,8 @@ To go through this tutorial, make sure the following prerequisites are met:
    
    Make sure you have completed all steps from the previous tutorials:
 
-   -  `Building a voice assistant for an Ionic Angular app <integrating-angular>`__
-   -  `Navigating between tabs in an app (Ionic Angular) <navigating-angular>`__.
+   -  :doc:`Building a voice assistant for an Ionic Angular app <integrating-angular>`
+   -  :doc:`Navigating between tabs in an app (Ionic Angular) <navigating-angular>`
 
 -  The environment for using the Ionic framework is properly set up. For details, see `Ionic documentation <https://ionicframework.com/docs/intro/environment>`__.
 
@@ -100,9 +100,7 @@ Let's modify our app to send information about the currently open tab to the scr
 
 1. Open ``app.component.ts``.
 
-2. To the subscribe code block, add the
-   `setVisualState() <../../client-api/methods/common-api#setvisualstate>`__
-   method:
+2. To the subscribe code block, add the :doc:`setVisualState() <../../client-api/methods/common-api#setvisualstate>` method:
 
    .. code:: js
 
@@ -153,7 +151,7 @@ back with: ``This is the second tab``. Then try navigating through the app with 
 Step 4: Create a tab-specific command
 -------------------------------------
 
-If an app has several screens or tabs, it may be necessary to create voice commands that will work for specific tabs only. In Alan, you can create tab-specific commands with the help of `filters <../../server-api/sending-data/visual-state#filtering-commands>`__ added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
+If an app has several screens or tabs, it may be necessary to create voice commands that will work for specific tabs only. In Alan, you can create tab-specific commands with the help of :doc:`filters <../../server-api/sending-data/visual-state#filtering-commands>` added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
 open tab as the filter.
 
 Let's add another voice command that will work only if the third tab is open. In Alan Studio, add the following intent:

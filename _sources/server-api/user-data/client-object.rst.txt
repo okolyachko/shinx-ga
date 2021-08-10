@@ -6,8 +6,7 @@ With Alan's ``client`` object, you can get general information about users inter
 -  Approximate user's location
 -  Interactions statistics for the user
 
-In the example below, Alan writes to Alan logs information about every user interacting with the voice assistant and `user
-events <events>`__.
+In the example below, Alan writes to Alan logs information about every user interacting with the voice assistant and :doc:`user events <events>`.
 
 .. code:: JavaScript
 

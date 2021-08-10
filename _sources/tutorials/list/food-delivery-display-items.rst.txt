@@ -7,7 +7,7 @@ Step 8: Send a command to display items in the cart
 
 When the user gives a command, we want to display the ordered items in the cart on the web page. To do this, we will send a command from the voice script to the app and, once the command is received, have the app perform the necessary activity.
 
-1. We will start with the voice script. First, let's add the ``number`` variable to our command. If the user's input contains the number and it is caught with the ``NUMBER`` slot, ``number`` is set to a `numeric representation of the item quantity <../../server-api/slots#number>`__ — ``p.NUMBER.number``;  otherwise, it is set to 1.
+1. We will start with the voice script. First, let's add the ``number`` variable to our command. If the user's input contains the number and it is caught with the ``NUMBER`` slot, ``number`` is set to a :doc:`numeric representation of the item quantity <../../server-api/slots#number>` — ``p.NUMBER.number``;  otherwise, it is set to 1.
 
    .. code-block:: javascript
      :emphasize-lines: 7
@@ -67,7 +67,7 @@ When the user gives a command, we want to display the ordered items in the cart 
           }
       </script>
 
-4. Finally, we will make sure the ``changeOrder()`` function is called when the user gives the command. In the Alan button code block in the app, find the `onCommand handler <../../client-api/methods/command-handler>`__ and update it so that the ``changeOrder()`` function is invoked once the app receives the ``updateOrder`` command. To the function, we will pass the item name and quantity:
+4. Finally, we will make sure the ``changeOrder()`` function is called when the user gives the command. In the Alan button code block in the app, find the :doc:`onCommand handler <../../client-api/methods/command-handler>` and update it so that the ``changeOrder()`` function is invoked once the app receives the ``updateOrder`` command. To the function, we will pass the item name and quantity:
 
    .. code-block:: html
      :emphasize-lines: 7-9

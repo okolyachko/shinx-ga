@@ -392,7 +392,7 @@
 <h1>Step 7: Add several items<a class="headerlink" href="#step-7-add-several-items" title="Permalink to this headline">¶</a></h1>
 <p>The user may want to order several items, for example three burgers or five burritos. Let’s update our voice command to support this behavior.</p>
 <ol class="arabic">
-<li><p>Add another pattern to invoke the voice command. Inside this pattern, we will use the <code class="docutils literal notranslate"><span class="pre">$(NUMBER)</span></code> <a class="reference external" href="../../server-api/slots#number">predefined slot</a> to capture the number of ordered items. The command patterns are separated with a comma.</p>
+<li><p>Add another pattern to invoke the voice command. Inside this pattern, we will use the <code class="docutils literal notranslate"><span class="pre">$(NUMBER)</span></code> <span class="xref std std-doc">predefined slot</span> to capture the number of ordered items. The command patterns are separated with a comma.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="kd">const</span> <span class="nx">itemList</span> <span class="o">=</span> <span class="s2">"pepperoni|margherita|burrito|burger|taco|apple pie"</span><span class="p">;</span>
 
  <span class="nx">intent</span><span class="p">(</span><span class="sb">`(I want|I will take|Add|) (a|an|) $(ITEM </span><span class="si">${</span><span class="nx">itemList</span><span class="si">}</span><span class="sb">), (please|)`</span><span class="p">,</span>

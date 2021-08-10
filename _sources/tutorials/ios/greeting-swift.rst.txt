@@ -8,7 +8,7 @@ Playing a greeting in an iOS Swift app
 In a typical dialog flow, the user gives commands to Alan and Alan replies to the user. If necessary, you can let Alan start the dialog. For example, Alan can welcome the user and say a few words about the app and its capabilities.
 
 In this tutorial, we will make our app greet the user when it is started. The Alan button will be automatically activated, Alan will say: ``Welcome to the Swift tutorial``, and the Alan button will be
-deactivated. To greet the user, we will use the `playText() <../../client-api/methods/common-api#playtext>`__ method of the Alan iOS SDK.
+deactivated. To greet the user, we will use the :doc:`playText() <../../client-api/methods/common-api#playtext>` method of the Alan iOS SDK.
 
 What you will learn
 -------------------
@@ -17,10 +17,10 @@ What you will learn
 -  How to play a greeting in the app with voice
 -  How to use the following Alan iOS SDK methods:\
 
-   - `isActive <../../client-api/methods/common-api#isactive>`__,
-   - `activate() <../../client-api/methods/common-api#activate>`__,
-   - `deactivate() <../../client-api/methods/common-api#deactivate>`__ and
-   - `playText() <../../client-api/methods/common-api#playtext>`__ in an iOS Swift app.
+   - :doc:`isActive <../../client-api/methods/common-api#isactive>`,
+   - :doc:`activate() <../../client-api/methods/common-api#activate>`,
+   - :doc:`deactivate() <../../client-api/methods/common-api#deactivate>` and
+   - :doc:`playText() <../../client-api/methods/common-api#playtext>` in an iOS Swift app.
 
 What you will need
 ------------------

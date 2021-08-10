@@ -143,10 +143,10 @@ You can now proceed to building a voice interface with Alan. Use the following r
 
 -  Read tutorials on Flutter: 
 
-   -  `Adding voice to a Flutter app <../../tutorials/flutter/integrating-flutter>`__
-   -  `Navigating between screens in a Flutter app <../../tutorials/flutter/navigating-flutter>`__
-   -  `Passing the app state to the voice script <../../tutorials/flutter/sending-data-flutter>`__
-   -  Go to `Server API <../../server-api/script-concepts>`__ to learn about Alan concepts and functionality you can use to create a voice script.
+   -  :doc:`Adding voice to a Flutter app <../../tutorials/flutter/integrating-flutter>`
+   -  :doc:`Navigating between screens in a Flutter app <../../tutorials/flutter/navigating-flutter>`
+   -  :doc:`Passing the app state to the voice script <../../tutorials/flutter/sending-data-flutter>`
+   -  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
    
 .. raw:: html
 

@@ -8,7 +8,7 @@ The Alan Playground can run on iOS- and Android-based mobile devices. Download t
 Getting to know Alan app examples
 ---------------------------------
 
-In the Alan Playground, you can experiment with premade scripts, such as the CRM or Weather application. Each of these applications provides basic services and utilizes the script functionality described in `Server API <../../server-api/script-concepts>`__.
+In the Alan Playground, you can experiment with premade scripts, such as the CRM or Weather application. Each of these applications provides basic services and utilizes the script functionality described in :doc:`Script concepts <../../server-api/script-concepts>`.
 
 To evaluate premade scripts in the Alan Playground: 
 
@@ -39,7 +39,7 @@ You can test a voice script you have created in Alan Studio with the Alan Playgr
 
 The Alan Playground will open your application. You can tap the Alan button in the bottom right corner of the screen and test your voice script by giving voice commands.
 
-You can also connect to your voice script in the Alan Playground using the Debugging Chat. In this case, all voice commands and responses will be sent to the Debugging Chat, which will help you to troubleshoot the voice script in a more convenient way. For details, see `Connecting from mobile device <script-testing#connecting-from-a-mobile-device>`__.
+You can also connect to your voice script in the Alan Playground using the Debugging Chat. In this case, all voice commands and responses will be sent to the Debugging Chat, which will help you to troubleshoot the voice script in a more convenient way. For details, see :doc:`Connecting from mobile device <script-testing#connecting-from-a-mobile-device>`.
 
 Testing specific voice scripts in the app
 -----------------------------------------

@@ -427,7 +427,7 @@
 </div>
 <div class="section" id="setting-the-visual-state">
 <h3>Setting the visual state<a class="headerlink" href="#setting-the-visual-state" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Set visual state</strong> option allows you to emulate the situation when your app passes the <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a> to the script. As a result, commands that require the visual state will be processed as expected.</p>
+<p>The <strong>Set visual state</strong> option allows you to emulate the situation when your app passes the <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a> to the script. As a result, commands that require the visual state will be processed as expected.</p>
 <p>To set the visual state, at the bottom left of the Debugging Chat, click the <strong>Set Visual State</strong> button and enter the visual state as JSON. For example, if some commands in your script can be run only on specific app screens, you can specify the visual state in the following way:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"screen"</span><span class="o">:</span> <span class="s2">"Products"</span><span class="p">}</span>
 </pre></div>
@@ -443,7 +443,7 @@
 <p>You can check how your voice script works using a mobile device. To do this, you need to connect to the script from the Alan Playground and give voice commands as if you are an app user. The given commands and replies will be sent to the Debugging Chat, and you will be able to review the results of voice commands execution in a convenient way.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To be able to test a voice script using a mobile device, you must have the Alan Playground installed on the device. For details, see <a class="reference external" href="playground">Alan Playground</a>.</p>
+<p>To be able to test a voice script using a mobile device, you must have the Alan Playground installed on the device. For details, see <a class="reference internal" href="../playground/"><span class="doc">Alan Playground</span></a>.</p>
 </div>
 <p>To test how your script works using a mobile device:</p>
 <ol class="arabic simple">
@@ -500,7 +500,7 @@
 </div>
 <div class="section" id="saving-test-cases-to-github">
 <h3>Saving test cases to GitHub<a class="headerlink" href="#saving-test-cases-to-github" title="Permalink to this headline">¶</a></h3>
-<p>You can integrate your voice assistant project with GitHub and store the created test cases in a GitHub repository, just like voice script files. This option can be helpful, for example, if you want to share test cases with other team members working on your voice assistant. For details, see <a class="reference external" href="scripts#sharing-and-keeping-scripts-in-github">Sharing and keeping scripts in GitHub</a>.</p>
+<p>You can integrate your voice assistant project with GitHub and store the created test cases in a GitHub repository, just like voice script files. This option can be helpful, for example, if you want to share test cases with other team members working on your voice assistant. For details, see <cite>Sharing and keeping scripts in GitHub :doc:&lt;scripts#sharing-and-keeping-scripts-in-github&gt;</cite>.</p>
 <p>Voice scripts and test cases are saved to the same target. Once you synchronize with GitHub, Alan pulls the content from the selected repository and branch and adds it to your project:</p>
 <ul class="simple">
 <li><p>Voice script files (JS) are added to the code editor</p></li>

@@ -256,4 +256,4 @@ After you pass through this tutorial, you will have an iOS app with a table in t
 What's next?
 ------------
 
-Have a look at the next tutorial: `Triggering voice script actions without a command <triggering-info-swift>`__.
+Have a look at the next tutorial: :doc:`Triggering voice script actions without a command <triggering-info-swift>`.

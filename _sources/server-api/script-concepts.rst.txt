@@ -22,8 +22,8 @@ voice scripts, see the following sections:
 -  :doc:`Voice assistant lifecycle <lifecycle>`
 -  (Experimental) :doc:`Alan button popups <popups>`
 
-To get reference information about all functions and objects that you can use in voice scripts, see the `API
-reference <api/api-reference>`__.
+To get reference information about all functions and objects that you can use in voice scripts, see the :doc:`API
+reference <api/api-reference>`.
 
 Multiple scripts in the project
 -------------------------------
@@ -32,7 +32,7 @@ You can add as many scripts to the project as you need. If your project comprise
 
 .. note::
 
-   To share data in a project with several scripts, you can use the ``project`` global object. For details, see `Predefined script objects <objects>`__.
+   To share data in a project with several scripts, you can use the ``project`` global object. For details, see :doc:`Predefined script objects <objects>`.
 
 .. raw:: html
 

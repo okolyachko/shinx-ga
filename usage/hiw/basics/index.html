@@ -398,7 +398,7 @@ decide on where to proceed.</p>
 <div class="section" id="voice-platform">
 <h2>Voice platform<a class="headerlink" href="#voice-platform" title="Permalink to this headline">¶</a></h2>
 <p>Alan provides a complete AI voice platform. That is, you do not need to configure speech components, deploy an infrastructure for voice processing or train the speech recognition software. All deployment, maintenance and voice processing tasks are shifted to Alan, which does the bulk of work.</p>
-<p>Alan acts as an AI-backend. It lets the app <a class="reference external" href="voice-processing">‘understand’ the human language</a> and provides a possibility to interact with the app through voice. To build a voice interface with Alan, you only need to complete the following tasks:</p>
+<p>Alan acts as an AI-backend. It lets the app <a class="reference internal" href="../voice-processing/"><span class="doc">‘understand’ the human language</span></a> and provides a possibility to interact with the app through voice. To build a voice interface with Alan, you only need to complete the following tasks:</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="#dialog-design">Design a dialog for your voice assistant in Alan
 Studio</a></p></li>
@@ -407,7 +407,7 @@ Studio</a></p></li>
 </div>
 <div class="section" id="dialog-design">
 <h2>Dialog design<a class="headerlink" href="#dialog-design" title="Permalink to this headline">¶</a></h2>
-<p>The first thing you need to do is to write a dialog — a <a class="reference external" href="../guides/scripts">voice script</a> — in Alan Studio. The voice script describes the expected conversation scenario with your users. It covers all topics, questions and phrases users can ask or say while interacting with the voice assistant. Voice scripts are written in JavaScript, which provides unlimited flexibility for dialog building.</p>
+<p>The first thing you need to do is to write a dialog — a <a class="reference internal" href="../../guides/scripts/"><span class="doc">voice script</span></a> — in Alan Studio. The voice script describes the expected conversation scenario with your users. It covers all topics, questions and phrases users can ask or say while interacting with the voice assistant. Voice scripts are written in JavaScript, which provides unlimited flexibility for dialog building.</p>
 <p>Before you start writing a voice script, you may find it useful to sketch all possible branches users can go down and prototype alternative paths users can follow when getting to the next stage in the dialog. It will be much easier to create a voice script with such a ‘navigation flow’ of the conversation.</p>
 <p>The core building blocks for the voice script are:</p>
 <ul class="simple">
@@ -424,42 +424,42 @@ Studio</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Transfer</span> <span class="pre">$200</span> <span class="pre">to</span> <span class="pre">my</span> <span class="pre">account</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Can</span> <span class="pre">you</span> <span class="pre">tell</span> <span class="pre">me</span> <span class="pre">about</span> <span class="pre">this</span> <span class="pre">phone</span> <span class="pre">model?</span></code></p></li>
 </ul>
-<p>A voice command is invoked by a specific utterance that the user says. In Alan, this invoking phrase is known as a <a class="reference external" href="../../server-api/patterns">pattern</a>. When designing a voice script, you need to think of the different ways users may formulate their requests and come up with a list of likely spoken phrases. For example, the list of phrases for the <code class="docutils literal notranslate"><span class="pre">Order</span> <span class="pre">a</span> <span class="pre">coffee</span></code> command may be the following:</p>
+<p>A voice command is invoked by a specific utterance that the user says. In Alan, this invoking phrase is known as a <a class="reference internal" href="../../../server-api/patterns/"><span class="doc">pattern</span></a>. When designing a voice script, you need to think of the different ways users may formulate their requests and come up with a list of likely spoken phrases. For example, the list of phrases for the <code class="docutils literal notranslate"><span class="pre">Order</span> <span class="pre">a</span> <span class="pre">coffee</span></code> command may be the following:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Give</span> <span class="pre">me</span> <span class="pre">a</span> <span class="pre">cup</span> <span class="pre">of</span> <span class="pre">coffee</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">coffee,</span> <span class="pre">please</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Can</span> <span class="pre">I</span> <span class="pre">get</span> <span class="pre">a</span> <span class="pre">coffee?</span></code></p></li>
 </ul>
 <p>and several more.</p>
-<p>Together with the pattern, in the voice command you define the action that must be triggered when this command is invoked. For example, you can <a class="reference external" href="../../server-api/commands-and-responses#responding-to-the-user">play a response to the user</a> or <a class="reference external" href="../../server-api/commands-and-responses#sending-commands-to-the-app">send a command to the client app</a> to perform some activity on the app side.</p>
+<p>Together with the pattern, in the voice command you define the action that must be triggered when this command is invoked. For example, you can <span class="xref std std-doc">play a response to the user</span> or <span class="xref std std-doc">send a command to the client app</span> to perform some activity on the app side.</p>
 <p>A typical voice script contains multiple voice commands that can fulfill different types of users’ requests to your app. When the user is interacting with Alan, Alan evaluates each user’s utterance and chooses the best command from all possible options available in the script. This is known as intent matching. As soon as the intent is matched, Alan triggers the action defined in the command.</p>
 </div>
 <div class="section" id="slots">
 <h3>Slots<a class="headerlink" href="#slots" title="Permalink to this headline">¶</a></h3>
-<p>Alan allows you to add <a class="reference external" href="../../server-api/slots">slots</a> to voice commands. A slot is essentially a parameter in the user utterance that lets Alan identify and retrieve important information from the user input. With this data, Alan can fulfil user’s request. For example, you can use a slot to get a location for a booking app or retrieve from user’s utterance the necessary product category for a shopping app.</p>
+<p>Alan allows you to add <a class="reference internal" href="../../../server-api/slots/"><span class="doc">slots</span></a> to voice commands. A slot is essentially a parameter in the user utterance that lets Alan identify and retrieve important information from the user input. With this data, Alan can fulfil user’s request. For example, you can use a slot to get a location for a booking app or retrieve from user’s utterance the necessary product category for a shopping app.</p>
 <p>You can add the following types of slots to voice commands:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="../../server-api/slots#user-defined-slots">User-defined slots</a> to list
+<li><p><span class="xref std std-doc">User-defined slots</span> to list
 custom values that the user can say when giving a voice command.</p></li>
-<li><p><a class="reference external" href="../../server-api/slots#predefined-slots">Predefined slots</a> to get
+<li><p><span class="xref std std-doc">Predefined slots</span> to get
 specific types of information from the user utterance, for example,
 location, time, numbers and so on.</p></li>
 </ul>
 </div>
 <div class="section" id="dynamic-entities">
 <h3>Dynamic entities<a class="headerlink" href="#dynamic-entities" title="Permalink to this headline">¶</a></h3>
-<p>To get the necessary information from the user input, you can also add <a class="reference external" href="../../server-api/dynamic-entities">dynamic entities</a> to voice commands.</p>
+<p>To get the necessary information from the user input, you can also add <a class="reference internal" href="../../../server-api/dynamic-entities/"><span class="doc">dynamic entities</span></a> to voice commands.</p>
 <p>Dynamic entities are quite similar to user-defined slots. They contain a list of values that the user can name in the command, and these values are important for the further dialog flow. However, values for dynamic entities are not pre-set as in case of slots. Dynamic entities can be updated on the fly, as the dialog runs.</p>
 <p>Dynamic entities are a great tool if you know that data in command patterns may change during the dialog session. For example, you need to retrieve some information for voice commands from an external source and you know that this information can be updated at any moment. In this case, dynamic entities will be the best choice.</p>
 </div>
 <div class="section" id="contexts">
 <h3>Contexts<a class="headerlink" href="#contexts" title="Permalink to this headline">¶</a></h3>
-<p>Just like in real world conversations, in voice scripts some user commands may have meaning only within a <a class="reference external" href="../../server-api/contexts">context</a>. For example, when interacting with a weather forecast voice assistant, the user can ask: <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">what</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> To answer this question in the best way, Alan needs to understand the situation to which the user is referring — know the location the user is asking about.</p>
+<p>Just like in real world conversations, in voice scripts some user commands may have meaning only within a <a class="reference internal" href="../../../server-api/contexts/"><span class="doc">context</span></a>. For example, when interacting with a weather forecast voice assistant, the user can ask: <code class="docutils literal notranslate"><span class="pre">And</span> <span class="pre">what</span> <span class="pre">about</span> <span class="pre">tomorrow?</span></code> To answer this question in the best way, Alan needs to understand the situation to which the user is referring — know the location the user is asking about.</p>
 <p>You can use contexts if you create a voice script for a multi-step conversation where some conversation steps can take place only in specific circumstances. In this case, you can put some part of the user dialog to a context and pass to this context — activate it — when the user says a certain phrase or gets to a certain turn in the dialog. For example, when designing a voice interface for an online store, you may want to create a context for getting the address and time details and activate this context only after the checkout process is initiated.</p>
 </div>
 <div class="section" id="built-in-javascript-libraries">
 <h3>Built-in JavaScript libraries<a class="headerlink" href="#built-in-javascript-libraries" title="Permalink to this headline">¶</a></h3>
-<p>You can utilize the following <a class="reference external" href="../../server-api/built-in-javascript-libraries">JavaScript libraries</a> when writing voice scripts:</p>
+<p>You can utilize the following <a class="reference internal" href="../../../server-api/built-in-javascript-libraries/"><span class="doc">JavaScript libraries</span></a> when writing voice scripts:</p>
 <ul class="simple">
 <li><p><strong>axios</strong> and <strong>request</strong> to make API calls from the voice script</p></li>
 <li><p><strong>moment-timezone</strong> and <strong>luxon</strong> to work with time</p></li>
@@ -470,18 +470,18 @@ location, time, numbers and so on.</p></li>
 <h3>Data sharing<a class="headerlink" href="#data-sharing" title="Permalink to this headline">¶</a></h3>
 <p>When building a voice assistant for your app, you may need to exchange data between the voice script and app, or within the script itself. Alan provides you with several methods to do this:</p>
 <ul class="simple">
-<li><p>To communicate some data from the app to the voice script, you can use the <a class="reference external" href="../../server-api/sending-data/project-api">project API</a> and    <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a> objects.</p></li>
-<li><p>To share data between contexts in the voice script, you can use <a class="reference external" href="../../server-api/objects#userdata">userData</a> and
-<a class="reference external" href="../../server-api/objects#state">state</a> objects.</p></li>
-<li><p>You can use the <a class="reference external" href="../../server-api/objects#project">project</a> object, for example, if you have several scripts in one project and want some data to be available for all of the scripts.</p></li>
+<li><p>To communicate some data from the app to the voice script, you can use the <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">project API</span></a> and <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a> objects.</p></li>
+<li><p>To share data between contexts in the voice script, you can use <span class="xref std std-doc">userData</span> and
+<span class="xref std std-doc">state</span> objects.</p></li>
+<li><p>You can use the <span class="xref std std-doc">project</span> object, for example, if you have several scripts in one project and want some data to be available for all of the scripts.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="integration">
 <h2>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h2>
 <p>Once the voice script is ready, the next step is to integrate Alan voice to your app. After integration, the app will get the draggable Alan button on top of its interface. The users will be able to tap this button and interact with your app, giving commands from the script you have designed.</p>
-<p>Alan integrates with client apps through Alan’s SDKs. To integrate your app with Alan, you need to embed the code for the Alan button in the app project. To learn about integration details, check out the <strong>Integrations</strong> section in Alan Studio, the <a class="reference external" href="../../client-api/client-sdks">Alan Client SDK</a> documentation or Alan’s app examples on GitHub.</p>
-<p>Alan provides <a class="reference external" href="../../client-api/methods/common-api">common Client API methods</a> for the Alan button. You can use these methods on the client app side. For example, you may want to play some greetings when the user starts the dialog session, activate or
+<p>Alan integrates with client apps through Alan’s SDKs. To integrate your app with Alan, you need to embed the code for the Alan button in the app project. To learn about integration details, check out the <strong>Integrations</strong> section in Alan Studio, the <a class="reference internal" href="../../../client-api/client-sdks/"><span class="doc">Alan Client SDK</span></a> documentation or Alan’s app examples on GitHub.</p>
+<p>Alan provides <a class="reference internal" href="../../../client-api/methods/common-api/"><span class="doc">common Client API methods</span></a> for the Alan button. You can use these methods on the client app side. For example, you may want to play some greetings when the user starts the dialog session, activate or
 deactivate the Alan button programmatically when necessary.</p>
 <div id="blue-background"></div></div>
 </div>

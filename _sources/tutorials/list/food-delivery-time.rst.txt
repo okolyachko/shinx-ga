@@ -5,7 +5,7 @@
 Step 13: Get the delivery time
 ==============================
 
-In addition to the user's address, we need to know the delivery time. To get the time, we will use one of `Alan's built-in JavaScript libraries <../../server-api/built-in-javascript-libraries>`__ — `moment-timezone <../../server-api/built-in-javascript-libraries#moment-timezone>`__.
+In addition to the user's address, we need to know the delivery time. To get the time, we will use one of :doc:`Alan's built-in JavaScript libraries <../../server-api/built-in-javascript-libraries>` — :doc:`moment-timezone <../../server-api/built-in-javascript-libraries#moment-timezone>`.
 
 1. To the voice script, add the ``getTime`` context with a command to capture the delivery time:
 

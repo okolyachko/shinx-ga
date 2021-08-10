@@ -393,8 +393,8 @@
 <p>When the user interacts with an Android app, it may be necessary to send some data from the app to the voice script. For example, you may need to provide the voice script with information about the current app state.</p>
 <p>In Alan, you can send data from the app to the voice script in the following ways:</p>
 <ul class="simple">
-<li><p>With <a class="reference external" href="../../server-api/sending-data/visual-state">visual state</a></p></li>
-<li><p>With <a class="reference external" href="../../server-api/sending-data/project-api">project API</a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">visual state</span></a></p></li>
+<li><p>With <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">project API</span></a></p></li>
 </ul>
 <p>In this tutorial, we will work with an Android app with two activities. We will send information about the current foreground activity to the voice script with the help of the visual state. On the script side, we
 will use the passed state to do the following:</p>
@@ -425,8 +425,8 @@ know the app state on the script side to adjust the dialog logic. For example, y
 <p>The visual state allows you to send an arbitrary JSON object from the app to the script. You can access the passed data in the script through the <code class="docutils literal notranslate"><span class="pre">p.visual</span></code> runtime variable.</p>
 <p>To send the visual state to the voice script, let’s add the following code to the <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code> method of <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5ee451f1-9813-4dc5-8ed5-99cec8411c63" name="c06e1f98-b192-4c61-8358-5f04f8344684" type="radio"/>
-<label class="tabbed-label" for="5ee451f1-9813-4dc5-8ed5-99cec8411c63">
+<input checked="checked" id="0a0f90b0-6179-4bc4-a5d1-5df7cf5df7d7" name="6518fa7e-6fe3-4314-ad05-fb29164943e5" type="radio"/>
+<label class="tabbed-label" for="0a0f90b0-6179-4bc4-a5d1-5df7cf5df7d7">
 Java</label><div class="tabbed-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//MainActivity.java file</span>
 <span class="p">...</span>
@@ -449,8 +449,8 @@ Java</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="35d3a6b2-84ad-4622-834d-76d6b8ed34fa" name="c06e1f98-b192-4c61-8358-5f04f8344684" type="radio"/>
-<label class="tabbed-label" for="35d3a6b2-84ad-4622-834d-76d6b8ed34fa">
+<input id="dd2b1122-a18b-4fcd-a367-5efd0903c4ae" name="6518fa7e-6fe3-4314-ad05-fb29164943e5" type="radio"/>
+<label class="tabbed-label" for="dd2b1122-a18b-4fcd-a367-5efd0903c4ae">
 Kotlin</label><div class="tabbed-content docutils">
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span> <span class="c1">//MainActivity.kt file</span>
  <span class="p">...</span>
@@ -473,7 +473,7 @@ Kotlin</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>Now, when the activity is created, we call the <a class="reference external" href="../../client-api/methods/common-api#setvisualstate">setVisualState()</a> method of the Alan button and pass the JSON object containing information about the current activity.</p>
+<p>Now, when the activity is created, we call the <span class="xref std std-doc">setVisualState()</span> method of the Alan button and pass the JSON object containing information about the current activity.</p>
 <p>Let’s repeat the same for <code class="docutils literal notranslate"><span class="pre">SecondActivity</span></code>. Mind that for the second activity, we will set the visual state to <code class="docutils literal notranslate"><span class="pre">second</span></code>. Our second activity should look like this:</p>
 <img alt="../../../_images/java-set-visualstate.png" src="../../../_images/java-set-visualstate.png"/>
 </div>
@@ -501,7 +501,7 @@ Kotlin</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="step-3-create-a-screen-specific-command">
 <h2>Step 3: Create a screen-specific command<a class="headerlink" href="#step-3-create-a-screen-specific-command" title="Permalink to this headline">¶</a></h2>
-<p>If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of <a class="reference external" href="../../server-api/sending-data/visual-state#filtering-commands">filters</a> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
+<p>If an app has several screens, it may be necessary to create voice commands that will work for specific screens only. In Alan, you can create screen-specific commands with the help of <span class="xref std std-doc">filters</span> added to intents. The filter in an intent defines conditions in which the intent can be matched. In our case, we can use information about the
 open screen as the filter.</p>
 <p>Let’s modify the intent for getting back to the home screen. This command must work only if the second screen is open; we cannot say <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">back</span></code> when at the home screen. In Alan Studio, update this intent to the following:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">vScreen</span> <span class="o">=</span> <span class="nx">visual</span><span class="p">({</span><span class="s2">"activity"</span><span class="o">:</span> <span class="s2">"second"</span><span class="p">});</span>

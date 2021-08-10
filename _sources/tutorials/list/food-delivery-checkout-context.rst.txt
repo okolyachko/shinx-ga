@@ -5,7 +5,7 @@
 Step 12: Add the checkout context
 =================================
 
-After users have ordered food, they can proceed to checking out and providing the delivery details. This step makes sense only after the food is in the cart. If the user provides the delivery details at the beginning of the dialog, this would be meaningless. For this reason, we will wrap this part of the dialog in a `context <../../server-api/contexts>`__.
+After users have ordered food, they can proceed to checking out and providing the delivery details. This step makes sense only after the food is in the cart. If the user provides the delivery details at the beginning of the dialog, this would be meaningless. For this reason, we will wrap this part of the dialog in a :doc:`context <../../server-api/contexts>`.
 
 In Alan, a context is a conversational branch, or the part of the dialog, that should become active at a specific moment of time. Let's update our voice script:
 
@@ -17,7 +17,7 @@ In Alan, a context is a conversational branch, or the part of the dialog, that s
           p.play('What is the delivery address?');
       });
 
-2. Define the ``checkout`` context. Inside the checkout context, we will place a voice command for getting the delivery address and use the ``$(LOC)`` `predefined slot <../../server-api/slots#loc>`__ to capture the location:
+2. Define the ``checkout`` context. Inside the checkout context, we will place a voice command for getting the delivery address and use the ``$(LOC)`` :doc:`predefined slot <../../server-api/slots#loc>` to capture the location:
 
    .. code:: javascript
 
@@ -27,7 +27,7 @@ In Alan, a context is a conversational branch, or the part of the dialog, that s
           });
       });
 
-3. Voice commands placed in a context are inactive until the context is `activated <../../server-api/contexts#activating-contexts>`__. We need to activate the context after the food is in the cart. Update the voice command for initiating checkout — add the ``p.then()`` function and pass the context name to it:
+3. Voice commands placed in a context are inactive until the context is :doc:`activated <../../server-api/contexts#activating-contexts>`. We need to activate the context after the food is in the cart. Update the voice command for initiating checkout — add the ``p.then()`` function and pass the context name to it:
 
    .. code-block:: javascript
      :emphasize-lines: 4

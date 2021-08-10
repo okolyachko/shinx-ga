@@ -392,9 +392,9 @@
 <h1>Patterns<a class="headerlink" href="#patterns" title="Permalink to this headline">¶</a></h1>
 <p>When writing voice commands, you need to provide phrases that the user can say to invoke these commands, and phrases with which Alan will respond to the user. These phrases are known as patterns. Patterns can be used in all command and response functions:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="api/api-reference#intent">intent()</a></p></li>
-<li><p><a class="reference external" href="api/api-reference#play">play()</a></p></li>
-<li><p><a class="reference external" href="api/api-reference#reply">reply()</a></p></li>
+<li><p><span class="xref std std-doc">intent()</span></p></li>
+<li><p><span class="xref std std-doc">play()</span></p></li>
+<li><p><span class="xref std std-doc">reply()</span></p></li>
 </ul>
 <p>For example:</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'How is the weather today?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -451,7 +451,7 @@ applies to responses that Alan plays back to the user.</p>
 <div class="section" id="multiple-patterns">
 <h2>Multiple patterns<a class="headerlink" href="#multiple-patterns" title="Permalink to this headline">¶</a></h2>
 <p>If you add <a class="reference external" href="#multiple-alternative-sets">multiple alternative sets</a> and <a class="reference external" href="#optional-alternatives">optional alternatives</a> to the pattern, you can run into a problem when some combinations of the pattern parts make no sense. In this situation, you can add multiple patterns to commands. Multiple patterns can also be helpful if you want to let users give the same command with completely different phrases or let Alan reply in different ways.</p>
-<p>In Alan, you can define multiple patterns in <a class="reference external" href="commands-and-responses">command and response functions</a>. To do this, you need to pass patterns to the desired function as comma separated strings.</p>
+<p>In Alan, you can define multiple patterns in <a class="reference internal" href="../commands-and-responses/"><span class="doc">command and response functions</span></a>. To do this, you need to pass patterns to the desired function as comma separated strings.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s2">"(How is|What is) the (weather|temperature) (today|)"</span><span class="p">,</span> <span class="s2">"Today's forecast"</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s2">"(It is|Feels|) (great|awesome)!"</span><span class="p">,</span> <span class="s2">"Rainy, windy, and cold. (A complete mess!|)"</span><span class="p">);</span>
 <span class="p">});</span>
@@ -479,7 +479,7 @@ applies to responses that Alan plays back to the user.</p>
 </div>
 <div class="section" id="patterns-with-slots">
 <h2>Patterns with slots<a class="headerlink" href="#patterns-with-slots" title="Permalink to this headline">¶</a></h2>
-<p>Patterns can contain a wide set of pre- and user-defined <a class="reference external" href="slots">slots</a>.</p>
+<p>Patterns can contain a wide set of pre- and user-defined <a class="reference internal" href="../slots/"><span class="doc">slots</span></a>.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="c1">// User-defined slots</span>
 <span class="nx">intent</span><span class="p">(</span><span class="s1">'Do you know anything about $(TOPIC physics|mathematics|chemistry)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Yes. I do know '</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">TOPIC</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="s1">'. (Ask me anything about it!|)'</span><span class="p">)</span>
@@ -501,7 +501,7 @@ applies to responses that Alan plays back to the user.</p>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>You can pluralize not only nouns, but also <a class="reference external" href="slots">slots</a> in patterns. The <code class="docutils literal notranslate"><span class="pre">.value</span></code> field of such a pluralized slot will contain the actual word in the form the user gave in the command.</p>
+<p>You can pluralize not only nouns, but also <a class="reference internal" href="../slots/"><span class="doc">slots</span></a> in patterns. The <code class="docutils literal notranslate"><span class="pre">.value</span></code> field of such a pluralized slot will contain the actual word in the form the user gave in the command.</p>
 <div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Add $(NUMBER) $(S pencil_)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Done. Added </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">NUMBER</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">S</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 <span class="p">});</span>

@@ -3,13 +3,13 @@ Voice scripts
 
 To let users interact with your application with their voice, you must create a voice script in Alan Studio. A voice script is a scenario by which the dialog with the user is carried out. It contains a set of commands that the user can execute and actions that must be taken in response to these commands.
 
-Voice scripts are written in JavaScript. You can use Alan objects and entities and standard JavaScript means to write scripts. For details, see `Server API <../../server-api/script-concepts>`__.
+Voice scripts are written in JavaScript. You can use Alan objects and entities and standard JavaScript means to write scripts. For details, see :doc:`Server API <../../server-api/script-concepts>`.
 
 In Alan, you can create custom scripts or use predefined scripts. Alan comes with a library of script templates that can give you a good example of how a voice script can be organized. You can add and remove predefined scripts from the project at any moment.
 
 An Alan project can contain one or multiple voice scripts. Multiple scripts can be helpful, for example, if you want to split the project logic and separate configuration and data structures from utility functions. This will make your project more transparent and easier to support.
 
-In projects with multiple scripts, scripts are loaded in the order they are set up, starting from the upper one. You can use the Alan built-in functionality to share data and make it accessible between scripts. For details, see `Multiple scripts in the project <../../server-api/script-concepts#multiple-scripts-in-the-project>`__.
+In projects with multiple scripts, scripts are loaded in the order they are set up, starting from the upper one. You can use the Alan built-in functionality to share data and make it accessible between scripts. For details, see :doc:`Multiple scripts in the project <../../server-api/script-concepts#multiple-scripts-in-the-project>`.
 
 To work with scripts in Alan Studio, you can do the following: 
 
@@ -32,7 +32,7 @@ To add a voice script to the Alan project:
 3. Do either of the following:
 
    -  To add a custom script, in the **New script name** field, enter the script name and click **Add New Script**.
-   -  To add a predefined script, in the **Add script example** list, select one or more scripts and click **Add Predefined Scripts**. For details, see `Voice scripts examples <../examples/predefined-examples>`__.
+   -  To add a predefined script, in the **Add script example** list, select one or more scripts and click **Add Predefined Scripts**. For details, see :doc:`Voice scripts examples <../examples/predefined-examples>`.
 
 .. image:: /_static/assets/img/studio/scripts.png
 	  
@@ -83,7 +83,7 @@ GitHub integration settings are configured separately for every voice assistant 
 
 .. note::
 
-   Together with voice scripts, Alan saves test cases created in the Test View to a GitHub repository. For details, see `Saving test cases to GitHub <script-testing#saving-test-cases-to-github>`__.
+   Together with voice scripts, Alan saves test cases created in the Test View to a GitHub repository. For details, see :doc:`Saving test cases to GitHub <script-testing#saving-test-cases-to-github>`.
 
 To sync with GitHub:
 
@@ -114,16 +114,16 @@ The flowchart panel is located at the bottom right of the code editor. To expand
 
 .. image:: /_static/assets/img/studio/flowchart.png
 
-The flowchart presents the voice script as a diagram consisting of a set of blocks — the `global context and user-defined
-contexts <../../server-api/contexts>`__. The global context is depicted on the left, while user-defined contexts are available on the right. All `voice commands <../../server-api/commands-and-responses>`__ added to the voice script belong to this or that context block.
+The flowchart presents the voice script as a diagram consisting of a set of blocks — the :doc:`global context and user-defined
+contexts <../../server-api/contexts>`. The global context is depicted on the left, while user-defined contexts are available on the right. All :doc:`voice commands <../../server-api/commands-and-responses>` added to the voice script belong to this or that context block.
 
 User-defined contexts are connected to voice commands with arrows. This way, you can easily see from which place in the script a context is activated. In a script with a great number of contexts, the number of connections can be great as well. To see how a specific element is linked with others, hover over it, and all connections going from or pointing at it will be highlighted.
 
 For even better visualization, Alan displays the following script objects in the flowchart: 
 
-- `Slots <../../server-api/slots>`__ added to voice commands are presented as colored blocks inside commands. 
-- `Visual filters <../../server-api/sending-data/visual-state>`__ are presented in the block at the top left of the chart. 
-- `Project variables <../../server-api/objects>`__ are presented in the block at the top right of the chart.
+- `:doc:Slots <../../server-api/slots>` added to voice commands are presented as colored blocks inside commands. 
+- :doc:`Visual filters <../../server-api/sending-data/visual-state>` are presented in the block at the top left of the chart. 
+- :doc:`Project variables <../../server-api/objects>` are presented in the block at the top right of the chart.
 
 Visual filters and project variables are linked to voice commands in which they are used.
 

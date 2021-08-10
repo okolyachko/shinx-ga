@@ -107,7 +107,7 @@ This widget displays the dialogs that users had with the voice assistant. To sho
 Pattern Flow
 ^^^^^^^^^^^^
 
-This widget visually displays how the conversation with users flows: where they start, continue and finish the dialog with the voice assistant. It helps you analyze the sequence of users’ activities – `user events <../../server-api/user-data/events>`__ and `matched patterns <../../server-api/patterns>`__ and understand users’ behavior to design a successful voice experience.
+This widget visually displays how the conversation with users flows: where they start, continue and finish the dialog with the voice assistant. It helps you analyze the sequence of users’ activities – :doc:`user events <../../server-api/user-data/events>` and :doc:`matched patterns <../../server-api/patterns>` and understand users’ behavior to design a successful voice experience.
 
 The widget illustrates users’ activities as slices laid out around the circle. To read the widget data, do the following:
 

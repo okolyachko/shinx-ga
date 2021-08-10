@@ -173,7 +173,7 @@ That's it. We now have two screens in our app. Let's proceed with voice commands
 Step 2: Add voice commands to navigate between screens
 ------------------------------------------------------
 
-We need to add new `commands <../../server-api/commands-and-responses>`__ to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:
+We need to add new :doc:`commands <../../server-api/commands-and-responses>` to the Alan script to navigate between screens with voice. In Alan Studio, open the project and in the code editor, add the following intents:
 
 .. code:: javascript
 
@@ -248,4 +248,4 @@ You can get an example of such an app from the Alan GitHub to make sure you have
 What's next?
 ------------
 
-Have a look at the next tutorial: `Passing the app state to the voice script <sending-data>`__.
+Have a look at the next tutorial: :doc:`Passing the app state to the voice script <sending-data>`.
