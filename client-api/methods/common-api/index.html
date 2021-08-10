@@ -1,0 +1,1383 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Alan handlers" href="../handlers/" /><link rel="prev" title="Alan Power Apps Framework" href="../../cross-platform/powerapps/" />
+
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Client API methods - Alan AI docs</title>
+      <link rel="stylesheet" href="../../../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../_static/favicon.png">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159851478-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-198019952-1');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../_static/favicon.png">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159851478-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-198019952-1');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../../../search/">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../contents/">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search/">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/hiw/about/">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/hiw/basics/">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/hiw/infrastructure/">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/hiw/deployment/">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/hiw/voice-processing/">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/guides/studio/">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/projects/">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/scripts/">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/versioning/">Versions and environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/script-testing/">Script testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/playground/">Alan Playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/analytics/">Voice analytics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/billing/">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/button/overview/">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/customization/">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/cohorts/">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/activation/">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/examples/overview/">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/predefined-examples/">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/code/">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/github/">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/video/overview/">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/studio/">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/alan-platform/">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/integration/">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/apps/">Voice-enabled apps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/additional/overview/">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/additional/supported-platforms/">Supported platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/additional/faq/">FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../server-api/script-concepts/">Script concepts</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/commands-and-responses/">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/patterns/">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/slots/">Slots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/contexts/">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/dynamic-entities/">Dynamic entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/built-in-javascript-libraries/">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/objects/">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/lifecycle/">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/popups/">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../server-api/sending-data/communication/">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/sending-data/visual-state/">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/sending-data/project-api/">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../server-api/user-data/overview/">User data</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/user-data/events/">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/user-data/client-object/">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/api/api-reference/">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../client-sdks/">Alan Client SDKs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../integration/">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../web/web-integration/">Web</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../web/web-api/">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/react/">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/angular/">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/vue/">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/ember/">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/vanilla/">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/electron/">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/server-side-rendering/">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../web/web-component/">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../ios/ios-api/">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../android/android-api/">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../cross-platform/overview/">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cross-platform/ionic/">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cross-platform/cordova/">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cross-platform/flutter/">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cross-platform/react-native/">React Native</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cross-platform/powerapps/">Microsoft Power Apps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../handlers/">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../command-handler/">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../state-handler/">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../event-handler/">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/how-tos/">How-tos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/list-all/">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/list/web-list/">Web</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/list/adding-voice-to-a-web-application/">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../tutorials/list/food-delivery-tutorial/">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-create-app/">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-create-voice-assistant/">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-integrate/">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-add-command/">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-alternatives/">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-slots/">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-several-items/">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-display-items/">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-slot-labels/">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-remove-items/">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-highlight-items/">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-checkout-context/">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-time/">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-comment/">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-populate-fields/">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-api-call/">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-visual-context/">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-balance/">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-start-dialog/">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/list/food-delivery-popup/">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/list/using-dynamic-entities/">Using dynamic entities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/web/frameworks-list/">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/web/integrating-react-app/">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/web/integrating-angular-app/">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/web/integrating-vue-app/">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/web/integrating-ember-app/">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/web/integrating-electron-app/">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/ios/ios-list/">iOS</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/integrating-swift/">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/navigating-swift/">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/sending-data-swift/">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/highlighting-swift/">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/triggering-info-swift/">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ios/greeting-swift/">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/android/android-list/">Android</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/android/integrating-java-kotlin/">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/android/navigating-kotlin/">Navigating between screens in an Android app (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/android/sending-data/">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/android/highlighting-kotlin/">Highlighting items with voice (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/flutter/flutter-list/">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/flutter/integrating-flutter/">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/flutter/navigating-flutter/">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/flutter/sending-data-flutter/">Passing the app state to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/ionic/ionic-list/">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ionic/integrating-angular/">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ionic/navigating-angular/">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ionic/sending-data-angular/">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ionic/integrating-react/">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/ionic/navigating-react/">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tutorials/react-native/react-native-list/">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/react-native/integrating-react-native/">Building a voice assistant for a React Native app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="client-api-methods">
+<h1>Client API methods<a class="headerlink" href="#client-api-methods" title="Permalink to this headline">¶</a></h1>
+<p>Alan exposes a set of its Client API methods that you can use to enable
+communication between the client app and Alan and to trigger voice
+activities on the client side.</p>
+<p>The methods below are supported on all platforms:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#setvisualstate">setVisualState()</a></p></li>
+<li><p><a class="reference internal" href="#callprojectapi">callProjectApi()</a></p></li>
+<li><p><a class="reference internal" href="#playtext">playText()</a></p></li>
+<li><p><a class="reference internal" href="#playcommand">playCommand()</a></p></li>
+<li><p><a class="reference internal" href="#activate">activate()</a></p></li>
+<li><p><a class="reference internal" href="#deactivate">deactivate()</a></p></li>
+<li><p><a class="reference internal" href="#isactive">isActive()</a></p></li>
+</ul>
+<div class="section" id="setvisualstate">
+<span id="id1"></span><h2>setVisualState()<a class="headerlink" href="#setvisualstate" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="syntax">
+<h3>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>setVisualState(visualStateData:object)</p>
+</div>
+<p>Method for setting the visual state. For details, see <a class="reference internal" href="../../../server-api/sending-data/visual-state/"><span class="doc">Visual state</span></a>.</p>
+</div>
+<div class="section" id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 29%"/>
+<col style="width: 15%"/>
+<col style="width: 55%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">visualStateData</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Object that represents the visual state</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="78a068a3-2659-4d43-ba26-e3a0653d014e" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="78a068a3-2659-4d43-ba26-e3a0653d014e">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//this is how you can set up a visual state</span>
+<span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">data</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="c71be3ae-1945-425e-90a5-8b00f002ea7f" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="c71be3ae-1945-425e-90a5-8b00f002ea7f">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Set up a visual state</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setVisualState</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">setVisualState</span><span class="p">:</span><span class="l">@{</span><span class="s">@"data"</span><span class="o">:</span><span class="s">@"your data"</span><span class="l">}</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="bddd2d57-25cd-4c24-9f95-8f310e74d790" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="bddd2d57-25cd-4c24-9f95-8f310e74d790">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Set up a visual state</span>
+<span class="kd">func</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">([</span><span class="s">"data"</span><span class="p">:</span><span class="s">"your data"</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="c7fc3634-5a21-4dc8-b43f-eee70571dd9b" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="c7fc3634-5a21-4dc8-b43f-eee70571dd9b">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Set up a visual state</span>
+<span class="n">fun</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span> <span class="s">"your data"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">setVisualState</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="26e5d361-42a2-4ca2-847d-0e035100c512" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="26e5d361-42a2-4ca2-847d-0e035100c512">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Set up a visual state</span>
+<span class="kt">void</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span><span class="s">"your data"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">setVisualState</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="b3d3daad-ec9b-4829-830f-b212ad35391d" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="b3d3daad-ec9b-4829-830f-b212ad35391d">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Set up a visual state</span>
+  <span class="kt">void</span> <span class="n">_setVisualState</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Provide any params with json</span>
+    <span class="kd">var</span> <span class="n">visualState</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">(</span><span class="n">visualState</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="0e4311c7-6397-4aa5-a717-3ef687490f9c" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="0e4311c7-6397-4aa5-a717-3ef687490f9c">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span> <span class="s1">'homePage'</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="37fc5b52-ab0f-4bc1-84e1-96a280a757e8" name="1e483617-60b0-48c5-a519-d7ac8d5bc11e" type="radio"/>
+<label class="tabbed-label" for="37fc5b52-ab0f-4bc1-84e1-96a280a757e8">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Set up a visual state</span>
+<span class="nx">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="callprojectapi">
+<span id="id2"></span><h2>callProjectApi()<a class="headerlink" href="#callprojectapi" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Syntax<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>callProjectApi(method:string, data:object, callback:function)</p>
+</div>
+<p>Method for calling a project API defined in the script in the Alan Studio project. For details, see <a class="reference internal" href="../../../server-api/sending-data/project-api/"><span class="doc">Project API</span></a>.</p>
+</div>
+<div class="section" id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 16%"/>
+<col style="width: 12%"/>
+<col style="width: 71%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></td>
+<td><p>string</p></td>
+<td><p>project API method name that is defined in the voice script</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Any object with custom data that must be sent to the voice script</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code></p></td>
+<td><p>function</p></td>
+<td><p>Callback that can be called from the project API method</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Voice script where your method defined like this:</span>
+<span class="nx">projectAPI</span><span class="p">.</span><span class="nx">setClientData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">param</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span> <span class="o">=</span> <span class="nx">param</span><span class="p">;</span>
+  <span class="nx">callback</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Examples<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="cd27828e-d1e2-4b87-9d19-67c26ad579cb" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="cd27828e-d1e2-4b87-9d19-67c26ad579cb">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is how you can call clientAPI.setClientData function</span>
+<span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span><span class="s2">"setClientData"</span><span class="p">,</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">){</span>
+  <span class="c1">// handle error and result here</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="25280cb7-3118-4364-bdf0-e53b5da2b14b" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="25280cb7-3118-4364-bdf0-e53b5da2b14b">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">callProjectApi</span><span class="p">:</span><span class="s">@"script::funcName"</span> <span class="nl">withData</span><span class="p">:</span><span class="l">@{</span><span class="s">@"data"</span><span class="o">:</span><span class="s">@"your data"</span><span class="l">}</span> <span class="nl">callback</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="2f07fb88-79df-4711-bac3-a6ab0af4bf54" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="2f07fb88-79df-4711-bac3-a6ab0af4bf54">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+<span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">withData</span><span class="p">:</span> <span class="p">[</span><span class="s">"data"</span><span class="p">:</span><span class="s">"your data"</span><span class="p">],</span> <span class="n">callback</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="3700980b-53c2-4b75-b096-daeb23b0dbad" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="3700980b-53c2-4b75-b096-daeb23b0dbad">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+<span class="n">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span> <span class="s">"your data"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="8cb3cdb4-bbd5-4179-89f4-442d25026e86" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="8cb3cdb4-bbd5-4179-89f4-442d25026e86">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+<span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span><span class="s">"your data"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="3e52ef5f-4361-4419-8c32-0d6d86d84df4" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="3e52ef5f-4361-4419-8c32-0d6d86d84df4">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+  <span class="kt">void</span> <span class="n">_callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Provide any params with json</span>
+    <span class="kd">var</span> <span class="n">params</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">callProjectApi</span><span class="p">(</span><span class="s2">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="7a1f029a-86f3-450c-ae2a-20f56e0a8f34" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="7a1f029a-86f3-450c-ae2a-20f56e0a8f34">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span><span class="s2">"myFunc"</span><span class="p">,</span> <span class="p">{</span><span class="nx">myData</span><span class="o">:</span> <span class="mf">123</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"cb from myFunc was received"</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="08898927-6282-4211-bb5e-07110111941b" name="f2c35e37-6782-418d-8704-72f57856ac0e" type="radio"/>
+<label class="tabbed-label" for="08898927-6282-4211-bb5e-07110111941b">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Call projectAPI.funcName from Alan Studio script</span>
+<span class="nx">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span>
+    <span class="s1">'script::funcName'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">},</span>
+    <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="playtext">
+<span id="id6"></span><h2>playText()<a class="headerlink" href="#playtext" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>Syntax<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>playText(text:string)</p>
+</div>
+<p>Method for playing voice.</p>
+</div>
+<div class="section" id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 23%"/>
+<col style="width: 23%"/>
+<col style="width: 54%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Text that must be played</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="id9">
+<h3>Examples<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="311f3916-8d4a-4bd8-aca2-3147fe369e34" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="311f3916-8d4a-4bd8-aca2-3147fe369e34">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi! I am Alan"</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<input id="6f3ee93a-4183-4130-ab21-2e7f69e3fdf2" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="6f3ee93a-4183-4130-ab21-2e7f69e3fdf2">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Play any text via Alan Button</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">playText</span> <span class="p">{</span>
+  <span class="c1">/// Provide text as string param</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">playText</span><span class="p">:</span><span class="s">@"Hi"</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="47c33249-4c1c-4d99-ad0a-20386657f80d" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="47c33249-4c1c-4d99-ad0a-20386657f80d">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Play any text via Alan Button</span>
+<span class="kd">func</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide text as string param</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="7516807a-1382-4948-98d3-51d9c6cab762" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="7516807a-1382-4948-98d3-51d9c6cab762">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Play any text via Alan Button</span>
+<span class="n">fun</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide text as string param</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="82b5fb9f-cc1f-45dd-8eae-1660c0be3e5a" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="82b5fb9f-cc1f-45dd-8eae-1660c0be3e5a">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Play any text via Alan Button</span>
+<span class="kt">void</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide text as string param</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="5f4258d0-9456-4274-8383-3ee69fe7cafa" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="5f4258d0-9456-4274-8383-3ee69fe7cafa">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">/// Play any text via Alan Button</span>
+  <span class="kt">void</span> <span class="n">_playText</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Provide text as string param</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">playText</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="b4e9a203-557e-4358-a766-3abc2d9d1691" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="b4e9a203-557e-4358-a766-3abc2d9d1691">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi! I am Alan"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="36f350a8-49d8-4bf2-897c-bfb3224a8d90" name="3415ad06-861d-4f9d-bceb-517bfe97ad8c" type="radio"/>
+<label class="tabbed-label" for="36f350a8-49d8-4bf2-897c-bfb3224a8d90">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Play any text via Alan Button</span>
+<span class="nx">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide text as string param</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="playcommand">
+<h2>playCommand()<a class="headerlink" href="#playcommand" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>Syntax<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>playCommand(command:object)</p>
+</div>
+<p>Method for executing a command locally in the client app. The command is handled with the <code class="docutils literal notranslate"><span class="pre">onCommand</span></code> handler.</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 22%"/>
+<col style="width: 18%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">command</span></code></p></td>
+<td><p>object</p></td>
+<td><p>JSON object that represents a command</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="737a328f-79fd-4060-95a9-6c1187ed265b" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="737a328f-79fd-4060-95a9-6c1187ed265b">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span><span class="s2">"navigate"</span><span class="p">,</span> <span class="nx">screen</span><span class="o">:</span> <span class="s2">"settings"</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="828277c7-a156-4984-b058-daee41e74a5e" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="828277c7-a156-4984-b058-daee41e74a5e">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Execute any command locally</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">playCommand</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="nl">playCommand</span><span class="p">:</span><span class="l">@{</span><span class="s">@"action"</span><span class="o">:</span><span class="s">@"openSomePage"</span><span class="l">}</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="19183fb2-9ed2-4dbc-8804-6840df8379a2" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="19183fb2-9ed2-4dbc-8804-6840df8379a2">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Execute any command locally</span>
+<span class="kd">func</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">playCommand</span><span class="p">([</span><span class="s">"action"</span><span class="p">:</span><span class="s">"openSomePage"</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="1f7ec958-876f-4d24-b06d-394b7fa72161" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="1f7ec958-876f-4d24-b06d-394b7fa72161">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Execute any command locally</span>
+<span class="n">fun</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"action"</span><span class="p">,</span> <span class="s">"openSomePage"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">playCommand</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span> <span class="kc">null</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="dbd28a9d-b991-47da-bd1f-eacd34c082c8" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="dbd28a9d-b991-47da-bd1f-eacd34c082c8">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Execute any command locally</span>
+<span class="kt">void</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"action"</span><span class="p">,</span><span class="s">"openSomePage"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">playCommand</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span> <span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="ca28b5f6-95f5-44e6-8470-432ed227571c" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="ca28b5f6-95f5-44e6-8470-432ed227571c">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Execute any command locally</span>
+  <span class="kt">void</span> <span class="n">_playCommand</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Provide any params with json</span>
+    <span class="kd">var</span> <span class="n">command</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"action"</span><span class="o">:</span><span class="s2">"openSomePage"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">playCommand</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="4682a847-23c9-434f-b35e-38adbeb6d8c2" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="4682a847-23c9-434f-b35e-38adbeb6d8c2">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span><span class="s2">"navigate"</span><span class="p">,</span> <span class="nx">screen</span><span class="o">:</span> <span class="s2">"settings"</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="97174567-ec97-4a68-8bb6-2f9fdfb5a665" name="9e6ab9b6-a2e2-44d8-98a9-4e7e4151d3fd" type="radio"/>
+<label class="tabbed-label" for="97174567-ec97-4a68-8bb6-2f9fdfb5a665">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Execute any command locally</span>
+<span class="nx">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Provide any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="s2">"action"</span><span class="o">:</span><span class="s2">"openSomePage"</span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activate">
+<span id="id12"></span><h2>activate()<a class="headerlink" href="#activate" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>Syntax<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>activate()</p>
+</div>
+<p>Method for turning on the Alan button programmatically.</p>
+</div>
+<div class="section" id="id14">
+<h3>Examples<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="3ea86632-5dea-4fcc-baf2-05f59bd97b81" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="3ea86632-5dea-4fcc-baf2-05f59bd97b81">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="6a76a9ab-5d82-4e69-bbd0-a164397b7775" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="6a76a9ab-5d82-4e69-bbd0-a164397b7775">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activate Alan button programmatically</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">activate</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="n">activate</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="605c72dc-3d5c-4b58-9f53-7b83009f858a" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="605c72dc-3d5c-4b58-9f53-7b83009f858a">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activate Alan button programmatically</span>
+<span class="kd">func</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="381f802a-1cea-48bf-b894-69c199c494b4" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="381f802a-1cea-48bf-b894-69c199c494b4">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activate Alan button programmatically</span>
+<span class="n">fun</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">activate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="fa265299-97de-484a-a85b-ba3ac19cd2d4" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="fa265299-97de-484a-a85b-ba3ac19cd2d4">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activate Alan button programmatically</span>
+<span class="kt">void</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">activate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="0ad60512-ab93-461d-a7d3-2b895a868dc1" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="0ad60512-ab93-461d-a7d3-2b895a868dc1">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Activate Alan button programmatically</span>
+  <span class="kt">void</span> <span class="n">_activate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">activate</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="8d0c2e05-66c6-4326-ac29-b71e66852287" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="8d0c2e05-66c6-4326-ac29-b71e66852287">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="648feae9-a547-4251-8206-e9795d9712c7" name="c4aeef49-d43b-4d6b-bdfa-c410b2bcb79d" type="radio"/>
+<label class="tabbed-label" for="648feae9-a547-4251-8206-e9795d9712c7">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activate Alan button programmatically</span>
+<span class="nx">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deactivate">
+<span id="id15"></span><h2>deactivate()<a class="headerlink" href="#deactivate" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h3>Syntax<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>deactivate()</p>
+</div>
+<p>Method for turning off the Alan button programmatically.</p>
+</div>
+<div class="section" id="id17">
+<h3>Examples<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="31e059e3-4b32-4b69-b0e3-bd3a94e4731f" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="31e059e3-4b32-4b69-b0e3-bd3a94e4731f">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="a7d71bf1-4e01-4466-880a-d07baad561fa" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="a7d71bf1-4e01-4466-880a-d07baad561fa">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivate Alan button programmatically</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">deactivate</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span> <span class="n">deactivate</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="1903580d-1325-404a-af81-c6a2bc4c9562" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="1903580d-1325-404a-af81-c6a2bc4c9562">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivate Alan button programmatically</span>
+<span class="kd">func</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">deactivate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="0be3a436-c4b8-46c4-a489-c3cbde06f218" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="0be3a436-c4b8-46c4-a489-c3cbde06f218">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivate Alan button programmatically</span>
+<span class="n">fun</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">deactivate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="107e9a7c-8170-4207-b96f-5521ba84cbcf" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="107e9a7c-8170-4207-b96f-5521ba84cbcf">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivate Alan button programmatically</span>
+<span class="kt">void</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">deactivate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="8c693ac7-49c1-44ee-ba66-7efd793a6b57" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="8c693ac7-49c1-44ee-ba66-7efd793a6b57">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Deactivate Alan button programmatically</span>
+  <span class="kt">void</span> <span class="n">_deactivate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">deactivate</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="2e676b35-9cad-4ded-aabc-09d37357009f" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="2e676b35-9cad-4ded-aabc-09d37357009f">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="8608d075-9dd6-47a2-9e46-d6cd61ad4ae8" name="9ab2b970-13ab-4681-802b-57e8923c419d" type="radio"/>
+<label class="tabbed-label" for="8608d075-9dd6-47a2-9e46-d6cd61ad4ae8">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivate Alan button programmatically</span>
+<span class="nx">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="isactive">
+<span id="id18"></span><h2>isActive()<a class="headerlink" href="#isactive" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h3>Syntax<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>isActive()</p>
+</div>
+<p>Method for checking the Alan button state. Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the Alan button is activated by the user or programmatically or <code class="docutils literal notranslate"><span class="pre">false</span></code> if the Alan button is deactivated by the user or programmatically.</p>
+</div>
+<div class="section" id="id20">
+<h3>Examples<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7ebfdbd7-10be-4651-bbb8-81b76790d95f" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="7ebfdbd7-10be-4651-bbb8-81b76790d95f">
+Web</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">isActive</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="b755d7b1-5afa-49f5-ab4a-b3662f506560" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="b755d7b1-5afa-49f5-ab4a-b3662f506560">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">alanBtnInstance</span> <span class="n">isActive</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<input id="c1f11aa6-7078-4c0d-b8a1-9fc230d382ea" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="c1f11aa6-7078-4c0d-b8a1-9fc230d382ea">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="n">alanBtnInstance</span><span class="p">.</span><span class="n">isActive</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input id="bd713fe8-6154-4c84-86f6-8a205ba3b4ee" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="bd713fe8-6154-4c84-86f6-8a205ba3b4ee">
+Android</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">alanBtnInstance</span><span class="p">.</span><span class="na">isActive</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="aec5e733-ac2d-4265-8110-7ecc964e39b8" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="aec5e733-ac2d-4265-8110-7ecc964e39b8">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">_checkIsActive</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="n">isActive</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">AlanVoice</span><span class="p">.</span><span class="n">isActive</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isActive</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_showDialog</span><span class="p">(</span><span class="s2">"Active"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">_showDialog</span><span class="p">(</span><span class="s2">"NOT active"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="44531cac-f742-42f3-9bc9-08bccb53c97b" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="44531cac-f742-42f3-9bc9-08bccb53c97b">
+Ionic</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">isActive</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="ba1afb7d-bb94-4609-9e23-0c43be979db4" name="a9e55acb-916d-40e0-b571-77b364b8e57f" type="radio"/>
+<label class="tabbed-label" for="ba1afb7d-bb94-4609-9e23-0c43be979db4">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">AlanManager</span><span class="p">.</span><span class="nx">isActive</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="purple-background"></div></div>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../handlers/">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Alan handlers</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../../cross-platform/powerapps/">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Alan Power Apps Framework</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Client API methods</a><ul>
+<li><a class="reference internal" href="#setvisualstate">setVisualState()</a><ul>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#callprojectapi">callProjectApi()</a><ul>
+<li><a class="reference internal" href="#id3">Syntax</a></li>
+<li><a class="reference internal" href="#id4">Parameters</a></li>
+<li><a class="reference internal" href="#id5">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#playtext">playText()</a><ul>
+<li><a class="reference internal" href="#id7">Syntax</a></li>
+<li><a class="reference internal" href="#id8">Parameters</a></li>
+<li><a class="reference internal" href="#id9">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#playcommand">playCommand()</a><ul>
+<li><a class="reference internal" href="#id10">Syntax</a></li>
+<li><a class="reference internal" href="#id11">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#activate">activate()</a><ul>
+<li><a class="reference internal" href="#id13">Syntax</a></li>
+<li><a class="reference internal" href="#id14">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deactivate">deactivate()</a><ul>
+<li><a class="reference internal" href="#id16">Syntax</a></li>
+<li><a class="reference internal" href="#id17">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#isactive">isActive()</a><ul>
+<li><a class="reference internal" href="#id19">Syntax</a></li>
+<li><a class="reference internal" href="#id20">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/custom.js"></script>
+    <script src="../../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

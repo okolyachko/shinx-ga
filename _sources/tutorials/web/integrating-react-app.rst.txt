@@ -1,0 +1,153 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Building a voice assistant for a React app
+==========================================
+
+You can create a voice assistant or chatbot and embed it to your React app with Alan's :doc:`voice assistant SDK for Web <../../client-api/web/web-api>`. In this tutorial, we will create a simple voice enabled React app. The app users will be able to click the Alan button and give custom voice commands, and Alan will reply to them.
+
+What you will learn
+-------------------
+
+-  How to add a voice interface to a React app
+-  How to write simple voice commands for a React app
+
+What you will need
+------------------
+
+To go through this tutorial, make sure Node.js is installed on your machine.
+
+Step 1. Sign up for Alan Studio
+-------------------------------
+
+First, we need to sign up for Alan Studio — the web portal where we will create a dialog scenario, or the voice script, for our voice assistant.
+
+1. Go to Alan Studio.
+2. Sign up with a Google or GitHub account or with your email address.
+
+   .. tip::
+
+      When you sign up, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, sign up with your GitHub account or connect your Alan account with your GitHub account and give stars to `Alan repositories <https://github.com/alan-ai>`__.
+
+3. In Alan Studio, click **Create Voice Assistant**. Select to create an empty project and give it any name you want.
+
+Step 2: Create a React app
+--------------------------
+
+Now let's create a simple React app.
+
+1. On your machine, navigate to the folder in which the app will reside and run the following command:
+
+   .. code:: bash
+
+      $ npx create-react-app my-app
+
+2. Switch to the folder with the app:
+
+   .. code:: bash
+
+      $ cd my-app
+
+3. Start the app:
+
+   .. code:: bash
+
+      $ npm start
+
+   .. image:: /_static/assets/img/web-frameworks/react-starter-app.png
+
+Step 3: Install the Alan Web component
+--------------------------------------
+
+We need to add the Alan Web component to the app. In the app folder, install the Alan Web component with the following command:
+
+.. code:: bash
+
+    $ npm i @alan-ai/alan-sdk-web
+
+
+Step 4: Add the Alan button to the app
+--------------------------------------
+
+Now we need to update our app to add the Alan button to it.
+
+1. In the ``src`` folder, open the ``App.js`` file.
+2. At the top of the file, add the import statement for the Alan Web component: 
+
+   .. code:: javascript
+
+      import alanBtn from "@alan-ai/alan-sdk-web";
+	
+	
+3. We will use the Effect Hook to add the Alan button to our app. At the top of the file, add the following import statement:
+
+   .. code:: javascript
+
+      import React, { useEffect } from 'react';
+
+   .. note:: 
+      For an app that uses React Class Components, you can add the Alan button with ``componentDidMount()``. For details, see :doc:`React <../../client-api/web/react>`.
+
+4. In the function component, call ``useEffect``:
+
+   .. code:: javascript
+
+      function App() {
+
+          // Adding the Alan button
+          useEffect(() => {
+              alanBtn({
+                  key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+                  onCommand: (commandData) => {
+                      if (commandData.command === 'go:back') {
+                          // Call the client code that will react to the received command
+                      }
+                  }
+              });
+          }, []); 
+          return (
+          ...
+          );
+      }
+
+5. In the ``key`` field above, we need to replace ``YOUR_KEY_FROM_ALAN_STUDIO_HERE`` with the Alan SDK key for our Alan
+   Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, copy the value provided in the **Alan SDK Key** field and paste this value to ``key``.
+
+   .. code:: javascript
+
+      function App() {
+
+          useEffect(() => {
+              alanBtn({
+                  key: '28b4365114e0f2f67d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/stage',
+                  onCommand: (commandData) => {
+                      if (commandData.command === 'go:back') {
+                          // Call the client code that will react to the received command
+                      }
+                  }
+              });
+          }, []);
+          return (
+          ...
+          );
+      }
+
+Step 5. Add voice commands
+--------------------------
+
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>`  so that we can interact with our React app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
+
+.. code:: javascript
+
+   intent (`What is your name?`, p => {
+       p.play(`It's Alan, and yours?`);
+   });
+
+   intent (`How are you doing?`, p => {
+       p.play(`Good, thank you. What about you?`);
+   });
+
+Now in the app click the Alan button and ask: ``What is your name?`` and ``How are you doing?`` Alan will give responses provided in the intents.
+
+.. image:: /_static/assets/img/web-frameworks/react-app-button.png

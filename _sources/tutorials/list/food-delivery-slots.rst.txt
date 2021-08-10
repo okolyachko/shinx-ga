@@ -1,0 +1,43 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Step 6: Pick out important data with slots
+==========================================
+
+In our app, users can order different items: pepperoni, burritos, burgers and so on. To capture the user's choice, we will add a
+:doc:`user-defined slot <../../server-api/slots#user-defined-slots>` to the voice command. Slots allow Alan to identify and retrieve the necessary information from the user's input.
+
+1. To define a slot, enter ``$`` followed by brackets. In brackets, provide the slot name and a list of values separated with ``|``.
+
+   .. code-block:: javascript
+     :emphasize-lines: 1
+	  
+      intent('(I want|I will take|Add|) (a|an|) $(ITEM pepperoni|margherita|burrito|burger|taco|apple pie), (please|)', p => {
+          p.play('Adding pepperoni for you', 'Sure', 'Here you go');
+      });
+
+   Now, users can order different items.
+
+2. For our convenience, we can save the list of slots to a variable and use it in the command pattern. If adding a variable, don't forget to replace single quotes in the command pattern with backticks to let Alan capture the nested expression:
+
+   .. code-block:: javascript
+     :emphasize-lines: 1, 3
+
+      const itemList = "pepperoni|margherita|burrito|burger|taco|apple pie";
+
+      intent(`(I want|I will take|Add|) (a|an|) $(ITEM ${itemList}), (please|)`, p => {
+          p.play('Adding pepperoni for you', 'Sure', 'Here you go');
+      });
+
+3. Finally, let's update Alan's response: it should name the chosen item. The value captured with the ``ITEM`` slot is stored to the
+   ``p.ITEM.value`` variable. Again, replace single quotes with backticks to play the nested variable:
+
+   .. code-block:: javascript
+     :emphasize-lines: 4
+
+      const itemList = "pepperoni|margherita|burrito|burger|taco|apple pie";
+
+      intent(`(I want|I will take|Add|) (a|an|) $(ITEM ${itemList}), (please|)`, p => {
+          p.play(`Adding ${p.ITEM.value} for you`, 'Sure', 'Here you go');
+      });
