@@ -1,0 +1,224 @@
+Alan Web Component
+==================
+
+.. raw:: html
+
+   <a href="https://www.npmjs.com/package/@alan-ai/alan-button">
+   <img src="https://img.shields.io/npm/v/@alan-ai/alan-button.svg" align="left" style="border:inherit; padding-right:10px" /></a>
+   
+   <br/>
+
+The Alan button can be added to your app as a Web Component. Using the Alan Button Web Component is as simple as importing it: you can add it to your app just by adding it as a normal HTML tag.
+
+.. code:: html
+
+    <alan-button alan-key="YOUR_KEY_FROM_ALAN_STUDIO_HERE"></alan-button>
+
+.. note:: 
+   It is recommended that you use the Alan Button Web Component with cross-platform frameworks (Ionic). To integrate Alan voice into a non cross-platform app or page, use :doc:`Alan Web SDK <web-api>`.
+
+
+Web Component API
+-----------------
+
+To add the Alan button to a page as a Web Component:
+
+1. Add the source code of the Alan Button Web Component to your page/project. Install the @alan-button package from npm:
+
+   .. code:: bash
+
+       npm i @alan-ai/alan-button
+
+   Once the package is installed:
+
+   -  Use it in your project with the ``import`` statement
+   -  Or add the following script tag to your HTML page:
+
+   .. code:: html
+
+       <script src="(path_to_node_modules)/@alan-button/dist/alancomponents.js"></script>
+
+2. Add the following tag to the HTML page, view or template:
+
+   .. code:: html
+
+       <alan-button id="myAlanBtn" alan-key="0717498b05e694d0b083b897e50a49102e956eca572e1d8b807a3e2338fdd0dc/stage"></alan-button>
+
+Web Component attributes
+------------------------
+
++----------------+------------+--------------------------------+
+| **Name**       | **Type**   | **Description**                |
++================+============+================================+
+| ``alan-key``   | string     | The Alan Studio project key.   |
++----------------+------------+--------------------------------+
+
+Methods
+-------
+
+setVisualState
+~~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   setVisualState (visualStateData: object)
+
+Method for setting the visual state. For details, see :doc:`Visual state <../../server-api/sending-data/visual-state>`.
+
+* ``visualStateData`` - data that represents a visual state
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.setVisualState({screen: 'homePage'});
+      });
+
+
+callProjectApi
+~~~~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   callProjectApi (method:string, data:object, callback:function)
+
+
+Method for calling a project API defined in the script in the Alan Studio project. For details, see :doc:`Project
+API <../../server-api/sending-data/project-api>`.
+
+* ``method`` - project API method name that was defined in the voice script
+
+* ``data`` - data that should be passed
+
+* ``callback`` - callback that could be called from project API method
+
+.. code:: javascript
+
+      //(in the script in AT project)
+      projectAPI.myFunc = (p, param, callback) => {
+        p.play("myFunc was called");
+        p.play(param);
+        callback(null,{"newParam":111});
+      };
+
+      //(in the JS script)
+      var myAlanBtn = document.getElementById('myAlanBtn');
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.callProjectApi("myFunc", {myData: 123}, function (error, result) {
+          console.log("cb from myFunc was received", error, result);
+        });
+      });
+
+playText
+~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   playText(text:string)
+
+Method for playing voice.
+
+- ``text`` - text that should be played
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.playText("Hi! I am Alan");
+      });
+	  
+
+playCommand
+~~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   playCommand(command:object)
+
+Method for sending a command.
+
+- ``command`` - object that represents a command
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.playCommand({command:"navigate", screen: "settings"});
+      });
+
+activate
+~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   activate()
+
+Method for turning on the Alan Button programmatically.
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.activate();
+      });
+
+deactivate
+~~~~~~~~~~
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   deactivate()
+
+Method for turning off the Alan button programmatically.
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.componentOnReady().then(function () {
+        myAlanBtn.deactivate();
+      });
+
+Events
+------
+
+command
+~~~~~~~
+
+Received when command is received from the AT script.
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.addEventListener('command', function (data) {
+        console.info('Received command:', data.detail);
+      });
+
+сonnectionStatus
+~~~~~~~~~~~~~~~~
+
+Received when a new connection status for the Alan button is obtained.
+
+.. code:: javascript
+
+      var myAlanBtn = document.getElementById('myAlanBtn');
+
+      myAlanBtn.addEventListener('connectionStatus', function (data) {
+        console.info('Received status:', data.detail);
+      });
+	  
+	  
+.. raw:: html
+
+   <div id="purple-background"></div>
