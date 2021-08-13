@@ -1,0 +1,37 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Step 5: Specify alternatives and options
+========================================
+
+The phrase used to invoke a voice command is called a :doc:`pattern <../../server-api/patterns>`. At present, our command is invoked
+by one phrase: ``I want a pepperoni``. However, the users can give a voice command in different ways. For example:
+
+-  ``I will take a pepperoni``
+-  ``Add a pepperoni``
+-  ``Add a pepperoni, please``
+-  Or just ``Pepperoni``
+
+To be sure the voice command is invoked by any of these phrases, we can add :ref:`alternatives<Patterns with alternatives>` and :ref:`options<Optional alternatives>` to the command pattern.
+
+-  To define alternatives, enclose all possible variants in brackets and use the ``|`` delimiter.
+-  To define optional parts of the user command, enclose these parts in brackets and add ``|`` at the end of them.
+
+.. code-block:: javascript
+  :emphasize-lines: 1
+
+    intent('(I want|I will take|Add|) (a|) pepperoni, (please|)', p => {
+        p.play('Adding pepperoni for you');
+    });
+
+Now all the above phrases will work.
+
+You can also specify a list of phrases with which your voice assistant will reply: add all variants to the ``p.play`` function and separate them with a comma. When this command is invoked, Alan will pick one phrase at random and play it to the user.
+
+.. code-block:: javascript
+  :emphasize-lines: 2
+
+    intent('(I want|I will take|Add|) (a|) pepperoni, (please|)', p => {
+        p.play('Adding pepperoni for you', 'Sure', 'Here you go');
+    });

@@ -1,0 +1,278 @@
+Dynamic entities
+================
+
+In Alan, the dynamic entities concept is similar to slots. Just like slots, you can add them to command patterns to capture important pieces of data from the user's input. However, slots are static. After the dialog model for your voice assistant has been built, their values cannot be updated.
+
+Dynamic entities, instead, are adaptive. Use them if you need to update values on a more frequent basis, for example, get them from your database, with an API call or alter them based on what the user has said. Whenever the values for dynamic entities are updated, Alan rebuilds the conversation model at runtime, without restarting the dialog session, which makes the user's experience more flexible and personalized.
+
+Consider the following command:
+
+.. code:: JavaScript
+
+    let favoritesList = "flannel shirt|fleece jacket|softshell pants";
+
+    intent(`Open $(FAVORITE ${favoritesList})`, p => {
+        p.play(`Opening ${p.FAVORITE.value}...`);
+    });
+
+In the example above, the favorites list remains static and cannot be altered after the dialog model has been built. Now, if we replace a slot with a dynamic entity, it will be possible to alter the favorites list in runtime. The user will be able to add a new item to the list with the first command and then give the second command to access the added item immediately.
+
+.. code:: JavaScript
+
+    onCreateUser(p => {
+        p.userData.favorites = "flannel shirt|fleece jacket|softshell pants";
+    });
+
+    intent(`Add $(ITEM* .*) to favorites`, p => {
+        p.userData.favorites = p.userData.favorites + '|' + p.ITEM.value;
+        p.play(`${p.ITEM.value} is added`);
+    });
+
+    intent(`Open $(FAVORITE u:favorites)`, p => {
+        p.play(`Opening ${p.FAVORITE.value}`);
+    });
+
+Defining dynamic entities
+-------------------------
+
+You can define dynamic entities in different ways: 
+
+- With the ``project`` global object: use this method if dynamic entities must be accessible globally `at the project level <#defining-dynamic-entities-at-the-project-level>`__.
+- With the ``userData`` object: use this method if dynamic entities must be accessible within the `user dialog session <#defining-dynamic-entities-at-the-dialog-session-level>`__.
+- With ``visualState``: use this method if values of dynamic entities are `passed from the client app <#passing-dynamic-entity-values-from-the-app>`__.
+
+
+Defining dynamic entities at the project level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A dynamic entity defined at the project level can be accessed by all users interacting with the voice assistant. You can use this type of dynamic entities to work with generic data that must be available to all app users.
+
+To define a dynamic entity at the project level, save the values of the dynamic entity to the ``project`` global object. To refer to such a dynamic entity in patterns, add the ``$`` sign followed by brackets ().
+In brackets, specify the dynamic entity name followed by ``p:variablename``.
+
+In the example below, values of a dynamic entity are saved to the ``project.movies`` variable; to refer to this dynamic entity, ``$(MOVIE p:movies)`` is added to the pattern.
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.movies = "Sergio|Valley Girl|All Day and a Night|The Half of It";
+    });
+
+    intent(`When is $(MOVIE p:movies) on?`, p => {
+        p.play(`Let me check`);
+    });
+
+.. note:: 
+
+   To define dynamic entities at the project level, you can use the :ref:`onCreateProject()` callback function.
+
+Defining dynamic entities at the dialog session level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A dynamic entity defined at the dialog session level can be accessed only by the current user interacting with the voice assistant during the dialog session. You can use this type of dynamic entities to work with user-specific and user-sensitive information, for example, when handling data that differs depending on the user logged in to the system.
+
+Values of such dynamic entities exist only while the dialog session is running. After the session ends or the user reconnects to the app in another session, all data stored in such dynamic entities is removed.
+
+To define a dynamic entity at the dialog session level, save the values of the dynamic entity to the ``userData`` object. To refer to such a dynamic entity in patterns, add the ``$`` sign followed by brackets ().
+In brackets, specify the dynamic entity name followed by ``u:variablename``.
+
+In the example below, values of a dynamic entity are saved to the ``p.userData.contacts`` variable; to refer to this dynamic entity, ``$(CONTACT u:contacts)`` is added to the pattern.
+
+.. code:: JavaScript
+
+    onCreateUser(p => {
+        p.userData.contacts = "Anna|Emma|John|Mark";
+    });
+
+    intent(`What is $(CONTACT u:contacts)'s phone number?`, p => {
+        p.play(`Opening ${p.CONTACT.value}'s record...`);
+    }); 
+
+.. note::
+   To define dynamic entities at the dialog session level, you can use the :ref:`onCreateUser()` and :ref:`onCleanupUser()` callback functions.
+
+Passing dynamic entity values from the app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can define dynamic entities with the help of the ``visual`` object. This type of dynamic entities can be helpful if you need to handle data sent from the app to the voice script. In this case, you can pass the necessary data in the ``visual`` object, access this data through the keys of the passed object and save it to a dynamic entity.
+
+To refer to such a dynamic entity in patterns, add the ``$`` sign followed by brackets (). In brackets, specify the dynamic entity name followed by ``v:variablename``.
+
+In the example below, we are retrieving the values passed in the ``visual`` object and saving them to the ``p.visual.menu`` variable. To refer to this dynamic entity, ``$(ITEM v:menu)`` is then added to the pattern.
+
+.. code:: JavaScript
+
+    // Set visual state
+    {
+        values: ["pasta", "burger", "quesadilla"]
+    }
+
+    onVisualState((p, s) => {
+        if (s.values) {
+            p.visual.menu = s.values.join('|');
+        }
+    });
+
+    intent(`Is $(ITEM v:menu) on the menu today?`, p => {
+        p.play(`Yes, do you want to order ${p.ITEM.value}?`);
+    });
+
+.. note:: 
+   For dynamic entities passed with the ``visual`` object, you can use the :ref:`onVisualState()` callback function.
+
+
+Changing dynamic entities values with voice commands
+----------------------------------------------------
+
+You can not only update dynamic entities with values from external sources, but also alter them with voice commands. In the example below, the shopping list is extended when the user gives a command to add a specific item. The resulting string of dynamic entity values is then logged to the console.
+
+.. code:: js
+
+    onCreateUser(p => {
+        p.userData.shopping = "coffee|sugar|honey";
+    });
+
+    intent(`Do I need $(SHOP u:shopping)?`, p => {
+        p.play(`${p.SHOP} is in the shopping list`);
+    });
+
+    intent(`Add $(ITEM* .*)`, p => {
+        p.userData.shopping = p.userData.shopping + '|' + p.ITEM.value;
+        p.play(`${p.ITEM.value} is added`);
+        console.log(p.userData.shopping);
+    });
+
+Capturing several values with dynamic entities
+----------------------------------------------
+
+You can add the same dynamic entity to the pattern several times, just like in case of regular slots. When such an intent is matched, all pieces of data captured with this dynamic entity are collected to an array of values.
+
+-  To access the list of all values in the array, use the dynamic entity
+   name followed by the underscore character, for example: ``p.ITEM_``.
+-  To access a specific element in the array, add the element index, for
+   example: ``p.ITEM_[0].value``.
+
+Let’s say you want the user to filter the list of products by brand. You can add the following voice command to the script:
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.BRANDS = "Apple|Asus|Microsoft|Samsung";
+    });
+
+    intent(`Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)`, p => {
+        p.play(`Getting the products...`);
+    });
+
+As in regular slots, in dynamic entities each element in the array has its own ``.value`` and ``.label`` fields: \* The ``value`` field is populated with values obtained from the user'd input. To access the ``value`` field, refer to it in the following way: ``p.ENTITYNAME_[index].value``. In the example above, to access the value of the first element in the brands array, use ``p.B_[0].value``.
+
+- The ``label`` field can contain custom values and can be used to give more accurate responses to the user. To access the ``label`` field, refer to it in the following way: ``p.ENTITYNAME_[index].label``. In the example below, to access the label of the first element in the brands array, use ``p.B_[0].label``.
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.BRANDS = "Apple~ios|Asus~android|Microsoft~win|Samsung~android";
+    });
+
+    intent(`Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)`, p => {
+        p.play(`Getting the products`);
+        console.log(p.B_[0].label);
+        console.log(p.B_[0].value)
+    });
+
+Defining dynamic entities with a short form
+-------------------------------------------
+
+To define dynamic entities, you can use a short form, without the name preceding the entity variable, for example:
+
+-  ``$(p:ITEM)``
+-  ``$(u:ITEM)``
+-  ``$(v:ITEM)``
+
+You can refer to the value captured with such a dynamic entity through the entity variable name: ``p.ITEM`` and ``p.ITEM.value``.
+
+.. warning::
+
+   When working with short forms, save patterns with dynamic entities to a variable and use it for the command pattern. Short forms added directly to the command pattern are not supported at the moment.
+
+In the example below, the ``p:ORIGIN`` dynamic entity is used to capture the movie origin:
+
+.. code:: js
+
+    onCreateProject(p=> {
+        project.ORIGIN = "Italian|American|French|German";
+    });
+
+    const REQUEST = [
+        `(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN) movies, (please|)`, 
+        `What are (the|) (best|top rated|popular|good) $(p:ORIGIN) movies?`, 
+    ];
+
+    intent(REQUEST, p => {
+        p.play(`Here is the list of top rated ${p.ORIGIN.value} movies`);
+    });
+
+Making dynamic entities optional
+--------------------------------
+
+As well as user-defined slots, dynamic entities can be optional. To mark a dynamic entity as optional, add the vertical bar at the end of it. Both regular dynamic entities and dynamic entities defined with a short form can be made optional.
+
+.. code:: js
+
+    onCreateProject(p=> {
+        project.ORIGIN = "Italian~Italy|American~U.S.|French~France|German~Germany";
+    });
+
+    const REQUEST = [
+        `(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies, (please|)`, 
+        `What are (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies?`, 
+    ];
+
+    intent(REQUEST, p => {
+        let pattern = `Here is a list of top rated movies`;
+        if (p.ORIGIN && p.ORIGIN.value) {
+            pattern += ` from ${p.ORIGIN.label}`;
+        }
+        p.play(pattern);
+    });
+
+Using fuzzy matching with dynamic entities
+------------------------------------------
+
+You can enable :ref:`fuzzy matching<Slots with fuzzy matching>` for dynamic entities. Fuzzy matching can be used both with regular dynamic entities:
+
+.. code:: JavaScript
+
+    onCreateProject(p=> {
+        project.DRINKS = "kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer";
+    });
+
+    intent(`Get me $(BEER~ p:DRINKS)`, p => {
+        p.play(`Sure, here is your ${p.BEER.label}`);
+    });
+
+and dynamic entities defined with a short form:
+
+.. code:: JavaScript
+
+    onCreateProject(p=> {
+        project.DRINKS = "kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer";
+    });
+
+    const REQUEST = [
+        `Get me $(~ p:DRINKS), (please|)`, 
+        `Is $(~ p:DRINKS) on the menu?` 
+    ];
+
+    intent(REQUEST, p => {
+        p.play(`Sure, here is your ${p.DRINKS.label}`);
+    });
+
+See also
+--------
+
+:doc:`Using dynamic entities in voice commands tutorial <../tutorials/list/using-dynamic-entities>`
+
+.. raw:: html
+
+   <div id="green-background"></div>
