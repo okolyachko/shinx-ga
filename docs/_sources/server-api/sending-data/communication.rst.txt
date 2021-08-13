@@ -1,0 +1,33 @@
+Sending data between the app and script
+=======================================
+
+When you create a voice assistant with Alan, you may want your app to communicate with the voice script and send data to it. For example, it may be necessary to:
+
+-  Send the app state to the voice script so that Alan understands what page or screen is currently active and provides relevant responses
+-  Send specific information to the voice script 
+-  Perform some logic without a voice command, for example, play a    message in response to user's actions in the app
+
+In Alan, the app can send data to the voice script in the following ways:
+
+-  With :doc:`visual state <visual-state>`: the visual state object lets you send the state of the app to the voice script. It can be helpful if you want to inform Alan about the current visual context and adjust the logic in the dialog, accordingly. For example, you can filter out some voice commands, give responses applicable to the open page or screen and so on.
+
+-  With :doc:`project API <project-api>`: The project API has a more general usage scope. It can be helpful if you need to send some information to the voice script or perform actions (play messages, call functions, set variable values) without a voice command.
+
+
+See also
+--------
+- :ref:`Sending commands to the app`
+   
+- :ref:`How tos: Communication with the app<Communication with the app>`
+
+.. raw:: html
+
+   <div id="green-background"></div>
+   
+   
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   Visual state<visual-state>
+   Project API<project-api> 

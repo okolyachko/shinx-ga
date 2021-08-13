@@ -1,0 +1,22 @@
+Alan examples
+=============
+
+To learn how a voice assistant can be implemented in your app, use the following examples:
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   
+   Voice script examples<predefined-examples>
+   Integration code examples<code>
+   Example apps on GitHub<github>
+   
+
+
+
+
+
