@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food Delivery Example - Step 5</title>
+    <link href="https://storage.googleapis.com/alan-tutorial/web-sdk/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="login">
+        <form onSubmit="login()">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Enter Username">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Enter Password">
+            <input type="submit" value="Login" />
+        </form>
+    </div>
+    <h1>Food Delivery</h1>
+    <h3>Menu</h3>
+    <div class="menu">
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/pepperoni.jpg"/>
+            Pepperoni
+        </div>
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/margherita.jpg"/>
+            Margherita
+        </div>
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/burrito.jpg"/>
+            Burrito
+        </div>
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/burger.jpg"/>
+            Burger
+        </div>
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/taco.jpg"/>
+            Taco
+        </div>
+        <div class="menu-item">
+            <img src="https://storage.googleapis.com/alan-tutorial/web-sdk/applepie.jpg"/>
+            Apple Pie
+        </div>
+    </div>
+
+    <div id="order"></div>
+    <div id="address"></div>
+    <div id="alan-btn"></div>
+    <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        let order = {};
+
+        function sendVisualState() {
+            alanBtnInstance.setVisualState({order});
+        }
+
+        function updateCart() {
+            let html = "";
+            for (let key in order) {
+                html += `<tr><td>${key}</td><td>${order[key]}</td>`;
+            }
+            html = `<table border="0">${html}</table>`;
+            document.getElementById("order").innerHTML = html;
+            sendVisualState();
+        }
+
+        function changeOrder(item, quantity) {
+            let number = (order[item] ? order[item] : 0) + quantity;
+            if (number <= 0) {
+                delete order[item];
+            } else {
+                order[item] = number;
+            }
+            updateCart();
+        }
+
+        function setAddress(address) {
+            document.getElementById("address").innerHTML = "Address: " + address;
+        }
+
+        function serverRequest(method, data, callback) {
+            $.ajax({
+                type: 'POST',
+                url: 'https://studio.alan.app/api_playground/' + method,
+                crossDomain: true,
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: callback,
+                error: () => alert('POST failed')
+            });
+        }
+
+        function login() {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            serverRequest(
+                'tutorialLogin',
+                {username: username, password: password},
+                function(res) {
+                    if (res.error) {
+                        alert(res.error);
+                        return;
+                    }
+                    let token = res.token;
+                    document.getElementById('login').innerHTML = 'Hello, ' + username;
+                }
+            );
+        }
+
+        let alanBtnInstance = alanBtn({
+            key: "e5280c09fc26ca703446ed6112aad3fd2e956eca572e1d8b807a3e2338fdd0dc/stage",
+            onCommand: function (commandData) {
+                if (commandData.command === "changeOrder") {
+                    changeOrder(commandData.item, commandData.quantity);
+                } else if (commandData.command == "address") {
+                    setAddress(commandData.address);
+                }
+            },
+            rootEl: document.getElementById("alan-btn"),
+        });
+    </script>
+</body>
+</html>

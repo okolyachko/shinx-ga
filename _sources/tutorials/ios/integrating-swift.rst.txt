@@ -1,0 +1,217 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Building a voice assistant for an iOS Swift app
+===============================================
+
+With Alan's :doc:`voice assistant SDK for iOS <../../client-api/ios/ios-api>`, you can create a voice assistant or chatbot like Siri and embed it to your iOS Swift app. The Alan Platform provides you with all the tools and leverages the industry’s best Automatic Speech Recognition (ASR), Natural Language Understanding (NLU) and Speech Synthesis technologies to quickly build an in-app voice assistant from scratch.
+
+In this tutorial, we will create a single view iOS app with Alan voice and test drive it on a simulator. The app users will be able to tap the voice assistant button and give custom voice commands, and Alan will reply to them.
+
+What you will learn
+-------------------
+
+-  How to add a voice interface to an iOS Swift app
+-  How to write simple voice commands for an iOS Swift app
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  You have signed up to Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
+-  You have set up Xcode on your computer.
+
+.. note:: 
+   When you sign up to Alan Studio, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, link your Alan account with your GitHub account and give stars to `Alan repositories <https://github.com/alan-ai>`__. For details, see :ref:`Adding free interactions <Adding free interactions>`.
+
+Step 1: Create a single view iOS app
+------------------------------------
+
+For this tutorial, we will be using a simple iOS app with a single view. To create the app:
+
+1. Open Xcode and select to create a new Xcode project.
+2. Select **Single View App**.
+
+   .. image:: /_static/assets/img/tutorial-ios/xcode-project-type.png
+
+3. In the **Product Name** field, specify the project name.
+4. From the **Language** list, select **Swift**.
+5. From the **User Interface** list, select **Storyboard**.
+
+   .. image:: /_static/assets/img/tutorial-ios/xcode-project-settings.png
+
+6. Select a folder in which the project will reside and click **Create**.
+
+
+Step 2: Add the Alan iOS SDK to the project
+-------------------------------------------
+
+The next step is to add the Alan iOS SDK to the app project. There are two ways to do it: 
+
+- with CocoaPods
+- manually
+
+Let's add the SDK manually: 
+
+1. On Alan GitHub, go to the **Releases** page for the Alan iOS SDK: https://github.com/alan-ai/alan-sdk-ios/releases. 
+2. Download the ``AlanSDK.xcframework_<x.x.x>.zip`` file from the latest release.
+
+   .. image:: /_static/assets/img/ios-quickstart-objc/download.png
+ 
+3. On the computer, extract ``AlanSDK.xcframework`` from the ZIP archive. 
+4. Drag ``AlanSDK.xcframework`` and drop it under the root node of the Xcode project
+5. In the displayed window, select the **Copy items if needed** check box and click **Finish**.
+
+   .. image:: /_static/assets/img/ios-quickstart-objc/copy-2.png
+
+Step 3: Specify the Xcode project settings
+------------------------------------------
+
+Now we need to adjust the project settings to use the Alan iOS SDK.
+
+1. We need to make sure the Alan iOS SDK is embedded when the app gets built. On the **General** tab, scroll down to the **Frameworks, Libraries, and Embedded Content** section.  To the right of ``AlanSDK.xcframework``, select **Embed and Sign**.
+
+   .. image:: /_static/assets/img/ios-quickstart-objc/embedded.png
+
+2. In iOS, the user must explicitly grant permission for an app to access the microphone. In the Xcode project, we need to add a special key with the description for the user why the app requires access to the microphone.
+
+   a. Go to the **Info** tab.
+
+   b. In the **Custom iOS Target Properties** section, hover over any
+      key in the list and click the plus icon to the right.
+
+   c. From the list, select **Privacy - Microphone Usage Description**.
+
+   d. In the **Value** field to the right, provide a description for the added key. This description will be displayed to the user when the app is launched.
+   
+   .. image:: /_static/assets/img/ios-quickstart-objc/mic.png
+
+3. We need to allow the background mode for our app. Go to the **Signing and Capabilities** tab. In the top left corner, click **+Capability** and in the capabilities list, double-click **Background Modes**. In the **Modes** list, select the **Audio, AirPlay, and Picture in Picture** check box.
+
+   .. image:: /_static/assets/img/ios-quickstart-objc/background.png
+
+4. We also need to make sure the background mode is enabled in our Alan project. In Alan Studio, at the top of the code editor, click **Integrations**, go to the **iOS** tab and enable the **Keep active while the app is in the background** option.
+
+   .. image:: /_static/assets/img/tutorial-ios/studio-background-mode.png
+
+
+Step 4: Integrate Alan with Swift
+---------------------------------
+
+The next step is to update our app to import the Alan iOS SDK and add the Alan button to it.
+
+1. In the app folder, open the ``ViewController.swift`` file.
+2. At the top of the file, import the Alan iOS SDK:
+
+   .. code:: swift
+
+      import AlanSDK
+
+3. In the ``ViewController`` class, define variables for the Alan button and Alan text panel:
+
+   .. code:: swift
+
+      class ViewController: UINavigationController {
+      ...
+          /// Alan button
+          fileprivate var button: AlanButton!
+
+          /// Alan text panel
+          fileprivate var text: AlanText!
+      ...
+      }
+
+4. To the ``UIViewController`` class, add the ``setupAlan()`` function. Here we set up the Alan button and Alan text panel and position them on the view:
+
+   .. code:: swift
+
+      class ViewController: UINavigationController {
+      ...
+          fileprivate func setupAlan() {
+              /// Define the project key
+              let config = AlanConfig(key: "")
+
+              ///  Init the Alan button
+              self.button = AlanButton(config: config)
+
+              /// Init the Alan text panel
+              self.text = AlanText(frame: CGRect.zero)
+
+              /// Add the button and text panel to the window
+              self.view.addSubview(self.button)
+              self.button.translatesAutoresizingMaskIntoConstraints = false
+              self.view.addSubview(self.text)
+              self.text.translatesAutoresizingMaskIntoConstraints = false
+
+              /// Align the button and text panel on the window
+              let views = ["button" : self.button!, "text" : self.text!]
+              let verticalButton = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=0@299)-[button(64)]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              let verticalText = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=0@299)-[text(64)]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              let horizontalButton = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=0@299)-[button(64)]-20-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              let horizontalText = NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[text]-20-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              self.view.addConstraints(verticalButton + verticalText + horizontalButton + horizontalText)
+          }
+      ...
+      }
+
+5. Now, in ``let config = AlanConfig(key: "")``, define the Alan SDK key for the Alan Studio project. To get the key, in Alan Studio, at the top of the code editor, click **Integrations** and copy the value from the **Alan SDK Key** field. Then insert the key in the Xcode project.
+
+6. In ``ViewDidLoad()``, call the ``setupAlan()`` function:
+
+   .. code:: swift
+
+      class ViewController: UINavigationController {
+      ...
+          override func viewDidLoad() {
+          ...
+              self.setupAlan()
+          }
+      ...
+      }
+
+Here is what our Xcode project should look like:
+
+.. image:: /_static/assets/img/tutorial-ios/xcode-viewcontroller.png
+
+Run the app. Here is our app running on the simulator. The app displays an alert to get microphone access with the description we have provided:
+
+.. image:: /_static/assets/img/tutorial-ios/xcode-simulator.png
+
+Step 5: Add voice commands
+--------------------------
+
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with Alan. In Alan Studio, open the project and in the code editor, add the following intents:
+
+.. code:: javascript
+
+   intent (`What is your name?`, p => {
+       p.play(`It's Alan, and yours?`);
+   });
+
+   intent (`How are you doing?`, p => {
+       p.play(`Good, thank you. What about you?`);
+   });
+
+In the app, tap the Alan button and ask: ``What is your name?`` and ``How are you doing?`` Alan will give responses we have provided in the added intents.
+
+
+
+What you finally get
+--------------------
+
+After you pass through this tutorial, you will have a single view iOS app integrated with Alan. You can get an example of such an app from the Alan GitHub to make sure you have set up your app correctly. 
+
+- `SwiftTutorial.part1.zip <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip>`__: XCode project of the app
+- `SwiftTutorial.part1.js <https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.js>`__: voice commands used for this tutorial
+
+What's next?
+------------
+
+You can now proceed to building a voice interface with Alan. Here are some helpful resources:
+
+-  Have a look at the next tutorial: :doc:`Navigating between views in an iOS Swift app <navigating-swift>`.
+-  Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
+-  In Alan Git, get the `iOS Swift example app <https://github.com/alan-ai/alan-sdk-ios/tree/master/examples/alan-example-integration-swift>`__. Use this example app to see how integration for iOS apps can be implemented.

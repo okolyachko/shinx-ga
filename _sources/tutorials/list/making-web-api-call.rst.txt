@@ -1,0 +1,125 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+   
+Making a Web API call from the voice script
+===========================================
+
+To conduct a dialog with the user, your voice assistant may need to get information from an external source. In this tutorial, we will make calls to the Spotify Web API based on the REST principles to retrieve a
+list of the most played tracks today.
+
+
+What you will learn
+-------------------
+
+-  How to get data from the Web API with a voice command
+-  How to send ``POST`` and ``GET`` requests to the Web API from the
+   voice scripts
+-  How to use the ``axios`` in the voice script
+
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  You have signed up to Alan Studio.
+-  You have :doc:`created a project <../../usage/guides/projects>` in Alan Studio.
+
+Step 1. Get the access token
+----------------------------
+
+To access Spotify's data and features, we first need to get the access token that we will use in requests to the Spotify Web API.
+
+1. Browse to the `Spotify Developer Dashboard <https://developer.spotify.com/dashboard/>`__. Log in or sign up, if you do not have an account yet.
+
+2. In the Dashboard, create a new app and name it in any way you want.
+
+3. Click the app and copy the **Client ID** and **Client Secret** for it.
+
+4. In Alan Studio, add the ``getAuth()`` function to send a ``POST`` request to the Spotify Web API and get the access token. Replace the values for ``clientId`` and ``clientSecret`` with your own values.
+
+   We will send the ``POST`` request with axios. Notice ``api`` before ``axios`` in the code: this lets Alan access the built-in axios client from the voice script.
+
+   .. code:: javascript
+
+       // Defining user's client ID and client secret keys
+       let clientId = "222b87964e954669b95ff25d3a05e53b";
+       let clientSecret = "13e4e8e784214e6aaf97005c96a3e7df";
+
+       const getAuth = async () => {
+           try {
+               const response = await api.axios({
+                   url: 'https://accounts.spotify.com/api/token',
+                   method: 'post',
+                   params: {
+                       grant_type: 'client_credentials'
+                   },
+                   headers: {
+                       'Accept':'application/json',
+                       'Content-Type': 'application/x-www-form-urlencoded'
+                   },
+                   auth: {
+                       username: clientId,
+                       password: clientSecret
+                   }
+               });         
+               // Writing the access token to Alan Studio logs
+               console.log(response.data.access_token);
+               return response.data.access_token;
+           } catch(error) {
+               console.error(error);
+           }
+       }
+
+To check if the access token is returned, call the ``getAuth()`` function from the voice script. Open the **Logs** view at the bottom of Alan Studio: if you are authorized to access Spotify's data, you'll see the access token in logs.
+
+
+Step 2: Get the top played tracks
+---------------------------------
+
+With the token available, let's get information about the most played songs on Spotify. We will send a ``GET`` request to get a list of today's hits.
+
+1. To the voice script, add the code for the ``getTopTracks()`` function to get the list of today's top hits and push these names to the ``tracksList`` array:
+
+   .. code:: javascript
+
+       let tracksList = [];
+
+       const getTopTracks = async () => {
+           // Getting the access token
+           const access_token = await getAuth();
+           // Defining the today's top list endpoint URL
+           const api_url = "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M";
+           try {
+               const response = await api.axios.get(api_url, {
+                   // Sending the access token
+                   headers: {
+                       'Authorization': `Bearer ${access_token}`
+                   }
+               });
+               // Pushing the tracks names to the tracksList
+               response.data.tracks.items.forEach(element => {
+                   tracksList.push(element.track.name);
+               });
+           } catch(error) {
+               console.log(error);
+           }  
+       };
+
+2. Add the voice command to play the list of tracks available in ``tracksList``. In this example, we will play only the first 5 names in the list:
+
+   .. code:: javascript
+
+       intent('What are the top 5 played songs on Spotify today?', async p => {
+           // Getting the list of tracks
+           await getTopTracks();
+           // Naming the first 5 tracks
+           p.play('The top 5 songs today are:');
+           for (let i = 0; i < 5; i++) {
+               let item = tracksList[i];
+               p.play(`${item}`);
+           }
+       })
+
+You can test it: in the Debugging Chat, type the following command: ``What are the top 5 played songs on Spotify today?``. Alan will name the first 5 tracks in the list.

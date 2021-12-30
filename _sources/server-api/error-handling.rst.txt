@@ -1,0 +1,88 @@
+Error handling and re-prompts
+=============================
+
+While interacting with the voice assistant, the user can say something that is not expected, and Alan will not be able to move forward in the conversation. To handle error situations gracefully and get the user back on track, you can use the :ref:`fallback()<fallback()>` function. Fallbacks can help you to:
+
+-  `Customize default error messages <#customizing-default-error-messages>`__
+-  `Prompt the user for the correct input <#prompting-for-the-correct-input>`__
+
+Customizing default error messages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the voice assistant fails to recognize the user's input, Alan replies with one of the default error phrases. You can provide a set of custom phrases with which Alan must reply in no-match cases. To do this, add the ``fallback()`` function to the voice script and specify one or more phrases in it, for example:
+
+.. code:: javascript
+
+    fallback('Please say it again', 'Sorry, I did not get it this time', 'Could you please rephrase that?');
+
+Now, if the user gives a voice command that is not available in the voice script or cannot be recognized, this default fallback will be matched, and Alan will reply with one of the defined phrases picked at random.
+
+You can add a more complex logic to the ``fallback()`` function:
+
+.. code:: javascript
+
+    fallback(p => {
+        p.play('Sorry, I have no answer');
+        console.log('An error in the dialog is encountered');
+    });
+
+Prompting for the correct input
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When placed in :doc:`user-defined contexts <contexts>`, fallbacks provide a user-friendly way to ‘lock’ the user at a certain point in the conversation. They can be helpful if you expect a specific input from the user and cannot move forward in the dialog without it.
+
+To handle an error situation in this case, add the ``fallback()`` function to the context and specify one or more prompt phrases in it. If the user's input cannot be matched to any voice command in the context, Alan will prompt the user for the correct input with one of the defined phrases and continue re-prompting until the desired command is received.
+
+.. note::
+
+   Fallbacks in user-defined contexts are context-dependent — they are active only when the contexts to which they belong are :ref:`activated<Activating contexts>`.
+
+Check the ``chooseDish`` context in the example below:
+
+.. code:: JavaScript
+
+    intent('What do you have?', p => {
+        p.play('We have pizza and burgers');
+        p.then(chooseDish);
+    });
+
+    intent('Is there a drink menu?', p => {
+        p.play('I can get you a soda or a juice');
+        p.then(chooseDrink);
+    });
+
+    let chooseDish = context(() => {
+        intent('Get me a $(D pizza|burger)', p => {
+            p.play(`Here is your ${p.D.value}`);
+            p.resolve();
+        });
+
+        intent('Cancel (the order|)', p => {
+            p.play('Your order is cancelled');
+            p.resolve();
+        });
+
+        fallback('You need to order something. Say: get me a pizza or get me a burger. Or say cancel to cancel the order.');
+    });
+
+    let chooseDrink = context(() => {
+        intent('Get me a $(D soda|juice)', p => {
+            p.play(`Here is your ${p.D.value}`);
+            p.resolve();
+        });
+
+        intent('Cancel (the order|)', p => {
+            p.play('Your order is cancelled');
+            p.resolve();
+        });
+
+        fallback('Please choose a drink. Say: get me a soda or get me a juice. Or say cancel to cancel the order.');
+    });
+
+Now, when users enter the ``chooseDish`` context by saying: ``What do you have?``, they will need to finish this step either by ordering something or by cancelling the order. Until then, they will
+remain in the context, and Alan will keep on prompting for the correct voice command. Voice commands from the global context, like ``Is there a drink menu?``, will not be available before users finish or
+cancel the order.
+
+.. raw:: html
+
+   <div id="green-background"></div>

@@ -1,0 +1,694 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Passing the app state to the voice script" href="../sending-data-swift/" /><link rel="prev" title="Building a voice assistant for an iOS Swift app" href="../integrating-swift/" />
+
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Navigating between views in an iOS app | Alan Docs</title>
+      <link rel="stylesheet" href="../../../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/tutorials/ios/navigating-swift/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/tutorials/ios/navigating-swift/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../../"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../../../search/">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../../"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../contents/">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search/">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/how-works/about/">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/how-works/basics/">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/how-works/infrastructure/">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/how-works/deployment/">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/how-works/voice-processing/">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/guides/studio/">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/projects/">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/scripts/">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/versioning/">Versions and environments</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../usage/guides/script-testing/">Testing and debugging</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/debugging-chat/">Debugging Chat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/test-view/">Test View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/logs/">Alan Studio logs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/in-app-testing/">In-app testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/playground/">Alan Playground</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../usage/guides/analytics/">Voice analytics</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/dashboard/">Projects dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../usage/guides/analytics-view/">Analytics View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/guides/billing/">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/button/overview/">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/customization/">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/cohorts/">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/button/activation/">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/examples/overview/">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/predefined-examples/">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/code/">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/examples/github/">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/video/overview/">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/studio/">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/alan-platform/">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/integration/">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/apps/">Voice-enabled apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/video/course/">Alan AI course (web app)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../usage/additional/overview/">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage/additional/supported-platforms/">Supported platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../server-api/script-concepts/">Script concepts</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/commands-and-responses/">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/patterns/">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/slots/">Slots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/dynamic-entities/">Dynamic entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/contexts/">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/built-in-javascript-libraries/">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/objects/">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/lifecycle/">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/error-handling/">Error handling and re-prompt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/popups/">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../server-api/sending-data/communication/">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/sending-data/authdata/">authData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/sending-data/visual-state/">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/sending-data/project-api/">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../server-api/user-data/overview/">User data</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/user-data/events/">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../server-api/user-data/client-object/">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../server-api/api/api-reference/">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../client-api/client-sdks/">Alan Client SDKs</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../client-api/integration/">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../client-api/web/web-integration/">Web</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/web-api/">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/react/">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/angular/">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/vue/">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/ember/">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/vanilla/">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/electron/">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/server-side-rendering/">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/web/web-component/">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../client-api/ios/ios-api/">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../client-api/android/android-api/">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../client-api/cross-platform/overview/">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/cross-platform/ionic/">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/cross-platform/cordova/">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/cross-platform/flutter/">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/cross-platform/react-native/">React Native</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../client-api/cross-platform/powerapps/">Microsoft Power Apps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../client-api/methods/common-api/">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../client-api/methods/handlers/">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../client-api/methods/command-handler/">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../client-api/methods/state-handler/">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../client-api/methods/event-handler/">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/additional/faq/">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/">How-tos</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../list-all/">Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../list/web-list/">Web</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../list/adding-voice-to-a-web-application/">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../list/food-delivery-tutorial/">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-create-app/">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-create-voice-assistant/">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-integrate/">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-add-command/">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-alternatives/">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-slots/">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-several-items/">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-display-items/">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-slot-labels/">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-remove-items/">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-highlight-items/">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-checkout-context/">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-time/">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-comment/">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-populate-fields/">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-api-call/">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-visual-context/">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-balance/">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-start-dialog/">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../list/food-delivery-popup/">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../list/using-dynamic-entities/">Using dynamic entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../list/making-web-api-call/">Making a Web API call from the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../web/frameworks-list/">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../web/integrating-react-app/">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/integrating-angular-app/">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/integrating-vue-app/">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/integrating-ember-app/">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../web/integrating-electron-app/">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../ios-list/">iOS</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../integrating-swift/">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sending-data-swift/">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../highlighting-swift/">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering-info-swift/">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../greeting-swift/">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../android/android-list/">Android</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../android/integrating-java-kotlin/">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../android/navigating-kotlin/">Navigating in an Android app with voice (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../android/sending-state-kotlin/">Passing the app state to the voice script (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../android/sending-data-kotlin/">Sending data from the app to the voice script (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../flutter/flutter-list/">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flutter/integrating-flutter/">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flutter/navigating-flutter/">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flutter/sending-data-flutter/">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flutter/project-api-flutter/">Sending data to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ionic/ionic-list/">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label for="toctree-checkbox-25"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ionic/integrating-angular/">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ionic/navigating-angular/">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ionic/sending-data-angular/">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ionic/integrating-react/">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ionic/navigating-react/">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../react-native/react-native-list/">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label for="toctree-checkbox-26"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../react-native/integrating-react-native/">Building a voice assistant for a React Native app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../react-native/sending-commands-react-native/">Sending commands to the app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../react-native/sending-state-react-native/">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../react-native/triggering-activities-react-native/">Triggering activities without voice commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../react-native/navigating-react-native/">Navigating between screens with voice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div id="orange-background"></div><div class="section" id="navigating-between-views-in-an-ios-app">
+<h1>Navigating between views in an iOS app<a class="headerlink" href="#navigating-between-views-in-an-ios-app" title="Permalink to this headline">¶</a></h1>
+<p>If your iOS app has multiple views, you can add voice commands to navigate between them. In this tutorial, we will add a new view to our starter iOS app and create commands to switch between the app views with voice.</p>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>How to send commands from the voice script to an iOS app</p></li>
+<li><p>How to handle commands on the iOS app side</p></li>
+<li><p>How to navigate between views in an iOS app with voice</p></li>
+</ul>
+</div>
+<div class="section" id="what-you-will-need">
+<h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
+<p>To go through this tutorial, make sure you have completed the following tutorial: <a class="reference internal" href="../integrating-swift/"><span class="doc">Building a voice assistant for an iOS Swift app</span></a>. You can also use an example app provided by Alan: <a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part1.zip">SwiftTutorial.part1.zip</a>. This is an XCode project of the app already integrated with Alan.</p>
+</div>
+<div class="section" id="step-1-add-a-new-view-to-the-app">
+<h2>Step 1: Add a new view to the app<a class="headerlink" href="#step-1-add-a-new-view-to-the-app" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This step is required if you are using the starter iOS app created in the <a class="reference internal" href="../integrating-swift/"><span class="doc">previous tutorial</span></a>. You can also use your own app with several views. In this case, skip this step and go to <a class="reference external" href="#step-2-add-voice-commands-to-navigate-between-views">step 2</a>.</p>
+</div>
+<p>In the <a class="reference internal" href="../integrating-swift/"><span class="doc">Building a voice assistant for an iOS Swift app</span></a> tutorial, we have created an iOS app with a single view, and added the Alan button to it. Let’s add a new view to this app. We will use the Navigation Controller to manage the app views.</p>
+<ol class="arabic">
+<li><p>In Xcode, open the app’s storyboard: <code class="docutils literal notranslate"><span class="pre">Main.storyboard</span></code>.</p></li>
+<li><p>In the storyboard, select the app view by clicking the view dock.</p></li>
+<li><p>Go to <strong>Editor</strong> &gt; <strong>Embed In</strong> &gt; <strong>Navigation Controller</strong>. The Navigation Controller will be added to the storyboard, and the app view will be linked to it.</p></li>
+<li><p>Go to <strong>View</strong> &gt; <strong>Show Library</strong> to open the Library, find <strong>View Controller</strong> in it and drag it to the storyboard. Place the added View Controller element to the right of the first View Controller.</p></li>
+<li><p>From the Library, add a button to the first View Controller and name the button, for example: <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Second</span> <span class="pre">View</span></code>.</p></li>
+<li><p>Select the button, press and hold the <strong>Control</strong> key on the keyboard and drag from the button to the second View Controller. In the displayed window, select <strong>Show</strong>.</p></li>
+<li><p>Select the created segue and in the Attribute Inspector, in the <strong>Identifier</strong> field, set the ID for it: <code class="docutils literal notranslate"><span class="pre">goForward</span></code>. We will use this ID later in this tutorial to switch to the second view with voice.</p>
+<img alt="../../../_images/xcode-segue.png" src="../../../_images/xcode-segue.png"/>
+</li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">ViewController.swift</span></code> file and replace:</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span>
+</pre></div>
+</div>
+<p>with</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UINavigationController</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Run the app. When the app is launched on the simulator, tap the <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Second</span> <span class="pre">View</span></code> button to navigate forward. In the second view, tap the <code class="docutils literal notranslate"><span class="pre">Back</span></code> button at the top to get back to the initial view.</p>
+<img alt="../../../_images/xcode-storyboard-run.png" src="../../../_images/xcode-storyboard-run.png"/>
+</div>
+<div class="section" id="step-2-add-voice-commands-to-navigate-between-views">
+<h2>Step 2: Add voice commands to navigate between views<a class="headerlink" href="#step-2-add-voice-commands-to-navigate-between-views" title="Permalink to this headline">¶</a></h2>
+<p>We can navigate between views using the app’s UI. Now we need to add new <a class="reference internal" href="../../../server-api/commands-and-responses/"><span class="doc">commands</span></a> to the Alan script to navigate between views with voice. In Alan Studio, open the project and in the code editor, add the following intents:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="sb">`Navigate forward`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s1">'navigation'</span><span class="p">,</span> <span class="nx">route</span><span class="o">:</span> <span class="s1">'forward'</span><span class="p">});</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Navigating forward`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="sb">`Go back`</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span> <span class="s1">'navigation'</span><span class="p">,</span> <span class="nx">route</span><span class="o">:</span> <span class="s1">'back'</span><span class="p">});</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Going back`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Now, when we say one of these commands to the app, two things happen:</p>
+<ul class="simple">
+<li><p>Alan sends the command provided in the intent to the app. To send the command, we need to specify a JSON object in the <code class="docutils literal notranslate"><span class="pre">p.play</span></code> function. Here the object contains the command name and routing data: <code class="docutils literal notranslate"><span class="pre">forward</span></code> or <code class="docutils literal notranslate"><span class="pre">back</span></code>.</p></li>
+<li><p>Alan plays back the action confirmation to us.</p></li>
+</ul>
+</div>
+<div class="section" id="step-3-handle-commands-on-the-app-side">
+<h2>Step 3: Handle commands on the app side<a class="headerlink" href="#step-3-handle-commands-on-the-app-side" title="Permalink to this headline">¶</a></h2>
+<p>When we say <code class="docutils literal notranslate"><span class="pre">Navigate</span> <span class="pre">forward</span></code> or <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">back</span></code>, Alan sends a command to the app. We need to handle this command on the app side and make sure an appropriate action is performed. Let’s add a handler for Alan events to our app.</p>
+<ol class="arabic">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">ViewController.swift</span></code> file, in <code class="docutils literal notranslate"><span class="pre">ViewDidLoad()</span></code>, call the <code class="docutils literal notranslate"><span class="pre">setupAlanEventHandler()</span></code> function:</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UINavigationController</span> <span class="p">{</span>
+
+    <span class="c1">/// Alan button</span>
+    <span class="n">fileprivate</span> <span class="kd">var</span> <span class="nv">button</span><span class="p">:</span> <span class="n">AlanButton</span><span class="p">!</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
+        <span class="c1">/// Set up the Alan button</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">setupAlan</span><span class="p">()</span>
+
+        <span class="c1">/// Set up a handler for events from Alan</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">setupAlanEventHandler</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>To the <code class="docutils literal notranslate"><span class="pre">ViewController</span></code> class, add the function itself. In this function, we add an observer for events coming from the Alan voice script. Once an event is received, the <code class="docutils literal notranslate"><span class="pre">handleEvent()</span></code> function is invoked.</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UINavigationController</span> <span class="p">{</span>
+<span class="p">...</span>
+    <span class="n">fileprivate</span> <span class="kd">func</span> <span class="nf">setupAlanEventHandler</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">/// Add an observer to get events from Alan</span>
+        <span class="n">NotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">handleEvent</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">name</span><span class="p">:</span><span class="bp">NSNotification</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="s">"kAlanSDKEventNotification"</span><span class="p">),</span> <span class="n">object</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">handleEvent</span><span class="p">(</span><span class="kc">_</span> <span class="n">notification</span><span class="p">:</span> <span class="n">Notification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">/// Get the user info object with JSON from Alan</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="n">notification</span><span class="p">.</span><span class="n">userInfo</span><span class="p">,</span>
+        <span class="kd">let</span> <span class="nv">jsonString</span> <span class="p">=</span> <span class="n">userInfo</span><span class="p">[</span><span class="s">"jsonString"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="kd">let</span> <span class="nv">jsonData</span> <span class="p">=</span> <span class="n">jsonString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">),</span>
+        <span class="kd">let</span> <span class="nv">jsonObject</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">jsonData</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as</span><span class="p">?</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Any</span><span class="p">],</span>
+        <span class="c1">/// Get the object with the command data</span>
+        <span class="kd">let</span> <span class="nv">commandObject</span> <span class="p">=</span> <span class="n">jsonObject</span><span class="p">[</span><span class="s">"data"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Any</span><span class="p">],</span>
+        <span class="c1">/// Get the command name string</span>
+        <span class="kd">let</span> <span class="nv">commandString</span> <span class="p">=</span> <span class="n">commandObject</span><span class="p">[</span><span class="s">"command"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+        <span class="c1">/// Get the command name string</span>
+        <span class="k">if</span> <span class="n">commandString</span> <span class="p">==</span> <span class="s">"navigation"</span> <span class="p">{</span>
+            <span class="c1">/// Get the route name string</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">routeString</span> <span class="p">=</span> <span class="n">commandObject</span><span class="p">[</span><span class="s">"route"</span><span class="p">]</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="c1">/// Forward command</span>
+            <span class="k">if</span> <span class="n">routeString</span> <span class="p">==</span> <span class="s">"forward"</span> <span class="p">{</span>
+                <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="k">async</span> <span class="p">{</span>
+                    <span class="kc">self</span><span class="p">.</span><span class="n">goForward</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">/// Back command</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="n">routeString</span> <span class="p">==</span> <span class="s">"back"</span> <span class="p">{</span>
+                <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="k">async</span> <span class="p">{</span>
+                    <span class="kc">self</span><span class="p">.</span><span class="n">goBack</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>And finally, to the <code class="docutils literal notranslate"><span class="pre">ViewController</span></code> class, add functions to navigate to the necessary view: <code class="docutils literal notranslate"><span class="pre">goForward()</span></code> and <code class="docutils literal notranslate"><span class="pre">goBack()</span></code>. Have a look at the <code class="docutils literal notranslate"><span class="pre">goForward()</span></code> function: here we use the ID of the segue we created in the first step.</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UINavigationController</span> <span class="p">{</span>
+<span class="p">...</span>
+    <span class="n">fileprivate</span> <span class="kd">func</span> <span class="nf">goForward</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">/// Get the first view controller</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">firstVC</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">viewControllers</span><span class="p">.</span><span class="bp">first</span> <span class="p">{</span>
+            <span class="c1">/// Perform a segue to push the second view controller to the navigation stack. The segue is defined in the storyboard.</span>
+            <span class="n">firstVC</span><span class="p">.</span><span class="n">performSegue</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">"goForward"</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">fileprivate</span> <span class="kd">func</span> <span class="nf">goBack</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">/// Remove the second (last) view controller from the navigation stack</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">popViewController</span><span class="p">(</span><span class="n">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Let’s review the code above to see how it works. When the Navigation Controller is loaded, the <code class="docutils literal notranslate"><span class="pre">setupAlanEventHandler()</span></code> is invoked, and our app starts listening for events coming from Alan. Once an event, in our case, a command with a JSON object, is received from the voice script, the <code class="docutils literal notranslate"><span class="pre">handleEvent()</span></code> function is triggered. The function processes the object and checks the value passed in the <code class="docutils literal notranslate"><span class="pre">route</span></code> key.</p>
+<p>If the value is <code class="docutils literal notranslate"><span class="pre">forward</span></code>, the <code class="docutils literal notranslate"><span class="pre">goForward()</span></code> function is invoked, taking us to the second view. If the value is <code class="docutils literal notranslate"><span class="pre">back</span></code>, the <code class="docutils literal notranslate"><span class="pre">goBack()</span></code> function is invoked, and the initial view is displayed.</p>
+<p>You can test it: run the app on the simulator, tap the Alan button and say: <code class="docutils literal notranslate"><span class="pre">Navigate</span> <span class="pre">forward</span></code>. The app will open the second view. Then say <code class="docutils literal notranslate"><span class="pre">Go</span> <span class="pre">back</span></code>, and the initial view will be displayed.</p>
+</div>
+<div class="section" id="what-you-finally-get">
+<h2>What you finally get<a class="headerlink" href="#what-you-finally-get" title="Permalink to this headline">¶</a></h2>
+<p>After you pass through this tutorial, you will have an iOS app with two views and will be able to send voice commands to navigate between them.
+You can get an example of such an app from the Alan GitHub to make sure you have set up your app correctly.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part2.zip">SwiftTutorial.part2.zip</a>: XCode project of the app</p></li>
+<li><p><a class="reference external" href="https://github.com/alan-ai/alan-sdk-ios/blob/master/examples/SwiftTutorial/SwiftTutorial.part2.js">SwiftTutorial.part2.js</a>: voice commands used for this tutorial</p></li>
+</ul>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>Have a look at the next tutorial: <a class="reference internal" href="../sending-data-swift/"><span class="doc">Passing the app state to the voice script</span></a>.</p>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../sending-data-swift/">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Passing the app state to the voice script</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../integrating-swift/">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Building a voice assistant for an iOS Swift app</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Navigating between views in an iOS app</a><ul>
+<li><a class="reference internal" href="#what-you-will-learn">What you will learn</a></li>
+<li><a class="reference internal" href="#what-you-will-need">What you will need</a></li>
+<li><a class="reference internal" href="#step-1-add-a-new-view-to-the-app">Step 1: Add a new view to the app</a></li>
+<li><a class="reference internal" href="#step-2-add-voice-commands-to-navigate-between-views">Step 2: Add voice commands to navigate between views</a></li>
+<li><a class="reference internal" href="#step-3-handle-commands-on-the-app-side">Step 3: Handle commands on the app side</a></li>
+<li><a class="reference internal" href="#what-you-finally-get">What you finally get</a></li>
+<li><a class="reference internal" href="#what-s-next">What’s next?</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/custom.js"></script>
+    <script src="../../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

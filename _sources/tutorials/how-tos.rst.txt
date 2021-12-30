@@ -1,0 +1,1423 @@
+.. role:: hidden
+   :class: hidden
+
+.. raw:: html
+
+   <div id="orange-background"></div>
+   <div id="how-to"></div>
+   
+How-Tos
+=======
+Here you can find answers to the most common questions that you may have when building a voice assistant with Alan. 
+
+Voice script
+~~~~~~~~~~~~
+
+:hidden:`How to capture the entire user input`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  
+.. dropdown:: How to capture the entire user input
+   :animate: fade-in
+   
+   If you need to get the entire utterance from the user input, you can use a :ref:`greedy RegEx syntax<Regular expressions>` in a slot, for example: ``"$(I* .+)"``. Such a RegEx pattern matches any string with one or more characters.
+
+   Consider the following example: you need to get the user feedback and send this information to your app. You can add the following command to the voice script:
+
+   .. code:: javascript
+
+      intent("I want to give feedback", async p => {
+          p.play("Thank you! What do you think about our product?");
+          const feedback = await p.then(userInput);
+          p.play({command: "feedback", value: feedback});
+          p.play(`Your feedback is: ${feedback}`);
+      });
+
+      const userInput = context(() => {
+          intent("$(I* .+)", p => p.resolve(p.I));
+      })
+
+   Here, after the user says: ``I want to give feedback``, Alan offers the user to share it, activates the ``userInput`` context and stops the script execution until the feedback is received. The user utterance (any type of it) is captured by ``"$(I* .+)"`` added to the intent in the context. Alan exits it the context, sends the command with the feedback information to the app and plays the feedback to the user.
+   
+:hidden:`How to create slots with item names from arrays`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+.. dropdown:: How to create slots with item names from arrays
+   :animate: fade-in
+   
+   When designing a dialog for a voice assistant, you may want to let the user name items listed in an array when a voice command is given. To achieve this, you can create a slot with item names and use this slot in the command pattern. For example:
+
+   .. code:: js
+
+      const menuItems = [
+          {name: "Cheese Burger", price: 8.99},
+          {name: "Double Cheese Burger", price: 12.00},
+          {name: "Bacon Burger", price: 11.50},
+          {name: "Hawaian Burger", price: 9.99},
+          {name: "Mexican Spicy Burger", price: 12.50},
+      ];
+
+      // Creates a list of items to be used in a slot: Cheese Burger~Cheese Burger|Double Cheese Burger~Double Cheese Burger|Bacon Burger~Bacon Burger|Hawaian Burger~Hawaian Burger|Mexican Spicy Burger~Mexican Spicy Burger
+      const menuItemsPattern = menuItems.map(item => `${item.name}~${item.name}`).join('|');
+
+      intent(
+          `How much (is|does) (a|the|) $(MENU_ITEM~ ${menuItemsPattern}) (cost|)`,
+          `What is the (price|cost) (on|for|of) (a|the|) $(MENU_ITEM~ ${menuItemsPattern})`,
+          `How much (is|does) (a|the|) $(UNAVAILABLE_ITEM* .+) (cost|)`,
+          `What is the (price|cost) (on|for|of) (a|the|) $(UNAVAILABLE_ITEM* .+)`,
+          p => {
+              if (p.UNAVAILABLE_ITEM) {
+                  p.play(`${p.UNAVAILABLE_ITEM.value} is unavailable`);
+                  return;
+              } else {
+                  const requestedItem = p.MENU_ITEM.label.toLowerCase();
+                  const itemOnMenu = menuItems.find(m => m.name.toLowerCase().includes(requestedItem));
+                  p.play(`${requestedItem} costs $${itemOnMenu.price}`);
+              }
+          }
+      );
+
+   In the example above, we are using a :ref:`slot with fuzzy matching<Slots with fuzzy matching>` to capture the item name. Each item name in the slot is accompanied with the label. Now, thanks to fuzzy matching, Alan can capture different variants of item names, even if they are close but not exact:
+
+   -  ``How much does Double Cheese cost?``
+   -  ``How much does Double Cheese Burger cost?``
+
+   When such a pattern is matched, the ``value`` field of the ``MENU_ITEM`` slot will contain the user input, and the ``.label`` field will contain the item name provided in the label. In this voice command, ``p.MENU_ITEM.label`` is used to tell about the item price.
+
+   To capture any name of the item that is not on the menu, we are using :ref:`RegEx<Regular expressions>` for the ``UNAVAILABLE_ITEM`` slot.
+   
+:hidden:`How to run a query with words from the user input`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to run a query with words from the user input
+   :animate: fade-in
+   
+   If you need to run a query with user's words, you can add a slot with a :ref:`greedy RegEx syntax<Regular expressions>` to the command pattern to capture the user's input.
+
+   In the example below, when the user asks to translate a word or phrase, Alan captures this word or phrase with a greedy RegEx, makes an API call to an external translation service and plays the result with the Italian accent: ``p.play(voice('it'), response.translated)``.
+
+   .. code:: javascript
+
+      intent('(How|) (do you|would you|to|) say $(W* .+)?', async p => {
+          translate(p, p.W.value);
+      })
+
+      function translate(p, text) {
+          apiCall(p, 'translate', {text: text, srcLang: 'en', dstLang: 'it'}, response => {
+              if (!response.error) {
+                  p.play(voice('it'), response.translated);
+              } else {
+                  console.log(response.error);
+              }
+          });
+      }
+
+      function apiCall(p, command, param, callback) {
+          let jsp = {
+              url: "https://studio.alan.app/api_playground/" + command,
+              strictSSL: false,
+              method: 'POST',
+              json: param,
+              timeout: 3000,
+          };
+          api.request(jsp, (err, res, body) => {
+              if (err || res.statusCode !== 200) {
+                  p.play('(Sorry|) something went wrong (with the server|)');
+              } else if (body.error) {
+                  p.play(body.error);
+              } else {
+                  callback(body);
+              }
+          });
+      }
+	  
+	  
+:hidden:`How to use predefined slots`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to use predefined slots
+   :animate: fade-in
+   
+   If you need to capture specific values from the user input, for example, dates or numbers, you can add :ref:`predefined slots<Predefined slots>` to voice commands:
+
+   .. code:: JavaScript
+
+      intent(`I have a meeting with $(NAME) from $(ORG) $(DATE) (at|) $(TIME) (in|at|near|) $(LOC)`, p => {
+          p.play(`Adding to your schedule: Meeting ${p.NAME} from ${p.ORG} ${p.DATE} at ${p.TIME} in the ${p.LOC}`)
+      })
+	  
+:hidden:`How to get the right answer from the user`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to get the right answer from the user
+   :animate: fade-in	
+
+   In some cases, the user's answer may be not precise. As a result, you will not be able to get from the user input the data you need for the subsequent dialog flow. To get the necessary information, you can use an :ref:`async context<Using async contexts>` in the voice script.
+
+   Consider the following example: you need to get the coffee type from the user input, but instead the user just says: ``I want a coffee``. You can add the following command to the voice script:
+
+   .. code:: JavaScript
+
+      intent("I want a coffee", async p => {
+          p.play("What coffee do you prefer?");
+          const coffee = await p.then(whatCoffee);
+          p.play(`Your ${coffee} coffee will be ready in a moment`);
+      });
+
+      const whatCoffee = context(() => {
+         intent("$(COFFEE Black|Americano|Latte|Cappuccino|Expresso|Macchiato)", p => p.resolve(p.COFFEE));
+      })
+
+   Here, once you receive an answer that should be more specific, Alan plays: ``What coffee do you prefer?``, activates the ``whatCoffee`` context and stops the script execution until the user gives the necessary answer. If the user answer matches one of the values listed in the ``COFFEE`` :doc:`slot <../server-api/slots>`, Alan exits the context, and the coffee type is returned. Alan then plays: ``Your ${coffee} coffee will be ready in a moment`` with the coffee type obtained. 
+   
+   
+:hidden:`How to handle unexpected voice commands from the user`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to handle unexpected voice commands from the user
+   :animate: fade-in
+   
+   The user may give an answer of the type inappropriate for you. In this case, you can lock the user in the context with the :doc:`fallback() <../server-api/error-handling>` function until the necessary user input is received.
+
+   Consider the following example: a voice script for a simple math checker offers the user to add two random numbers.
+
+   .. code:: JavaScript
+
+      intent("Check my math", async p => {
+          const a = Math.floor(Math.random()*10)
+          const b = Math.floor(Math.random()*10)
+          p.play(`How much ${a} plus ${b}?`)
+          const sum = await p.then(getNumber)
+          p.play(`Your answer ${sum} is ${a+b==sum? 'correct': 'incorrect'}`)
+      });
+
+      const getNumber = context(() => {
+          intent("$(NUMBER)", p => p.resolve(p.NUMBER.number))
+
+          fallback("You have to say a number")
+      })
+
+   Here, after Alan asks a question, it activates the ``getNumber`` context and stops the script execution until the answer of the appropriate type is received. The answer must be captured by the :ref:`NUMBER` predefined slot: in this case, Alan exits it the context, and the user answer is returned. If the answer is of any other type, the user remains in the context. To instruct the user on the rules, Alan plays: ``You have to say a number``.
+   
+   
+:hidden:`How to allow adding comments with voice`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+.. dropdown:: How to allow adding comments with voice
+   :animate: fade-in
+   
+   If you want to let users add comments with voice, you can use the following command:
+   
+   .. code:: JavaScript
+
+      let commentContext = context(() => {
+          intent(`$(I* (.+))`, async p => p.resolve(p.I))
+      });
+
+      intent(`(Add a comment|Comment|Add comment)`, async p=> {
+          p.play("Okay, what comment would you like to add?");
+          let comment = await p.then(commentContext);
+          p.play(`Your comment is: ${comment}`);
+      });  
+
+   Here, after the user says: ``Add a comment``, Alan plays: ``Okay, what comment would you like to add?``, activates the ``commentContext`` context and stops the script execution until a comment is received. The comment is captured with the ``$(I* (.+))`` RegEx expression added to the intent in the context. The comment is then played to the user.
+   
+   
+:hidden:`How to iterate over a list of objects (back and forward)`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+.. dropdown:: How to iterate over a list of objects (back and forward)
+   :animate: fade-in
+   
+   You may need to add a voice command that will allow the user to iterate over a list of objects. This can be the case, for example, if you are building a voice assistant for a shopping or ordering app and want the user to pick something from the products list.
+
+   Consider the following example: you want your voice assistant to name all available fruits, allow the user to pick some and save them to the user's favorites list.
+
+   .. code:: JavaScript
+
+       let fruits = ["apple", "orange", "lemon", "mango", "banana", "avocado", "kiwi"]
+
+       intent("(I want to|) (select|choose) fruits", async p => {
+           p.play("Iterate over the list of fruits and select your favorite one. To select fruit say 'select', say 'forward' or 'back' to traverse over the list");
+           p.play("Say 'finish' to complete your choice")
+           p.userData.favorite = []
+           p.play(`We have ${fruits.length} fruit in our list. First is ${fruits[0]}`)
+           await p.then(selectFruits, {state: { index : 0}})
+           if (p.userData.favorite.length > 0) {
+               p.play(`Your favorite fruits are: ${p.userData.favorite.join(", ")}`)
+           } else {
+               p.play(`You have not chosen any fruit`)
+           }
+       });
+
+       const selectFruits = context(() => {
+           intent("(select|choice)",  p => {
+               let selected = false
+               if(!p.userData.favorite.includes(fruits[p.state.index])) {
+                   p.userData.favorite.push(fruits[p.state.index])
+               }
+               p.play(fruits[p.state.index] + " is selected")
+               p.play(p.userData.favorite)
+           })
+
+           intent("(repeat|say again)", p => playFruit(p, p.state.index))
+
+           intent("(forward|next)", p => {
+               if(p.state.index < fruits.length-1) {
+                   p.state.index++;
+                   playFruit(p, p.state.index)
+               }
+               else {
+                   p.play("It's the last fruit in the list")
+               }
+           })
+
+           intent("(back|previous)", p => {
+               if(p.state.index > 0) {
+                   p.state.index--;
+                   playFruit(p, p.state.index)
+               }
+               else {
+                   p.play("It's the first fruit in the list")
+               }
+           })
+
+           intent("(finish|stop|it's all)", p => p.resolve())
+
+           fallback("Say select to choose fruit, say forward or back to navigate through the list or say 'finish' to return")
+       })
+
+       const playFruit = (p, index) => {
+           p.play(`Fruit number ${p.state.index+1} is ${fruits[p.state.index]}`)
+       }
+
+   Here, the list of fruits is first saved to the ``fruits`` array. When the user says: ``I want fruits``, Alan gives some instructions on how to pick fruits, names the first fruit in the list and activates the ``selectFruit`` context. The voice script execution stops until the user makes his or her choice and exits the ``selectFruit`` context by saying: ``Finish|Stop|It's all``.
+
+   In the ``selectFruit`` context, the user can select the named fruit, go forward or back with voice commands and tell Alan to stop iterating over the list. In the latter case, Alan exits the context, and we get back to executing the script in the initial voice command.
+
+   The context also has the :doc:`fallback() <../server-api/error-handling>` function to lock the user if the necessary answer is not given.
+
+   To iterate over the list of fruits, the following Alan objects and variables are added to the script:
+
+   -  :ref:`userData`: this variable can be used to store data that can be accessed between contexts. In this example, the user choice is saved to the ``p.userData.favorites`` array in the ``selectFruit`` context. The resulting list is played to the user after the user exits the context.
+   -  :ref:`state`: this is a special object that сan be used as a 'dictionary'. In this example, the ``state`` object stores the index of the current element in the fruits array. When the context is activated, the index is set to 0, and the ``state`` object is passed to the context. With each new step forward or backward in the context, the index is incremented or decremented.
+   
+   
+:hidden:`How to sort items by price, name or category`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to sort items by price, name or category
+   :animate: fade-in
+   
+   If you are working with the item list, it is always a good idea provide the user with the ability to sort items by price, name or category. You can do it in the following way:
+
+   .. code:: js
+
+       const menuItems = [
+           {name: "Cheese Burger", price: 8.99, category: 'burger'},
+           {name: "Double Cheese Burger", price: 12.00, category: 'burger'},
+           {name: "Bacon Burger", price: 11.50, category: 'burger'},
+           {name: "Hawaian Burger", price: 9.99, category: 'burger'},
+           {name: "Mexican Spicy Burger", price: 12.50, category: 'burger'},
+           {name: "Ceaser Salad", price: 12.50, category: 'salad'},
+           {name: "Garden Salad", price: 9.99, category: 'salad'}
+       ];
+
+       intent(
+           '(order|sort) by $(ORDER_BY name|price|category)',
+           p => {
+               const orderBy = p.ORDER_BY.value;
+               let orderedMenuItems = menuItems;
+               switch(orderBy){
+                   case 'name':
+                       orderedMenuItems = menuItems.sort((p1, p2) => p1.name.localeCompare(p2.name));
+                       break;
+                   case 'price':
+                       orderedMenuItems = menuItems.sort((p1, p2) => p1.price - p2.price);
+                       break;
+                   case 'category':
+                       orderedMenuItems = menuItems.sort((p1, p2) => p1.category.localeCompare(p2.category));
+                       break;
+               }
+               p.play({command: 'getMenu', data: orderedMenuItems});
+               p.play(`Here are the items ordered by ${orderBy}`);
+               console.log(orderedMenuItems);
+           }
+       );
+	   
+	   
+:hidden:`How to pass information to the context`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to pass information to the context
+   :animate: fade-in
+   
+   If you need to pass some information to the context, you can use the :ref:`state` object. ``state`` is a kind of 'dictionary' where you can store any data you want.
+
+   .. code:: JavaScript
+
+       intent("I have friends", async p => {
+           p.play("How many friends do you have?");
+           let number = await p.then(numberContext)
+           p.play("What is your friend's name number one?");
+           let index = 0, friends = [];
+           let list = await p.then(friendsContext, {state: {number, index, friends}})
+           p.play({command: "friends", list})
+       })
+
+       const friendsContext = context(() => {
+           intent("$(NAME)", p => {
+               let {number, friends} = p.state;
+               friends[p.state.index++] = p.NAME;
+               if (p.state.index == number) {
+                   p.resolve(friends)
+               }else {
+                   p.play(`What is your friend's name number ${p.state.index+1}?`);
+               }
+           })
+       })
+
+       const numberContext = context(() => {
+           intent("$(NUMBER)", p => {
+               if (p.NUMBER.number > 0) {
+                   p.resolve(p.NUMBER.number)
+               } else {
+                   p.play("The number of friends must be one or more")
+               }
+           })
+       })
+
+   In the example above, Alan gets the number of friends the user has and the friends' names. Here we have a voice command: ``I have friends``, and two contexts that are activated from it:
+
+   -  ``numberContext`` to get the number of friends from the user input
+   -  ``friendsContext`` to create a list of friends the user has
+
+   When we activate the ``friendsContext``, we are passing the following ``state`` object to it: ``{state: {number, index, friends}}``.
+   ``number`` stands for the number of friends retrieved from the user input, ``index`` is used for iterating over the friends' array and ``friends`` contains the list of friends. Once the number of friends in the array is equal to the number of friends defined in the user input, Alan exits the context, and a command with the list of friends is sent to the app.
+   
+   
+:hidden:`How to use voice commands with fuzzy parameters`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+.. dropdown:: How to use voice commands with fuzzy parameters
+   :animate: fade-in
+   
+   If you want Alan to recognize users' commands that are close to those added to the voice script but are not 100% matching, you can use :ref:`slots with fuzzy matching<Slots with fuzzy matching>`. Add ``~`` after the slot name and define labels for each slot value.
+
+   .. code:: JavaScript
+
+       const array = ["small", "medium", "large"];
+       intent(`$(ORD~ one~1|first~1|two~2|second~2|middle~2|three~3|third~3|last~3)`, p => {
+           // one is value, 1 is label
+           let index = parseInt(p.ORD.label);
+           p.play(`You've selected ${array[index-1]}`);
+       })
+
+   In the example above, the ``ORD`` slot labels are used as indices for values in ``array``. In the Debugging Chat, try typing ``one``, ``two`` or ``last``. Alan will reply with a corresponding value from ``array``. Then try making a slight mistake, for example, ``thrird``. Alan will still be able to match the intent.
+   
+   
+:hidden:`How to use several slots of the same type in one intent`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
+.. dropdown:: How to use several slots of the same type in one intent
+   :animate: fade-in
+   
+   You can add a slot of the same type to one intent several times. In this case, all slot values will be collected in an array with the following name: ``SLOTNAME+s``, for example, ``ITEMs``.
+
+   For example, if you have several slots named ``ITEM``, you can access the ``ITEMs`` object with an array of size 2 and you can reference the first item as ``ITEMs[0]``.
+
+   .. code:: JavaScript
+
+       const items = ["burger", "cola", "taco"].join('|');
+       intent(`I want $(NUMBER) $(ITEM ${items}) and $(NUMBER) $(ITEM ${items})`, p => {
+           let order = _.reduce(_.range(_.size(p.NUMBERs)), (acc, i) => {acc[p.ITEMs[i]] = p.NUMBERs[i].number; return acc}, {});
+           p.play({command: "createOrder", order });
+       })
+	   
+	   
+:hidden:`How to make Alan use the plural form for nouns`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to make Alan use the plural form for nouns
+   :animate: fade-in
+   
+   To use the pluralizer in Alan, add the underscore character (``_``) to the necessary noun in the voice command.
+   
+   .. warning::
+      This syntax is not supported for irregular plural nouns.
+
+   .. code:: JavaScript
+
+         intent("I want $(NUMBER) $(P cake_)", p => {
+             p.play(`Here you are, ${p.NUMBER} ${p.P}`);
+         })
+		 
+		 
+:hidden:`How to allow users to say synonyms for the same thing`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		 
+.. dropdown:: How to allow users to say synonyms for the same thing
+   :animate: fade-in
+   
+   It is often necessary to give the user an opportunity to say the same thing in several ways. For example, a product in the price list can be expressed differently, but we still must recognize which product the user is talking about. For these purposes, you can compile a synonym dictionary for each element and use fuzzy parameters in the voice command. Fuzzy parameters make it possible to associate a key with the value that is recognized as the user input.
+
+   Consider the following example: we are constructing a list of slot values out of a JSON object. ``aliases`` become slot values and the ``id`` becomes the label.
+
+   .. code:: JavaScript
+
+       const products = [
+           {id: "cola",  aliases: ["cola","coca-cola", "soda", "coke"]},
+           {id: "juice", aliases: ["juice", "fresh", "orange juice", "orange fresh"]}
+       ]
+       // We have to construct following fuzzy parameters with all value~label items concatenated with |
+       // cola~cola|cola-cola~cola|soda~cola|coke~cola|juice~juice|fresh~juice|orange juice~juice|orange fresh~juice
+
+       const PROD_INTENTS = _.flatten(products.map(p => p.aliases.map(a => `${a}~${p.id}`))).join('|')
+
+       intent(`(I want|give me) $(ITEM ${PROD_INTENTS})`, p => {
+           p.play(`We added ${p.ITEM.label} to your order`)
+       })
+
+   Here is another example of how to construct a list of slot values out of the JSON object passed with ``visualState``. In this example, we are using :doc:`dynamic entities <../server-api/dynamic-entities>` to get the user feedback. The list of slot values is constructed out of the values passed in the ``synonyms`` key, and the values in the ``category`` key are used as the label.
+
+   .. code:: JavaScript
+
+       //Passed visualState
+       {
+           "answers": [
+               {
+                   "category": "positive",
+                   "synonyms": [
+                       "yes",
+                       "of course",
+                       "definitely"
+                   ]
+               },
+               {
+                   "category": "negative",
+                   "synonyms": [
+                       "no",
+                       "in no case",
+                       "I don't think so"
+                   ]
+               },
+               {
+                   "category": "neutral",
+                   "synonyms": [
+                       "maybe",
+                       "I'll think about it",
+                       "I don't know"
+                   ]
+               }
+           ]
+       }
+
+       // Voice script
+       onVisualState((p, s) => {
+           if (s.answers) {
+               p.visual.answersEntity = s.answers.filter(ans => !ans.unique).map(ans => ans.synonyms.map(syn => syn + '~' + ans.category).join('|')).join('|');
+           } else {
+               p.visual.answersEntity = "";
+           }
+       });
+
+       intent(`(My answer is|) $(ANS v:answersEntity)`, p => {
+           switch(p.ANS.label){
+               case "positive":
+                   p.play(`That's great!`);
+                   break;
+               case "negative":
+                   p.play(`Sorry to hear that`);
+                   break;
+               case "neutral":
+                   p.play(`Thanks for sharing`);
+                   break;
+           }
+       });
+	
+	You can also filter intents matching based on the visual state value. For example, this intent will never match if the cart is empty:
+	
+	.. code:: JavaScript
+	
+        intent(visual(v => !_.isEmpty(v.order)), `(What are|) my order details`, p => {
+            p.play("You have ordered:");
+            for (let product in p.visual.order) {
+               p.play(p.visual.order[product] + " " + product);
+            }
+        });
+	   
+	   
+
+.. _Client app:
+	   
+Client app
+~~~~~~~~~~
+
+:hidden:`How to send commands to the app`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to send commands to the app
+   :animate: fade-in
+   
+   To trigger activities in the app with voice, you need to send commands from the voice script to the app. Do the following:
+
+   1. Use the :ref:`play()<play()>` function in the voice script to send a command to the app.
+   2. In the app, add the :doc:`onCommand handler <../client-api/methods/command-handler>` and define what actions must be taken when the command is received.
+   
+   Let's assume we want to open the cart when the user says: ``Go to the cart``. To do this, in the voice script we will add the ``play()`` function with the command object:
+   
+   .. code:: javascript
+   
+      intent('(Show|Open|Go) (to|) (the|) cart', p => {
+          p.play({command: 'showCart'});
+          p.play('Opening the cart');     
+      });
+	  
+   In the app, we will use the ``onCommand handler`` and define the logic for the showCart command in it: 
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+
+          var alanBtnInstance = alanBtn({
+            key: "YOUR_KEY_FROM_ALAN_STUDIO_HERE",
+            onCommand: function (commandData) {
+              if (commandData.command === "showCart") {
+                // go to the cart here
+              }
+            },
+            rootEl: document.getElementById("alan-btn"),
+          });
+          
+
+   .. tabbed:: Objective-C
+
+      .. code-block:: obj-c
+	  
+          self.button.onCommand = ^(NSDictionary *command) {
+            NSString* commandName = [command objectForKey:@"command"];
+            NSLog(@"%@", commandName);
+            // if the command is showCart, go the cart here
+          };
+       
+
+   .. tabbed:: Swift
+
+      .. code-block:: swift
+	  
+          self.button.onCommand = { command in
+            guard let commandName = command?["command"] as? String else {
+              return
+            }
+            print(commandName)
+            // if the command is showCart, go the cart here
+          }      
+
+   .. tabbed:: Kotlin
+
+      .. code-block:: kotlin
+	  
+          val alanCallback: AlanCallback = object : AlanCallback() {
+            override fun onCommand(eventCommand: EventCommand) {
+              try {
+                val command = eventCommand.data
+                val commandName = command.getJSONObject("data").getString("command")
+                Log.d("AlanButton", "onCommand: commandName: $commandName")
+                // if the command is showCart, go the cart here
+              } catch (e: JSONException) {
+                Log.e("AlanButton", e.message)
+              }
+            }
+          };     
+		
+   .. tabbed:: Java
+
+      .. code-block:: java
+	  
+          AlanCallback alanCallback = new AlanCallback() {
+            @Override
+            public void onCommand(final EventCommand eventCommand) {
+              try {
+                JSONObject command = eventCommand.getData();
+                String commandName = command.getJSONObject("data").getString("command");
+                Log.d("AlanButton", "onCommand: commandName: " + commandName);
+                // if the command is showCart, go the cart here
+              } catch (JSONException e) {
+                Log.e("AlanButton", e.getMessage());
+              }
+            }
+          };    
+
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          _MyHomePageState() {
+            ...
+            AlanVoice.onCommand.add((command) => _handleCommand(command.data));
+          }
+
+          void _handleCommand(Map command) {
+            switch (command["command"]) {
+              case "showCart":
+                // go to the cart here
+                break;
+              default:
+                debugPrint("Unknown command: ${command}");
+            }
+          }
+       
+		
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+          this.alanBtnComponent.nativeElement.addEventListener('command', (data) => {
+            const commandData = (data).detail;
+			if (commandData.command === 'showCart') {
+              // go to the cart here
+            }
+          });
+	
+        
+   .. tabbed:: React Native
+
+      .. code-block:: javascript
+	  
+          
+          import { AlanView } from '@alan-ai/alan-sdk-react-native';
+          import { NativeEventEmitter, NativeModules } from 'react-native';
+
+          const {AlanManager, AlanEventEmitter} = NativeModules;
+          const alanEventEmitter = new NativeEventEmitter(AlanEventEmitter);			
+			
+          componentDidMount() {
+            /// Handle commands from Alan Studio
+            alanEventEmitter.addListener('onCommand', (data) => {
+              console.log(`onCommand: ${JSON.stringify(data)}`);
+              // if the command is showCart, go the cart here
+            });
+          }
+          componentWillUnmount() {
+            alanEventEmitter.removeAllListeners('onCommand');
+          }
+		  
+:hidden:`How to send data from the voice script to the app`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		  
+.. dropdown:: How to send data from the voice script to the app
+   :animate: fade-in
+   
+   To send data to the application, in the :ref:`play()<play()>` function, define a JSON object of the command with all the data to be sent.
+
+   In this example, together with the navigate command, we are sending the route to the page that must be opened when the command is received. The logic for command handling is defined in the onCommand handler as described in the how-to above.
+   
+   .. code:: javascript
+   
+      intent('(Show|Open) (the|) cart', p => {
+          p.play({command: 'navigate', route: 'home'});
+          p.play('Opening the cart');     
+      });
+	  
+	  
+.. _how-to-send-data-from-the-app-to-the-voice-script:
+	  
+:hidden:`How to send data from the app to the voice script`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. dropdown:: How to send data from the app to the voice script
+   :animate: fade-in
+   
+   To send any data from your app to the voice script, you can use the :doc:`project API functionality <../server-api/sending-data/project-api>`. Do the following:
+
+   1. Define a project API method in your voice script.
+   2. :ref:`Call the defined method<callProjectApi()>` from your app using Alan's ``callProjectApi()``. When calling the project API method, provide the method name and a JSON object with the data you want to send.
+
+   Let's assume we want to send the user's name to the voice script and greet the user when the user logs in to the system. To do this, we will define the ``greetUser()`` project API method in the voice script:
+   
+   .. code:: javascript
+   
+       // Defining a project API method in the voice script
+       projectAPI.greetUser = function(p, param, callback) {
+           if (param) {
+               p.play(`Nice to see you again, ${param.user}`);
+           } else {
+               p.play('Welcome to our app');
+           }
+           callback();
+       }; 
+	  
+   In the app, we will call the ``greetUser()`` method when the Log in button is clicked and send the user's name with it. Now, when the user logs in to the system, the Alan button will be activated automatically; Alan will send the user's name to the voice script and play: ``Nice to see you again, John Smith`` or ``Welcome to our app``, if no name is provided.
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+	  
+          // Calling the project API method on button click
+          function sendData() {
+            alanBtnInstance.activate();
+            alanBtnInstance.callProjectApi("greetUser", {
+              user: 'John Smith'
+            }, function(error, result) {});
+          };
+		  
+
+   .. tabbed:: Objective-C
+
+      .. code-block:: obj-c
+	  
+          // Calling the project API method on button click
+          - (void)callProjectApi {
+           [self.button callProjectApi:@"script::greetUser" withData:@{@"user":@"John Smith"} callback:nil];
+          }
+
+   .. tabbed:: Swift
+
+      .. code-block:: swift
+	  
+          // Calling the project API method on button click
+          func callProjectApi() {
+            self.button.callProjectApi("script::greetUser", withData: ["user":"John Smith"], callback: nil)
+          }
+
+   .. tabbed:: Kotlin
+
+      .. code-block:: kotlin
+	  
+          // Calling the project API method on button click
+          fun callProjectApi() {
+            val params = JSONObject()
+            try {
+              params.put("user", "John Smith")
+            } catch (e: JSONException) {
+              Log.e("AlanButton", e.message)
+            }
+            alanButton?.callProjectApi("script::greetUser", params.toString())
+          }        
+		
+   .. tabbed:: Java
+
+      .. code-block:: java
+	  
+          // Calling the project API method on button click
+          void callProjectApi() {
+            JSONObject params = new JSONObject();
+            try {
+              params.put("user","John Smith");
+            } catch (JSONException e) {
+              Log.e("AlanButton", e.getMessage());
+            }
+            alanButton.callProjectApi("script::greetUser", params.toString());
+          }
+	  
+              
+
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          _MyHomePageState() {
+            // Calling the project API method on button click
+            void _callProjectApi() {
+              var params = jsonEncode({"user":"John Smith"});
+              AlanVoice.callProjectApi("script::greetUser", params);
+            }
+          }
+	
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+          var myAlanBtn = document.getElementById('myAlanBtn');
+          myAlanBtn.componentOnReady().then(function () {
+            // Calling the project API method on button click
+            myAlanBtn.callProjectApi("greetUser", {user: "John Smith"}, function (error, result) {
+              console.log("project API function has been called", error, result);
+            });
+          });
+   
+   .. tabbed:: React Native
+
+      .. code-block:: javascript
+	  
+          
+          import { AlanView } from '@alan-ai/alan-sdk-react-native';
+          import { NativeEventEmitter, NativeModules } from 'react-native';
+
+          const {AlanManager, AlanEventEmitter} = NativeModules;
+          ...
+          export default class MyApp extends Component {
+            ... 
+            // Calling the project API method on button click
+            onPress = {() =>
+              AlanManager.activate();
+              AlanManager.callProjectApi(
+                'greetUser',
+                {user: 'John Smith'},
+                (error, result) => {
+                  if (error) {
+                    console.error(error);
+                  } else {
+                    console.log(result);
+                  }
+                },
+              )
+            ...  
+          }
+		  
+.. _how-to-call-a-function-in-the-voice-script-from-the-app:
+		  
+:hidden:`How to call a function in the voice script from the app`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		  
+.. dropdown:: How to call a function in the voice script from the app
+   :animate: fade-in
+   
+   If you need to call a function from the app and perform some activities in the voice script, you can use the :doc:`project API functionality <../server-api/sending-data/project-api>`. Do the following:
+   
+   1. Define a project API method in your voice script.
+   2. :ref:`Call the defined method<callProjectApi()>` from your app using Alan's ``callProjectApi()``.
+
+   Let's assume we want Alan to inform users about the closest stores available with voice when they select a location in the app. To do this, we will define the ``getStores()`` method in the voice script:
+   
+   
+   .. code:: javascript
+   
+       // Defining a project API method in the voice script
+       projectAPI.getStores = function(p, param, callback) {
+         p.userData.stores = param.stores;
+         if (param && param.length) {
+           p.play('We found several stores close to you...');
+         } else {
+           p.play('There are no stores at the moment, please choose another location');
+         }
+         callback();
+       }; 
+	  
+   In the app, we will call the ``getStores()`` method when a location is selected. The Alan button will be activated automatically; Alan will send the stores list to the voice script, save it to the userData variable and play: We found several stores close to you... or There are no stores at the moment, please choose another location.
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+	  
+          // Calling the project API method on choosing a location
+          function sendData() {
+            alanBtnInstance.activate();
+            alanBtnInstance.callProjectApi("getStores", {
+              stores: storesList
+            }, function(error, result) {});
+          };
+		  
+
+   .. tabbed:: Objective-C
+
+      .. code-block:: obj-c
+	  
+          // Calling the project API method on choosing a location
+          - (void)callProjectApi {
+            [self.button callProjectApi:@"script::getStores" withData:@{@"stores":@"storesList"} callback:nil];
+          }
+
+   .. tabbed:: Swift
+
+      .. code-block:: swift
+	  
+          // Calling the project API method on choosing a location
+          func callProjectApi() {
+            self.button.callProjectApi("script::getStores", withData: ["stores":"storesList"], callback: nil)
+          }
+
+   .. tabbed:: Kotlin
+
+      .. code-block:: kotlin
+	  
+          // Calling the project API method on choosing a location
+          fun callProjectApi() {
+            val params = JSONObject()
+            try {
+              params.put("stores", "storesList")
+            } catch (e: JSONException) {
+              Log.e("AlanButton", e.message)
+            }
+            alanButton?.callProjectApi("script::getStores", params.toString())
+          }       
+		
+   .. tabbed:: Java
+
+      .. code-block:: java
+	  
+          // Calling the project API method on choosing a location
+          void callProjectApi() {
+            JSONObject params = new JSONObject();
+            try {
+              params.put("stores","storesList");
+            } catch (JSONException e) {
+              Log.e("AlanButton", e.getMessage());
+            }
+            alanButton.callProjectApi("script::getStores", params.toString());
+          }
+	  
+             
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          _MyHomePageState() {
+            // Calling the project API method on choosing a location
+            void _callProjectApi() {
+              var params = jsonEncode({"stores":"storesList"});
+              AlanVoice.callProjectApi("script::getStores", params);
+            }
+          }
+	
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+          var myAlanBtn = document.getElementById('myAlanBtn');
+          myAlanBtn.componentOnReady().then(function () {
+            // Calling the project API method on choosing a location
+            myAlanBtn.callProjectApi("getStores", {stores: storesList}, function (error, result) {
+              console.log("project API function has been called", error, result);
+            });
+          });
+   
+   .. tabbed:: React Native
+
+      .. code-block:: javascript
+	  
+          
+          import { AlanView } from '@alan-ai/alan-sdk-react-native';
+          import { NativeEventEmitter, NativeModules } from 'react-native';
+
+          const {AlanManager, AlanEventEmitter} = NativeModules;
+          ...
+          export default class MyApp extends Component {
+            ... 
+            // Calling the project API method on choosing a location
+            onPress = {() =>
+              AlanManager.activate();
+              AlanManager.callProjectApi(
+                'getStores',
+                {stores: storesList},
+                (error, result) => {
+                  if (error) {
+                    console.error(error);
+                  } else {
+                    console.log(result);
+                  }
+                },
+              )
+            }
+          ...  
+          }
+
+.. _how-to-send-information-about-the-app-visual-context-to-the-voice-script:
+		  
+:hidden:`How to send information about the app visual context to the voice script`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		  
+.. dropdown:: How to send information about the app visual context to the voice script
+   :animate: fade-in
+   
+   To build a smart voice assistant, you should be able to provide Alan with information about the app's visual context: what screen is currently open, what options are enabled at the moment and so on. To do this, you can use the :doc:`visual state functionality <../server-api/sending-data/visual-state>`. Do the following:
+
+   1. Use the :ref:`setVisualState() method<setVisualState()>` in the app to send the information about the current visual context to the voice script.
+
+   2. In the voice script, differentiate responses using the :ref:`visual` object.
+
+   Let's assume we want to provide users with a possibility to ask about available functions and want Alan to respond differently depending on the screen open. To do this, we need to send the visual state from the app like this:
+
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+	  
+          alanBtnInstance.setVisualState({screen:"main"});    
+		  
+
+   .. tabbed:: Objective-C
+
+      .. code-block:: obj-c
+	  
+          - (void)setVisualState {
+           [self.button setVisualState:@{@"screen":@"main"}];
+          }
+	  
+          
+
+   .. tabbed:: Swift
+
+      .. code-block:: swift
+	  
+          func setVisualState() {
+            self.button.setVisualState(["screen":"main"])
+          }
+	          
+
+   .. tabbed:: Kotlin
+
+      .. code-block:: kotlin
+	  
+          fun setVisualState() {
+            val params = JSONObject()
+            try {
+              params.put("screen", "main")
+            } catch (e: JSONException) {
+              e.message?.let { Log.e("AlanButton", it) }
+            }
+            alanButton?.setVisualState(params.toString())
+          }           
+		
+   .. tabbed:: Java
+
+      .. code-block:: java
+	  
+          void setVisualState() {
+            JSONObject params = new JSONObject();
+            try {
+              params.put("screen","main");
+            } catch (JSONException e) {
+              Log.e("AlanButton", e.getMessage());
+            }
+            alanButton.setVisualState(params.toString());
+          }	  
+             
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          _MyHomePageState() {
+            void _setVisualState() {
+              var visualState = jsonEncode({"screen":"main"});
+              AlanVoice.setVisualState(visualState);
+            }
+          }        
+	
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+          var myAlanBtn = document.getElementById('myAlanBtn');
+
+          myAlanBtn.componentOnReady().then(function () {
+            myAlanBtn.setVisualState({screen: 'main'});
+          });
+	       
+   
+   .. tabbed:: React Native
+
+      .. code-block:: javascript
+	  
+          setVisualState() {
+            AlanManager.setVisualState({screen:"main"});
+          }
+		  
+   In the voice script, you can differentiate responses by accessing the ``p.visual`` runtime variable:
+   
+   .. code-block:: javascript
+       
+       intent("What can I do here?", p => {
+           let screen = p.visual.screen;
+           switch (screen) {
+               case "main":
+                   p.play("You can browse our catalog and choose products");
+                   break;
+               case "checkout":
+                   p.play("Click Proceed to check out or Back to continue shopping");
+                   break;
+               default:
+                   p.play("(Sorry,|) I have no information about it");
+           }
+       });
+	   
+:hidden:`How to filter voice commands in the script`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to filter voice commands in the script
+   :animate: fade-in	  
+
+   If some of the voice commands should work only in specific circumstances: when a screen is open or options are enabled, you can send the visual state from the app to Alan as described in the how-to above and filter voice commands in the voice script like this:
+   
+   .. code-block:: javascript
+   
+       const vCheckoutScreen = visual({"screen": "checkout"});
+
+       intent(vCheckoutScreen, 'How do I check out?', p => {
+           p.play('Check the products added to the cart and click Proceed');
+       });
+	   
+	   
+.. _how-to-activate-the-alan-button-programmatically-and-play-a-greeting:
+	   
+:hidden:`How to activate the Alan button programmatically and play a greeting`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to activate the Alan button programmatically and play a greeting
+   :animate: fade-in	  
+
+   You can activate the Alan button programmatically, for example, if you want to greet the user or let Alan start the dialog. To do this, use the :doc:`onButtonState handler<../../client-api/methods/state-handler>` to check the Alan button state and the :ref:`activate()<activate()>` and :ref:`playText()<playText()>` client API methods.
+
+   In the example below, when the Alan button state is ONLINE (the connection to the Alan Studio project is established but the Alan button is not yet activated), the Alan button is activated programmatically and the voice assistant greets the user.
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+	  
+          var greetingWasSaid = false;
+  
+          var alanBtnInstance = alanBtn({
+            ...
+            onButtonState: async function(status) {
+              if (status === 'ONLINE') {
+                if (!this.greetingWasSaid) {           
+                  await alanBtnInstance.activate();
+                  alanBtnInstance.playText("Hello! I'm Alan. How can I help you?");
+                  this.greetingWasSaid = true
+                }
+              }
+            },
+            rootEl: document.getElementById("alan-btn"),
+          });    
+          
+
+   .. tabbed:: Swift
+
+      See the :doc:`Playing a greeting in an iOS Swift app tutorial <ios/greeting-swift>`.
+		  
+             
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          class _MyHomePageState extends State {
+	
+            bool _greetingIsPlayed = false;
+
+            _MyHomePageState() {
+
+              AlanVoice.addButton("ec973ec04ff2bac6faceb579449bc5142e956eca572e1d8b807a3e2338fdd0dc/stage");
+              AlanVoice.onButtonState.add((state) {
+                if (state.name == "ONLINE" && !_greetingIsPlayed) {
+                  _greetingIsPlayed = true;
+                  AlanVoice.activate();
+                  AlanVoice.playText("Hello! I'm Alan. How can I help you?");
+                }
+              });
+            }
+          }        
+	
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+          private greetingWasSaid: boolean = false;
+
+          export class AppComponent {
+            ...
+            ngAfterViewInit() {
+              this.alanBtnComponent.nativeElement.addEventListener('buttonState', (data) => {
+                const buttonState = (<CustomEvent>data).detail;
+                if (buttonState === 'ONLINE') {
+                  if (!this.greetingWasSaid) {
+                    this.greetUserForFirstTime();
+                    this.greetingWasSaid = true
+                  }
+                }
+              });
+            }
+
+            async greetUserForFirstTime() {
+              this.alanBtnComponent.nativeElement.componentOnReady().then(async () => {
+                try {
+                  await this.alanBtnComponent.nativeElement.activate();
+                  this.alanBtnComponent.nativeElement.playText("Hello! I'm Alan. How can I help you?");
+                } catch(e) {
+                  console.info('DEBUG', e);
+                }
+              });
+            }
+            ...
+          }
+		  
+.. _how-to-capture-user-utterances-as-text:
+	   
+:hidden:`How to capture user utterances as text`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	   
+.. dropdown:: How to capture user utterances as text
+   :animate: fade-in	  
+
+   To capture what the user has said as a text message, use :doc:`Alan's onEvent handler <../../client-api/methods/event-handler>`. 
+   
+   In the example below, different types of events are handled to write text messages of the user's input and Alan's response to the app logs:
+   
+   - ``recognized`` event to log interim results for the user's utterance
+   - ``parsed`` event  to log the final variant of the user's utterance, as Alan has parsed it
+   - ``text`` event to log the Alan's response
+   
+   .. tabbed:: Web (React, Angular, etc.)
+
+      .. code-block:: javascript
+	  
+          var alanBtnInstance = alanBtn({
+            ...
+            // Handling events
+            onEvent: function (e) {
+              switch (e.name) {
+                case "recognized":
+                  console.info('Interim results:', e.text);
+                  break;
+                case "parsed":
+                  console.info('Final result:', e.text);
+                  break; 
+                case "text":
+                  console.info('Alan reponse:', e.text);
+                  break;
+                default:
+                  console.info('Unknown event');		
+              }
+            },
+            ...
+          });
+		  
+   .. tabbed:: Kotlin
+   
+      .. code-block:: kotlin
+	  
+          val alanCallback: AlanCallback = object : AlanCallback() {
+            /// Handling events
+            override fun onEvent(payload: String) {
+              try {
+                val eventName = JSONObject(payload).getString("name")
+                val eventText = JSONObject(payload).getString("text")
+                when (eventName) {
+                  "recognized" -> {
+                    Log.d("AlanButton", "Interim results: $eventText")
+                  }
+                  "parsed" -> {
+                    Log.d("AlanButton", "Final result: $eventText")
+                  }
+                  "text" -> {
+                    Log.d("AlanButton", "Alan response: $eventText")
+                  }
+                }
+              } catch (e: JSONException) {
+                e.message?.let { Log.e("AlanButton", it) }
+              }
+            }
+          };
+
+          /// Registering callback
+          alanButton?.registerCallback(alanCallback);
+	  
+   .. tabbed:: Java
+
+      .. code-block:: java          
+   
+          AlanCallback alanCallback = new AlanCallback() {
+            /// Handling events
+            @Override
+            public void onEvent(String payload) {
+              try {
+                JSONObject eventDict = new JSONObject(payload);
+                String eventName = eventDict.getString("name");
+                String eventText = eventDict.getString("text");
+                switch (eventName) {
+                  case "recognized":
+                    Log.d("AlanButton", "Interim results: " + eventText);
+                    break;
+                  case "parsed":
+                    Log.d("AlanButton", "Final result: " + eventText);
+                    break;
+                  case "text":
+                    Log.d("AlanButton", "Alan's response: " + eventText);
+                    break;
+                  default:
+                    Log.d("AlanButton", "Unknown event");
+                }
+              } catch (JSONException e) {
+                Log.e("AlanButton", e.getMessage());
+              }
+            }
+          };
+
+          /// Registering callbacks
+          alanButton.registerCallback(alanCallback);   
+             
+   .. tabbed:: Flutter
+
+      .. code-block:: dart
+	  
+          _MyHomePageState() {
+           ... 
+           /// Registering the event listener
+           AlanVoice.onEvent.add((event) => _handleEvent(event.data));
+           /// Handling events
+           void _handleEvent(Map<String, dynamic> event) {
+             switch (event["name"]) {
+               case "recognized":
+                 debugPrint("Interim results: ${event["text"]}");
+                 break;
+               case "parsed":
+                 debugPrint("Final result: ${event["text"]}");
+                 break;
+               case "text":
+                 debugPrint("Alan response: ${event["text"]}");
+                 break;
+               default:
+                 debugPrint("Unknown event");
+             }
+           }
+         }
+	  
+                 
+	
+   .. tabbed:: Ionic
+
+      .. code-block:: javascript
+	  
+         ngAfterViewInit() {
+           /// Registering the event listener
+           this.alanBtnComponent.nativeElement.addEventListener('event', (data) => {
+             const event = (<CustomEvent>data).detail;            
+             /// Handling events
+             switch (event.name) {
+               case "recognized":
+                 console.info('Interim results:', event.text);
+                 break;
+               case "parsed":
+                 console.info('Final result:', event.text);
+                 break; 
+               case "text":
+                 console.info('Alan reponse:', event.text);
+                 break;
+               default:
+                 console.info('Unknown event');		
+             }
+           });
+         }
+		 
+   .. tabbed:: React Native
+
+      .. code-block:: javascript
+	  
+          alanEventEmitter.addListener('onEvent', (payload) => {
+            let eventObj = JSON.parse(payload);           
+            switch (eventObj.name) {
+              case "recognized":
+                console.info('Interim results:', eventObj.text);
+                break;
+              case "parsed":
+                console.info('Final result:', eventObj.text);
+                break; 
+              case "text":
+                console.info('Alan reponse:', eventObj.text);
+                break;
+              default:
+                console.info('Unknown event');		
+            }
+          });
+
+          
+	  
+          

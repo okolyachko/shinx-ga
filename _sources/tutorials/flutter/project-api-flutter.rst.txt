@@ -1,0 +1,97 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Sending data to the voice script
+================================
+
+In some cases, you need to pass data from the app to the voice script to use it further in the dialog.
+
+In this tutorial, we will let users hear the current count when the action button is tapped. To do this, we will use :doc:`Alan’s project API <../../server-api/sending-data/project-api>`. The project API
+functionality allows sending any information from the app to the voice script and triggering activities without a voice command. To use it, we need to do the following:
+
+1. Define a new project API method in the voice script
+2. Call this method from the app
+
+
+.. admonition:: YouTube
+   :class: video
+
+   :fa:`youtube-play`
+   If you are a visual learner, `watch this tutorial <https://www.youtube.com/watch?v=rv9DN7JuJr0>`__ on `Alan AI YouTube Channel <https://www.youtube.com/c/AlanAI>`__.
+
+What you will learn
+-------------------
+
+-  How to send arbitrary data from the voice script to the app
+-  How to trigger activities without a voice command
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are
+met:
+
+-  You have completed the following tutorial: :doc:`Building a voice assistant for a Flutter
+   app <integrating-flutter>`.
+-  You have set up the Flutter environment and it is functioning properly. For details, see Flutter documentation.
+-  The device on which you are planning to test drive the Flutter app is connected to the Internet. The Internet connection is required to let the Flutter app communicate with the voice script run in the Alan Cloud.
+
+Step 1. Add a project API method to the voice script
+----------------------------------------------------
+
+First, we will define a project API method in the voice script. Our method will play the current count value obtained from the app to the user.
+
+In the code editor in Alan Studio, add the following code:
+
+.. code:: javascript
+
+    projectAPI.getCount = function(p, param, callback) {
+        p.play(`The current count is ${param.count}, keep going`);
+        callback();
+    };
+
+Step 2. Call the project API method from the app
+------------------------------------------------
+
+Now, we need to :ref:`call the defined method <callprojectapi()>` from the app.
+
+1. To ``_MyHomePageState`` in the app, add the ``sendData()`` function. This function will check the Alan button state with the :ref:`isActive() <isactive()>` client API method and activate it programmatically, if needed, with the :ref:`activate() <activate()>` client API method. Then it will call the ``getCount()`` method we have defined in the voice script.
+
+   .. code:: dart
+
+       ...
+       class _MyHomePageState extends State<MyHomePage> {
+         ...
+         void sendData() async {
+           var isActive = await AlanVoice.isActive();
+           if (!isActive) {
+             AlanVoice.activate();
+           }
+           var params = jsonEncode({"count":_counter});
+           AlanVoice.callProjectApi("script::getCount", params);
+         }
+         ...
+       }   
+       ...
+
+   To use ``jsonEncode``, import the ``dart:convert`` library.
+
+2. Update the code for the action button to call the ``sendData()`` function:
+
+   .. code:: dart
+
+       class _MyHomePageState extends State<MyHomePage> {
+         ...
+         floatingActionButton: FloatingActionButton(
+           onPressed: () {
+             _incrementCounter();
+             sendData();
+           },
+           tooltip: 'Increment',
+           child: Icon(Icons.add),
+           ),
+         ...
+       }     
+
+You can test it: tap the action button in the app. Alan will accompany each tap with the count phrase playback.

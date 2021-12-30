@@ -1,0 +1,75 @@
+Vue
+===
+
+.. raw:: html
+   
+   <a href="https://www.npmjs.com/package/@alan-ai/alan-sdk-web">
+   <img src="https://img.shields.io/npm/v/@alan-ai/alan-sdk-web.svg" align="left" style="border:inherit; padding-right:10px" /></a>
+
+   <a href="https://github.com/alan-ai/alan-sdk-web/releases">
+   <img src="https://img.shields.io/github/v/release/alan-ai/alan-sdk-web" align="left" style="border:inherit"/></a>
+   
+   <br/>
+
+Integrating with Alan
+---------------------
+
+To integrate a Vue app with Alan:
+
+1. Add the Alan Web SDK to your app. You can do it in two ways: 
+
+   - With the npm package 
+   - In the browser library mode
+   
+   .. tabbed:: NPM package
+
+      To install the Alan Web SDK with the npm package:
+
+      a. In the Terminal, run the command:
+
+         ::
+
+             npm install @alan-ai/alan-sdk-web --save
+
+      b. Import the ``alanBtn`` into your ``main.js`` file:
+
+         ::
+
+             import alanBtn from "@alan-ai/alan-sdk-web";
+			 
+   .. tabbed:: Browser library mode   
+
+      To load the Alan Web SDK in the browser library mode, add the ``alan_lib.min.js`` library to the ``index.html`` file using the ``<script>`` tag:
+
+      ::
+
+          <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+
+2. Add the Alan button to the ``main.js`` file in your project:
+
+   ::
+
+       alanBtn({ 
+           key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+           onCommand: (commandData) => {
+               if (commandData.command === 'go:back') {
+                   // Call the client code that will react to the received command
+               }
+           },
+       });
+
+For details, see :ref:`Alan button parameters`.
+
+Trying the Alan sample app
+--------------------------
+
+In our GitHub repository, you can find a `sample Vue app <https://github.com/alan-ai/alan-sdk-web/tree/master/examples/alan-example-integration-vue>`__ already integrated with Alan. Download the app to get an idea of how you can voice enable your Vue app and trigger actions in the app with voice commands.
+
+What's next?
+------------
+
+Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
+
+.. raw:: html
+
+   <div id="purple-background"></div>

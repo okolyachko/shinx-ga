@@ -1,0 +1,67 @@
+Debugging Chat
+==============
+
+The primary testing and debugging tool you will use while writing a voice script is the Debugging Chat in Alan Studio. The Debugging Chat lets you quickly see the output for voice commands, diagnose problems and check how short conversational branches work.
+
+You can test voice commands with voice or type them:
+
+-  To test a command with voice, in the Debugging Chat, click the Alan button and say the command.
+-  Alternatively, you can type the command in the text area and click the **Send button** or press **ENTER** on the keyboard.
+
+In the Debugging Chat, commands and responses are displayed as speech bubbles. Every bubble is titled with the name of the voice script to which the command or response belongs and the number of the line in the voice script. To jump to the necessary code block in the code editor, click the link at the top of the bubble.
+
+To let you quickly analyze the output for voice commands, the Debugging Chat highlights :doc:`slots <../../server-api/slots>` in the user input as colored blocks and shows
+:ref:`commands <Sending commands to the app>` sent to the app from the voice script.
+
+.. image:: /_static/assets/img/studio/test-chat.png
+
+
+Simulating the in-app behavior
+------------------------------
+
+In some cases, giving voice commands may not be enough to effectively test the voice assistant functionality. This can be the case if the voice script requires some data from the client app side.
+
+To simulate the in-app behavior of the voice assistant in the Debugging Chat, you can do the following:
+
+-  `Set authentication data <#setting-authentication-data>`__
+-  `Set the visual state <#setting-the-visual-state>`__
+
+Setting authentication data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If your app requires the user to :doc:`authenticate <../../server-api/sending-data/authdata>` to interact with it, you can set authentication data in the Debugging Chat. As a result, you will be able to test voice commands as if the user has
+logged in to the system.
+
+To set authentication data, at the bottom of the Debugging Chat, click the **Set Auth Data** button and enter the authentication data as JSON or a string, for example:
+
+.. code:: javascript
+
+    {
+        "token": "demo", 
+        "baseUrl": "https://mysite",
+        "deviceId": "1234-5678-9001",
+        "userName": "demo"  
+    }
+
+.. _Setting the visual state:
+	
+Setting the visual state
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can simulate the situation when the client app passes the :doc:`visual state <../../server-api/sending-data/visual-state>` to the script. As a result, voice commands that require the visual state will be matched as expected.
+
+To set the visual state, at the bottom of the Debugging Chat, click the **Set Visual State** button and enter the visual state as JSON. For example, if some voice commands in the script can be matched when a specific app screen is open, you can specify the visual state in the following way:
+
+.. code:: javascript
+
+    {"screen": "Products"}
+
+After that, you will be able to test all voice commands that require the ``{"screen": "Products"}`` visual state.
+
+.. note:: 
+	
+   The Debugging Chat keeps the history of visual states set during the current session. While testing your dialog, you can set several visual states and switch between them when needed.
+
+.. raw:: html
+
+   <div id="blue-background"></div>
