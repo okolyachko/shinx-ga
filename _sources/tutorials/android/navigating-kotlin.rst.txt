@@ -1,0 +1,100 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Navigating in an Android app with voice (Kotlin)
+================================================
+
+While interacting with the voice assistant built with the Alan Platform, users can perform actions in the app with voice. For example, they can give commands to navigate to another screen, select an item in the list, enable or disable options. To achieve this, you need to :ref:`send commands<Sending commands to the app>` from the voice script to the app and :doc:`handle them <../../client-api/methods/command-handler>` in the app.
+
+In this tutorial, we will add voice commands that will allow us to navigate between tabs in the app. 
+
+.. admonition:: YouTube
+   :class: video
+
+   :fa:`youtube-play`
+   If you are a visual learner, `watch this tutorial <https://www.youtube.com/watch?v=XkO1FnwSGGo>`__ on `Alan AI YouTube Channel <https://www.youtube.com/c/AlanAI>`__.
+
+What you will learn
+-------------------
+
+-  How to complete tasks in the Android app with voice
+-  How to navigate in the Android app with voice
+-  How to send commands from the voice script and handle them in the Android app
+
+What you will need
+------------------
+
+For this tutorial, we will use the app created in the :doc:`Building a voice assistant for an Android Java or Kotlin app <integrating-java-kotlin>` tutorial.
+
+
+Step 1: Add voice commands to navigate between tabs
+---------------------------------------------------
+
+First, we need to add new :doc:`voice commands <../../server-api/commands-and-responses>` to navigate between tabs with voice. In Alan Studio, open the project and in the code editor, add the following intents:
+
+.. code:: javascript
+
+    intent ('Open the second tab', p => {
+        p.play({command: "openTab", tab: 1});
+        p.play('Opening the second tab');
+    });
+
+    intent('Go back', p => {
+        p.play({command: "openTab", tab: 0});
+        p.play('Going back to the first tab');
+    });
+
+When we say one of these phrases, two things will happen:
+
+-  Alan will send the command provided in the intent to the Android app. To send the command, we need to specify a JSON object in the ``p.play`` function. Here the object contains the command name --- ``openTab``, and the index of the tab to be opened in the app.
+-  Alan will play back the action confirmation to us.
+
+
+Step 2: Handle commands on the app side
+---------------------------------------
+
+When we say ``Open the second tab`` or ``Go back``, Alan now sends a command to the Android app. We need to handle this command in the app and make sure an appropriate action is performed. To do this, we will use the :doc:`onCommand handler<../../client-api/methods/command-handler>`.
+
+In the IDE, open the ``MainActivity.kt`` file and update the code for handling commands in the Alan button block to the following:
+
+.. code:: kotlin
+
+    class MainActivity : AppCompatActivity() {
+      ...
+      override fun onCreate(savedInstanceState: Bundle?) {
+        ...
+        val alanCallback: AlanCallback = object : AlanCallback() {
+          /// Handling commands from Alan Studio
+          override fun onCommand(eventCommand: EventCommand) {
+            try {
+              val command = eventCommand.data
+              val commandName = command.getJSONObject("data").getString("command")
+              when (commandName) {
+                /// Navigating between tabs when the openTab command is received
+                "openTab" -> {
+                  val tab = eventCommand.data.getJSONObject("data").getString("tab").toInt()
+                  tabs.getTabAt(tab)?.select()
+                }
+              }
+            } catch (e: JSONException) {
+              e.message?.let { Log.e("AlanButton", it) }
+            }
+          }
+        };
+
+        /// Register callbacks
+        alanButton?.registerCallback(alanCallback);
+      }
+      ...
+    }
+
+Here is how it works: when the Android app receives the ``openTab`` command from the voice script, the tab index is saved to the ``tab`` variable and used to open the necessary tab.
+
+You can test it: run the app, tap the Alan button and say: ``Open the second tab``. The second tab in the app will be open. Then say ``Go back``, and you will get back to the first tab.
+
+
+What's next?
+------------
+
+Have a look at the next tutorial: :doc:`Passing the app state to the voice script <sending-state-kotlin>`.

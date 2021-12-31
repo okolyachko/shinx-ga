@@ -1,0 +1,78 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+   <div id="wide-content"></div>
+
+Step 15: Populate fields with the delivery details
+==================================================
+
+Let's display the captured address, time and comment on the web page swhen the user provides the delivery details.
+
+1. Update the voice commands for capturing the address, time and comment: send commands with the captured values to the app:
+
+   .. code-block:: javascript
+     :emphasize-lines: 4,21,31
+
+      let checkout = context(() => {
+          intent('(My address is|It is) $(LOC)', p => {
+              // Sending the address to the app
+              p.play({command: 'setAddress', address: p.LOC.value});
+              p.play(`Your order will be delivered to ${p.LOC.value}`);
+              p.play('What is the expected delivery time?');
+              p.then(getTime);
+          });
+      });
+
+      let getTime = context(() => {
+          intent('$(TIME)', '$(T now|asap|right now|as soon as possible)', p => {
+              let time, date;
+              if (p.T) {
+                  time = api.moment().tz(p.timeZone).add(30, 'minutes').format("h:mm a");
+              }
+              if (p.TIME) {
+                  time = p.TIME.value;
+              }
+              // Sending the time to the app
+              p.play({command: "setTime", time: time});
+              p.then(getComment);
+              p.play(`We will deliver your order at ${time}`);
+              p.play('Any comments?');
+          });
+      });
+
+      let getComment = context(() => {
+          intent('My comment is $(COMMENT* (.+))', p => {
+              // Sending the comment to the app
+              p.play({command: 'setComment', comment: p.COMMENT.value});
+              p.play(`I'll' take a note: ${p.COMMENT.value}`);
+          });
+      });
+
+2. In the app, update the ``onCommand`` handler to display the received values in the corresponding fields in the app:
+
+   .. code-block:: html
+     :emphasize-lines: 7-15
+
+      <script>
+          var alanBtnInstance = alanBtn({
+              key: "e2fecaef4cb07cbe7d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/stage",
+              onCommand: function(commandData) {
+                  if (commandData.command == "updateOrder") {
+                      changeOrder(commandData.item, commandData.quantity);
+                  } else if (commandData.command == "highlightItem") {
+                      highlight(commandData.item);
+                  } else if (commandData.command == "setAddress") {
+                      document.getElementById("address").innerHTML = "Address: " + commandData.address;
+                  } else if (commandData.command == "setTime") {
+                      document.getElementById("time").innerHTML = "Delivery time: " + commandData.time;
+                  } else if (commandData.command == "setComment") {
+                      document.getElementById("comment").innerHTML = "Comments: " + commandData.comment;
+                  }
+              },
+              rootEl: document.getElementById("alan-btn"),
+          }); 
+      </script>
+
+   `Web page source <../../../_static/assets/img/tutorial2/5.html.txt>`__ | `Voice script <../../../_static/assets/img/tutorial2/8.js>`__
+
+Try the dialog in the app and make sure the delivery details are displayed on the page.

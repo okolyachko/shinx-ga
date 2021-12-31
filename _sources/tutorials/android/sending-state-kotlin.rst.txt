@@ -1,0 +1,149 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Passing the app state to the voice script (Kotlin)
+==================================================
+
+To provide relevant responses to users, the voice assistant must know what is happening in the app: what tab is currently open, what options are enabled and so on.
+
+To get information about the app state, you can use :doc:`Alan’s visual state functionality <../../server-api/sending-data/visual-state>`. The visual state allows you to send an arbitrary JSON object informing about the current app context to the voice script. You can access this data in the script through the :ref:`visual object <visual>`.
+
+In this tutorial, we will get the information about the currently open tab in the app and use it to :ref:`filter intents <Filtering commands>` and :ref:`differentiate the command logic <Differentiating the command logic>` for our voice assistant.
+
+.. admonition:: YouTube
+   :class: video
+
+   :fa:`youtube-play`
+   If you are a visual learner, `watch this tutorial <https://www.youtube.com/watch?v=xTR_rxcSJnM&t>`__ on `Alan AI YouTube Channel <https://www.youtube.com/c/AlanAI>`__.
+
+What you will learn
+-------------------
+
+-  How to get the information about the app visual context
+-  How to access the data passed with the visual state in the voice script
+-  How to filter intents depending on the app state
+-  How to play different responses depending on the app state
+
+
+What you will need
+------------------
+
+For this tutorial, we will use the app created in the :doc:`Building a voice assistant for an Android Java or Kotlin app <integrating-java-kotlin>` tutorial.
+
+
+Step 1. Send the app state to the voice script
+----------------------------------------------
+
+To send the information about the app state to the script, we first need to call :ref:`Alan's setVisualState()<setVisualState()>` client API method on the client app side.
+
+1. In the IDE, open the ``MainActivity.kt`` file and add the ``setVisualState()`` function to the ``MainActivity`` class. In this function, we will use the :ref:`setVisualState()<setVisualState()>` method to pass the index of the currently open tab to the voice script.
+
+   .. code:: kotlin
+   
+       class MainActivity : AppCompatActivity() {
+         ...
+         /// Setting up a visual state
+         fun setVisualState(tabIndex: Int) {
+           val params = JSONObject()
+           try {
+             params.put("tab", tabIndex)
+           } catch (e: JSONException) {
+             e.message?.let { Log.e("AlanButton", it) }
+           }
+           alanButton?.setVisualState(params.toString())
+         }
+       }
+	   
+2. In the ``onCreate()`` function, register the `addOnTabSelectedListener <https://developer.android.com/reference/com/google/android/material/tabs/TabLayout#addOnTabSelectedListener(com.google.android.material.tabs.TabLayout.OnTabSelectedListener)>`__. In the ``onTabSelected()`` method, call the added ``setVisualState()`` function and pass the selected tab index to it:
+
+   .. code:: kotlin
+   
+       class MainActivity : AppCompatActivity() {
+         ...
+         override fun onCreate(savedInstanceState: Bundle?) {
+           ...
+           val tabs: TabLayout = binding.tabs
+           tabs.setupWithViewPager(viewPager)
+           /// Registering the listener
+           tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+             override fun onTabSelected(tab: TabLayout.Tab) {
+               /// Sending the current tab index
+               val position = tabs.selectedTabPosition
+               setVisualState(position)
+             }
+             override fun onTabUnselected(tab: TabLayout.Tab) {}
+             override fun onTabReselected(tab: TabLayout.Tab) {}
+           })
+           ...
+         }
+       }
+	   
+3. Additionally, in the ``onCreate()`` function, call the ``setVisualState()`` function and pass ``0`` to it to make sure the visual state is set when the app is initially loaded.
+
+   .. code:: kotlin
+   
+       class MainActivity : AppCompatActivity() {
+         ...
+         setVisualState(0)
+       }     
+
+
+Step 2. Use the visual state as a filter
+----------------------------------------
+
+With the visual state set in the app, we can now use it in the voice script. First, we will make sure our navigation commands can be given only on the tabs where they make sense. 
+
+In Alan Studio, update the navigation intents to the following:
+
+.. code:: javascript
+
+    const firstTab = visual({"tab": 0});
+	
+    intent (firstTab, 'Open the second tab', p => {
+        p.play({command: "openTab", tab: 1});
+        p.play('Opening the second tab');
+    });
+
+    const secondTab = visual({"tab": 1});
+	
+    intent(secondTab, 'Go back', p => {
+        p.play({command: "openTab", tab: 0});
+        p.play('Going back to the first tab');
+    });
+
+Here we are using the visual state as a :ref:`filter <Filtering commands>` added to intents. This filter defines when the intent can be matched.
+
+You can test it: in the app, try giving navigation commands on different tabs. If the filter conditions are not met, the voice assistant will not be able to reply to you.
+
+Step 3. Differentiate the command logic
+---------------------------------------
+
+Next, let's use the visual state to :ref:`provide different responses <Differentiating the command logic>` if the same question is asked on different tabs. 
+
+Add the following intent to the voice script:
+
+.. code:: javascript
+
+    intent('What tab is currently open?', p => {
+        let tab = p.visual.tab;
+        switch (tab) {
+            case 0:
+                p.play('This is the first tab');
+                break;
+            case 1:
+                p.play('This is the second tab');
+                break;
+            default:
+                p.play('Sorry, I do not know the answer');
+        }
+    });
+	
+
+Here, if the visual state is set to ``0`` or ``1``, the voice assistant will name the currently open tab. If no visual state is set, the default response will be played to the user.
+
+
+What's next?
+------------
+
+Have a look at the next tutorial: :doc:`Sending data to the voice script <sending-data-kotlin>`.

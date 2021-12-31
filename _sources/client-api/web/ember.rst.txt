@@ -1,0 +1,60 @@
+Ember
+=====
+
+.. raw:: html
+   
+   <a href="https://www.npmjs.com/package/@alan-ai/alan-sdk-web">
+   <img src="https://img.shields.io/npm/v/@alan-ai/alan-sdk-web.svg" align="left" style="border:inherit; padding-right:10px" /></a>
+
+   <a href="https://github.com/alan-ai/alan-sdk-web/releases">
+   <img src="https://img.shields.io/github/v/release/alan-ai/alan-sdk-web" align="left" style="border:inherit"/></a>
+   
+   <br/>
+
+Integrating with Alan
+---------------------
+
+To integrate an Ember app with Alan:
+
+1. Install the ``@alan-ai/alan-sdk-web`` package:
+
+   ::
+
+       npm install @alan-ai/alan-sdk-web --save
+
+2. Install the ``ember-auto-import`` package to have an ability to use packages from npm:
+
+   ::
+
+       npm install ember-auto-import --save
+
+3. Add the following code to the ``app.js`` file in your project:
+
+   ::
+
+       alanBtn({ 
+           key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+           onCommand: (commandData) => {
+               if (commandData.command === 'go:back') {
+                   // Call the client code that will react to the received command
+               }
+           },
+       });
+
+For details, see :ref:`Alan button parameters`.
+
+Trying the Alan sample app
+--------------------------
+
+In our GitHub repository, you can find a `sample Ember app <https://github.com/alan-ai/alan-sdk-web/tree/master/examples/alan-example-integration-ember>`__ already integrated with Alan. Download the app to get an idea of how you can voice enable your Ember app and trigger actions in the app with voice
+commands.
+
+
+What's next?
+------------
+
+Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
+
+.. raw:: html
+
+   <div id="purple-background"></div>
