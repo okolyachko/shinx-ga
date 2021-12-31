@@ -1,0 +1,143 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Building a voice assistant for a Vue app
+========================================
+
+With Alan's :doc:`voice assistant SDK for Web <../../client-api/web/web-api>`, you can create a voice assistant or chatbot and embed it to your Vue app. The Alan Platform provides you with all the tools and leverages the industry’s best Automatic Speech Recognition (ASR), Natural Language Understanding (NLU) and Speech Synthesis technologies to quickly build an in-app voice assistant from scratch.
+
+In this tutorial, we will create a simple voice enabled Vue app. The app users will be able to click the voice assistant button and give custom voice commands, and Alan will reply to them.
+
+What you will learn
+-------------------
+
+-  How to add a voice interface to a Vue app
+-  How to write simple voice commands for a Vue app
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following tools are installed on your machine:
+
+-  Vue CLI. For details, see `Vue documentation <https://cli.vuejs.org/guide/installation.html>`__.
+-  Node.js or yarn.
+
+Step 1. Sign up for Alan Studio
+-------------------------------
+
+First, we need to sign up for Alan Studio — the web portal where we will create a dialog scenario, or the voice script, for our voice assistant.
+
+1. Go to Alan Studio.
+2. Sign up with a Google or GitHub account or with your email address.
+
+   .. note::
+   
+      When you sign up to Alan Studio, Alan adds free interactions to your balance to let you get started. To get additional interactions to your balance, link your Alan account with your GitHub account and give stars to `Alan repositories <https://github.com/alan-ai>`__. For details, see :ref:`Adding free interactions <Adding free interactions>`.
+
+
+3. In Alan Studio, click **Create Voice Assistant**. Select to create an empty project and give it any name you want.
+
+Step 2: Create a Vue app
+------------------------
+
+Now let's create a simple Vue app:
+
+1. On your machine, navigate to the folder in which the app will reside and run the following command:
+
+   .. code:: bash  
+      
+	  vue create my-app
+	  
+2. Switch to the folder with the app:
+
+   .. code:: bash  
+      
+	  cd my-app
+	  
+3. Start the app:
+
+   .. code:: bash
+      
+	  npm run serve
+
+   or
+
+   .. code:: bash
+      
+	  yarn serve
+	  
+   .. image:: /_static/assets/img/web-frameworks/vue-starter-app.png
+
+
+Step 3: Install the Alan Web component
+--------------------------------------
+
+We need to add the Alan Web component to the app. In the app folder, install the Alan Web component with the following command:
+
+.. code:: bash
+
+   npm i @alan-ai/alan-sdk-web
+
+Step 4: Add the Alan button to the app
+--------------------------------------
+
+Now we need to update our app to add the Alan button to it.
+
+1. In the ``src`` folder, open the ``main.js`` file.
+2. At the top of the file, add the import statement for the Alan Web component: 
+
+   .. code:: javascript
+   
+      import alanBtn from "@alan-ai/alan-sdk-web";
+
+3. Below, add the code for the Alan button:
+
+   .. code:: javascript 
+
+      new Vue({
+          render: h => h(App),
+      }).$mount('#app')
+
+      // Adding the Alan button
+      alanBtn({ 
+          key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+          onCommand: (commandData) => {
+              if (commandData.command === 'go:back') {
+                  // Call the client code that will react to the received command
+              }
+          },
+      });
+
+4. In the ``key`` field above, we need to replace ``YOUR_KEY_FROM_ALAN_STUDIO_HERE`` with the Alan SDK key for our Alan
+   Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, copy the value provided in the **Alan SDK Key** field and paste this value to ``key``.
+
+   .. code:: javascript
+
+      alanBtn({ 
+          key: '28b4365114e0f2f67d43485dbc3cb44a2e956eca572e1d8b807a3e2338fdd0dc/stage',
+          onCommand: (commandData) => {
+              if (commandData.command === 'go:back') {
+                  // Call the client code that will react to the received command
+              }
+          },
+      });
+
+Step 5. Add voice commands
+--------------------------
+
+Let's add some :doc:`voice commands <../../server-api/commands-and-responses>` so that we can interact with our Vue app through voice. In Alan Studio, open the project and, in the code editor, add the following intents:
+
+.. code:: javascript
+
+   intent (`What is your name?`, p => {
+       p.play(`It's Alan, and yours?`);
+   });
+
+   intent (`How are you doing?`, p => {
+       p.play(`Good, thank you. What about you?`);
+   });
+
+Now in the app click the Alan button and ask: ``What is your name?`` and ``How are you doing?`` Alan will give responses provided in the intents.
+
+.. image:: /_static/assets/img/web-frameworks/vue-app-button.png

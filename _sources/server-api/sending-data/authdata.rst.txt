@@ -1,0 +1,164 @@
+authData
+========
+
+With ``authData``, you can send a JSON object with any configuration or authentication parameters from the client app to the voice script. For example, you may want to pass user’s credentials, device ID or other data required by your voice script logic. 
+
+Unlike :doc:`visual state <visual-state>` that has a dynamic nature and can be altered at any moment of the dialog session with the :ref:`setVisualState() <setVisualState()>` method, ``authData`` is sent only once, when the Alan client SDK connects to the voice script. For this reason, you should use it to share static device- or user-specific data. On the voice script side, the passed data is accessible through Alan’s ``p.authData`` runtime object. 
+
+In the example below, a user’s token is sent from the client app to the voice script. The token is written to Alan Studio logs when a :ref:`new dialog session with the user is started <onCreateUser()>`. 
+
+
+Voice script
+------------
+
+.. code-block:: javascript
+ 
+    onCreateUser(p => {
+        console.log(`A user has connected with token ${p.authData.token}`);
+    });
+
+
+Client app
+----------
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+        // Specifying a user's token in the app
+        var userToken = {
+          "token": "demo"
+        }
+
+        var alanBtnInstance = alanBtn({
+          key: "YOUR_KEY_FROM_ALAN_STUDIO_HERE",
+          // Passing the token
+          authData: userToken,
+          onCommand: function(commandData) {
+            if (commandData.command === "go:back") {}
+          },
+          rootEl: document.getElementById("alan-btn")
+        });
+		
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+	
+	
+        // Passing the token with dataObject
+        AlanConfig* config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE" dataObject:@{@"token":@"demo"}];
+    
+        /// Init the Alan button
+        self.button = [[AlanButton alloc] initWithConfig:config]; 
+	   
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+	
+        class ViewController: UIViewController {
+
+          fileprivate var button: AlanButton!
+          override func viewDidLoad() {
+            super.viewDidLoad()
+            self.setupAlan()
+          }
+
+          fileprivate func setupAlan() {
+            // Passing the token with dataObject
+            let config = AlanConfig(key: "YOUR_KEY_FROM_ALAN_STUDIO_HERE", dataObject: ["token":"demo"])		
+            self.button = AlanButton(config: config)
+            ...
+          }
+        }
+
+	   
+
+.. tabbed:: Kotlin
+
+    .. code-block:: kotlin
+
+        class MainActivity : AppCompatActivity() {
+          ...
+          override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            ...
+            /// Specifying a user's token in the app
+            val authData = JSONObject()
+            try {
+              authData.put("token", "demo")
+            } catch (e: JSONException) {
+              e.message?.let { Log.e("AlanButton", it) }
+            }
+        
+            /// Passing the token with DataObject
+            val config = AlanConfig.builder().setProjectId("YOUR_KEY_FROM_ALAN_STUDIO_HERE").setDataObject(authData).build()
+            alanButton = findViewById(R.id.alan_button)
+            alanButton?.initWithConfig(config)
+            ...
+          }
+        }
+		
+.. tabbed:: Java
+
+    .. code-block:: java
+
+        public class MainActivity extends AppCompatActivity {
+          ...
+          @Override
+          protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            ...
+            /// Specifying a user's token in the app
+            JSONObject authData = new JSONObject();
+            try {
+              authData.put("token", "demo");
+            } catch (JSONException e) {
+              Log.e("AlanButton", e.getMessage());
+            }
+            
+            /// Passing the token with DataObject
+            AlanConfig config = AlanConfig.builder().setProjectId("YOUR_KEY_FROM_ALAN_STUDIO_HERE").setDataObject(authData).build();
+            alanButton = findViewById(R.id.alan_button);
+            alanButton.initWithConfig(config);
+            ...
+          }
+        }
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Specifying a user's token in the app
+          var authData = jsonEncode({"token":"demo"});
+          /// Passing the token with authJson
+          AlanVoice.addButton("YOUR_KEY_FROM_ALAN_STUDIO_HERE", authJson: authData);
+        }
+		
+		
+.. tabbed:: Ionic
+
+    ::
+	
+        <alan-button #alanBtnEl [authData]="authData" alan-key="YOUR_KEY_FROM_ALAN_STUDIO_HERE"></alan-button>
+	   
+      
+       export class AuthPage {
+         public authData: string = JSON.stringify({ token: 'demo' });
+         @ViewChild('alanBtnEl', { static: false }) alanBtnComponent: ElementRef<HTMLAlanButtonElement>;
+       }
+		 
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+        render() {
+          /// Passing the token
+          <AlanView projectid={'YOUR_KEY_FROM_ALAN_STUDIO_HERE'} authData={{"token":"demo"}}/>
+        }
+
+.. raw:: html
+
+   <div id="green-background"></div>

@@ -1,0 +1,42 @@
+In-app testing
+==============
+
+Beside testing your voice project in Alan Studio, you can also check how your voice assistant works on mobile devices and evaluate the in-app voice experience.
+
+There are two ways to test your project using mobile:
+
+-  `With your app <#testing-with-your-app>`__
+-  `With Alan Playground <#testing-with-alan-playground>`__
+
+Testing with your app
+~~~~~~~~~~~~~~~~~~~~~
+
+If you have already built the voice assistant into your app, you can test newer versions of the voice script with it.
+
+1. In Alan Studio, at the bottom of the Debugging Chat, click the **Scan QR** icon. The QR code for your project will be sent to the chat.
+2. On your mobile device, launch the app.
+3. In the app, tap the Alan button and hold it for 8 seconds. The camera app will be launched.
+4. Scan the QR code in the Debugging Chat with the device camera. The ``Mobile device connected`` message will be sent to the Debugging Chat.
+5. In your app, tap the Alan button and give voice commands available in the voice script of your project. The given commands and replies will be sent to the Debugging Chat, and you will be able to review the output in a convenient way.
+
+.. image:: /_static/assets/img/studio/in-app-testing.png
+
+.. _Playground testing:
+
+Testing with Alan Playground
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To test your voice script on a mobile device, you can also use :doc:`Alan Playground <playground>`.
+
+.. note:: 
+
+   You must have the Alan Playground for `iOS <https://apps.apple.com/us/app/alan-playground/id1474478921?l=en>`__ or `Android <https://play.google.com/store/apps/details?id=app.alan.playground&hl=en_US>`__ installed on the device.
+
+1. In Alan Studio, at the bottom of the Debugging Chat, click the **Scan QR** icon. The QR code for your project will be sent to the chat.
+2. On your mobile device, launch Alan Playground.
+3. In Alan Playground, tap the **Scan QR Code** button and scan the QR code in the Debugging Chat with the device camera. The ``Mobile device connected`` message will be sent to the Debugging Chat.
+4. In the bottom right corner of your example app, tap the Alan button and give voice commands available in the voice script of your project. The given commands and replies will be sent to the Debugging Chat, and you will be able to review the output in a convenient way.
+
+.. raw:: html
+
+   <div id="blue-background"></div>

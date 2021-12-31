@@ -1,0 +1,21 @@
+Alan Studio
+===========
+
+With Alan’s powerful web-based IDE, you can write, test and debug dialog scenarios for your voice assistants.
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+   <div id="wide-content"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   
+   Alan projects<projects>
+   Voice scripts<scripts>
+   Versions and environments<versioning>
+   Testing and debugging<script-testing>
+   Alan Playground<playground>
+   Voice analytics<analytics>
+   Billing and subscriptions<billing>

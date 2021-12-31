@@ -1,0 +1,32 @@
+Starting and stopping dialog sessions
+=====================================
+
+To start a dialog session with the voice assistant, you need to activate the Alan button. You can do it in the following ways: 
+
+- Click or tap the Alan button displayed on top of the application UI.
+- :ref:`Use the wake word<Using the wake word>`. This method works for iOS and Android platforms and can only be used if the **Enable "Hey Alan" wakeword** option is enabled in Alan Studio. 
+- Use the :ref:`activate()` method for the Alan button to activate it programmatically.
+
+To deactivate the Alan button and stop voice interaction, do either of
+the following: 
+
+- Click or tap the Alan button 
+- Say one of the following phrases: 
+
+  - ``Thanks Alan``
+  - ``Thank you Alan``
+  - ``Alan thank you``
+  - ``Alan thanks``
+  - ``Stop Alan``
+  - ``Alan stop``
+  
+- Use the :ref:`deactivate()` method for the Alan button to deactivate it programmatically
+
+  .. note::
+     You can deactivate the Alan button with voice only while Alan is listening to you. If you say one of the above phrases while Alan is saying something, the Alan button will not be deactivated.
+	 
+	 
+.. raw:: html
+
+   <div id="blue-background"></div>
+   <div id="wide-content"></div>

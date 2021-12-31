@@ -1,0 +1,37 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+   <div id="wide-content"></div>
+
+Flutter tutorials
+=================
+
+Use these tutorials to quickly voice enable apps built with Flutter:
+
+- :doc:`Building a voice assistant for a Flutter app <integrating-flutter>`
+   
+  Learn how create a voice interface for a Flutter app from scratch and write simple voice commands.
+
+- :doc:`Navigating between views in a Flutter app <navigating-flutter>`
+
+  Learn how to send commands to a Flutter app, handle commands on the app side and navigate between views with voice.
+
+- :doc:`Passing the app state to the voice script <sending-data-flutter>`
+
+  Learn how to pass the app state from a Flutter app to the voice script with visual state, access the data passed with visualState in the voice script and filter intents by the app state.
+  
+- :doc:`Sending data to the voice script <project-api-flutter>`
+
+  Learn how to send data from a Flutter app to the voice script and use it for other voice commands.
+
+  
+  .. toctree::
+   :caption: Web
+   :maxdepth: 1
+   :hidden:
+   
+   Building a voice assistant for a Flutter app<integrating-flutter>
+   Navigating between views in a Flutter app<navigating-flutter>
+   Passing the app state to the voice script<sending-data-flutter>
+   Sending data to the voice script<project-api-flutter>
+  
