@@ -1,0 +1,468 @@
+Alan iOS SDK
+============
+
+.. raw:: html
+
+   <a href="https://github.com/alan-ai/alan-sdk-ios/releases">
+   <img src="https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios" align="left" style="border:inherit; padding-right:10px"/></a>
+   <br/>
+
+Alan can be integrated with iOS apps developed in Swift and Objective-C. 
+
+Integrating with Alan
+---------------------
+
+To add Alan voice to an iOS app, you need to do the following:
+
+1. `Get the Alan iOS SDK framework <#step-1-get-the-alan-ios-sdk-framework>`__
+2. `Integrate with the app <#step-2-integrate-with-the-app>`__: Swift or Objective-C. As part of this process, you will:
+
+   a. `Add the Alan Config object to your app <#alanconfig-object>`__
+
+   b. `Add the Alan button to your app <#alan-button>`__
+
+
+Step 1. Get the Alan iOS SDK framework
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+First, you need to get the Alan iOS SDK framework and set up your XCode project to be used with Alan. You can do it in two ways:
+
+-  Set up an XCode project with CocoaPods
+-  Set up an XCode project manually
+
+.. tabbed:: Setup with CocoaPods
+
+   .. _Setup with CocoaPods:
+   
+   Do the following:
+
+   1. On the machine, open Terminal and install CocoaPods:
+
+      .. code:: bash
+
+          sudo gem install cocoapods
+
+   2. Go to the project folder and create a Podfile for the project:
+
+      .. code:: bash
+
+          pod init
+
+   3. Open the Podfile and edit it:
+
+      .. code:: ruby
+
+          use_frameworks!
+          platform :ios, '11.0'
+          target '<Your Target Name>' do
+          pod 'AlanSDK-iOS'
+          end
+
+   4. In the project folder, install the dependencies for the project:
+
+      .. code:: bash
+
+          pod install
+          pod update
+
+   5. In iOS, the user must explicitly grant permission for an app to `access the user's data and resources <https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/>`__. An app with the Alan button requires access to:
+
+      - User's device microphone for voice interactions
+      - User's device camera for testing Alan projects on mobile
+
+      To comply with this requirement, you must add ``NSMicrophoneUsageDescription`` and ``NSCameraUsageDescription`` keys to the ``Info.plist`` file of your app and provide a message why your app requires access to the microphone and camera. The message will be displayed only when Alan needs to activate the microphone or camera.
+
+      To add the key:
+   
+      a. In the Xcode project, go to the **Info** tab. 
+      b. In the **Custom iOS Target Properties** section, hover over any key in the list and click the plus icon to the right.
+      c. From the list, select **Privacy - Microphone Usage Description**.
+      d. In the **Value** field to the right, provide a description for the added key. This description will be displayed to the user when the app is launched.  
+      e. Repeat the steps above to add the **Privacy - Camera Usage Description** key.
+
+      .. image:: /_static/assets/img/ios-quickstart-objc/pods-mic.png
+
+   6. To allow the background mode for the iOS app, go to the **Signing and Capabilities** tab. In the top left corner, click **+ Capability** and in the capabilities list, double-click **Background Modes**. In the **Modes** list, select the **Audio, AirPlay, and Picture in Picture** check box. 
+
+      .. image:: /_static/assets/img/ios-quickstart-objc/pods-background.png
+
+   7. The background mode must also be turned on in the Alan Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, go to the iOS tab and enable the **Keep active while the app is in the background** option.
+
+
+.. tabbed:: Manual setup
+
+   .. _Manual setup:
+
+   Do the following:
+
+   1. Open the Alan iOS SDK release page on Alan GitHub.
+   2. Download the ``AlanSDK.xcframework_<x.x.x>.zip`` file from the latest release and extract ``AlanSDK.xcframework`` from the ZIP archive.
+   
+   .. image:: /_static/assets/img/ios-quickstart-objc/download.png
+   
+   3. Drag ``AlanSDK.xcframework`` and drop it onto the root node of the Xcode project.    
+   4. Select the **Copy items if needed** check box if it is not selected.
+
+      .. image:: /_static/assets/img/ios-quickstart-objc/copy-2.png
+   
+   5. In the project tree, select the XCode project file and go to the **General** tab. Under the **Frameworks, Libraries, and Embedded Content** section, find ``AlanSDK.xcframework`` and select **Embed & Sign** from the list.
+   
+      .. image:: /_static/assets/img/ios-quickstart-objc/embedded.png
+   
+   
+   6. In iOS, the user must explicitly grant permission for an app to `access the user's data and resources <https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/>`__. An app with the Alan button requires access to:
+
+      - User's device microphone for voice interactions
+      - User's device camera for testing Alan projects on mobile
+   
+      To comply with this requirement, you must add ``NSMicrophoneUsageDescription`` and ``NSCameraUsageDescription`` keys to the ``Info.plist`` file of your app and provide a message why your app requires access to the microphone and camera. The message will be displayed only when Alan needs to activate the microphone or camera.  
+      To add the key:
+
+      a. In the Xcode project, go to the **Info** tab.
+      b. In the **Custom iOS Target Properties** section, hover over any key in the list and click the plus icon to the right.
+      c. From the list, select **Privacy - Microphone Usage Description**.
+      d. In the **Value** field to the right, provide a description for the added key. This description will be displayed to the user when the app is launched.
+      e. Repeat the steps above to add the **Privacy - Camera Usage Description** key.
+
+      .. image:: /_static/assets/img/ios-quickstart-objc/mic.png
+
+   7. To allow the background mode for the iOS app, go to the **Signing and Capabilities** tab. In the top left corner, click **+Capability** and in the capabilities list, double-click **Background Modes**. In the **Modes** list, select the **Audio, AirPlay, and Picture in Picture** check box. 
+
+      .. image:: /_static/assets/img/ios-quickstart-objc/background.png
+   
+   8. The background mode must also be turned on in the Alan Studio project. In Alan Studio, at the top of the code editor, click **Integrations**, go to the iOS tab and enable the **Keep active while the app is in the background** option.
+
+Step 2. Integrate with the app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+   The instructions below apply to the Storyboard user interface.
+
+You need to integrate Alan with your app written in: 
+
+- Swift 
+- Objective-C
+
+.. tabbed:: Swift
+
+   In the Xcode project, open the ``ViewController.swift`` file. You need to add the following Swift snippet to your view controller:
+
+   1. At the top of the file, import AlanSDK:
+
+      .. code:: swift
+
+          import AlanSDK
+
+   2. In the ``ViewController`` class, define the ``AlanButton`` variable:
+
+      .. code:: swift
+
+          fileprivate var button: AlanButton!
+
+   3. In ``viewDidLoad()``, set up ``AlanButton``. For more details, see `Alan Config object <#alanconfig-object>`__ and `Alan button <#alan-button>`__. 
+   
+      .. code:: swift
+   
+          import UIKit
+          import AlanSDK
+
+          class ViewController: UIViewController {
+
+            /// Alan button
+            fileprivate var button: AlanButton!
+            override func viewDidLoad() {
+              super.viewDidLoad()
+			
+              /// Setup the Alan button
+              self.setupAlan()
+            }
+
+            fileprivate func setupAlan() {
+
+              /// Define the project key
+              let config = AlanConfig(key: "")
+			
+              ///  Init the Alan button
+              self.button = AlanButton(config: config)
+			
+              /// Add the button to the view
+              self.view.addSubview(self.button)
+              self.button.translatesAutoresizingMaskIntoConstraints = false
+			
+              /// Align the button on the view
+              let views = ["button" : self.button!]
+              let verticalButton = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=0@299)-[button(64)]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              let horizontalButton = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=0@299)-[button(64)]-20-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+              self.view.addConstraints(verticalButton + horizontalButton)
+            }
+          }
+
+   4. In ``let config = AlanConfig(key: "")``, define the Alan SDK key for your Alan Studio project. To get the key, in Alan Studio, at the top of the code editor, click **Integrations** and copy the value from the **Alan SDK Key** field.
+
+   5. Run the app and tap the Alan button to speak.
+
+.. tabbed:: Objective-C
+
+   Add this Objective-C snippet to your view controller.
+
+   1. Import AlanSDK:
+
+      .. code:: objectiveC
+
+          @import AlanSDK;
+
+   2. Define the ``AlanButton`` variable:
+
+      .. code:: objectiveC
+
+          @property (nonatomic) AlanButton* button;
+
+   3. In ``viewDidLoad``, set up ``AlanButton``. For more details, see `Alan Config object <#alanconfig-object>`__ and `Alan button <#alan-button>`__.
+
+      .. code:: objectiveC
+
+          AlanConfig* config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE"];
+          self.button = [[AlanButton alloc] initWithConfig:config];
+          [self.button setTranslatesAutoresizingMaskIntoConstraints:NO];
+          [self.view addSubview:self.button];
+          NSLayoutConstraint* b = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-40.0];
+          NSLayoutConstraint* r = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-20];
+          NSLayoutConstraint* w = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:64.0];
+          NSLayoutConstraint* h = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:64.0];
+          [self.view addConstraints:@[b, r, w, h]];
+
+   4. Run the app and tap the Alan button to speak.
+
+
+AlanConfig object
+^^^^^^^^^^^^^^^^^
+
+The ``AlanConfig`` object describes the parameters that are provided for ``AlanButton``.
+
+1. Create a new ``AlanConfig`` instance with your Alan project SDK key:
+
+   .. code:: objectiveC
+
+       - (instancetype)initWithKey:(NSString *)key;
+
+   +------------+------------+------------------------------------------------------+
+   | **Name**   | **Type**   | **Description**                                      |
+   +============+============+======================================================+
+   | ``key``    | NSString   |  The Alan SDK key for your project in Alan Studio.   |
+   +------------+------------+------------------------------------------------------+
+
+2. Create a new ``AlanConfig`` instance with your Alan project SDK key
+   and custom data object:
+
+   .. code:: objectiveC
+
+       - (instancetype)initWithKey:(NSString *)key dataObject:(NSDictionary *)dataObject;
+
+   +------------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | **Name**         | **Type**       | **Description**                                                                                                                                                                                     |
+   +==================+================+=====================================================================================================================================================================================================+
+   | ``key``          | NSString       |  The Alan SDK key for a project in Alan Studio.                                                                                                                                                     |
+   +------------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | ``dataObject``   | NSDictionary   | (Optional) A valid JSON string or JSON object with authentication or configuration data to be sent to the voice script. For details, see :doc:`authData <../../server-api/sending-data/authdata>`.  |
+   +------------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+   For example:
+
+   .. code:: objectiveC
+
+       AlanConfig *config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE"];
+
+
+Alan button
+^^^^^^^^^^^
+
+To add the Alan button to your app, use the ``AlanButton`` class. This class provides a view with the voice button and instance methods to
+communicate with Alan Studio.
+
+Сreate a new ``AlanButton`` instance with the config object:
+
+.. code:: objectiveC
+
+    - (instancetype)initWithConfig:(AlanConfig *)config;
+
++--------------+--------------+--------------------------------------------------------------------+
+| **Name**     | **Type**     | **Description**                                                    |
++==============+==============+====================================================================+
+| ``config``   | AlanConfig   | The AlanConfig object for configuration which is described above   |
++--------------+--------------+--------------------------------------------------------------------+
+
+For example:
+
+.. code:: objectiveC
+
+    @interface ViewController ()
+    @property (nonatomic) AlanButton *button;
+    @end
+
+    @implementation ViewController
+    - (void)viewDidLoad
+    {
+      [super viewDidLoad];
+      AlanConfig *config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE"];
+      self.button = [[AlanButton alloc] initWithConfig:config];
+      [self.button setTranslatesAutoresizingMaskIntoConstraints:NO];
+      [self.view addSubview:self.button];
+
+      NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-20.0];
+      NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-20.0];
+      NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:64.0];
+      NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:64.0];
+      [self.view addConstraints:@[right, bottom, width, height]];
+    }
+    @end
+
+
+Using the Alan button methods
+-----------------------------
+
+You can use the Alan button methods to do the following: 
+
+- `Play text via Alan <#playing-text-via-alan>`__ 
+- `Send a voice synchronized data event <#sending-a-voice-synchronized-data-event>`__ 
+- `Set a visual state of the app <#setting-a-visual-state-of-the-app>`__ 
+- `Call a function from the voice script <#calling-a-function-from-the-voice-script>`__
+
+Playing text via Alan
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: objectiveC
+
+    - (void)playText:(NSString *)text;
+
++------------------+------------+---------------------+
+| **Name**         | **Type**   | **Description**     |
++==================+============+=====================+
+| ``textString``   | NSString   | Text to be played   |
++------------------+------------+---------------------+
+
+For example:
+
+.. code:: objectiveC
+
+    - (IBAction)didTapPlayButton:(id)sender
+    {
+        NSString *play = @"someString";
+        [self.button playText:play];
+    }
+
+Sending a voice synchronized data event
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: objectiveC
+
+    - (void)playCommand:(NSDictionary *)command;
+
++---------------+----------------+-------------------------+
+| **Name**      | **Type**       | **Description**         |
++===============+================+=========================+
+| ``command``   | NSDictionary   | Data event to be sent   |
++---------------+----------------+-------------------------+
+
+For example:
+
+.. code:: objectiveC
+
+    - (IBAction)didTapDataButton:(id)sender
+    {
+      NSDictionary *data = @{@"someKey": @"someValue"};
+      [self.button playCommand: data];
+    }
+
+Setting a visual state of the app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: objectiveC
+
+    - (void)setVisualState:(NSDictionary *)visualStateData;
+
++------------+----------------+------------------------------------------+
+| **Name**   | **Type**       | **Description**                          |
++============+================+==========================================+
+| ``data``   | NSDictionary   | Data with the visual state description   |
++------------+----------------+------------------------------------------+
+
+For example:
+
+.. code:: objectiveC
+
+    - (IBAction)didTapVisualButton:(id)sender
+    {
+      NSDictionary *visual = @{@"someScreen": @"someValue"};
+      [self.button setVisualState:visual];
+    }
+
+Calling a function from the voice script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: objectiveC
+
+    - (void)callProjectApi:(NSString *)method withData:(NSDictionary*)data callback:(void(^)(NSError *error, NSString *object))callback;
+
++----------------+-------------------------------------------------+---------------------------------+
+| **Name**       | **Type**                                        | **Description**                 |
++================+=================================================+=================================+
+| ``method``     | NSString                                        | Function name                   |
++----------------+-------------------------------------------------+---------------------------------+
+| ``data``       | NSDictionary                                    | Function params                 |
++----------------+-------------------------------------------------+---------------------------------+
+| ``callback``   | (void(^)(NSError *error, NSString *\ object))   | Callback to handle the result   |
++----------------+-------------------------------------------------+---------------------------------+
+
+For example:
+
+.. code:: objectiveC
+
+    - (IBAction)didTapCallButton:(id)sender
+    {
+      NSString *function = @"script::updateGPS";
+      NSDictionary *data = @{@"lat": @"55.0000", @"lon": @"55.0000"};
+      [self.button callProjectApi:function withData:data callback:^(NSError *error, NSString *object) {
+        NSLog(@"result: %@", object);
+      }];
+    }
+
+
+Handling events from the Alan iOS SDK
+-------------------------------------
+
+To handle events coming from the Alan iOS SDK, add an observer for a notification with the ``kAlanSDKEventNotification`` name. For example:
+
+.. code:: objectiveC
+
+    - (void)viewDidLoad
+    {
+      [super viewDidLoad];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEvent:) name:@"kAlanSDKEventNotification" object:nil];
+    }
+
+    - (void)handleEvent:(NSNotification*)notification
+    {
+      NSDictionary *userInfo = notification.userInfo;
+      if( userInfo == nil )
+      {
+        return;
+      }
+      NSString *jsonString = [userInfo objectForKey:@"jsonString"];
+      if( jsonString == nil )
+      {
+        return;
+      }
+      NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+      NSError *error = nil;
+      id unwrapped = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+      if( error != nil )
+      {
+        return;
+      }
+      NSLog(@"unwrapped: %@", unwrapped);
+    }
+
+
+.. raw:: html
+
+   <div id="purple-background"></div>

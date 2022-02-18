@@ -1,0 +1,1559 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Alan handlers" href="handlers.html" /><link rel="prev" title="Alan React Native Framework" href="../cross-platform/react-native.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Client API methods | Alan Docs</title>
+      <link rel="stylesheet" href="../../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/client-api/methods/common-api/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/client-api/methods/common-api/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../../search.html">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../contents.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../index.html">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/how-works/about.html">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/how-works/basics.html">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/how-works/infrastructure.html">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/how-works/deployment.html">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/how-works/voice-processing.html">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/guides/studio.html">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/guides/projects.html">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/guides/scripts.html">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/guides/versioning.html">Versions and environments</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../usage/guides/script-testing.html">Testing and debugging</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/debugging-chat.html">Debugging Chat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/test-view.html">Test View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/logs.html">Alan Studio logs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/in-app-testing.html">In-app testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/guides/playground.html">Alan Playground</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../usage/guides/analytics.html">Voice analytics</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/dashboard.html">Projects dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../usage/guides/analytics-view.html">Analytics View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/guides/billing.html">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/button/overview.html">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/button/customization.html">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/button/cohorts.html">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/button/activation.html">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/examples/overview.html">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/examples/predefined-examples.html">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/examples/code.html">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/examples/github.html">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/video/overview.html">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/video/studio.html">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/video/alan-platform.html">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/video/integration.html">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/video/apps.html">Voice-enabled apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/video/course.html">Alan AI course (web app)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/additional/overview.html">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/additional/supported-platforms.html">Supported platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../server-api/script-concepts.html">Script concepts</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/commands-and-responses.html">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/patterns.html">Patterns</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../server-api/slots.html">Slots</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/user-defined-slots.html">User-defined slots (static)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/dynamic-slots.html">Dynamic slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/regex-slots.html">Regex slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/predefined-slots.html">Predefined slots</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/contexts.html">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/built-in-javascript-libraries.html">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/objects.html">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/lifecycle.html">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/error-handling.html">Error handling and re-prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/popups.html">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../server-api/sending-data/communication.html">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/sending-data/authdata.html">authData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/sending-data/visual-state.html">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/sending-data/project-api.html">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../server-api/user-data/overview.html">User data</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/user-data/events.html">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../server-api/user-data/client-object.html">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../server-api/api/api-reference.html">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../client-sdks.html">Alan Client SDKs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integration.html">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../web/web-integration.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../web/web-api.html">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/react.html">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/angular.html">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/vue.html">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/ember.html">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/vanilla.html">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/electron.html">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/server-side-rendering.html">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../web/web-component.html">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ios/ios-api.html">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../android/android-api.html">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../cross-platform/overview.html">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cross-platform/ionic.html">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cross-platform/cordova.html">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cross-platform/flutter.html">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cross-platform/react-native.html">React Native</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="handlers.html">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="command-handler.html">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="state-handler.html">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event-handler.html">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/additional/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/how-tos.html">How-tos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/list-all.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/list/web-list.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/list/adding-voice-to-a-web-application.html">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../tutorials/list/food-delivery-tutorial.html">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-create-app.html">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-create-voice-assistant.html">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-integrate.html">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-add-command.html">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-alternatives.html">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-slots.html">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-several-items.html">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-display-items.html">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-slot-labels.html">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-remove-items.html">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-highlight-items.html">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-checkout-context.html">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-time.html">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-comment.html">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-populate-fields.html">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-api-call.html">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-visual-context.html">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-balance.html">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-start-dialog.html">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/list/food-delivery-popup.html">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/list/using-dynamic-slots.html">Using dynamic slots in patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/list/making-web-api-call.html">Making a Web API call from the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/web/frameworks-list.html">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/web/integrating-react-app.html">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/web/integrating-angular-app.html">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/web/integrating-vue-app.html">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/web/integrating-ember-app.html">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/web/integrating-electron-app.html">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/ios/ios-list.html">iOS</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/integrating-swift.html">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/navigating-swift.html">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/sending-data-swift.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/highlighting-swift.html">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/triggering-info-swift.html">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ios/greeting-swift.html">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/android/android-list.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/android/integrating-java-kotlin.html">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/android/navigating-kotlin.html">Navigating in an Android app with voice (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/android/sending-state-kotlin.html">Passing the app state to the voice script (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/android/sending-data-kotlin.html">Sending data from the app to the voice script (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/flutter/flutter-list.html">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label for="toctree-checkbox-25"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/flutter/integrating-flutter.html">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/flutter/navigating-flutter.html">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/flutter/sending-data-flutter.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/flutter/project-api-flutter.html">Sending data to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/ionic/ionic-list.html">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label for="toctree-checkbox-26"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ionic/integrating-angular.html">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ionic/navigating-angular.html">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ionic/sending-data-angular.html">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ionic/integrating-react.html">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/ionic/navigating-react.html">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/react-native/react-native-list.html">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label for="toctree-checkbox-27"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/react-native/integrating-react-native.html">Building a voice assistant for a React Native app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/react-native/sending-commands-react-native.html">Sending commands to the app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/react-native/sending-state-react-native.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/react-native/triggering-activities-react-native.html">Triggering activities without voice commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/react-native/navigating-react-native.html">Navigating between screens with voice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="client-api-methods">
+<h1>Client API methods<a class="headerlink" href="#client-api-methods" title="Permalink to this headline">¶</a></h1>
+<p>Alan exposes a set of client API methods that you can use to enable communication between the client app and Alan and trigger voice activities on the client side.</p>
+<p>The client API methods are supported on all platforms:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#setvisualstate">setVisualState()</a></p></li>
+<li><p><a class="reference internal" href="#callprojectapi">callProjectApi()</a></p></li>
+<li><p><a class="reference internal" href="#playtext">playText()</a></p></li>
+<li><p><a class="reference internal" href="#playcommand">playCommand()</a></p></li>
+<li><p><a class="reference internal" href="#activate">activate()</a></p></li>
+<li><p><a class="reference internal" href="#deactivate">deactivate()</a></p></li>
+<li><p><a class="reference internal" href="#isactive">isActive()</a></p></li>
+<li><p><a class="reference internal" href="#remove">remove()</a></p></li>
+</ul>
+<div class="section" id="setvisualstate">
+<span id="id1"></span><h2>setVisualState()<a class="headerlink" href="#setvisualstate" title="Permalink to this headline">¶</a></h2>
+<p>Sets the visual state for the client app. Use this method to inform the voice assistant about the app’s visual context, for example, the currently active screen, state of the cart and so on.</p>
+<p>On the voice script side, the data passed with this method can be accessed through the <a class="reference internal" href="../../server-api/objects.html#visual"><span class="std std-ref">visual</span></a> object.
+For details, see <a class="reference internal" href="../../server-api/sending-data/visual-state.html"><span class="doc">Visual state</span></a>.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>setVisualState(visualStateData:object)</p>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 28%"/>
+<col style="width: 14%"/>
+<col style="width: 58%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">visualStateData</span></code></p></td>
+<td><p>object</p></td>
+<td><p>JSON object that represents the visual state</p></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Examples</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b5ab26f5-6d09-4b8a-b38b-6eb2ce637173" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="b5ab26f5-6d09-4b8a-b38b-6eb2ce637173">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Setting the visual state in the app</span>
+<span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">data</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p>
+</div>
+<input id="1f7ae422-d632-4a4b-b87c-c36547e1c60e" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="1f7ae422-d632-4a4b-b87c-c36547e1c60e">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Setting the visual state in the app</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setVisualState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Providing any params</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="nl">setVisualState</span><span class="p">:</span><span class="l">@{</span><span class="s">@"data"</span><span class="o">:</span><span class="s">@"your data"</span><span class="l">}</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p>
+</div>
+<input id="a3ef075d-120c-4b61-bc16-d13068b23cdd" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="a3ef075d-120c-4b61-bc16-d13068b23cdd">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Setting the visual state in the app</span>
+<span class="kd">func</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">([</span><span class="s">"data"</span><span class="p">:</span><span class="s">"your data"</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/ios/sending-data-swift.html"><span class="doc">Passing the app state to the voice script</span></a></p></li>
+</ul>
+</div>
+<input id="c9fd2ffa-8477-4e2b-9463-42b78b2198c0" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="c9fd2ffa-8477-4e2b-9463-42b78b2198c0">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Setting the visual state in the app</span>
+<span class="n">fun</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span> <span class="s">"your data"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">setVisualState</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p>
+</div>
+<input id="554e00f9-4007-4dfc-a6e8-b8261a9146d3" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="554e00f9-4007-4dfc-a6e8-b8261a9146d3">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Setting the visual state in the app</span>
+<span class="kt">void</span> <span class="nf">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span><span class="s">"your data"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">setVisualState</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p>
+</div>
+<input id="b6a6a418-feee-4d71-83da-d14399c0f64e" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="b6a6a418-feee-4d71-83da-d14399c0f64e">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Setting the visual state in the app</span>
+  <span class="kt">void</span> <span class="n">_setVisualState</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Providing any params with json</span>
+    <span class="kd">var</span> <span class="n">visualState</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">setVisualState</span><span class="p">(</span><span class="n">visualState</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/flutter/sending-data-flutter.html"><span class="doc">Passing the app state to the voice script</span></a></p></li>
+</ul>
+</div>
+<input id="016c17e0-14d4-4805-97be-f05efd0f8025" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="016c17e0-14d4-4805-97be-f05efd0f8025">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span> <span class="s1">'homePage'</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">screen</span><span class="o">:</span> <span class="s1">'homePage'</span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/ionic/sending-data-angular.html"><span class="doc">Passing the app state to the voice script</span></a></p></li>
+<li><p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p></li>
+</ul>
+</div>
+<input id="83190774-97d9-4900-b6f2-1ddc8f0c8e94" name="dd163562-dcf7-4796-8863-49d6449176cc" type="radio"/>
+<label class="tabbed-label" for="83190774-97d9-4900-b6f2-1ddc8f0c8e94">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Setting the visual state in the app</span>
+<span class="nx">setVisualState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-information-about-the-app-visual-context-to-the-voice-script"><span class="std std-ref">Send information about the app visual context to the voice script</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/react-native/sending-state-react-native.html"><span class="doc">Passing the app state to the voice script</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="callprojectapi">
+<span id="id2"></span><h2>callProjectApi()<a class="headerlink" href="#callprojectapi" title="Permalink to this headline">¶</a></h2>
+<p>Calls a project API method defined in the voice script in the Alan Studio project. Use the project API functionality to:</p>
+<ul class="simple">
+<li><p>Pass arbitrary data from the app to the voice script</p></li>
+<li><p>Trigger activities without a voice command</p></li>
+</ul>
+<p>For details, see <a class="reference internal" href="../../server-api/sending-data/project-api.html"><span class="doc">Project API</span></a>.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>callProjectApi(method:string, data:object, callback:function)</p>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 16%"/>
+<col style="width: 12%"/>
+<col style="width: 72%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Project API method name that is defined in the voice script</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Any object with arbitrary data that must be sent to the voice script</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">callback</span></code></p></td>
+<td><p>function</p></td>
+<td><p>Callback to be called from the project API method</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defining a project API method in the voice script</span>
+<span class="nx">projectAPI</span><span class="p">.</span><span class="nx">setClientData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">param</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">param</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="nx">callback</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Examples</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="6cf466b6-11a4-4cc7-8723-e94e34f0a7f5" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="6cf466b6-11a4-4cc7-8723-e94e34f0a7f5">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method in the app</span>
+<span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span><span class="s2">"setClientData"</span><span class="p">,</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">){</span>
+  <span class="c1">// Handling error and result</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+</ul>
+</div>
+<input id="ee0f64b3-f034-4a26-8dd6-3864c30f170b" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="ee0f64b3-f034-4a26-8dd6-3864c30f170b">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Calling the project API method in the app</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">callProjectApi</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Providing any params</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="nl">callProjectApi</span><span class="p">:</span><span class="s">@"script::funcName"</span><span class="w"> </span><span class="nl">withData</span><span class="p">:</span><span class="l">@{</span><span class="s">@"data"</span><span class="o">:</span><span class="s">@"your data"</span><span class="l">}</span><span class="w"> </span><span class="nl">callback</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+</ul>
+</div>
+<input id="a9c49b57-e637-40a0-9622-d6517586a3ac" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="a9c49b57-e637-40a0-9622-d6517586a3ac">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Calling the project API method in the app</span>
+<span class="kd">func</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">withData</span><span class="p">:</span> <span class="p">[</span><span class="s">"data"</span><span class="p">:</span><span class="s">"your data"</span><span class="p">],</span> <span class="n">callback</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/ios/triggering-info-swift.html"><span class="doc">Triggering voice script actions without commands</span></a></p></li>
+</ul>
+</div>
+<input id="afba2a1e-32df-4e4f-b6ac-c549275db39d" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="afba2a1e-32df-4e4f-b6ac-c549275db39d">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Calling the project API method in the app</span>
+<span class="n">fun</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providind any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span> <span class="s">"your data"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+</ul>
+</div>
+<input id="950b2d45-72bf-4185-b218-7547bdeca598" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="950b2d45-72bf-4185-b218-7547bdeca598">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Calling the project API method in the app</span>
+<span class="kt">void</span> <span class="nf">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"data"</span><span class="p">,</span><span class="s">"your data"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">callProjectApi</span><span class="p">(</span><span class="s">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+</ul>
+</div>
+<input id="3b7f4a44-8dd4-49f9-bf2b-3e20f244d436" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="3b7f4a44-8dd4-49f9-bf2b-3e20f244d436">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Calling the project API method in the app</span>
+  <span class="kt">void</span> <span class="n">_callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Providing any params with json</span>
+    <span class="kd">var</span> <span class="n">params</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">callProjectApi</span><span class="p">(</span><span class="s2">"script::funcName"</span><span class="p">,</span> <span class="n">params</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/flutter/project-api-flutter.html"><span class="doc">Sending data to the voice script</span></a></p></li>
+</ul>
+</div>
+<input id="6aac845d-09d1-40d6-818d-9b8ef9dfdb30" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="6aac845d-09d1-40d6-818d-9b8ef9dfdb30">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method in the app</span>
+<span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span><span class="s2">"myFunc"</span><span class="p">,</span> <span class="p">{</span><span class="nx">myData</span><span class="o">:</span> <span class="mf">123</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"cb from myFunc was received"</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Calling the project API method in the app</span>
+<span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span><span class="s2">"myFunc"</span><span class="p">,</span> <span class="p">{</span><span class="nx">myData</span><span class="o">:</span> <span class="mf">123</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"cb from myFunc was received"</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+<li><p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p></li>
+</ul>
+</div>
+<input id="2bd83cf5-d8a0-48b6-8fe1-93b46a3271be" name="c497cc55-9f5f-40f3-a937-c43219fa30eb" type="radio"/>
+<label class="tabbed-label" for="2bd83cf5-d8a0-48b6-8fe1-93b46a3271be">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Calling the project API method in the app</span>
+<span class="nx">callProjectApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">callProjectApi</span><span class="p">(</span>
+    <span class="s1">'script::funcName'</span><span class="p">,</span> <span class="p">{</span><span class="s2">"data"</span><span class="o">:</span><span class="s2">"your data"</span><span class="p">},</span>
+    <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-send-data-from-the-app-to-the-voice-script"><span class="std std-ref">How to send data from the app to the voice script</span></a></p></li>
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-call-a-function-in-the-voice-script-from-the-app"><span class="std std-ref">How to call a function in the voice script from the app</span></a></p></li>
+<li><p>Tutorial: <a class="reference internal" href="../../tutorials/react-native/triggering-activities-react-native.html"><span class="doc">Triggering activities without voice commands</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="playtext">
+<span id="id3"></span><h2>playText()<a class="headerlink" href="#playtext" title="Permalink to this headline">¶</a></h2>
+<p>Plays a text string passed to the method.</p>
+<p>For the voice assistant to play the text message, make sure the Alan button is activated. To check the button state and activate the button programmatically, use the <a class="reference internal" href="state-handler.html"><span class="doc">onButtonState handler</span></a>, <a class="reference internal" href="#isactive">isActive()</a> and <a class="reference internal" href="#activate">activate()</a> client API methods.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>playText(text:string)</p>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 23%"/>
+<col style="width: 23%"/>
+<col style="width: 54%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Text string to be played</p></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Examples</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="517d07e1-516e-4412-970a-c306698f2a5a" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="517d07e1-516e-4412-970a-c306698f2a5a">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi! I am Alan"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="927f743d-7795-48a0-97bb-fe08ef5f052e" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="927f743d-7795-48a0-97bb-fe08ef5f052e">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Playing any text message</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">playText</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Providing text as string param</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="nl">playText</span><span class="p">:</span><span class="s">@"Hi"</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="6e65d264-b8e8-4660-aa9a-764ca1a2ecc0" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="6e65d264-b8e8-4660-aa9a-764ca1a2ecc0">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Playing any text message</span>
+<span class="kd">func</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing text as string param</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>Tutorial: <a class="reference internal" href="../../tutorials/ios/greeting-swift.html"><span class="doc">Playing a greeting in an iOS Swift app</span></a></p>
+</div>
+<input id="461f9d31-6131-4d04-8fb4-7ab10effad35" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="461f9d31-6131-4d04-8fb4-7ab10effad35">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Playing any text message</span>
+<span class="n">fun</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing text as string param</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="2235c14f-9897-4035-9ba0-b1f94c8917cb" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="2235c14f-9897-4035-9ba0-b1f94c8917cb">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Playing any text message</span>
+<span class="kt">void</span> <span class="nf">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing text as string param</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">playText</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="07e13848-9967-494d-a5b8-9ada868fc6d0" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="07e13848-9967-494d-a5b8-9ada868fc6d0">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">/// Playing any text message</span>
+  <span class="kt">void</span> <span class="n">_playText</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Providing text as string param</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">playText</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="50414c97-58ab-4a7d-9afc-a092eabd139e" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="50414c97-58ab-4a7d-9afc-a092eabd139e">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi! I am Alan"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi! I am Alan"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p></li>
+<li><p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p></li>
+</ul>
+</div>
+<input id="cc265dbf-fcfe-4f75-8ebb-9c91659bb147" name="f938f9d1-571f-465b-868a-baae113a0730" type="radio"/>
+<label class="tabbed-label" for="cc265dbf-fcfe-4f75-8ebb-9c91659bb147">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Playing any text message</span>
+<span class="nx">playText</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing text as string param</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">playText</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="playcommand">
+<h2>playCommand()<a class="headerlink" href="#playcommand" title="Permalink to this headline">¶</a></h2>
+<p>Executes a command locally in the client app. The command is handled by the <a class="reference internal" href="command-handler.html"><span class="doc">onCommand handler</span></a>.</p>
+<p>For the voice assistant to play messages provided in the command, make sure the Alan button is activated. To check the button state and activate the button programmatically, use the <a class="reference internal" href="state-handler.html"><span class="doc">onButtonState handler</span></a>, <a class="reference internal" href="#isactive">isActive()</a> and <a class="reference internal" href="#activate">activate()</a> client API methods.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>playCommand(command:object)</p>
+</div>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 22%"/>
+<col style="width: 18%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">command</span></code></p></td>
+<td><p>object</p></td>
+<td><p>JSON object that represents a command</p></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Examples</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="636e5043-7f82-4d66-a495-2b160540fcc2" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="636e5043-7f82-4d66-a495-2b160540fcc2">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span><span class="s2">"navigate"</span><span class="p">,</span> <span class="nx">screen</span><span class="o">:</span> <span class="s2">"settings"</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<input id="1648e5bd-6efb-4624-9b6f-dd644eadaadb" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="1648e5bd-6efb-4624-9b6f-dd644eadaadb">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Executing a command locally</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">playCommand</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Providing any params</span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="nl">playCommand</span><span class="p">:</span><span class="l">@{</span><span class="s">@"action"</span><span class="o">:</span><span class="s">@"openSomePage"</span><span class="l">}</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="fb100a1a-a1cd-43e9-9b4f-610149e6560d" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="fb100a1a-a1cd-43e9-9b4f-610149e6560d">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Executing a command locally</span>
+<span class="kd">func</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">playCommand</span><span class="p">([</span><span class="s">"action"</span><span class="p">:</span><span class="s">"openSomePage"</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="e383a4f5-c8ea-44c5-9210-a0c00e624c92" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="e383a4f5-c8ea-44c5-9210-a0c00e624c92">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Executing a command locally</span>
+<span class="n">fun</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="n">val</span> <span class="n">params</span> <span class="o">=</span> <span class="n">JSONObject</span><span class="p">()</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"action"</span><span class="p">,</span> <span class="s">"openSomePage"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">JSONException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="o">?</span><span class="p">.</span><span class="na">let</span> <span class="p">{</span> <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">it</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">playCommand</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span> <span class="kc">null</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="1a1dd5a5-4101-424a-b26e-4605d93cab98" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="1a1dd5a5-4101-424a-b26e-4605d93cab98">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Executing a command locally</span>
+<span class="kt">void</span> <span class="nf">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params</span>
+  <span class="n">JSONObject</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+        <span class="n">params</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">"action"</span><span class="p">,</span><span class="s">"openSomePage"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">"AlanButton"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">playCommand</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span> <span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="2254ecba-1b63-46e2-97dd-cdfa1ad13bfb" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="2254ecba-1b63-46e2-97dd-cdfa1ad13bfb">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Executing a command locally</span>
+  <span class="kt">void</span> <span class="n">_playCommand</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">/// Providing any params with json</span>
+    <span class="kd">var</span> <span class="n">command</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="p">({</span><span class="s2">"action"</span><span class="o">:</span><span class="s2">"openSomePage"</span><span class="p">});</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">playCommand</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="ab9bdde6-5dab-4710-8d01-240f1539db48" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="ab9bdde6-5dab-4710-8d01-240f1539db48">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span><span class="s2">"navigate"</span><span class="p">,</span> <span class="nx">screen</span><span class="o">:</span> <span class="s2">"settings"</span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="nx">command</span><span class="o">:</span><span class="s2">"navigate"</span><span class="p">,</span> <span class="nx">screen</span><span class="o">:</span> <span class="s2">"settings"</span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p>
+</div>
+<input id="f20e0401-261e-45af-a6a6-55902f2e07c8" name="04a17285-93f7-4223-aeb8-64a9db6c12b3" type="radio"/>
+<label class="tabbed-label" for="f20e0401-261e-45af-a6a6-55902f2e07c8">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Executing a command locally</span>
+<span class="nx">playCommand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Providing any params with json</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">playCommand</span><span class="p">({</span><span class="s2">"action"</span><span class="o">:</span><span class="s2">"openSomePage"</span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activate">
+<span id="id4"></span><h2>activate()<a class="headerlink" href="#activate" title="Permalink to this headline">¶</a></h2>
+<p>Activates the Alan button programmatically.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>activate()</p>
+</div>
+<p><strong>Example</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="e8c90bad-86f5-4c10-9f67-51d5f9a34b87" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="e8c90bad-86f5-4c10-9f67-51d5f9a34b87">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="92742bb3-41c7-44b8-945a-1583947fafa7" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="92742bb3-41c7-44b8-945a-1583947fafa7">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activating the Alan button programmatically</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">activate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="n">activate</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="dd96c591-8c0d-4f61-914c-9690ffab4d26" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="dd96c591-8c0d-4f61-914c-9690ffab4d26">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activating the Alan button programmatically</span>
+<span class="kd">func</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">activate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>Tutorial: <a class="reference internal" href="../../tutorials/ios/greeting-swift.html"><span class="doc">Playing a greeting in an iOS Swift app</span></a></p>
+</div>
+<input id="a3b0ce27-f2a7-4906-94cb-1a2a9950c47b" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="a3b0ce27-f2a7-4906-94cb-1a2a9950c47b">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activating the Alan button programmatically</span>
+<span class="n">fun</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">activate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="5d5d5ba2-0050-4f40-97cb-c70c44a0092a" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="5d5d5ba2-0050-4f40-97cb-c70c44a0092a">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activating the Alan button programmatically</span>
+<span class="kt">void</span> <span class="nf">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">activate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="86e08e34-cacf-450c-a3fb-e45cbb1fc7e9" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="86e08e34-cacf-450c-a3fb-e45cbb1fc7e9">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Activating the Alan button programmatically</span>
+  <span class="kt">void</span> <span class="n">_activate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">activate</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="b7653470-05a7-4744-a63a-71abdf7ec76f" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="b7653470-05a7-4744-a63a-71abdf7ec76f">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p></li>
+<li><p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p></li>
+</ul>
+</div>
+<input id="2ea4515c-4a8e-46ce-b6eb-d70d05fd57c6" name="8fe83027-bad0-4498-90fa-806fe2d19b1a" type="radio"/>
+<label class="tabbed-label" for="2ea4515c-4a8e-46ce-b6eb-d70d05fd57c6">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Activating the Alan button programmatically</span>
+<span class="nx">activate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">activate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deactivate">
+<span id="id5"></span><h2>deactivate()<a class="headerlink" href="#deactivate" title="Permalink to this headline">¶</a></h2>
+<p>Deactivates the Alan button programmatically.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>deactivate()</p>
+</div>
+<p><strong>Example</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="78e48bba-a218-4968-9805-a663baeb3267" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="78e48bba-a218-4968-9805-a663baeb3267">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="775441f5-e642-4168-ae4c-644a98418844" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="775441f5-e642-4168-ae4c-644a98418844">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivating the Alan button programmatically</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">deactivate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">button</span><span class="w"> </span><span class="n">deactivate</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="f7f25de2-d33d-47a6-9559-419e62509f5c" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="f7f25de2-d33d-47a6-9559-419e62509f5c">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivating the Alan button programmatically</span>
+<span class="kd">func</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kc">self</span><span class="p">.</span><span class="n">button</span><span class="p">.</span><span class="n">deactivate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="d9fcd79e-1e75-4560-bb55-d5d32b055674" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="d9fcd79e-1e75-4560-bb55-d5d32b055674">
+Kotlin</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivating the Alan button programmatically</span>
+<span class="n">fun</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="o">?</span><span class="p">.</span><span class="na">deactivate</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="efd41aaf-7757-4bef-981c-4cc45424f2aa" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="efd41aaf-7757-4bef-981c-4cc45424f2aa">
+Java</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivating the Alan button programmatically</span>
+<span class="kt">void</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">alanButton</span><span class="p">.</span><span class="na">deactivate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="084ca9d3-e5fa-4fe7-b762-bc342037c65d" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="084ca9d3-e5fa-4fe7-b762-bc342037c65d">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_MyHomePageState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">/// Deactivating the Alan button programmatically</span>
+  <span class="kt">void</span> <span class="n">_deactivate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">AlanVoice</span><span class="p">.</span><span class="n">deactivate</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="ccd43e2b-b997-4975-af59-ae54be1be9b1" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="ccd43e2b-b997-4975-af59-ae54be1be9b1">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p>
+</div>
+<input id="7f3e73f6-513d-4808-b6b3-f2b359e41008" name="cb73e22d-ecf5-4ff2-905f-d0cd07a5207a" type="radio"/>
+<label class="tabbed-label" for="7f3e73f6-513d-4808-b6b3-f2b359e41008">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Deactivating the Alan button programmatically</span>
+<span class="nx">deactivate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">AlanManager</span><span class="p">.</span><span class="nx">deactivate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="isactive">
+<span id="id6"></span><h2>isActive()<a class="headerlink" href="#isactive" title="Permalink to this headline">¶</a></h2>
+<p>Checks the Alan button state. Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the Alan button is activated by the user or programmatically or <code class="docutils literal notranslate"><span class="pre">false</span></code> if the Alan button is deactivated by the user or programmatically.</p>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>isActive()</p>
+</div>
+<p><strong>Example</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="3b46ee57-a744-42d4-8f00-dccfa229c9b0" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="3b46ee57-a744-42d4-8f00-dccfa229c9b0">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">isActive</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="76f7d475-a78f-4879-bd98-8a13030c8c22" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="76f7d475-a78f-4879-bd98-8a13030c8c22">
+Objective-C</label><div class="tabbed-content docutils">
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">alanBtnInstance</span><span class="w"> </span><span class="n">isActive</span><span class="p">];</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="3ce76d8a-6d7c-4ae0-a427-cee900a8009e" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="3ce76d8a-6d7c-4ae0-a427-cee900a8009e">
+Swift</label><div class="tabbed-content docutils">
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="n">alanBtnInstance</span><span class="p">.</span><span class="n">isActive</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>Tutorial: <a class="reference internal" href="../../tutorials/ios/greeting-swift.html"><span class="doc">Playing a greeting in an iOS Swift app</span></a></p>
+</div>
+<input id="fe05b695-13ba-4a2c-9ce0-428669e76288" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="fe05b695-13ba-4a2c-9ce0-428669e76288">
+Android</label><div class="tabbed-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">alanBtnInstance</span><span class="p">.</span><span class="na">isActive</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="06ba5680-b592-4cb3-ac20-d8b023729d2e" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="06ba5680-b592-4cb3-ac20-d8b023729d2e">
+Flutter</label><div class="tabbed-content docutils">
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">_checkIsActive</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="n">isActive</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">AlanVoice</span><span class="p">.</span><span class="n">isActive</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isActive</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_showDialog</span><span class="p">(</span><span class="s2">"Active"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">_showDialog</span><span class="p">(</span><span class="s2">"NOT active"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p>
+</div>
+<input id="b016705d-cb24-4616-af56-7da4e55d625f" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="b016705d-cb24-4616-af56-7da4e55d625f">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+<span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">isActive</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">isActive</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<ul class="simple">
+<li><p>How-to: <a class="reference internal" href="../../tutorials/how-tos.html#how-to-activate-the-alan-button-programmatically-and-play-a-greeting"><span class="std std-ref">Activate the Alan button programmatically and play a greeting</span></a></p></li>
+<li><p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p></li>
+</ul>
+</div>
+<input id="f293e79c-e94b-4826-9423-af2e2eb2b3c9" name="92023e66-47a5-4240-adb4-e5a33aa41348" type="radio"/>
+<label class="tabbed-label" for="f293e79c-e94b-4826-9423-af2e2eb2b3c9">
+React Native</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">AlanManager</span><span class="p">.</span><span class="nx">isActive</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="remove">
+<h2>remove()<a class="headerlink" href="#remove" title="Permalink to this headline">¶</a></h2>
+<p>Removes the Alan button. Use this method, for example, to hide the Alan button on specific pages in the app.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At present, this method is supported only on the Web platform.</p>
+</div>
+<p><strong>Syntax</strong></p>
+<div class="syntax admonition">
+<p class="admonition-title">Function syntax</p>
+<p>remove()</p>
+</div>
+<p><strong>Example</strong></p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="9ff02e90-cffd-47e2-aa9c-35a650fc949e" name="934c8c3e-847f-43fe-8844-dc5b09069472" type="radio"/>
+<label class="tabbed-label" for="9ff02e90-cffd-47e2-aa9c-35a650fc949e">
+Web (React, Angular, etc.)</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="017eba6a-8fc8-4ba9-921c-3dbbf9b81a65" name="934c8c3e-847f-43fe-8844-dc5b09069472" type="radio"/>
+<label class="tabbed-label" for="017eba6a-8fc8-4ba9-921c-3dbbf9b81a65">
+Ionic</label><div class="tabbed-content docutils">
+<p><strong>Ionic Angular</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="kd">var</span> <span class="nx">myAlanBtn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'myAlanBtn'</span><span class="p">);</span>
+
+ <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">componentOnReady</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="nx">myAlanBtn</span><span class="p">.</span><span class="nx">removeButton</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Ionic React</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">alanBtnComponent</span> <span class="o">=</span> <span class="nx">useRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="nx">alanBtnComponent</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">removeButton</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>See also</strong></p>
+<p><a class="reference internal" href="../cross-platform/ionic.html#communicating-between-components"><span class="std std-ref">Communicating between components</span></a></p>
+</div>
+</div>
+<div id="purple-background"></div></div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="handlers.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Alan handlers</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../cross-platform/react-native.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Alan React Native Framework</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Client API methods</a><ul>
+<li><a class="reference internal" href="#setvisualstate">setVisualState()</a></li>
+<li><a class="reference internal" href="#callprojectapi">callProjectApi()</a></li>
+<li><a class="reference internal" href="#playtext">playText()</a></li>
+<li><a class="reference internal" href="#playcommand">playCommand()</a></li>
+<li><a class="reference internal" href="#activate">activate()</a></li>
+<li><a class="reference internal" href="#deactivate">deactivate()</a></li>
+<li><a class="reference internal" href="#isactive">isActive()</a></li>
+<li><a class="reference internal" href="#remove">remove()</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/custom.js"></script>
+    <script src="../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

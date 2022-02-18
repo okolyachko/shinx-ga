@@ -1,0 +1,195 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Navigating between screens with voice
+=====================================
+
+If your React Native app has several screens, you can add voice commands to navigate between them. For example, you can let the user open the details screen and then go back to the main screen with voice.
+
+In this tutorial, we will create an app with two screens and add voice commands to navigate forward and back.
+
+What you will learn
+-------------------
+
+-  How to navigate between screens of a React Native app with voice
+-  How to send commands to a React Native app
+-  How to handle commands on the React Native app side
+
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  You have completed all steps from the following tutorial: :doc:`Building a voice assistant for a React Native app <integrating-react-native>`.
+-  You have set up the React Native environment and it is functioning properly. For details, see `React Native documentation <https://reactnative.dev/docs/environment-setup>`__.
+
+Step 1. Add two screens to the app
+----------------------------------
+
+First, let's update our app to add two screens to it.
+
+1. In the Terminal, navigate to the app folder and install the required navigation components:
+
+   .. code:: bash
+
+       npm install @react-navigation/native @react-navigation/native-stack
+       npm install react-native-screens react-native-safe-area-context
+
+2. Install pods to complete the installation:
+
+   .. code:: bash
+   
+       cd ios 
+       pod install 
+       cd ..
+
+3. Update the ``App.js`` file to the following:
+
+   ::
+
+       // App.js file
+
+       import * as React from 'react';
+       import { Button, View, Text } from 'react-native';
+       import { NavigationContainer } from '@react-navigation/native';
+       import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+       import { navigationRef } from './components/RootNavigation';
+       import * as RootNavigation from './components/RootNavigation';
+
+       function HomeScreen({ navigation: { navigate } }) {
+         return (
+           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+             <Text>This is the home screen of the app</Text>
+             <Button title="Go to Profile" onPress={() => RootNavigation.navigate('Profile')} />
+           </View>
+         );
+       }
+
+       function ProfileScreen({ navigation: { navigate } }) {
+         return (
+           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+             <Text>Profile details</Text>
+             <Button title="Go back" onPress={() => RootNavigation.navigate('Home')} />
+           </View>
+         );
+       }
+
+       const Stack = createNativeStackNavigator();
+
+       const App = () => {
+         return (
+           <NavigationContainer ref={navigationRef}>
+             <Stack.Navigator initialRouteName="Home">
+               <Stack.Screen name="Home" component={HomeScreen} />
+               <Stack.Screen name="Profile" component={ProfileScreen} />
+             </Stack.Navigator>
+           </NavigationContainer>
+         );
+       }
+
+       export default App;
+
+4. In your app, create the ``components`` folder and put the ``RootNavigation.js`` file to it:
+
+   .. code:: typescript
+
+       // RootNavigation.js file
+
+       import { createNavigationContainerRef } from '@react-navigation/native';
+
+       export const navigationRef = createNavigationContainerRef()
+
+       export function navigate(name, params) {
+         if (navigationRef.isReady()) {
+           navigationRef.navigate(name, params);
+         }
+       }
+
+5. To the ``App.js`` file, add the Alan button as described in the :doc:`Building a voice assistant for a React Native app <integrating-react-native>` tutorial:
+
+   -  Import ``AlanView``
+   -  Add the Alan button to ``NavigationContainer``
+
+You can test it: run the app and try navigating between screens using the buttons.
+
+
+Step 2. Add navigation commands to the script
+---------------------------------------------
+
+Let's add navigation commands to the voice script. In the code editor in Alan Studio, add the following:
+
+.. code:: javascript
+
+    intent('Open profile details', p => {
+        p.play('Opening the profile page');
+        p.play({command:'goForward'});
+    });
+
+    intent('Go back', p => {
+        p.play('Going back');
+        p.play({command:'goBack'});
+
+Here, in each command, we have two ``p.play()`` functions:
+
+-  One to play a response to the user
+-  The other one to send the command to the client app. In the second ``play()`` function, we have specified a JSON object with the name of the command to be sent.
+
+You can try the commands in the Debugging Chat. Notice that together with the answer, Alan now sends the command we have defined.
+
+Step 3. Handle commands in the app
+----------------------------------
+
+We need to handle these commands on the app side. To do this, we will add the :doc:`Alan's onCommand
+handler </client-api/methods/command-handler>` to the app.
+
+1. In the ``App.js`` file, add the import statement for the Alan events listener:
+
+   .. code:: typescript
+
+       ...
+       import { NativeEventEmitter, NativeModules } from 'react-native';
+       ...     
+
+2. Create a new ``NativeEventEmitter`` object:
+
+   .. code:: typescript
+
+       const App = () => {
+         ...
+         const { AlanEventEmitter } = NativeModules;
+         const alanEventEmitter = new NativeEventEmitter(AlanEventEmitter);
+         ...
+       }
+
+3. Add the import statement for the ``useEffect`` hook:
+
+   .. code:: typescript
+
+       ...
+       import { useEffect } from 'react';
+       ...
+
+4. And add the ``useEffect`` hook to subscribe to the voice script events:
+
+   .. code:: typescript
+
+       const App = () => {
+       ...
+         useEffect(() => {
+           alanEventEmitter.addListener('onCommand', (data) => {   
+             if (data.command == 'goForward') {
+               RootNavigation.navigate('Profile');
+             } else if (data.command == 'goBack') {
+               RootNavigation.navigate('Home');
+             }
+           })
+         }, []);
+         ...
+       }
+
+Now, when the app receives a command, the necessary screen will be open.
+
+You can try it: in the app, tap the Alan button and say: ``Open profile details`` and ``Go back``.

@@ -1,0 +1,300 @@
+Dynamic slots
+=============
+
+The dynamic slots concept is similar to regular user-defined slots. You can add them to patterns to capture important pieces of data from the user's input. However, regular user-defined slots are static. After the dialog model for your voice assistant has been built, their values cannot be updated.
+
+Dynamic slots, instead, are adaptive. Use them if you need to update values on a more frequent basis, for example, get them from your database, with an API call or alter them based on what the user has said. Whenever the values for dynamic slots are updated, Alan rebuilds the dialog model at runtime, without restarting the dialog session, which makes the user's experience more flexible and personalized.
+
+Consider the following example:
+
+.. code:: JavaScript
+
+    intent('Show $(FAVORITE flannel shirt|fleece jacket|softshell pants)', p => {
+        p.play(`Opening the ${p.FAVORITE.value} page`);
+    });
+
+Here, the favorites list remains static and cannot be altered after the dialog model has been built. If we replace it with a dynamic slot, it will be possible to alter the favorites list in runtime. The user will be able to add a new item to the list with the first command and then give the second command to access the added item immediately.
+
+.. code:: JavaScript
+
+    onCreateUser(p => {
+        p.userData.favorites = {en: "flannel shirt|fleece jacket|softshell pants"};
+    });
+
+    intent('Add $(ITEM* .+) to favorites', p => {
+        p.userData.favorites.en += '|' + p.ITEM.value;
+        console.log(p.userData.favorites.en);
+        p.play(`${p.ITEM.value} is added`);
+    });
+
+    intent('Show $(FAVORITE u:favorites)', p => {
+        p.play(`Opening the ${p.FAVORITE.value} page`);
+    });
+	
+For more details on this example, see `Updating dynamic slot values with voice commands <#updating-dynamic-slot-values-with-voice-commands>`__.
+
+Defining dynamic slots
+----------------------
+
+You can define dynamic slots in different ways: 
+
+- With the ``project`` global object if dynamic slots must be accessible globally `at the project level <#defining-dynamic-slots-at-the-project-level>`__.
+- With the ``userData`` object if dynamic slots must be accessible within the `user dialog session <#defining-dynamic-slots-at-the-dialog-session-level>`__.
+- With ``visualState`` if values of dynamic slots are `passed from the client app <#passing-dynamic-slot-values-from-the-app>`__.
+
+
+Defining dynamic slots at the project level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A dynamic slot defined at the project level can be accessed by all users interacting with the voice assistant. Use this type of dynamic slots to work with generic data that must be available to all app users.
+
+To define a dynamic slot at the project level, save the values of the dynamic slot to the :ref:`project <project>` global object. To add such a dynamic slot to patterns, specify the ``$`` sign followed by brackets ``()``.
+In brackets, specify the slot name followed by ``p:variablename``.
+
+In the example below, values of a dynamic slot are saved to the ``project.movies`` variable when the :ref:`onCreateProject()` callback is invoked, and ``$(MOVIE p:movies)`` is added to the pattern.
+
+.. note::
+
+   Note that values in the ``project`` object are stored in the language key: ``en``. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see `Updating dynamic slot values with voice commands <#updating-dynamic-slot-values-with-voice-commands>`__.
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.movies = {en: "Sergio|Valley Girl|All Day and a Night|The Half of It"};
+    });
+
+    intent('When is $(MOVIE p:movies) on?', p => {
+        p.play(`Let me check the showtime for ${p.MOVIE.value}`);
+    });
+
+
+Defining dynamic slots at the dialog session level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A dynamic slot defined at the dialog session level can be accessed only by the user interacting with the voice assistant during the current dialog session. Use this type of dynamic slots to work with user-specific and user-sensitive information, for example, to handle the data that differs depending on the user logged in to the system.
+
+Values of such dynamic slots exist only while the dialog session is running. After the session ends or the user reconnects to the app in another session, all data stored in such dynamic slots is removed.
+
+To define a dynamic slot at the dialog session level, save the values of the dynamic slot to the :ref:`userData <userData>` object. To add such a dynamic slot to patterns, specify the ``$`` sign followed by brackets ``()``.
+In brackets, specify the slot name followed by ``u:variablename``.
+
+In the example below, values of a dynamic slot are saved to the ``p.userData.contacts`` variable when the :ref:`onCreateUser()` callback is invoked, and ``$(CONTACT u:contacts)`` is added to the pattern.
+
+.. note::
+
+   Note that values in the ``userData`` object are stored in the language key: ``en``. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see `Updating dynamic slot values with voice commands <#updating-dynamic-slot-values-with-voice-commands>`__.
+
+.. code:: JavaScript
+
+    onCreateUser(p => {
+        p.userData.contacts = {en:"Anna|Emma|John|Mark"};
+    });
+
+    intent('Show details for $(CONTACT u:contacts)', p => {
+        p.play(`Getting contact details for ${p.CONTACT.value}`);
+    });   
+
+
+
+Passing dynamic slot values from the app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can define dynamic slots with the help of the :ref:`visual <visual>` object. This type of dynamic slots can be helpful if you need to handle data sent from the app to the voice script. In this case, you can pass the necessary data in the ``visual`` object, access this data through the keys of the passed object and save it to a dynamic slot.
+
+To add such a dynamic slot to patterns, specify the ``$`` sign followed by brackets ``()``. In brackets, specify the dynamic slot name followed by ``v:variablename``.
+
+In the example below, we retrieve the values passed in the ``visual`` object and save them to the ``p.visual.menu`` variable when the :ref:`onVisualState()` callback is invoked, and ``$(ITEM v:menu)`` is then added to the pattern.
+
+First, the visual state is set in the app:
+
+.. code:: html
+
+    <script>
+      function myFunction() {
+        let values = ["pasta", "burger", "quesadilla"]
+        alanBtnInstance.setVisualState({values});
+      } 
+    </script>
+	
+Next, the passed items are saved to the items list in the voice script:
+	
+.. code:: javascript
+
+    onVisualState((p, s) => {
+        if (s.values) {
+            p.visual.menu = { en: ""};
+            p.visual.menu.en = s.values.join('|');     
+        }
+    });
+
+    intent('Give me a $(ITEM~ v:menu)', p => {
+        p.play(`Adding one ${p.ITEM.value} to your order`);
+    });
+
+.. note::
+
+   Note that values in the ``visual`` object are stored in the language key: ``en``. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see `Updating dynamic slot values with voice commands <#updating-dynamic-slot-values-with-voice-commands>`__.
+
+Updating dynamic slot values with voice commands
+------------------------------------------------
+
+You can not only get dynamic slots values from external sources, but also alter them with voice commands. In the example below, the shopping list is extended when the user gives a command to add a specific item. The resulting string of slot values is then logged to the console.
+
+.. code:: js
+
+    onCreateUser(p => {
+        p.userData.shopping = {en: "coffee|sugar|honey"};
+    });
+
+    intent('Do I need $(SHOP~ u:shopping)?', p => {
+        p.play(`${p.SHOP} is in the shopping list`);
+    });
+
+    intent('Add $(ITEM* .+)', p => {
+        p.userData.shopping.en += '|' + p.ITEM.value;
+        p.play(`${p.ITEM.value} is added`);
+        console.log(p.userData.shopping.en);
+    });
+	
+	
+.. note::
+
+   Dynamic slot values are saved by language keys, for example: ``{en: "coffee|sugar|honey"}``, where ``en`` denotes the current voice assistant language. When you update the values list, make sure you save data in the language key as shown in the example above.
+
+
+Capturing several values with dynamic slots
+-------------------------------------------
+
+You can add the same dynamic slot to the pattern several times, just like regular user-defined slots. When such an intent is matched, all pieces of data captured with this dynamic slot are collected to an array of values.
+
+-  To access the list of all values in the array, use the dynamic slot
+   name followed by the underscore character, for example: ``p.SLOTNAME_``.
+-  To access a specific element in the array, specify the element index, for
+   example: ``p.SLOTNAME_[0].value``.
+
+Let’s say you want the user to filter the list of products by brand. You can add the following voice command to the script:
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.BRANDS = {en: "Apple|Asus|Microsoft|Samsung"};
+    });
+
+    intent('Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)', p => {
+        p.play('Getting the products list');
+    });
+
+As in regular slots, in dynamic slots each element in the array has its own ``.value`` and ``.label`` fields: 
+
+- The ``value`` field is populated with values obtained from the user's input. To access the ``value`` field, refer to it in the following way: ``p.SLOTNAME_[index].value``. In the example above, to access the value of the first element in the brands array, use ``p.B_[0].value``.
+
+- The ``label`` field can contain custom values and can be used to give more accurate responses to the user. To access the ``label`` field, refer to it in the following way: ``p.SLOTNAME_[index].label``. In the example below, to access the label of the first element in the brands array, use ``p.B_[0].label``.
+
+.. code:: JavaScript
+
+    onCreateProject(() => {
+        project.BRANDS = {en:"Apple~ios|Asus~android|Microsoft~win|Samsung~android"};
+    });
+
+    intent('Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)', p => {
+        p.play('Getting the products list');
+        console.log(p.B_[0].label);
+        console.log(p.B_[0].value);
+    });
+
+Defining dynamic slots with a short form
+-----------------------------------------
+
+To define dynamic slots, you can use a short form, without the name preceding the slot variable, for example:
+
+-  ``$(p:ITEM)``
+-  ``$(u:ITEM)``
+-  ``$(v:ITEM)``
+
+You can refer to the value captured with such a dynamic slot through the slot name: ``p.ITEM`` and ``p.ITEM.value``.
+
+.. warning::
+
+   When working with short forms, save patterns with dynamic slots to a variable and use it for the command pattern. Short forms added directly to the command pattern are not supported at the moment.
+
+In the example below, the ``p:ORIGIN`` dynamic slot is used to capture the movie origin:
+
+.. code:: js
+
+    onCreateProject(p => {
+        project.ORIGIN = {en:"Italian|American|French|German"};
+    });
+
+    const REQUEST = [
+        "(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN) movies, (please|)", 
+        "What are (the|) (best|top rated|popular|good) $(p:ORIGIN) movies?", 
+    ];
+
+    intent(REQUEST, p => {
+        p.play(`Here is the list of top rated ${p.ORIGIN.value} movies`);
+    });
+
+Making dynamic slots optional
+-----------------------------
+
+As well as regular user-defined slots, dynamic slots can be optional. To mark a dynamic slot as optional, add the vertical bar ``|`` at the end of it. Both regular dynamic slots and dynamic slots defined with a short form can be made optional.
+
+.. code:: js
+
+    onCreateProject(p => {
+        project.ORIGIN = {en:"Italian~Italy|American~U.S.|French~France|German~Germany"};
+    });
+
+    const REQUEST = [
+        "(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies, (please|)", 
+        "What are (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies?", 
+    ];
+
+    intent(REQUEST, p => {
+        let pattern = "Here is a list of top rated movies";
+        if (p.ORIGIN && p.ORIGIN.value) {
+            pattern += ` from ${p.ORIGIN.label}`;
+        }
+        p.play(pattern);
+    });
+
+Using fuzzy matching with dynamic slots
+---------------------------------------
+
+You can enable :ref:`fuzzy matching<Slots with fuzzy matching>` for dynamic slots. Fuzzy matching can be used both with regular dynamic slots:
+
+.. code:: JavaScript
+
+    onCreateProject(p => {
+        project.DRINKS = {en:"kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer"};
+    });
+
+    intent('Get me $(BEER~ p:DRINKS)', p => {
+        p.play(`Sure, here is your ${p.BEER.label}`);
+    });
+
+and dynamic slots defined with a short form:
+
+.. code:: JavaScript
+
+    onCreateProject(p=> {
+        project.DRINKS = {en:"kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer"};
+    });
+
+    const REQUEST = [
+        'Get me $(~ p:DRINKS), (please|)', 
+        'Is $(~ p:DRINKS) on the menu?' 
+    ];
+
+    intent(REQUEST, p => {
+        p.play(`Sure, here is your ${p.DRINKS.label}`);
+    });
+
+See also
+--------
+
+Tutorial: :doc:`Using dynamic slots in patterns <../tutorials/list/using-dynamic-slots>`
+
+.. raw:: html
+
+   <div id="green-background"></div>

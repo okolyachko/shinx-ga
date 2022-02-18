@@ -1,0 +1,21 @@
+Additional resources
+====================
+
+To let you quickly get started with Alan, here we have collected additional resources that may help.
+
+.. raw:: html
+
+   <div id="blue-background"></div>
+   <div id="wide-content"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   
+   Supported platforms<supported-platforms>
+   
+
+
+
+
+

@@ -1,0 +1,20 @@
+User data
+=========
+
+While writing voice scripts, you can use the following means to make a dialog with the user specific:
+
+- :doc:`User events <events>`
+- :doc:`Client object <client-object>`
+
+.. raw:: html
+
+   <div id="green-background"></div>
+   <div id="wide-content"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   User events<events>
+   Client object<client-object> 
+

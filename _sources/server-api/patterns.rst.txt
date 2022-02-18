@@ -1,0 +1,162 @@
+Patterns
+========
+
+When writing voice commands, you need to provide phrases that the user can say to invoke these commands, and phrases with which Alan will respond to the user. These phrases are known as patterns. Patterns can be used in all command and response functions:
+
+-  :ref:`intent()<Intent>`
+-  :ref:`play()<play()>`
+-  :ref:`reply()<reply()>`
+
+For example:
+
+.. code:: JavaScript
+
+    intent('How is the weather today?', p => {
+        p.play('It is great!');
+    });
+	
+	
+.. _Patterns with alternatives:
+
+Patterns with alternatives
+--------------------------
+
+Patterns may contain alternatives. Alternatives comprise a list of possible words and phrases for a command given by the user or for Alan's reply. To provide alternatives in the pattern, use the ``|`` delimiter and enclose the alternative set in brackets ``()``.
+
+Let's use the previous example to provide alternatives on what the user can ask and what the user can hear in response:
+
+.. code:: JavaScript
+
+    intent('(How is|What is) the weather today?', p => {
+        p.play('(It is|Feels) great!');
+    });
+
+Now the user can give the following commands: ``How is the weather today?`` and ``What is the weather today?`` In
+response the user will hear: ``It is great!`` or ``Feels great!``
+
+.. note::
+
+    Alan picks a response from the alternative set at random.
+	
+	
+.. _Multiple alternative sets:
+
+Multiple alternative sets
+-------------------------
+
+You can provide any number of alternatives in a set, and you can add as many sets of alternatives to a single pattern as you need. Let's add multiple alternative sets to the command defined in the previous example and see how it will affect the total number of possible commands and received responses.
+
+.. code:: JavaScript
+
+    intent('(What|How) is the (weather|temperature) today?', p => {
+        p.play('(It is|Feels) (great|awesome)!');
+    });
+
+Now the user can give the following commands:
+
+-  ``What the weather today?``
+-  ``What is the temperature today?``
+-  ``How the weather today?``
+-  ``How is the temperature today?``
+
+In response the user will hear: ``It is great!``, ``It is awesome!``, ``Feels great!`` or ``Feels awesome!`` picked at random.
+
+
+.. _Optional alternatives:
+
+Optional alternatives
+---------------------
+
+In voice commands and responses, some parts of patterns may be optional. To mark a single word, phrase or even an alternative set as optional, you need to enclose it in brackets and add the ``|`` delimiter at the end of it. This will signal Alan that the command may be used both with and without the words specified with this optional part. The same logic
+applies to responses that Alan plays back to the user.
+
+Let's add optional alternatives to the command defined in the previous example and see how it will affect the total number of possible commands and received responses.
+
+.. code:: JavaScript
+
+    intent('(How is|What is) the (weather|temperature) (today|)', p => {
+        p.play('(It is|Feels|) (great|awesome)!');
+    });
+
+We've marked the ``today`` word as optional, so now the user can ask: ``How is the weather?`` or ``How is the weather today?`` Both commands will be valid. The same goes for responses. Now the first set of alternatives is optional, and the user will hear the responses like: ``It is great!`` or ``Feels great!`` as well as short responses like:
+``Great!`` or ``Awesome!``
+
+Optional alternatives make Alan's responses more diverse and help Alan reliably invoke voice commands added to the voice script. When writing voice commands, elaborate all possible variants of the phrases the user can say. The closer the user's utterance is to the intent pattern, the higher match score this intent will get. For details, see :ref:`Intent matching<Intent matching>`.
+
+.. _Multiple patterns:
+
+Multiple patterns
+-----------------
+
+If you add `multiple alternative sets <#multiple-alternative-sets>`__ and `optional alternatives <#optional-alternatives>`__ to the pattern, you can run into a problem when some combinations of the pattern parts make no sense. In this situation, you can add multiple patterns to commands. Multiple patterns can also be helpful if you want to let users give the same command with completely different phrases or let Alan reply in different ways.
+
+In Alan, you can define multiple patterns in :doc:`command and response functions <commands-and-responses>`. To do this, you need to pass patterns to the desired function as comma separated strings.
+
+.. code:: JavaScript
+
+    intent("(How is|What is) the (weather|temperature) (today|)", "Today's forecast", p => {
+        p.play("(It is|Feels|) (great|awesome)!", "Rainy, windy, and cold. (A complete mess!|)");
+    });
+
+Multiple patterns can also be passed as an array.
+
+.. code:: JavaScript
+
+    let weatherRequests = [
+        "(How is|What is) the (weather|temperature) (today|)",
+        "today's forecast"
+    ];
+
+    let weatherResponses = [
+        "(It is|Feels|) (great|awesome)!",
+        "Rainy, windy, and cold. (A complete mess!|)"
+    ];
+
+    intent(weatherRequests,
+        reply(weatherResponses));
+
+.. warning::
+		
+   Do not pass multiple patterns as arrays to the ``p.play()`` function. This function can be used to send commands to the client app. Arrays of any kind passed to the ``p.play()`` function are considered to be commands. To avoid errors in the script, use comma separated patterns in the ``p.play()`` function instead.
+
+Patterns with slots
+-------------------
+
+Patterns can contain :doc:`slots <slots>` — variables that help pick out important facts from users' utterances. You can add one or more :doc:`predefined <predefined-slots>` and :doc:`user-defined slots <user-defined-slots>` or even :ref:`several slots of the same type<Multiple values in slots>` to the pattern.
+
+.. code:: JavaScript
+
+    // User-defined slots
+    intent('Do you know anything about $(TOPIC physics|mathematics|chemistry)', p => {
+        p.play('Yes. I do know ' + p.TOPIC.value + '. (Ask me anything about it!|)')
+    });
+
+    // Predefined slot
+    intent('How much is $(NUMBER) plus $(NUMBER)', p => {
+        let result = p.NUMBERs[0].number + p.NUMBERs[1].number
+        p.play(`It is ${result}`);
+    });
+
+
+Wildcard for plural form of nouns
+---------------------------------
+
+In some cases, users can pronounce nouns in voice commands in both single and plural forms. To let Alan capture all possible user inputs, add the ``_`` character at the end of such a noun and enclose the noun in brackets ``()``. This syntax signals Alan that the noun is expected in both single and plural forms.
+
+.. code:: JavaScript
+
+    intent('I want $(NUMBER) (cup_) of tea', p => {
+        p.play('Here you go');
+    });
+
+You can pluralize not only nouns, but also :doc:`slots <slots>` in patterns. The ``.value`` field of such a pluralized slot will contain the actual word in the form the user gave in the command.
+
+.. code:: JavaScript
+
+    intent('Add $(NUMBER) $(S pencil_)', p => {
+        p.play(`Done. Added ${p.NUMBER.value} ${p.S.value}`);
+    });
+	
+.. raw:: html
+
+   <div id="green-background"></div>

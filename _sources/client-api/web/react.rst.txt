@@ -1,0 +1,130 @@
+React
+=====
+
+.. raw:: html
+   
+   <a href="https://www.npmjs.com/package/@alan-ai/alan-sdk-web">
+   <img src="https://img.shields.io/npm/v/@alan-ai/alan-sdk-web.svg" align="left" style="border:inherit; padding-right:10px" /></a>
+
+   <a href="https://github.com/alan-ai/alan-sdk-web/releases">
+   <img src="https://img.shields.io/github/v/release/alan-ai/alan-sdk-web" align="left" style="border:inherit"/></a>
+   
+   <br/>
+
+Integrating with Alan
+---------------------
+
+To integrate a React app with Alan:
+
+1. Add the Alan Web SDK to your app. You can do it in two ways: 
+
+   - With the npm package 
+   - In the browser library mode 
+
+   .. tabbed:: NPM package
+   
+      To install the Alan Web SDK with the npm package:
+
+      a. In the Terminal, run the command:
+
+         ::
+
+             npm install @alan-ai/alan-sdk-web --save
+
+      b. Import ``alanBtn`` to your React component:
+
+         ::
+
+             import alanBtn from "@alan-ai/alan-sdk-web";
+
+   .. tabbed:: Browser library mode
+   
+      To load the Alan Web SDK in the browser library mode, add the ``alan_lib.min.js`` library to the ``index.html`` file using the ``<script>`` tag:
+
+      ::
+
+          <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+
+2. Add the Alan button to your React component:
+   
+   - React functional component
+   - React functional component with HRM (Hot Module Replacement)
+   - React class component
+
+   .. tabbed:: Functional component
+
+      .. code:: javascript
+
+          import React, { useEffect } from 'react';
+		  
+          useEffect(() => {
+            alanBtn({
+              key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+              onCommand: (commandData) => {
+                if (commandData.command === 'go:back') {
+                  // Call the client code that will react to the received command
+                }
+              }
+            });
+          }, []);
+
+   .. tabbed:: Functional component with HMR
+
+      .. code:: javascript
+
+          import React, { useEffect, useRef } from 'react';
+		  
+          const alanBtnInstance = useRef(null);
+
+          useEffect(() => {
+            if (!alanBtnInstance.current) {
+              alanBtnInstance.current = alanBtn({
+                key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+                onCommand: (commandData) => {
+                  if (commandData.command === 'go:back') {
+                    // Call the client code that will react to the received command
+                  }
+                }
+              });
+            }
+          }, []);
+
+   .. tabbed::  Class component
+
+      .. code:: javascript
+
+         componentDidMount() {
+           this.alanBtnInstance = alanBtn({ 
+             key: 'YOUR_KEY_FROM_ALAN_STUDIO_HERE',
+             onCommand: (commandData) => {
+               if (commandData.command === 'go:back') {
+                 // Call the client code that will react to the received command
+               }
+             },
+           });
+         }
+
+For details, see :ref:`Alan button parameters`.
+
+.. note::
+	  
+   Regularly update the ``@alan-ai/alan-sdk-web`` package your project depends on. To check if a newer version is available, run ``npm outdated``. To update the alan package, run ``npm update @alan-ai/alan-sdk-web``. For more details, see `npm documentation <https://docs.npmjs.com/updating-packages-downloaded-from-the-registry>`__.
+
+
+Trying the Alan sample app
+--------------------------
+
+In our GitHub repository, you can find a `sample React app <https://github.com/alan-ai/alan-sdk-web/tree/master/examples/alan-example-integration-react>`__ already integrated with Alan. Download the app to get an idea of how you can voice enable your React app and trigger actions in the app with voice
+commands.
+
+
+What's next?
+------------
+
+Go to :doc:`Script concepts <../../server-api/script-concepts>` to learn about Alan concepts and functionality you can use to create a voice script.
+
+.. raw:: html
+
+   <div id="purple-background"></div>
+
+

@@ -1,0 +1,710 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Dynamic slots" href="dynamic-slots.html" /><link rel="prev" title="Slots" href="slots.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>User-defined slots (static) | Alan Docs</title>
+      <link rel="stylesheet" href="../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/server-api/user-defined-slots/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/server-api/user-defined-slots/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../search.html">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../contents.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/how-works/about.html">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/basics.html">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/infrastructure.html">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/deployment.html">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/voice-processing.html">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/guides/studio.html">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/projects.html">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/scripts.html">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/versioning.html">Versions and environments</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../usage/guides/script-testing.html">Testing and debugging</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/debugging-chat.html">Debugging Chat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/test-view.html">Test View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/logs.html">Alan Studio logs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/in-app-testing.html">In-app testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/playground.html">Alan Playground</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../usage/guides/analytics.html">Voice analytics</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/dashboard.html">Projects dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/analytics-view.html">Analytics View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/billing.html">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/button/overview.html">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/customization.html">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/cohorts.html">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/activation.html">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/examples/overview.html">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/predefined-examples.html">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/code.html">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/github.html">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/video/overview.html">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/studio.html">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/alan-platform.html">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/integration.html">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/apps.html">Voice-enabled apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/course.html">Alan AI course (web app)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/additional/overview.html">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/additional/supported-platforms.html">Supported platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="script-concepts.html">Script concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands-and-responses.html">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html">Patterns</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="slots.html">Slots</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">User-defined slots (static)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic-slots.html">Dynamic slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regex-slots.html">Regex slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="predefined-slots.html">Predefined slots</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contexts.html">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built-in-javascript-libraries.html">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">Error handling and re-prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popups.html">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="sending-data/communication.html">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/authdata.html">authData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/visual-state.html">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/project-api.html">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="user-data/overview.html">User data</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="user-data/events.html">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-data/client-object.html">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/api-reference.html">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../client-api/client-sdks.html">Alan Client SDKs</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/integration.html">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/web/web-integration.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-api.html">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/react.html">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/angular.html">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vue.html">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/ember.html">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vanilla.html">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/electron.html">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/server-side-rendering.html">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-component.html">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/ios/ios-api.html">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/android/android-api.html">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/cross-platform/overview.html">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/ionic.html">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/cordova.html">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/flutter.html">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/react-native.html">React Native</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../client-api/methods/common-api.html">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/methods/handlers.html">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/command-handler.html">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/state-handler.html">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/event-handler.html">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/additional/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-tos.html">How-tos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/list-all.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/list/web-list.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/adding-voice-to-a-web-application.html">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../tutorials/list/food-delivery-tutorial.html">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-app.html">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-voice-assistant.html">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-integrate.html">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-add-command.html">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-alternatives.html">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slots.html">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-several-items.html">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-display-items.html">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slot-labels.html">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-remove-items.html">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-highlight-items.html">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-checkout-context.html">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-time.html">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-comment.html">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-populate-fields.html">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-api-call.html">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-visual-context.html">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-balance.html">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-start-dialog.html">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-popup.html">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/using-dynamic-slots.html">Using dynamic slots in patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/making-web-api-call.html">Making a Web API call from the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/web/frameworks-list.html">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-react-app.html">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-angular-app.html">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-vue-app.html">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-ember-app.html">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-electron-app.html">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ios/ios-list.html">iOS</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/integrating-swift.html">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/navigating-swift.html">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/sending-data-swift.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/highlighting-swift.html">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/triggering-info-swift.html">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/greeting-swift.html">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/android/android-list.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/integrating-java-kotlin.html">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/navigating-kotlin.html">Navigating in an Android app with voice (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/sending-state-kotlin.html">Passing the app state to the voice script (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/sending-data-kotlin.html">Sending data from the app to the voice script (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/flutter/flutter-list.html">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label for="toctree-checkbox-25"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/integrating-flutter.html">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/navigating-flutter.html">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/sending-data-flutter.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/project-api-flutter.html">Sending data to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ionic/ionic-list.html">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label for="toctree-checkbox-26"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-angular.html">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-angular.html">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/sending-data-angular.html">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-react.html">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-react.html">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/react-native/react-native-list.html">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label for="toctree-checkbox-27"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/integrating-react-native.html">Building a voice assistant for a React Native app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/sending-commands-react-native.html">Sending commands to the app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/sending-state-react-native.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/triggering-activities-react-native.html">Triggering activities without voice commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/navigating-react-native.html">Navigating between screens with voice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="user-defined-slots-static">
+<h1>User-defined slots (static)<a class="headerlink" href="#user-defined-slots-static" title="Permalink to this headline">¶</a></h1>
+<p>In Alan, you can create custom, or user-defined slots. User-defined slots list expected possibilities – words or phrases – that the user can say when giving a command.</p>
+<p>To define a slot, use the <code class="docutils literal notranslate"><span class="pre">$</span></code> character followed by brackets <code class="docutils literal notranslate"><span class="pre">()</span></code>. In brackets, define the slot name followed by its possible value. In the example below, we define the <code class="docutils literal notranslate"><span class="pre">D</span></code> slot with the <code class="docutils literal notranslate"><span class="pre">today</span></code> value.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What is the weather $(D today)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>When providing possible slot values, you can use the same rules as with <a class="reference internal" href="patterns.html"><span class="doc">patterns</span></a>. You can:</p>
+<ul class="simple">
+<li><p>List <a class="reference internal" href="patterns.html#patterns-with-alternatives"><span class="std std-ref">multiple alternatives</span></a> separated with the <code class="docutils literal notranslate"><span class="pre">|</span></code> delimiter.</p></li>
+<li><p>Make slots <a class="reference internal" href="patterns.html#optional-alternatives"><span class="std std-ref">optional</span></a> by adding another <code class="docutils literal notranslate"><span class="pre">|</span></code> delimiter at the end of the slot.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What (is|was|would be) the weather $(D yesterday|today|tomorrow|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The list of values in user-defined slots is static: it remains intact for the whole dialog session. If you need to update the slot values during the dialog, for example, with the data obtained from an external source, use <a class="reference internal" href="dynamic-slots.html"><span class="doc">dynamic slots</span></a> in patterns:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateUser</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">contacts</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"Anna|Emma|John|Mark"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Show details for $(CONTACT u:contacts)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Getting contact details for </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">CONTACT</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="section" id="slot-values-and-labels">
+<span id="id1"></span><h2>Slot values and labels<a class="headerlink" href="#slot-values-and-labels" title="Permalink to this headline">¶</a></h2>
+<p>A slot is an object that has a set of predefined fields and methods. All slot types have the following fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.label</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">.value</span></code> field is filled automatically when an intent with the slot is matched. This field contains the captured user’s input.</p>
+<p>In the example below, the user’s input is displayed in Alan logs and pronounced by Alan as a response.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What (is|was|would be) the weather $(D yesterday|today|tomorrow|)?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.label</span></code> field can be used to provide any description, identify or classify the slot values. Unlike slot values, labels do not necessarily need to be unique.</p>
+<p>To use a label, you need to define it first. Add the <code class="docutils literal notranslate"><span class="pre">~</span></code> character followed by the label value to the slot value.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What (is|was|would be) the weather $(D yesterday~past|today~now|tomorrow~future|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Value:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Label:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>In the example below, labels are used to adjust the logic of intents and provide more accurate responses to the user. Now, if the user says: <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">was</span> <span class="pre">the</span> <span class="pre">weather</span> <span class="pre">yesterday?</span></code>, the slot value will be <code class="docutils literal notranslate"><span class="pre">yesterday</span></code> and the label will be <code class="docutils literal notranslate"><span class="pre">past</span></code>. Alan will give a response defined for the <code class="docutils literal notranslate"><span class="pre">past</span></code> label.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What (is|was|would be) the weather $(D yesterday~past|last day~past|today~now|now~now|tomorrow~future|next day~future|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Value:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Label:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">label</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s1">'past'</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It was terrible!'</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">'future'</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'I hope it will be fine.'</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">'now'</span><span class="o">:</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'It is great!'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slot-values-in-responses">
+<h2>Slot values in responses<a class="headerlink" href="#slot-values-in-responses" title="Permalink to this headline">¶</a></h2>
+<p>You can use slots in <a class="reference internal" href="patterns.html"><span class="doc">patterns</span></a> for response functions: <a class="reference internal" href="commands-and-responses.html#play"><span class="std std-ref">play()</span></a> and <a class="reference internal" href="commands-and-responses.html#reply"><span class="std std-ref">reply()</span></a>. Use the standard JavaScript syntax for template strings, that is, offset in backticks.</p>
+<p>You can also add slot values to the string line.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'What (is|was|would be) the weather $(D yesterday~past|last day~past|today~now|now~now|tomorrow~future|next day~future|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Value:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Label:'</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">label</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s1">'past'</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`The weather </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> was terrible!`</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">'future'</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`I hope that the weather </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> will be fine.`</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">'now'</span><span class="o">:</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'The weather '</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="s1">' is great!'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slots-with-fuzzy-matching">
+<span id="id2"></span><h2>Slots with fuzzy matching<a class="headerlink" href="#slots-with-fuzzy-matching" title="Permalink to this headline">¶</a></h2>
+<p>By default, to <a class="reference internal" href="commands-and-responses.html#intent-matching"><span class="std std-ref">match an intent</span></a> with a slot with the highest score, Alan requires that the user’s input contains the exact slot value. However, it is not always possible to specify all variants of values for a slot. For example, values can contain word groups with variable word order, some words in the input phrase may be replaced with synonyms or there can be values that are hard to pronounce.</p>
+<p>To allow Alan to match intents with slots whose values may be less than perfect, you can use slots with fuzzy matching. In this case, Alan matches the intent based on the most similar alternative. Alan relies on the semantic meaning, even if it does not coincide exactly with what the user has said.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Slots with fuzzy matching should be used with caution, as they can lead to overly general matching.</p>
+</div>
+<p>To define a slot with fuzzy matching, add the <code class="docutils literal notranslate"><span class="pre">~</span></code> character after the slot name. As well as for other user-defined slots, you can accompany each value with a label. In this case:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.value</span></code> field of the slot will contain the user’s input exactly as user has said it, not the value you have defined in the script.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.label</span></code> field of the slot can have any value and can be used, for example, to give a proper response to the user.</p></li>
+</ul>
+<p>In the example below, the intent will be matched even if the user skips a part of the item name or names a close variant instead. And to ensure proper verbiage, the slot label is played instead of the slot value in the confirmation phrase.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'I want a $(ORDER~ Double Cheese Burger~Cheese Burger|Spicy Mexican Burger~Mexican Burger|Grilled Hawaiian Burger~Hawaiian Burger)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Your choice is </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORDER</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`You have ordered </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORDER</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="sb">. Is it correct?`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiple-values-in-slots">
+<span id="id3"></span><h2>Multiple values in slots<a class="headerlink" href="#multiple-values-in-slots" title="Permalink to this headline">¶</a></h2>
+<p>If you need to capture multiple slot values at once, you can add a slot to a pattern several times. When such an intent is matched, all pieces of data captured with the slot are collected to an array of values.</p>
+<p>In such a case, <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME.value</span></code> would contain only the value captured with the first slot instance in the pattern.</p>
+<ul class="simple">
+<li><p>To access the list of all values in the array, use the slot name followed by the underscore character, for example: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_</span></code>.</p></li>
+<li><p>To access a specific element in the array, add the element index, for example: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[0].value</span></code>.</p></li>
+</ul>
+<p>Each element in the array has its own <code class="docutils literal notranslate"><span class="pre">.value</span></code> and <code class="docutils literal notranslate"><span class="pre">.label</span></code> fields:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field is populated with the value obtained from the user’s input: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[index].value</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> field can contain a custom value and can be used to give more accurate responses to the user: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[index].label</span></code>.</p></li>
+</ul>
+<p>Let’s assume we want to provide the user with the ability to ask about the price of different pizza sizes with one voice command. We can add the following intent:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">SHOW_REQ</span> <span class="o">=</span> <span class="s1">'How much is a $(D small|medium|large) pizza'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">ALL_REQ</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sb">`</span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+    <span class="sb">`</span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+    <span class="sb">`</span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">SHOW_REQ</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="nx">ALL_REQ</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">));</span>
+    <span class="kd">let</span> <span class="nx">resultMessage</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">resultMessage</span> <span class="o">=</span> <span class="nx">playSizeMessage</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">value</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">resultMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">1</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">resultMessage</span> <span class="o">=</span> <span class="nx">playSizeMessage</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">value</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">resultMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">2</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">resultMessage</span> <span class="o">=</span> <span class="nx">playSizeMessage</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">D_</span><span class="p">[</span><span class="mf">2</span><span class="p">].</span><span class="nx">value</span><span class="p">);</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">resultMessage</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="kd">function</span> <span class="nx">playSizeMessage</span><span class="p">(</span><span class="nx">theSize</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">theSize</span> <span class="o">==</span> <span class="s2">"small"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"A small pizza is 5 dollars"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">theSize</span> <span class="o">==</span> <span class="s2">"medium"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"A medium pizza is 10 dollars"</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">theSize</span> <span class="o">==</span> <span class="s2">"large"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"A large pizza is 15 dollars"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, we use <code class="docutils literal notranslate"><span class="pre">SHOW_REQ</span></code> to define a question the user will ask: <code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">$(D</span> <span class="pre">small|medium|large)</span> <span class="pre">pizza?</span></code> In <code class="docutils literal notranslate"><span class="pre">ALL_REQ</span></code>, we provide all possible combinations for this question. For example, the user can ask:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">small</span> <span class="pre">pizza?</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">small</span> <span class="pre">pizza</span> <span class="pre">and</span> <span class="pre">how</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">large</span> <span class="pre">pizza?</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">small</span> <span class="pre">pizza</span> <span class="pre">and</span> <span class="pre">how</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">medium</span> <span class="pre">pizza</span> <span class="pre">and</span> <span class="pre">how</span> <span class="pre">much</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">large</span> <span class="pre">pizza?</span></code></p></li>
+</ul>
+<p>When the user asks one of the questions above, we collect all captured values for the <code class="docutils literal notranslate"><span class="pre">D</span></code> slot to an array and then play the pizza price for each element in the array with the <code class="docutils literal notranslate"><span class="pre">playSizeMessage()</span></code> function.</p>
+</div>
+<div class="section" id="slot-name-limitations">
+<h2>Slot name limitations<a class="headerlink" href="#slot-name-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Mind the following limitations for user-defined slot names:</p>
+<ul class="simple">
+<li><p>User-defined slot names must start with a letter.</p></li>
+<li><p>You can use the following characters in user-defined slot names: <code class="docutils literal notranslate"><span class="pre">A-Z</span></code>, <code class="docutils literal notranslate"><span class="pre">a-z</span></code>, <code class="docutils literal notranslate"><span class="pre">0-9</span></code> and underscore <code class="docutils literal notranslate"><span class="pre">(_)</span></code>.</p></li>
+<li><p><a class="reference internal" href="predefined-slots.html"><span class="doc">Predefined slot names</span></a> are reserved and cannot be used as user-defined slot names.</p></li>
+<li><p>User-defined slot cannot start with one of the <a class="reference internal" href="predefined-slots.html"><span class="doc">predefined slot names</span></a>. For example, <code class="docutils literal notranslate"><span class="pre">NAMECUSTOM</span></code> will result in an error, while <code class="docutils literal notranslate"><span class="pre">CUSTOMNAME</span></code> will be a valid variant.</p></li>
+</ul>
+<div id="green-background"></div></div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="dynamic-slots.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Dynamic slots</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="slots.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Slots</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">User-defined slots (static)</a><ul>
+<li><a class="reference internal" href="#slot-values-and-labels">Slot values and labels</a></li>
+<li><a class="reference internal" href="#slot-values-in-responses">Slot values in responses</a></li>
+<li><a class="reference internal" href="#slots-with-fuzzy-matching">Slots with fuzzy matching</a></li>
+<li><a class="reference internal" href="#multiple-values-in-slots">Multiple values in slots</a></li>
+<li><a class="reference internal" href="#slot-name-limitations">Slot name limitations</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/custom.js"></script>
+    <script src="../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

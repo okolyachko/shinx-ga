@@ -1,0 +1,782 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Regex slots" href="regex-slots.html" /><link rel="prev" title="User-defined slots (static)" href="user-defined-slots.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-3.5.4, furo 2021.04.11.beta34"/>
+        <title>Dynamic slots | Alan Docs</title>
+      <link rel="stylesheet" href="../_static/styles/furo.css?digest=59ab60ac09ea94ccfe6deddff6d715cce948a6fc">
+    <link rel="stylesheet" href="../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../_static/pygments_dark.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/custom.css" />
+    <link rel="stylesheet" href="../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b">
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/server-api/dynamic-slots/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+</head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../_static/favicon.ico">
+	<link rel="canonical" href="https://alan.app/docs/server-api/dynamic-slots/"/>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTCQV2T397"></script>
+        <script>
+        	window.dataLayer = window.dataLayer || [];
+        	function gtag(){dataLayer.push(arguments);}
+        	gtag('js', new Date());
+		
+        	gtag('config', window.location.hostname === "alan.app" ? 'G-QTCQV2T397' : 'G-H4F9QS7RMX');
+	</script>
+
+
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+<div class="header-new">
+<div class="header-content">
+		<div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+        
+		
+		<div class="right-block">
+		<div class="search-box">   
+			<form class="sidebar-search-container" method="get" action="../search.html">
+				<input class="sidebar-search" placeholder=Search name="q">
+				<input type="hidden" name="check_keywords" value="yes">
+				<input type="hidden" name="area" value="default">
+			</form>
+			
+			
+		</div>
+		<div class="social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+		</div>
+    </div>
+<div class="page">
+  
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <div class="logo-part">
+			<div class="logo"> 
+			
+             <div class="sidebar-logo-container">
+				<a href="https://alan.app"><img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/></a>
+			</div>
+			
+			</div>
+			
+			<div class="docs">
+			
+			<a href="../index.html"> | Docs
+			
+			</div>
+			</a>
+		</div>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../contents.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/alan-logo.svg" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Getting started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/how-works/about.html">How Alan works</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/basics.html">Alan basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/infrastructure.html">Alan infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/deployment.html">Deployment options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/how-works/voice-processing.html">Voice processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/guides/studio.html">Alan Studio</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/projects.html">Alan projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/scripts.html">Voice scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/versioning.html">Versions and environments</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../usage/guides/script-testing.html">Testing and debugging</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/debugging-chat.html">Debugging Chat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/test-view.html">Test View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/logs.html">Alan Studio logs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/in-app-testing.html">In-app testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/playground.html">Alan Playground</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../usage/guides/analytics.html">Voice analytics</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/dashboard.html">Projects dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage/guides/analytics-view.html">Analytics View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/guides/billing.html">Billing and subscriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/button/overview.html">Alan button</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/customization.html">Customizing the voice assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/cohorts.html">Setting up cohorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/button/activation.html">Starting and stopping dialog sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/examples/overview.html">Alan examples</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label for="toctree-checkbox-7"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/predefined-examples.html">Voice script examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/code.html">Integration code examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/examples/github.html">Example apps on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/video/overview.html">Videos</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label for="toctree-checkbox-8"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/studio.html">Alan Studio videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/alan-platform.html">Alan Platform videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/integration.html">Integration videos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/apps.html">Voice-enabled apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/video/course.html">Alan AI course (web app)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/additional/overview.html">Additional resources</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label for="toctree-checkbox-9"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/additional/supported-platforms.html">Supported platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="script-concepts.html">Script concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label for="toctree-checkbox-10"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands-and-responses.html">Commands and responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html">Patterns</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="slots.html">Slots</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label for="toctree-checkbox-11"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="user-defined-slots.html">User-defined slots (static)</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Dynamic slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regex-slots.html">Regex slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="predefined-slots.html">Predefined slots</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contexts.html">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="built-in-javascript-libraries.html">Built-in JavaScript libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Predefined script objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Voice assistant lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">Error handling and re-prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="popups.html">Alan button popups</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="sending-data/communication.html">Communication with the app</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label for="toctree-checkbox-12"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/authdata.html">authData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/visual-state.html">Visual state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sending-data/project-api.html">Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="user-data/overview.html">User data</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label for="toctree-checkbox-13"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="user-data/events.html">User events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-data/client-object.html">Client object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/api-reference.html">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../client-api/client-sdks.html">Alan Client SDKs</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label for="toctree-checkbox-14"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/integration.html">Integrating with Alan</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label for="toctree-checkbox-15"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/web/web-integration.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label for="toctree-checkbox-16"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-api.html">Alan Web SDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/react.html">React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/angular.html">Angular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vue.html">Vue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/ember.html">Ember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/vanilla.html">JavaScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/electron.html">Electron</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/server-side-rendering.html">Server-side rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/web/web-component.html">Web component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/ios/ios-api.html">iOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/android/android-api.html">Android</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../client-api/cross-platform/overview.html">Cross-platform</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label for="toctree-checkbox-17"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/ionic.html">Ionic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/cordova.html">Apache Cordova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/flutter.html">Flutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client-api/cross-platform/react-native.html">React Native</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../client-api/methods/common-api.html">Client API methods</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../client-api/methods/handlers.html">Alan handlers</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label for="toctree-checkbox-18"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/command-handler.html">onCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/state-handler.html">onButtonState handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client-api/methods/event-handler.html">onEvent handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/additional/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/how-tos.html">How-tos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/list-all.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label for="toctree-checkbox-19"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/list/web-list.html">Web</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label for="toctree-checkbox-20"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/adding-voice-to-a-web-application.html">Building a voice assistant for web</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../tutorials/list/food-delivery-tutorial.html">Creating a voice-enabled food delivery app: complete tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label for="toctree-checkbox-21"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-app.html">Step 1: Create a web app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-create-voice-assistant.html">Step 2: Create a voice assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-integrate.html">Step 3: Integrate Alan with the app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-add-command.html">Step 4: Add a voice command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-alternatives.html">Step 5: Specify options and alternatives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slots.html">Step 6: Pick out important data with slots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-several-items.html">Step 7: Add several items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-display-items.html">Step 8: Send a command to display items in the cart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-slot-labels.html">Step 9: Use slot labels to display the order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-remove-items.html">Step 10: Remove items with voice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-highlight-items.html">Step 11: Highlight named items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-checkout-context.html">Step 12: Add the checkout context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-time.html">Step 13: Get the delivery time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-comment.html">Step 14: Capture a comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-populate-fields.html">Step 15: Populate fields with the delivery details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-api-call.html">Step 16: Make an API call to get ingredients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-visual-context.html">Step 17: Get the app visual context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-balance.html">Step 18: Get the balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-start-dialog.html">Step 19: Let Alan start the dialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/list/food-delivery-popup.html">Step 20: Show a popup next to the Alan button</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/using-dynamic-slots.html">Using dynamic slots in patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/list/making-web-api-call.html">Making a Web API call from the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/web/frameworks-list.html">Web frameworks</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label for="toctree-checkbox-22"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-react-app.html">Building a voice assistant for a React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-angular-app.html">Building a voice assistant for an Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-vue-app.html">Building a voice assistant for a Vue app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-ember-app.html">Building a voice assistant for an Ember app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/web/integrating-electron-app.html">Building a voice assistant for an Electron app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ios/ios-list.html">iOS</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label for="toctree-checkbox-23"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/integrating-swift.html">Building a voice assistant for an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/navigating-swift.html">Navigating between views in an iOS app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/sending-data-swift.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/highlighting-swift.html">Highlighing items with voice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/triggering-info-swift.html">Triggering voice script actions without commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ios/greeting-swift.html">Playing a greeting in an iOS Swift app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/android/android-list.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label for="toctree-checkbox-24"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/integrating-java-kotlin.html">Building a voice assistant for an Android Java or Kotlin app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/navigating-kotlin.html">Navigating in an Android app with voice (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/sending-state-kotlin.html">Passing the app state to the voice script (Kotlin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/android/sending-data-kotlin.html">Sending data from the app to the voice script (Kotlin)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/flutter/flutter-list.html">Flutter</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label for="toctree-checkbox-25"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/integrating-flutter.html">Building a voice assistant for a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/navigating-flutter.html">Navigating between views in a Flutter app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/sending-data-flutter.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/flutter/project-api-flutter.html">Sending data to the voice script</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/ionic/ionic-list.html">Ionic</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label for="toctree-checkbox-26"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-angular.html">Building a voice assistant for an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-angular.html">Navigating between tabs in an Ionic Angular app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/sending-data-angular.html">Passing the app state to the voice script (Ionic Angular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/integrating-react.html">Building a voice assistant for an Ionic React app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/ionic/navigating-react.html">Navigating between tabs in an Ionic React app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/react-native/react-native-list.html">React Native</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label for="toctree-checkbox-27"><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/integrating-react-native.html">Building a voice assistant for a React Native app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/sending-commands-react-native.html">Sending commands to the app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/sending-state-react-native.html">Passing the app state to the voice script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/triggering-activities-react-native.html">Triggering activities without voice commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/react-native/navigating-react-native.html">Navigating between screens with voice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="dynamic-slots">
+<h1>Dynamic slots<a class="headerlink" href="#dynamic-slots" title="Permalink to this headline">¶</a></h1>
+<p>The dynamic slots concept is similar to regular user-defined slots. You can add them to patterns to capture important pieces of data from the user’s input. However, regular user-defined slots are static. After the dialog model for your voice assistant has been built, their values cannot be updated.</p>
+<p>Dynamic slots, instead, are adaptive. Use them if you need to update values on a more frequent basis, for example, get them from your database, with an API call or alter them based on what the user has said. Whenever the values for dynamic slots are updated, Alan rebuilds the dialog model at runtime, without restarting the dialog session, which makes the user’s experience more flexible and personalized.</p>
+<p>Consider the following example:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">intent</span><span class="p">(</span><span class="s1">'Show $(FAVORITE flannel shirt|fleece jacket|softshell pants)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Opening the </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">FAVORITE</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> page`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Here, the favorites list remains static and cannot be altered after the dialog model has been built. If we replace it with a dynamic slot, it will be possible to alter the favorites list in runtime. The user will be able to add a new item to the list with the first command and then give the second command to access the added item immediately.</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateUser</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">favorites</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span> <span class="s2">"flannel shirt|fleece jacket|softshell pants"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Add $(ITEM* .+) to favorites'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">favorites</span><span class="p">.</span><span class="nx">en</span> <span class="o">+=</span> <span class="s1">'|'</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ITEM</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">favorites</span><span class="p">.</span><span class="nx">en</span><span class="p">);</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ITEM</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> is added`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Show $(FAVORITE u:favorites)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Opening the </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">FAVORITE</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> page`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>For more details on this example, see <a class="reference external" href="#updating-dynamic-slot-values-with-voice-commands">Updating dynamic slot values with voice commands</a>.</p>
+<div class="section" id="defining-dynamic-slots">
+<h2>Defining dynamic slots<a class="headerlink" href="#defining-dynamic-slots" title="Permalink to this headline">¶</a></h2>
+<p>You can define dynamic slots in different ways:</p>
+<ul class="simple">
+<li><p>With the <code class="docutils literal notranslate"><span class="pre">project</span></code> global object if dynamic slots must be accessible globally <a class="reference external" href="#defining-dynamic-slots-at-the-project-level">at the project level</a>.</p></li>
+<li><p>With the <code class="docutils literal notranslate"><span class="pre">userData</span></code> object if dynamic slots must be accessible within the <a class="reference external" href="#defining-dynamic-slots-at-the-dialog-session-level">user dialog session</a>.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">visualState</span></code> if values of dynamic slots are <a class="reference external" href="#passing-dynamic-slot-values-from-the-app">passed from the client app</a>.</p></li>
+</ul>
+<div class="section" id="defining-dynamic-slots-at-the-project-level">
+<h3>Defining dynamic slots at the project level<a class="headerlink" href="#defining-dynamic-slots-at-the-project-level" title="Permalink to this headline">¶</a></h3>
+<p>A dynamic slot defined at the project level can be accessed by all users interacting with the voice assistant. Use this type of dynamic slots to work with generic data that must be available to all app users.</p>
+<p>To define a dynamic slot at the project level, save the values of the dynamic slot to the <a class="reference internal" href="objects.html#project"><span class="std std-ref">project</span></a> global object. To add such a dynamic slot to patterns, specify the <code class="docutils literal notranslate"><span class="pre">$</span></code> sign followed by brackets <code class="docutils literal notranslate"><span class="pre">()</span></code>.
+In brackets, specify the slot name followed by <code class="docutils literal notranslate"><span class="pre">p:variablename</span></code>.</p>
+<p>In the example below, values of a dynamic slot are saved to the <code class="docutils literal notranslate"><span class="pre">project.movies</span></code> variable when the <a class="reference internal" href="api/api-reference.html#oncreateproject"><span class="std std-ref">onCreateProject</span></a> callback is invoked, and <code class="docutils literal notranslate"><span class="pre">$(MOVIE</span> <span class="pre">p:movies)</span></code> is added to the pattern.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that values in the <code class="docutils literal notranslate"><span class="pre">project</span></code> object are stored in the language key: <code class="docutils literal notranslate"><span class="pre">en</span></code>. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see <a class="reference external" href="#updating-dynamic-slot-values-with-voice-commands">Updating dynamic slot values with voice commands</a>.</p>
+</div>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">movies</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span> <span class="s2">"Sergio|Valley Girl|All Day and a Night|The Half of It"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'When is $(MOVIE p:movies) on?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Let me check the showtime for </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">MOVIE</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-dynamic-slots-at-the-dialog-session-level">
+<h3>Defining dynamic slots at the dialog session level<a class="headerlink" href="#defining-dynamic-slots-at-the-dialog-session-level" title="Permalink to this headline">¶</a></h3>
+<p>A dynamic slot defined at the dialog session level can be accessed only by the user interacting with the voice assistant during the current dialog session. Use this type of dynamic slots to work with user-specific and user-sensitive information, for example, to handle the data that differs depending on the user logged in to the system.</p>
+<p>Values of such dynamic slots exist only while the dialog session is running. After the session ends or the user reconnects to the app in another session, all data stored in such dynamic slots is removed.</p>
+<p>To define a dynamic slot at the dialog session level, save the values of the dynamic slot to the <a class="reference internal" href="objects.html#userdata"><span class="std std-ref">userData</span></a> object. To add such a dynamic slot to patterns, specify the <code class="docutils literal notranslate"><span class="pre">$</span></code> sign followed by brackets <code class="docutils literal notranslate"><span class="pre">()</span></code>.
+In brackets, specify the slot name followed by <code class="docutils literal notranslate"><span class="pre">u:variablename</span></code>.</p>
+<p>In the example below, values of a dynamic slot are saved to the <code class="docutils literal notranslate"><span class="pre">p.userData.contacts</span></code> variable when the <a class="reference internal" href="api/api-reference.html#oncreateuser"><span class="std std-ref">onCreateUser</span></a> callback is invoked, and <code class="docutils literal notranslate"><span class="pre">$(CONTACT</span> <span class="pre">u:contacts)</span></code> is added to the pattern.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that values in the <code class="docutils literal notranslate"><span class="pre">userData</span></code> object are stored in the language key: <code class="docutils literal notranslate"><span class="pre">en</span></code>. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see <a class="reference external" href="#updating-dynamic-slot-values-with-voice-commands">Updating dynamic slot values with voice commands</a>.</p>
+</div>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateUser</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">contacts</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"Anna|Emma|John|Mark"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Show details for $(CONTACT u:contacts)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Getting contact details for </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">CONTACT</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-dynamic-slot-values-from-the-app">
+<h3>Passing dynamic slot values from the app<a class="headerlink" href="#passing-dynamic-slot-values-from-the-app" title="Permalink to this headline">¶</a></h3>
+<p>You can define dynamic slots with the help of the <a class="reference internal" href="objects.html#visual"><span class="std std-ref">visual</span></a> object. This type of dynamic slots can be helpful if you need to handle data sent from the app to the voice script. In this case, you can pass the necessary data in the <code class="docutils literal notranslate"><span class="pre">visual</span></code> object, access this data through the keys of the passed object and save it to a dynamic slot.</p>
+<p>To add such a dynamic slot to patterns, specify the <code class="docutils literal notranslate"><span class="pre">$</span></code> sign followed by brackets <code class="docutils literal notranslate"><span class="pre">()</span></code>. In brackets, specify the dynamic slot name followed by <code class="docutils literal notranslate"><span class="pre">v:variablename</span></code>.</p>
+<p>In the example below, we retrieve the values passed in the <code class="docutils literal notranslate"><span class="pre">visual</span></code> object and save them to the <code class="docutils literal notranslate"><span class="pre">p.visual.menu</span></code> variable when the <a class="reference internal" href="api/api-reference.html#onvisualstate"><span class="std std-ref">onVisualState</span></a> callback is invoked, and <code class="docutils literal notranslate"><span class="pre">$(ITEM</span> <span class="pre">v:menu)</span></code> is then added to the pattern.</p>
+<p>First, the visual state is set in the app:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="kd">function</span> <span class="nx">myFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pasta"</span><span class="p">,</span> <span class="s2">"burger"</span><span class="p">,</span> <span class="s2">"quesadilla"</span><span class="p">]</span>
+    <span class="nx">alanBtnInstance</span><span class="p">.</span><span class="nx">setVisualState</span><span class="p">({</span><span class="nx">values</span><span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Next, the passed items are saved to the items list in the voice script:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">onVisualState</span><span class="p">((</span><span class="nx">p</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">visual</span><span class="p">.</span><span class="nx">menu</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">en</span><span class="o">:</span> <span class="s2">""</span><span class="p">};</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">visual</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">en</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'|'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Give me a $(ITEM~ v:menu)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Adding one </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ITEM</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> to your order`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that values in the <code class="docutils literal notranslate"><span class="pre">visual</span></code> object are stored in the language key: <code class="docutils literal notranslate"><span class="pre">en</span></code>. Always follow this pattern to be able to properly update the dynamic slot values later when needed. For details, see <a class="reference external" href="#updating-dynamic-slot-values-with-voice-commands">Updating dynamic slot values with voice commands</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="updating-dynamic-slot-values-with-voice-commands">
+<h2>Updating dynamic slot values with voice commands<a class="headerlink" href="#updating-dynamic-slot-values-with-voice-commands" title="Permalink to this headline">¶</a></h2>
+<p>You can not only get dynamic slots values from external sources, but also alter them with voice commands. In the example below, the shopping list is extended when the user gives a command to add a specific item. The resulting string of slot values is then logged to the console.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateUser</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">shopping</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span> <span class="s2">"coffee|sugar|honey"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Do I need $(SHOP~ u:shopping)?'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">SHOP</span><span class="si">}</span><span class="sb"> is in the shopping list`</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Add $(ITEM* .+)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">shopping</span><span class="p">.</span><span class="nx">en</span> <span class="o">+=</span> <span class="s1">'|'</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ITEM</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ITEM</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> is added`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">userData</span><span class="p">.</span><span class="nx">shopping</span><span class="p">.</span><span class="nx">en</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dynamic slot values are saved by language keys, for example: <code class="docutils literal notranslate"><span class="pre">{en:</span> <span class="pre">"coffee|sugar|honey"}</span></code>, where <code class="docutils literal notranslate"><span class="pre">en</span></code> denotes the current voice assistant language. When you update the values list, make sure you save data in the language key as shown in the example above.</p>
+</div>
+</div>
+<div class="section" id="capturing-several-values-with-dynamic-slots">
+<h2>Capturing several values with dynamic slots<a class="headerlink" href="#capturing-several-values-with-dynamic-slots" title="Permalink to this headline">¶</a></h2>
+<p>You can add the same dynamic slot to the pattern several times, just like regular user-defined slots. When such an intent is matched, all pieces of data captured with this dynamic slot are collected to an array of values.</p>
+<ul class="simple">
+<li><p>To access the list of all values in the array, use the dynamic slot
+name followed by the underscore character, for example: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_</span></code>.</p></li>
+<li><p>To access a specific element in the array, specify the element index, for
+example: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[0].value</span></code>.</p></li>
+</ul>
+<p>Let’s say you want the user to filter the list of products by brand. You can add the following voice command to the script:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">BRANDS</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span> <span class="s2">"Apple|Asus|Microsoft|Samsung"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Getting the products list'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>As in regular slots, in dynamic slots each element in the array has its own <code class="docutils literal notranslate"><span class="pre">.value</span></code> and <code class="docutils literal notranslate"><span class="pre">.label</span></code> fields:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> field is populated with values obtained from the user’s input. To access the <code class="docutils literal notranslate"><span class="pre">value</span></code> field, refer to it in the following way: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[index].value</span></code>. In the example above, to access the value of the first element in the brands array, use <code class="docutils literal notranslate"><span class="pre">p.B_[0].value</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> field can contain custom values and can be used to give more accurate responses to the user. To access the <code class="docutils literal notranslate"><span class="pre">label</span></code> field, refer to it in the following way: <code class="docutils literal notranslate"><span class="pre">p.SLOTNAME_[index].label</span></code>. In the example below, to access the label of the first element in the brands array, use <code class="docutils literal notranslate"><span class="pre">p.B_[0].label</span></code>.</p></li>
+</ul>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">BRANDS</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"Apple~ios|Asus~android|Microsoft~win|Samsung~android"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Show me $(B p:BRANDS) (and|or|) $(B p:BRANDS|) (and|or|) $(B p:BRANDS|)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">'Getting the products list'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">B_</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">label</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">B_</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-dynamic-slots-with-a-short-form">
+<h2>Defining dynamic slots with a short form<a class="headerlink" href="#defining-dynamic-slots-with-a-short-form" title="Permalink to this headline">¶</a></h2>
+<p>To define dynamic slots, you can use a short form, without the name preceding the slot variable, for example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$(p:ITEM)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$(u:ITEM)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$(v:ITEM)</span></code></p></li>
+</ul>
+<p>You can refer to the value captured with such a dynamic slot through the slot name: <code class="docutils literal notranslate"><span class="pre">p.ITEM</span></code> and <code class="docutils literal notranslate"><span class="pre">p.ITEM.value</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When working with short forms, save patterns with dynamic slots to a variable and use it for the command pattern. Short forms added directly to the command pattern are not supported at the moment.</p>
+</div>
+<p>In the example below, the <code class="docutils literal notranslate"><span class="pre">p:ORIGIN</span></code> dynamic slot is used to capture the movie origin:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">ORIGIN</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"Italian|American|French|German"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN) movies, (please|)"</span><span class="p">,</span>
+    <span class="s2">"What are (the|) (best|top rated|popular|good) $(p:ORIGIN) movies?"</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="nx">REQUEST</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Here is the list of top rated </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORIGIN</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb"> movies`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="making-dynamic-slots-optional">
+<h2>Making dynamic slots optional<a class="headerlink" href="#making-dynamic-slots-optional" title="Permalink to this headline">¶</a></h2>
+<p>As well as regular user-defined slots, dynamic slots can be optional. To mark a dynamic slot as optional, add the vertical bar <code class="docutils literal notranslate"><span class="pre">|</span></code> at the end of it. Both regular dynamic slots and dynamic slots defined with a short form can be made optional.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">ORIGIN</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"Italian~Italy|American~U.S.|French~France|German~Germany"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"(Do you have|Find|Show me|I'm looking for) (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies, (please|)"</span><span class="p">,</span>
+    <span class="s2">"What are (the|) (best|top rated|popular|good) $(p:ORIGIN|) movies?"</span><span class="p">,</span>
+<span class="p">];</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="nx">REQUEST</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="s2">"Here is a list of top rated movies"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORIGIN</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">ORIGIN</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">pattern</span> <span class="o">+=</span> <span class="sb">` from </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">ORIGIN</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">pattern</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-fuzzy-matching-with-dynamic-slots">
+<h2>Using fuzzy matching with dynamic slots<a class="headerlink" href="#using-fuzzy-matching-with-dynamic-slots" title="Permalink to this headline">¶</a></h2>
+<p>You can enable <a class="reference internal" href="user-defined-slots.html#slots-with-fuzzy-matching"><span class="std std-ref">fuzzy matching</span></a> for dynamic slots. Fuzzy matching can be used both with regular dynamic slots:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(</span><span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">DRINKS</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="s1">'Get me $(BEER~ p:DRINKS)'</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, here is your </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">BEER</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>and dynamic slots defined with a short form:</p>
+<div class="highlight-JavaScript notranslate"><div class="highlight"><pre><span></span><span class="nx">onCreateProject</span><span class="p">(</span><span class="nx">p</span><span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">DRINKS</span> <span class="o">=</span> <span class="p">{</span><span class="nx">en</span><span class="o">:</span><span class="s2">"kentucky bourbon ale~kentucky bourbon ale|imperial lager beer~imperial lager beer|peche stout beer~peche stout beer|amber lager beer~amber lager beer"</span><span class="p">};</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">REQUEST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'Get me $(~ p:DRINKS), (please|)'</span><span class="p">,</span>
+    <span class="s1">'Is $(~ p:DRINKS) on the menu?'</span>
+<span class="p">];</span>
+
+<span class="nx">intent</span><span class="p">(</span><span class="nx">REQUEST</span><span class="p">,</span> <span class="nx">p</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="sb">`Sure, here is your </span><span class="si">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">DRINKS</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p>Tutorial: <a class="reference internal" href="../tutorials/list/using-dynamic-slots.html"><span class="doc">Using dynamic slots in patterns</span></a></p>
+<div id="green-background"></div></div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="regex-slots.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Regex slots</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="user-defined-slots.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">User-defined slots (static)</div>
+                
+              </div>
+            </a>
+        </div>
+        
+	  <div class="alan-footer">
+	  <div class="footer-logo-and-social-icons">
+		<div class="footer-logo-and-text">
+		<a class="footer-logo" aria-label="Link to alan.app" href="https://alan.app/"></a>
+		</div>
+		<div class="footer-text">
+		<span>Alan<sup>®</sup> is a trademark of Alan AI, Inc.</span>
+		<span>Handcrafted in Sunnyvale, California</span>
+		</div>
+		<div class="footer-other">
+		<div class="footer-social">
+			<a href="https://twitter.com/alanvoiceai" target="_blank" class="fa fa-twitter"></a>
+			<a href="http://linkedin.com/company/alanvoiceai" target="_blank" class="fa fa-linkedin"></a>
+			<a href="https://www.facebook.com/alanvoiceai/" target="_blank" class="fa fa-facebook"></a>
+			<a href="https://www.instagram.com/alanvoiceai/" target="_blank" class="fa fa-instagram"></a>
+			<a href="https://www.youtube.com/channel/UCrsg0b32nL6L2j5jG7uxOuw" target="_blank" class="fa fa-youtube-play"></a>
+			<a href="https://alanaigroup.slack.com/join/shared_invite/enQtNzMzOTE5MTIwMjg4LWI4ZmM4MTNkMTdmY2M0ZWEwODlmZDQ5Y2ZkMjUzNmMyZDJiMzA0Y2M1NDdhYzZjYWFlZTA5NjM4OTU0MWFmNWU#/shared-invite/email" target="_blank" class="fa fa-slack"></a>
+			<a href="https://github.com/alan-ai" target="_blank" class="fa fa-github"></a>
+        </div>
+		</div>
+	  </div>
+	  <div class="footer-badges">
+	  <div class="footer-badges-info">
+	  <div class="footer-badges-info-icon"></div>
+	  <div>Download Alan Playground to see how Conversational Voice Experiences can add value to your application or test your Alan Studio Projects.</div>
+	  </div>
+	  
+	  </div>
+	  <div class="footer-badges-imgs">
+	  <a class="footer_badges_imgs_app-store" href="https://apps.apple.com/ca/app/alan-playground/id1474478921"></a>
+	  <a class="footer_badges_imgs_google-play" href="https://play.google.com/store/apps/details?id=app.alan.playground"></a>
+	  </div>
+	  
+	  </div>
+	  
+      </footer>
+	
+    </div>
+	
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Dynamic slots</a><ul>
+<li><a class="reference internal" href="#defining-dynamic-slots">Defining dynamic slots</a><ul>
+<li><a class="reference internal" href="#defining-dynamic-slots-at-the-project-level">Defining dynamic slots at the project level</a></li>
+<li><a class="reference internal" href="#defining-dynamic-slots-at-the-dialog-session-level">Defining dynamic slots at the dialog session level</a></li>
+<li><a class="reference internal" href="#passing-dynamic-slot-values-from-the-app">Passing dynamic slot values from the app</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#updating-dynamic-slot-values-with-voice-commands">Updating dynamic slot values with voice commands</a></li>
+<li><a class="reference internal" href="#capturing-several-values-with-dynamic-slots">Capturing several values with dynamic slots</a></li>
+<li><a class="reference internal" href="#defining-dynamic-slots-with-a-short-form">Defining dynamic slots with a short form</a></li>
+<li><a class="reference internal" href="#making-dynamic-slots-optional">Making dynamic slots optional</a></li>
+<li><a class="reference internal" href="#using-fuzzy-matching-with-dynamic-slots">Using fuzzy matching with dynamic slots</a></li>
+<li><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  
+  </main>
+</div>
+</div>
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/custom.js"></script>
+    <script src="../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

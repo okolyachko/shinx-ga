@@ -1,0 +1,38 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+   <div id="wide-content"></div>
+
+Web tutorials
+=============
+
+Use these tutorials to quickly grasp the main Alan's concepts and build a voice-enabled web app:
+
+- :doc:`Building a voice assistant for web (JavaScript) <adding-voice-to-a-web-application>`
+     
+  Learn how to to create a voice interface for a web app or a website from scratch and write simple voice commands.
+	  
+- :doc:`Creating a voice-enabled food delivery app: complete tutorial <food-delivery-tutorial>`
+     
+  Learn how to create a completely voice-enabled food delivery application.
+
+- :doc:`Using dynamic slots in patterns <using-dynamic-slots>`
+   
+  Learn how to make the dialog with your voice assistant flexible and adjusting to dynamically changing data.
+  
+- :doc:`Making a Web API call from the voice script <making-web-api-call>`
+   
+  Learn how to make a call to a Web API from the voice script and get data from an external source.
+  
+  
+  .. toctree::
+   :caption: Web
+   :maxdepth: 1
+   :hidden:
+   
+   Building a voice assistant for web<adding-voice-to-a-web-application>
+   Creating a voice-enabled food delivery app: complete tutorial<food-delivery-tutorial>
+   Using dynamic slots in patterns<using-dynamic-slots>
+   Making a Web API call from the voice script<making-web-api-call>
+   
+	

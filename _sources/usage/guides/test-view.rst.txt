@@ -1,0 +1,70 @@
+Test View
+=========
+
+For comprehensive and automated dialog testing, you can switch to the Test View in Alan Studio. The Test View lets you create test cases and repeatedly run them against new versions of the voice script. This way, you can quickly validate your dialog and make sure all requirements to the conversational flow are met at any stage of the development process.
+
+To test a voice script in the Test View:
+
+1. In the top right corner of the code editor, click **Test**.
+2. In the left pane, click **Add Case**, specify the case name and click **OK**.
+3. In the dialog box, create a dialog branch you want to test:
+
+   -  Enter voice commands that the user will give while following the dialog branch.
+
+   -  To validate Alan’s responses, in the left pane of the code editor, set the **Show Expected Responses** toggle to the *On* position. Then hover over a voice command in the branch and click the **Add expected response** icon. In the box below, enter one or more phrases with which the voice assistant must reply.
+
+      To specify compound responses, use ``AND`` and ``OR``. If a phrase contains an apostrophe, enclose it in double quotes, for example: ``hello OR (hi AND "what's up")``.
+
+   -  To set the visual state for the dialog branch or a specific command, click the **Set visual state** icon and enter the visual state as JSON. For details, see :ref:`Setting the visual
+      state <Setting the visual state>`.
+
+   -  To test the dialog branch in your app or in Alan Playground, click **Scan QR** and scan the code with your device camera. For details, see :doc:`In-app testing <in-app-testing>`.
+
+4. To add another dialog branch, click the plus icon to the right of the dialog box and create the branch as described above.
+
+Once your test case is set up, in the left pane of the code editor, click **Run all**. Alan will run the test case against the current version of the voice script and mark the dialog branches as successfully passed or failed.
+
+.. image:: /_static/assets/img/script-concepts/test-mode.png
+
+The Alan Platform allows you to easily save and share the created test cases. You can:
+
+-  `Export and import test cases <#exporting-and-importing-test-cases>`__ to save and copy them between projects
+-  `Save test cases to GitHub <#saving-test-cases-to-github>`__ to share them with other team members
+
+Exporting and importing test cases
+----------------------------------
+
+To save a test case for later or transfer it to another project on your
+account, use the **Import/Export** option in Alan Studio.
+
+1. In the left pane of the Test View, click **Import/Export**.
+2. In the top right corner, click **Copy** to copy the raw test case data and save it in a file.
+3. To import a test case to an Alan Studio project, in the Test View, click **Import/Export**, paste the copied data and click **Apply Changes**.
+
+.. note:: 
+
+   If a test case with the same name already exists in your project, Alan will replace the existing test case with the imported one.
+
+.. image:: /_static/assets/img/studio/test-mode-import.png
+
+
+.. _Saving test cases to GitHub:
+
+Saving test cases to GitHub
+---------------------------
+
+You can integrate your voice assistant project with GitHub and store the created test cases in a GitHub repository, just like voice script files. This option can be helpful, for example, if you want to share test cases with other team members working on your voice assistant. For details, see :ref:`Sharing and keeping scripts in
+GitHub <Sharing and keeping scripts in GitHub>`.
+
+Voice scripts and test cases are saved to the same target. Once you synchronize with GitHub, Alan pulls the content from the selected repository and branch and adds it to your project:
+
+-  Voice script files (JS) are added to the code editor
+-  Test case files (TESTCASE) are added to the Test View
+
+When you push the changes to GitHub, Alan pushes both changes made to voice scripts and test cases. In case of a conflict, Alan will prompt you to sequentially resolve conflicts for voice scripts and test cases.
+
+.. image:: /_static/assets/img/studio/test-mode-git.png
+
+.. raw:: html
+
+   <div id="blue-background"></div>

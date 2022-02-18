@@ -1,0 +1,1059 @@
+Client API methods
+==================
+
+Alan exposes a set of client API methods that you can use to enable communication between the client app and Alan and trigger voice activities on the client side.
+
+The client API methods are supported on all platforms:
+
+-  `setVisualState()`_
+-  `callProjectApi()`_
+-  `playText()`_
+-  `playCommand()`_
+-  `activate()`_
+-  `deactivate()`_
+-  `isActive()`_
+-  `remove()`_
+
+.. _setVisualState():
+
+setVisualState()
+----------------
+
+Sets the visual state for the client app. Use this method to inform the voice assistant about the app's visual context, for example, the currently active screen, state of the cart and so on. 
+
+On the voice script side, the data passed with this method can be accessed through the :ref:`visual <visual>` object. 
+For details, see :doc:`Visual state  <../../server-api/sending-data/visual-state>`.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   setVisualState(visualStateData:object)
+
+**Parameters**
+
++-----------------------+------------+------------------------------------------------+
+| **Name**              | **Type**   | **Description**                                |
++=======================+============+================================================+
+| ``visualStateData``   | object     | JSON object that represents the visual state   |
++-----------------------+------------+------------------------------------------------+
+
+
+**Examples**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		// Setting the visual state in the app
+		alanBtnInstance.setVisualState({data:"your data"});
+		
+	
+    **See also**
+	
+    How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+
+	   /// Setting the visual state in the app
+	   - (void)setVisualState {
+	     /// Providing any params
+	     [self.button setVisualState:@{@"data":@"your data"}];
+	   }
+	   
+	
+    **See also**
+	
+    How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	   /// Setting the visual state in the app
+	   func setVisualState() {
+	     /// Providing any params
+	     self.button.setVisualState(["data":"your data"])
+	   }
+	   
+	
+    **See also**
+	
+    - How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+    - Tutorial: :doc:`Passing the app state to the voice script <../../tutorials/ios/sending-data-swift>`	
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+
+	   /// Setting the visual state in the app
+	   fun setVisualState() {
+	     /// Providing any params
+	     val params = JSONObject()
+	     try {
+		   params.put("data", "your data")
+	     } catch (e: JSONException) {
+		   Log.e("AlanButton", e.message)
+	     }
+	     alanButton?.setVisualState(params.toString())
+	   }
+
+    
+    **See also**
+	
+    How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`	   
+
+.. tabbed:: Java
+
+    .. code-block:: java
+
+	   /// Setting the visual state in the app
+	   void setVisualState() {
+	     /// Providing any params
+	     JSONObject params = new JSONObject();
+	     try {
+		   params.put("data","your data");
+	     } catch (JSONException e) {
+		   Log.e("AlanButton", e.getMessage());
+	     }
+	     alanButton.setVisualState(params.toString());
+	   }
+    
+	
+    **See also**
+	
+    How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`	   
+	   
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Setting the visual state in the app
+          void _setVisualState() {
+            /// Providing any params with json
+            var visualState = jsonEncode({"data":"your data"});
+            AlanVoice.setVisualState(visualState);
+          }
+        }
+    
+	
+    **See also**
+	
+    - How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+    - Tutorial: :doc:`Passing the app state to the voice script <../../tutorials/flutter/sending-data-flutter>`
+
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.setVisualState({screen: 'homePage'});
+        });
+	
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.setVisualState({screen: 'homePage'});
+		
+    
+    **See also**
+	
+    - How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+    - Tutorial: :doc:`Passing the app state to the voice script <../../tutorials/ionic/sending-data-angular/>`
+    - :ref:`Communicating between components <Communicating between components>`	
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+	
+	   /// Setting the visual state in the app
+	   setVisualState() {
+	     /// Providing any params with json
+	     AlanManager.setVisualState({"data":"your data"});
+	   }
+	
+	
+    **See also**
+	
+    - How-to: :ref:`Send information about the app visual context to the voice script <how-to-send-information-about-the-app-visual-context-to-the-voice-script>`
+    - Tutorial: :doc:`Passing the app state to the voice script <../../tutorials/react-native/sending-state-react-native>`	
+	   
+		
+.. _callProjectApi():	
+		
+callProjectApi()
+----------------
+
+Calls a project API method defined in the voice script in the Alan Studio project. Use the project API functionality to:
+
+- Pass arbitrary data from the app to the voice script
+- Trigger activities without a voice command
+
+For details, see :doc:`Project API <../../server-api/sending-data/project-api>`.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   callProjectApi(method:string, data:object, callback:function)
+		
+
+**Parameters**
+
++----------------+------------+------------------------------------------------------------------------+
+| **Name**       | **Type**   | **Description**                                                        |
++================+============+========================================================================+
+| ``method``     | string     | Project API method name that is defined in the voice script            |
++----------------+------------+------------------------------------------------------------------------+
+| ``data``       | object     | Any object with arbitrary data that must be sent to the voice script   |
++----------------+------------+------------------------------------------------------------------------+
+| ``callback``   | function   | Callback to be called from the project API method                      |
++----------------+------------+------------------------------------------------------------------------+
+
+.. code:: js
+
+    // Defining a project API method in the voice script
+    projectAPI.setClientData = function(p, param, callback) {
+      p.userData.data = param.data;
+      callback();
+    };
+	
+
+**Examples**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+        // Calling the project API method in the app
+        alanBtnInstance.callProjectApi("setClientData", {value:"your data"}, function (error, result){
+          // Handling error and result
+        });
+		
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+
+	   /// Calling the project API method in the app
+	   - (void)callProjectApi {
+	     /// Providing any params
+	     [self.button callProjectApi:@"script::funcName" withData:@{@"data":@"your data"} callback:nil];
+	   }
+	   
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	   /// Calling the project API method in the app
+	   func callProjectApi() {
+	     /// Providing any params
+	     self.button.callProjectApi("script::funcName", withData: ["data":"your data"], callback: nil)
+	   }
+	   
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    - Tutorial: :doc:`Triggering voice script actions without commands <../../tutorials/ios/triggering-info-swift>`
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+		
+	   /// Calling the project API method in the app
+	   fun callProjectApi() {
+	     /// Providind any params
+	     val params = JSONObject()
+	     try {
+		   params.put("data", "your data")
+	     } catch (e: JSONException) {
+		   Log.e("AlanButton", e.message)
+	     }
+	     alanButton?.callProjectApi("script::funcName", params.toString())
+	   }
+	   
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    
+
+.. tabbed:: Java
+
+    .. code-block:: java
+		
+	   /// Calling the project API method in the app
+	   void callProjectApi() {
+	     /// Providing any params
+	     JSONObject params = new JSONObject();
+	     try {
+		   params.put("data","your data");
+	     } catch (JSONException e) {
+		   Log.e("AlanButton", e.getMessage());
+	     }
+	     alanButton.callProjectApi("script::funcName", params.toString());
+	   }
+
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    	   
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Calling the project API method in the app
+          void _callProjectApi() {
+            /// Providing any params with json
+            var params = jsonEncode({"data":"your data"});
+            AlanVoice.callProjectApi("script::funcName", params);
+          }
+        }
+		
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    - Tutorial: :doc:`Sending data to the voice script <../../tutorials/flutter/project-api-flutter>`
+    
+	
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        // Calling the project API method in the app
+        var myAlanBtn = document.getElementById('myAlanBtn');
+		
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.callProjectApi("myFunc", {myData: 123}, function (error, result) {
+            console.log("cb from myFunc was received", error, result);
+          });
+        });
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        // Calling the project API method in the app
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.callProjectApi("myFunc", {myData: 123}, function (error, result) {
+          console.log("cb from myFunc was received", error, result);
+        });
+		
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    - :ref:`Communicating between components <Communicating between components>`
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+        /// Calling the project API method in the app
+        callProjectApi() {
+          /// Providing any params with json
+          AlanManager.callProjectApi(
+            'script::funcName', {"data":"your data"},
+            (error, result) => {
+              if (error) {
+                console.error(error);
+              } else {
+                console.log(result);
+              }
+            },
+          )
+        }
+		
+    **See also**
+	
+    - How-to: :ref:`How to send data from the app to the voice script <how-to-send-data-from-the-app-to-the-voice-script>`
+    - How-to: :ref:`How to call a function in the voice script from the app <how-to-call-a-function-in-the-voice-script-from-the-app>`
+    - Tutorial: :doc:`Triggering activities without voice commands <../../tutorials/react-native/triggering-activities-react-native>`
+
+.. _playText():		
+
+playText()
+----------
+
+Plays a text string passed to the method.
+
+For the voice assistant to play the text message, make sure the Alan button is activated. To check the button state and activate the button programmatically, use the :doc:`onButtonState handler <state-handler>`, `isActive()`_ and `activate()`_ client API methods.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   playText(text:string)	
+
+
+**Parameters**
+
++------------+------------+----------------------------+
+| **Name**   | **Type**   | **Description**            |
++============+============+============================+
+| ``text``   | string     | Text string to be played   |
++------------+------------+----------------------------+
+
+**Examples**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.playText("Hi! I am Alan");
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+    
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+
+	   /// Playing any text message
+	   - (void)playText {
+	     /// Providing text as string param
+	     [self.button playText:@"Hi"];
+	   }
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	   /// Playing any text message
+	   func playText() {
+	     /// Providing text as string param
+	     self.button.playText("Hi")
+	   }
+	   
+    **See also**
+	
+    Tutorial: :doc:`Playing a greeting in an iOS Swift app <../../tutorials/ios/greeting-swift>`
+
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+
+	   /// Playing any text message
+	   fun playText() {
+	     /// Providing text as string param
+	     alanButton?.playText("Hi")
+	   }	
+	   
+.. tabbed:: Java
+
+    .. code-block:: java
+
+	   /// Playing any text message
+	   void playText() {
+	     /// Providing text as string param
+	     alanButton.playText("Hi");
+	   }
+ 
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+        /// Playing any text message
+          void _playText() {
+            /// Providing text as string param
+            AlanVoice.playText("Hi");
+          }
+        }
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+
+		
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.playText("Hi! I am Alan");
+        });
+		
+	
+	
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.playText("Hi! I am Alan");
+		
+    **See also**
+	
+    - How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+    - :ref:`Communicating between components <Communicating between components>`
+
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+	   /// Playing any text message
+	   playText() {
+	     /// Providing text as string param
+	     AlanManager.playText("Hi");
+	   }
+
+
+playCommand()
+-------------
+
+Executes a command locally in the client app. The command is handled by the :doc:`onCommand handler <command-handler>`.
+
+For the voice assistant to play messages provided in the command, make sure the Alan button is activated. To check the button state and activate the button programmatically, use the :doc:`onButtonState handler <state-handler>`, `isActive()`_ and `activate()`_ client API methods.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   playCommand(command:object)
+
+
+
+**Parameters**
+
++---------------+------------+-----------------------------------------+
+| **Name**      | **Type**   | **Description**                         |
++===============+============+=========================================+
+| ``command``   | object     | JSON object that represents a command   |
++---------------+------------+-----------------------------------------+
+
+**Examples**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.playCommand({command:"navigate", screen: "settings"});
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+	
+        /// Executing a command locally
+        - (void)playCommand {
+          /// Providing any params
+          [self.button playCommand:@{@"action":@"openSomePage"}];
+        }
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	   /// Executing a command locally
+	   func playCommand() {
+	     /// Providing any params
+	     self.button.playCommand(["action":"openSomePage"])
+	   }
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+
+	   /// Executing a command locally
+	   fun playCommand() {
+	     /// Providing any params
+	     val params = JSONObject()
+	     try {
+		   params.put("action", "openSomePage")
+	     } catch (e: JSONException) {
+		   e.message?.let { Log.e("AlanButton", it) }
+	     }
+	     alanButton?.playCommand(params.toString(), null)
+	   }
+
+.. tabbed:: Java
+
+    .. code-block:: java
+
+	   /// Executing a command locally
+	   void playCommand() {
+	     /// Providing any params
+	     JSONObject params = new JSONObject();
+	     try {
+		   params.put("action","openSomePage");
+	     } catch (JSONException e) {
+		   Log.e("AlanButton", e.getMessage());
+	     }
+	     alanButton.playCommand(params.toString(), null);
+	   }	
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Executing a command locally
+          void _playCommand() {
+            /// Providing any params with json
+            var command = jsonEncode({"action":"openSomePage"});
+            AlanVoice.playCommand(command);
+          }
+        }
+		
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.playCommand({command:"navigate", screen: "settings"});
+        });
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.playCommand({command:"navigate", screen: "settings"});
+		
+    **See also**
+	
+    :ref:`Communicating between components <Communicating between components>`		
+		
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+	   /// Executing a command locally
+	   playCommand() {
+	     /// Providing any params with json
+	     AlanManager.playCommand({"action":"openSomePage"})
+	   }
+	   
+.. _activate():
+						
+activate()
+----------
+
+Activates the Alan button programmatically.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   activate()			
+
+
+**Example**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.activate();
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+	
+        /// Activating the Alan button programmatically
+        - (void)activate {
+          [self.button activate];
+        }
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	    /// Activating the Alan button programmatically
+	    func activate() {
+	      self.button.activate()
+	    }
+		
+    **See also**
+	
+    Tutorial: :doc:`Playing a greeting in an iOS Swift app <../../tutorials/ios/greeting-swift>`
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+
+	    /// Activating the Alan button programmatically
+	    fun activate() {
+	      alanButton?.activate()
+	    }
+		
+.. tabbed:: Java
+
+    .. code-block:: java
+
+        /// Activating the Alan button programmatically
+        void activate() {
+          alanButton.activate();
+        }
+
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Activating the Alan button programmatically
+          void _activate() {
+            AlanVoice.activate();
+          }
+        }
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+
+		
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.activate();
+        });
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.activate();
+		
+    **See also**
+	
+    - How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+    - :ref:`Communicating between components <Communicating between components>`
+
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+        /// Activating the Alan button programmatically
+        activate() {
+          AlanManager.activate();
+        }
+		
+.. _deactivate():
+
+deactivate()
+------------
+
+Deactivates the Alan button programmatically.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   deactivate()				
+
+
+
+**Example**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.deactivate();
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+
+	    /// Deactivating the Alan button programmatically
+	    - (void)deactivate {
+	      [self.button deactivate];
+	    }
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+	    /// Deactivating the Alan button programmatically
+	    func deactivate() {
+	      self.button.deactivate()
+	    }
+
+.. tabbed:: Kotlin
+
+    .. code-block:: java
+
+	    /// Deactivating the Alan button programmatically
+	    fun deactivate() {
+	      alanButton?.deactivate()
+	    }
+	   
+.. tabbed:: Java
+
+    .. code-block:: java
+
+        /// Deactivating the Alan button programmatically
+        void deactivate() {
+          alanButton.deactivate();
+        }
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        _MyHomePageState() {
+          /// Deactivating the Alan button programmatically
+          void _deactivate() {
+            AlanVoice.deactivate();
+          }
+        }
+		
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.deactivate();
+        });
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.deactivate();
+		
+    **See also**
+	
+    :ref:`Communicating between components <Communicating between components>`
+	   
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+        /// Deactivating the Alan button programmatically
+        deactivate() {
+          AlanManager.deactivate();
+        }		
+
+.. _isActive():		
+		
+isActive()
+----------
+
+Checks the Alan button state. Returns ``true`` if the Alan button is activated by the user or programmatically or ``false`` if the Alan button is deactivated by the user or programmatically.
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   isActive()				
+
+**Example**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.isActive();
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+
+.. tabbed:: Objective-C
+
+    .. code-block:: objective-c
+
+		 [alanBtnInstance isActive];
+
+.. tabbed:: Swift
+
+    .. code-block:: swift
+
+		alanBtnInstance.isActive()
+		
+		
+    **See also**
+	
+    Tutorial: :doc:`Playing a greeting in an iOS Swift app <../../tutorials/ios/greeting-swift>`
+
+.. tabbed:: Android
+
+    .. code-block:: java
+
+		alanBtnInstance.isActive();
+
+.. tabbed:: Flutter
+
+    .. code-block:: dart
+
+        void _checkIsActive() async {
+          var isActive = await AlanVoice.isActive();
+          if (isActive) {
+            _showDialog("Active");
+          } else {
+            _showDialog("NOT active");
+          }
+        }
+		
+    **See also**
+	
+    How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+		
+.. tabbed:: Ionic
+
+    **Ionic Angular**
+
+    .. code-block:: javascript
+	
+        var myAlanBtn = document.getElementById('myAlanBtn');
+
+        myAlanBtn.componentOnReady().then(function () {
+          myAlanBtn.isActive();
+        });
+		
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.isActive();
+		
+    **See also**
+	
+    - How-to: :ref:`Activate the Alan button programmatically and play a greeting <how-to-activate-the-alan-button-programmatically-and-play-a-greeting>`
+    - :ref:`Communicating between components <Communicating between components>`
+		
+		
+.. tabbed:: React Native
+
+    .. code-block:: javascript
+
+        AlanManager.isActive((error, result) => {
+          if (error) {
+            console.error(error);
+          } else {
+            console.log(result);
+          }
+        })	
+
+
+.. remove():		
+		
+remove()
+--------
+
+Removes the Alan button. Use this method, for example, to hide the Alan button on specific pages in the app.
+
+.. note::
+
+   At present, this method is supported only on the Web platform.  
+
+**Syntax**
+
+.. admonition:: Function syntax
+   :class: syntax
+
+   remove()		
+ 
+
+**Example**
+
+.. tabbed:: Web (React, Angular, etc.)
+
+    .. code-block:: javascript
+
+		alanBtnInstance.remove();
+
+.. tabbed:: Ionic
+   
+    **Ionic Angular**
+
+    .. code-block:: javascript
+
+         var myAlanBtn = document.getElementById('myAlanBtn');
+
+         myAlanBtn.componentOnReady().then(function () {
+           myAlanBtn.removeButton();
+        });	
+
+	
+    **Ionic React**
+	
+    .. code-block:: javascript
+
+        const alanBtnComponent = useRef<any>(null);
+
+        alanBtnComponent.current.removeButton();
+		
+    **See also**
+	
+    :ref:`Communicating between components <Communicating between components>`
+			
+
+.. raw:: html
+
+   <div id="purple-background"></div>

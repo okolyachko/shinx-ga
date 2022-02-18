@@ -1,0 +1,37 @@
+Integrating with Alan
+=====================
+
+To learn how to integrate your app with Alan, choose the platform or framework from the list below:
+
+-  :doc:`Web <web/web-api>`
+
+   - :doc:`React <web/react>`
+   - :doc:`Angular <web/angular>`
+   - :doc:`Vue <web/vue>`
+   - :doc:`Ember <web/ember>`
+   - :doc:`JavaScript <web/vanilla>`
+   - :doc:`Electron <web/electron>`
+   
+-  :doc:`iOS <ios/ios-api>`: Swift and Objective-C
+-  :doc:`Android <android/android-api>`: Kotlin and Java
+-  :doc:`Cross-platform solutions <cross-platform/overview>`
+
+   -  :doc:`Ionic <cross-platform/ionic>`
+   -  :doc:`Apache Cordova <cross-platform/cordova>`
+   -  :doc:`Flutter <cross-platform/flutter>`
+   -  :doc:`React Native <cross-platform/react-native>`
+
+.. raw:: html
+
+   <div id="purple-background"></div>
+   <div id="wide-content"></div>
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   
+   Web<web/web-integration>
+   iOS<ios/ios-api>
+   Android<android/android-api>
+   Cross-platform<cross-platform/overview>
+   

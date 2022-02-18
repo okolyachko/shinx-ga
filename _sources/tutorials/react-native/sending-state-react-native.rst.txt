@@ -1,0 +1,107 @@
+.. raw:: html
+
+   <div id="orange-background"></div>
+
+Passing the app state to the voice script
+=========================================
+
+To provide relevant responses to users, the voice assistant must know what is happening in the app: what screen is currently open, what options are enabled and so on.
+
+To get information about the app state, you can use :doc:`Alan’s visual state functionality <../../server-api/sending-data/visual-state>`. The visual state allows you to send an arbitrary JSON object informing about the current app context to the voice script. You can access this data in the
+script through the :ref:`visual object <visual>`.
+
+In this tutorial, we will continue working with the `simple counter example <https://reactnative.dev/docs/tutorial>`__ and provide users with a possibility to ask about the counter state with voice.
+
+What you will learn
+-------------------
+
+-  How to get the information about the app visual context
+-  How to access the data passed with the visual state in the voice script
+-  How to filter intents depending on the app state
+
+
+What you will need
+------------------
+
+To go through this tutorial, make sure the following prerequisites are met:
+
+-  You have completed all steps from the previous tutorials:
+
+   -  :doc:`Building a voice assistant for a React Native app <integrating-react-native>`
+   -  :doc:`Sending commands to the app <sending-commands-react-native>`
+
+-  You have set up the React Native environment and it is functioning properly. For details, see `React Native documentation <https://reactnative.dev/docs/environment-setup>`__.
+
+
+Step 1. Send the app state to the voice script
+----------------------------------------------
+
+To send the information about the app state to the script, we first need to call :ref:`Alan's
+setVisualState()<setVisualState()>` client API method on the client app side.
+
+1. To access the Alan SDK client API, in the ``App.js`` file, update the following line to add ``AlanManager``:
+
+   .. code:: typescript
+
+       ...
+       const { AlanManager, AlanEventEmitter } = NativeModules;
+       ...
+
+2. Add the ``useEffect()`` hook to call the :ref:`setVisualState()<setVisualState()>` method and send ``count`` to the voice script:
+
+   .. code:: typescript
+
+       const App = () => {
+         ..
+         useEffect(() => {
+           AlanManager.setVisualState({count});    
+         })
+         ..
+       }
+
+
+Step 2. Add a voice command to ask about the counter state
+----------------------------------------------------------
+
+We want the voice assistant to give the correct answer when the user asks about the counter state. In the code editor in Alan Studio, add the following command:
+
+.. code:: javascript
+
+    intent('What is the current count?', p => {
+        let count = p.visual.count;
+        if (count > 0) {
+            p.play(`You clicked the button ${count} times`);
+        } else {
+            p.play('Please click the button at least once');
+        }
+    });
+
+Here we are using the ``p.visual.count`` variable to access the data passed with the visual state. Depending on the counter state, Alan will play back different responses.
+
+
+Step 3. Filter voice commands by the app state
+----------------------------------------------
+
+It may be necessary to add voice commands that will work in specific circumstances. In Alan, you can create such commands with the help of :ref:`filters<Filtering commands>` added to intents. The filter in an intent defines the conditions in which the intent can be matched.
+
+Let's add a voice command that will work only if the counter value is greater than 0:
+
+.. code:: javascript
+
+    const vCounter = visual(state => state.count > 0);
+
+    intent(vCounter, 'How do I reset the counter?', p => {
+        p.play('Please restart the app');
+    });
+
+The filter comes as the first parameter in the intent. Now this intent will be matched only if the counter value is greater than 0.
+
+You can test it: run the app, tap the Alan button and ask: ``How do I reset the counter?`` Alan will not reply since the filter condition is not met. Then increment the counter and ask the same
+question again.
+
+
+What's next?
+------------
+
+Have a look at the next tutorial: :doc:`Triggering activities without voice
+commands <triggering-activities-react-native>`.

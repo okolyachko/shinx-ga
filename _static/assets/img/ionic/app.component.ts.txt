@@ -1,0 +1,30 @@
+/* app.component.ts file */
+
+/* Importing ViewChild */
+import { Component, ElementRef, ViewChild } from '@angular/core';
+
+/* Importing the Alan button */
+import "@alan-ai/alan-button";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+})
+export class AppComponent {
+  constructor() {}
+  
+  /* Referencing the Alan button element */
+  @ViewChild('alanBtnEl', {static:false}) alanBtnComponent: ElementRef<HTMLAlanButtonElement>;
+  
+  /* Adding the Alan events listener */
+  ngAfterViewInit() {
+    this.alanBtnComponent.nativeElement.addEventListener('command', (data) => {
+        const commandData = (<CustomEvent>data).detail;
+
+        if (commandData.command === 'navigation') {
+            /* Call client code that will react to the received command */
+        }
+    });
+  }
+}
